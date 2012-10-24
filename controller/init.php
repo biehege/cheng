@@ -5,6 +5,11 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
+use kindcent\Pdb;
+use kindcent\jewelry\model\User;
+
+Pdb::setConfig($config['db']);
+
 $logging_user = User::loggingUser();
 
 if ($logging_user === false) {
@@ -20,5 +25,3 @@ $request_uri = urlencode($_SERVER['REQUEST_URI']);
 
 $page['description'] = 'PHP Tiny Frame 很小很小的 PHP 框架';
 $page['keywords'] = array('PHP', '开源', '框架', 'MVC');
-
-Pdb::setConfig($config['db']);

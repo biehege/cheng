@@ -13,6 +13,7 @@
 namespace kindcent;
 
 use \PDO;
+use \Exception;
 
 class Pdb 
 {
@@ -25,8 +26,11 @@ class Pdb
     private static $dbs = null; // db slave
     private static $dbm = null; // db master
 
-    public static function setConfig($config) 
+    public static function setConfig($config)
     {
+        if (empty($config)) {
+            throw new Exception('config array empty');
+        }
         $config = array_merge(
             array(
                 'host' => 'localhost',
@@ -201,6 +205,9 @@ class PdoHelper {
     private $sql_history = array();
 
     function __construct($config, $ms = self::MASTER) {
+        if (empty($config)) {
+            throw new \Exception('config emtpy');
+        }
         extract($config); // 安全？
         if ($ms == self::SLAVE && isset($dsn_s) && $dsn_s) {
             $dsn = $dsn_s;

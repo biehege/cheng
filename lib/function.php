@@ -15,13 +15,13 @@ function h($str) {
 }
 
 function js_node($src='', $code='') {
-    $src_str = $src? ' src="' . ROOT . 'js/'.$src.'.js?v='. JS_VER .'"' : '';
+    $src_str = $src? ' src="' . ROOT . 'static/js/'.$src.'.js?v='. JS_VER .'"' : '';
     return '<script type="text/javascript"'.$src_str.'>'.$code.'</script>';
 }
 
 function css_node($src='', $type='css') {
     $rel = 'rel="stylesheet'.($type!='css'?'/'.$type:'').'"';
-    $href = 'href="'.ROOT.'css/'.$src.'.'.$type.'?v='. CSS_VER .'"';
+    $href = 'href="'.ROOT.'static/css/'.$src.'.'.$type.'?v='. CSS_VER .'"';
     $type = 'type="text/css"';
     return "<link $rel $type $href />";
 }
@@ -31,11 +31,11 @@ function js_var($var_name, $arr) {
 }
 
 function _css($file) {
-    return "css/$file.css";
+    return "static/css/$file.css";
 }
 
 function _js($file) {
-    return "js/$file.js";
+    return "static/js/$file.js";
 }
 
 /** translate Y-m-d to xx之前 or 今天XX
@@ -339,12 +339,14 @@ function is_mobile() {
         return false;
 }
 
+use kindcent\jewelry\FrameFile;
+
 function smart_view($view, $default = 'default') {
-    if (is_mobile() && ($m = Pf::view('mobile/' . $view)) && file_exists($m))
+    if (is_mobile() && ($m = FrameFile::view('mobile/' . $view)) && file_exists($m))
         return $m;
-    if (($file = Pf::view($view)) && file_exists($file))
-        return Pf::view($view);
-    if (is_mobile() && ($m = Pf::view('mobile/' . $default)) && file_exists($m))
+    if (($file = FrameFile::view($view)) && file_exists($file))
+        return FrameFile::view($view);
+    if (is_mobile() && ($m = FrameFile::view('mobile/' . $default)) && file_exists($m))
         return $m;
-    return Pf::view($default);
+    return FrameFile::view($default);
 }

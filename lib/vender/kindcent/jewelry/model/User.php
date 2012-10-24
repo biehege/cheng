@@ -7,10 +7,16 @@
 namespace kindcent\jewelry\model;
 
 use kindcent\Pdb;
+use \Exception;
 
 class User extends Model
 {
     public static $table = 'user';
+
+    protected function info()
+    {
+        return Pdb::fetchRow('*', self::$table, $this->selfCond());
+    }
 
     public function find($username)
     {

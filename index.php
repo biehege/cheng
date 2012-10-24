@@ -29,18 +29,20 @@ include 'lib/autoload.php';
 // 变量初始化
 require 'init.php';
 
+use kindcent\jewelry\FrameFile;
+
 ob_start();
 session_start();
 date_default_timezone_set('PRC');
 
-require Pf::controller('init');
+require FrameFile::controller('init');
 
 if (isset($force_redirect)) { // 强制跳转 这个在整站关闭的时候很有用
     $controller = $force_redirect;
 }
 $view = $controller;
 
-if (!file_exists(Pf::controller($controller))) {
+if (!file_exists(FrameFile::controller($controller))) {
     $controller = 'default'; // page 404
 }
 
@@ -51,7 +53,7 @@ if (file_exists(_js($controller)))
     $page['scripts'][] = $controller;
 
 // execute controller
-include Pf::controller($controller);
+include FrameFile::controller($controller);
 
 // view
 $arr = explode('?', $view);

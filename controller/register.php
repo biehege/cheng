@@ -4,6 +4,8 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
+use kindcent\jewelry\model\User;
+
 if ($has_login)
     redirect();
 
