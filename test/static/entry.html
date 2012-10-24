@@ -1,0 +1,16 @@
+<li>
+    <h2><?= $name ?></h2>
+    <div>
+        <span class="<?= $success? 'pass' : 'fail' ?>"><?= $success ? 'PASS' : 'FAIL' ?></span>
+        <?php if ($fail): ?>
+        <span>
+            <span>expect:</span>
+            <span><?= d($u_thought) ?></span>
+        </span>
+        <span>
+            <span>Actually got:</span>
+            <span><?= d($I_got) ?></span>
+        </span>
+        <?php endif; ?>
+    </div>
+</li>
