@@ -1,11 +1,11 @@
 <?php
-!defined('IN_PTF') && exit('ILLEGAL EXECUTION');
-
-require_once Pf::model('Model');
 
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
+
+namespace kindcent\jewelry\model;
+
 class Customer extends ListableModel 
 {
     public static $table = 'customer';
@@ -58,12 +58,12 @@ class Customer extends ListableModel
                 $info['products'] = $pb->products();
                 $info['customer'] = new Customer($info['customer']);
                 $info['factory'] = new Factory($info['factory']);
-            }
-            Pdb::fetchALL('*', Order::$table, $tail);
-        ;
+            },
+            Pdb::fetchALL('*', Order::$table, $tail)
+        );
     }
     
-    public submitCart(Cart $cart) 
+    public function submitCart(Cart $cart)
     {
         $prd_combine = $cart->productCombine();
         Pdb::insert(
@@ -72,7 +72,8 @@ class Customer extends ListableModel
                 'state'    => 'ToBeConfirmed',
                 'customer' => $this->id,
                 'create_time=NOW()' => null), 
-            Order::$table,);
+            Order::$table
+        );
         return new Order(Pdb::lastInsertId());
     }
 }

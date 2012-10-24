@@ -38,13 +38,13 @@ class User extends Model
     public function instance()
     {
         switch ($this->type) {
-            case 'super_admin':
+            case 'SuperAdmin':
                 return new SuperAdmin($this);
                 break;
-            case 'admin':
+            case 'Admin':
                 return new Admin($this);
                 break;
-            case 'customer':
+            case 'Customer':
                 return new Customer($this);
                 break;
             default:

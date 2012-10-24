@@ -1,12 +1,12 @@
 <?php
-!defined('IN_PTF') && exit('ILLEGAL EXECUTION');
-
-require_once Pf::model('Model');
 
 /**
  *
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
+
+namespace kindcent\jewelry\model;
+
 class ListabeModel extends Model 
 {
     private static function defaultConds($conds) 
