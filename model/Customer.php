@@ -74,4 +74,12 @@ class Customer extends Model
         );
         return new Order(Pdb::lastInsertId());
     }
+
+    public function register($kvs) {
+        $user = User::register($kvs);
+        Pdb::insert(
+            array('user' => $user->id, 'adopted' => 0), 
+            self::$table);
+        return new self(Pdb::lastInsertId());
+    }
 }

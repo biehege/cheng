@@ -4,12 +4,12 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<h2>admin list</h2>
+<h2>customer list</h2>
 <ul>
-    <?php foreach ($admins as $admin): ?>
+    <?php foreach ($customers as $cus): ?>
     <li>
-        <strong><?= $admin->name ?></strong>
-        <span>create in: <?= $admin->create_time ?></span>
+        <strong><?= $cus->user->name ?></strong>
+        <span>create in: <?= $cus->adopted ?></span>
     </li>
     <?php endforeach; ?>
 </ul>
