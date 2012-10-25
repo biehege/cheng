@@ -45,13 +45,13 @@ class User extends Model
     {
         switch ($this->type) {
             case 'SuperAdmin':
-                return new SuperAdmin($this);
+                return new SuperAdmin($this->id);
                 break;
             case 'Admin':
-                return new Admin($this);
+                return new Admin($this->id);
                 break;
             case 'Customer':
-                return new Customer($this);
+                return new Customer($this->id);
                 break;
             default:
                 throw new Exception('not here');

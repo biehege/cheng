@@ -58,4 +58,5 @@ $config['error']['info'] = array(
     'PASSWORD_NOT_SAME' => 'sorry, password not the same, plz reEnter',
     'USERNAME_EMPTY' => 'username empty',
     'USERNAME_OR_PASSWORD_INCORRECT' => 'user name or password not right',
+    'USER_ALREADY_EXISTS' => 'username already exists, choose another one',
 );

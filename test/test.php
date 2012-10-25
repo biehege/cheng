@@ -31,6 +31,18 @@ unset($real_db_arr['id']);
 test($real_db_arr, $db_arr, array('name' => 'register user db'));
 Pdb::del(User::$table, array('name=?' => $username)); // clear side effect
 
-// case 2 login session 
+// case 3 Super Admin create Admin, db
 
-// case 3 login db
+$username = 'test_admin';
+$password = 'password';
+$user = User::getByName('root');
+$superadmin = $user->instance();
+$superadmin->createAdmin(compact('username', 'password'));
+$ideal_arr = array(
+    'name' => $username,
+    'password' => md5($password),
+    'type' => 'Admin');
+$id = Pdb::lastInsertId();
+$real_arr = Pdb::fetchRow('name, password, type', User::$table, array('id=?' => $id));
+test($real_arr, $ideal_arr, array('name' => 'Super Admin create Admin, db'));
+Pdb::del(User::$table, array('name=?' => $username));

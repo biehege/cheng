@@ -30,7 +30,7 @@ if ($by_post) {
     } elseif (empty($username)) {
         $msg = $ERROR_INFO['USERNAME_EMPTY'];
     } elseif (User::find($username)) {
-        $msg = 'username: ' . _post('username') . ' has been taken, plz choose another one';
+        $msg = $ERROR_INFO['USER_ALREADY_EXISTS'];
     } else {
         $user = User::register($username, $password);
         $user->login();

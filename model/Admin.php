@@ -1,7 +1,4 @@
 <?php
-!defined('IN_PTF') && exit('ILLEGAL EXECUTION');
-
-include_once Pf::model('Model');
 
 /**
  *
@@ -11,9 +8,8 @@ class Admin extends Model
 {
     public static $table = 'admin';
     
-    public function editOrder(Order order, $settings)
+    public function editOrder(Order $order, $settings)
     {
 
     }
-
 }

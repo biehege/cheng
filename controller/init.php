@@ -7,14 +7,12 @@
 
 Pdb::setConfig($config['db']);
 
-$logging_user = User::loggingUser();
-
-if ($logging_user === false) {
+$user = User::loggingUser();
+if ($user === false) {
     $has_login = false;
 } else {
     $has_login = true;
-    $user = $logging_user;
-    $type = $user->type;
+    $type = strtolower($user->type);
     $$type = $user->instance();
 }
 
