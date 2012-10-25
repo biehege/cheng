@@ -40,7 +40,13 @@ if ($by_post) {
     } elseif (empty($phone)) {
         $msg = $ERROR_INFO['PHONE_EMPTY'];
     } else {
-        $user = User::register($username, $password);
+        $user = User::register(
+            compact(
+                'username', 
+                'password', 
+                'realname', 
+                'phone'
+            ));
         $user->login();
         $back_url = _req('back') ?: DEFAULT_LOGIN_REDIRECT_URL;
         redirect($back_url);

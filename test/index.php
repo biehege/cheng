@@ -12,11 +12,12 @@ define('APP_ROOT', __DIR__ . '/../');
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
-    <title>Test for xcPHPLib</title>
+    <title>Test for Cheng</title>
     <link rel="stylesheet" type="text/css" href="static/style.css" />
 </head>
 <body>
-    <h1>Test for xcPHPLib</h1>
+    <h1>Test for Cheng</h1>
     <ol><?php include 'test.php'; ?></ol>
+    <div class="conclusion <?= $all_pass? 'pass' : 'fail' ?>"><?= $all_pass? 'ALL PASS' : 'SOME FAIL!' ?></div>
 </body>
 </html>

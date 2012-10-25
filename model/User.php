@@ -69,13 +69,16 @@ class User extends Model
     }
 
     // only customers can be reistered
-    public static function register($username, $password)
+    public static function register($kvs)
     {
+        extract($kvs);
         $type = 'customer';
         Pdb::insert(
             array(
                 'name' => $username,
                 'password' => md5($password),
+                'realname' => $realname,
+                'phone' => $phone,
                 'type' => $type,
                 'create_time=NOW()' => null,
             ),
