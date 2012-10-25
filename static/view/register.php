@@ -28,5 +28,9 @@
         <label for="phone">手机：</label>
         <input type="text" name="phone" value="<?= $phone ?>" id="phone" placeholder="your phone number" />
     </div>
+    <div>
+        <label for="email">电子邮箱：</label>
+        <input type="text" name="email" value="<?= $email ?>" id="email" placeholder="your email" />
+    </div>
     <div><input type="submit" value="注册" class="ok btn" /></div>
 </form>

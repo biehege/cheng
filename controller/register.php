@@ -13,12 +13,14 @@ list(
     $repassword,
     $realname,
     $phone,
+    $email
 ) = _post(
     'username',
     'password',
     'repassword',
     'realname',
-    'phone'
+    'phone',
+    'email'
 );
 
 $msg = '';
@@ -39,13 +41,16 @@ if ($by_post) {
         $msg = $ERROR_INFO['REALNAME_EMPTY'];
     } elseif (empty($phone)) {
         $msg = $ERROR_INFO['PHONE_EMPTY'];
+    } elseif (empty($email)) {
+        $msg = $ERROR_INFO['EMAIL_EMPTY'];
     } else {
         $user = User::register(
             compact(
                 'username', 
                 'password', 
                 'realname', 
-                'phone'
+                'phone',
+                'email'
             ));
         $user->login();
         $back_url = _req('back') ?: DEFAULT_LOGIN_REDIRECT_URL;

@@ -26,18 +26,21 @@ $username = 'test_user';
 $password = 'password';
 $realname = '小池';
 $phone = '13711231212';
+$email = 'cumt.xiaochi@gmail.com';
 User::register(
     compact(
         'username',
         'password',
         'realname',
-        'phone'));
+        'phone',
+        'email'));
 $ideal_arr = array(
     'name' => $username,
     'password' => md5($password),
+    'type' => 'Customer',
     'realname' => $realname,
     'phone' => $phone,
-    'type' => 'Customer'
+    'email' => $email,
 );
 
 $id = Pdb::lastInsertId();

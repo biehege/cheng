@@ -61,4 +61,5 @@ $config['error']['info'] = array(
     'USER_ALREADY_EXISTS' => 'username already exists, choose another one',
     'REALNAME_EMPTY' => '请填写真实姓名',
     'PHONE_EMPTY' => '请填写手机号码',
+    'EMAIL_EMPTY' => '请填写您的电子邮箱',
 );

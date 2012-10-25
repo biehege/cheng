@@ -77,9 +77,10 @@ class User extends Model
             array(
                 'name' => $username,
                 'password' => md5($password),
+                'type' => $type,
                 'realname' => $realname,
                 'phone' => $phone,
-                'type' => $type,
+                'email' => $email,
                 'create_time=NOW()' => null,
             ),
             self::$table
