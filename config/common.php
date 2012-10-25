@@ -59,4 +59,6 @@ $config['error']['info'] = array(
     'USERNAME_EMPTY' => 'username empty',
     'USERNAME_OR_PASSWORD_INCORRECT' => 'user name or password not right',
     'USER_ALREADY_EXISTS' => 'username already exists, choose another one',
+    'REALNAME_EMPTY' => '请填写真实姓名',
+    'PHONE_EMPTY' => '请填写手机号码',
 );

@@ -8,7 +8,7 @@
 <h1>
     <a href="<?= ROOT ?>" title="<?= $config['site']['name'] ?>"><?= $config['site']['name'] ?></a>
 </h1>
-<span>with layout, but without style, without 文案</span>
+<span>with only html structure, but without layout, without style, without 文案</span>
 <?php if ($has_login): ?>
 <a href="<?= ROOT ?>my"><?= $user->name ?></a>
 <a href="<?= ROOT ?>login?logout=1">logout</a>

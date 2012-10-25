@@ -10,11 +10,15 @@ if ($has_login)
 list(
     $username, 
     $password, 
-    $repassword
+    $repassword,
+    $realname,
+    $phone,
 ) = _post(
     'username',
     'password',
-    'repassword'
+    'repassword',
+    'realname',
+    'phone'
 );
 
 $msg = '';
@@ -31,6 +35,10 @@ if ($by_post) {
         $msg = $ERROR_INFO['USERNAME_EMPTY'];
     } elseif (User::find($username)) {
         $msg = $ERROR_INFO['USER_ALREADY_EXISTS'];
+    } elseif (empty($realname)) {
+        $msg = $ERROR_INFO['REALNAME_EMPTY'];
+    } elseif (empty($phone)) {
+        $msg = $ERROR_INFO['PHONE_EMPTY'];
     } else {
         $user = User::register($username, $password);
         $user->login();

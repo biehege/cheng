@@ -71,3 +71,17 @@ a {
 }
 
 /* 404 页面 */
+
+
+/* login or register */
+form.logreg div {
+    margin: 13px 0;
+}
+form.logreg div label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+}
+form.logreg .ok.btn {
+    margin-left: 110px;
+}
