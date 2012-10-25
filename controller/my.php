@@ -18,4 +18,4 @@ switch ($user_type) {
         break;
 }
 
-$view = strtolower($user_type) . '_my?master';
+$view = 'my.' . strtolower($user_type) . '?master';
