@@ -16,7 +16,8 @@ if ($user === false) {
     $$type = $user->instance();
 }
 
-$request_uri = urlencode($_SERVER['REQUEST_URI']);
+// sometimes, ? will came, so trim it
+$request_uri = reset(explode('?', $_SERVER['REQUEST_URI']));
 
 $page['description'] = 'PHP Tiny Frame 很小很小的 PHP 框架';
 $page['keywords'] = array('PHP', '开源', '框架', 'MVC');
