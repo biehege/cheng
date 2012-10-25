@@ -21,4 +21,14 @@ class SuperAdmin extends Model
         );
         return new Admin(Pdb::lastInsertId());
     }
+
+    public function listAdmin($conds = array())
+    {
+        extract(self::defaultConds($conds));
+        $conds = array('type=?' => 'Admin');
+        $tail = "LIMIT $limit OFFSET $offset";
+        return array_map(function ($info) {
+            return new Admin($info);
+        }, Pdb::fetchAll('*', User::$table, $conds, array(), $tail));
+    }
 }

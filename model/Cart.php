@@ -1,12 +1,9 @@
 <?php
-!defined('IN_PTF') && exit('ILLEGAL EXECUTION');
-
-require_once Pf::model('Model');
 
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
-class Cart extends ListableModel 
+class Cart extends Model 
 {
     public static $table = 'customer';
 

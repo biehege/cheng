@@ -3,6 +3,6 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
-
-// we don't need it?
 ?>
+<a href="<?= ROOT ?>create/admin">create admin</a>
+<div></div>

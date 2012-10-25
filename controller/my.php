@@ -4,4 +4,18 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-$view .= '?master';
+if (!$has_login) 
+    redirect('login?back=my');
+
+$user_type = $user->type;
+switch ($user_type) {
+    case 'SuperAdmin':
+        $admins = $superadmin->listAdmin();
+        break;
+    
+    default:
+        # code...
+        break;
+}
+
+$view = strtolower($user_type) . '_my?master';

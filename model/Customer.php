@@ -14,9 +14,9 @@ class Customer extends Model
         $limit = $conds['limit'];
         $offset = $conds['offset'];
         $tail = "LIMIT $limit OFFSET $offset";
-        return array_map(function ($id) {
-            return new Product($id);
-        }, Pdb::fetchALL('id', Product::$table, array(), array(), $tail));
+        return array_map(function ($info) {
+            return new Product($info);
+        }, Pdb::fetchALL('*', Product::$table, array(), array(), $tail));
     }
 
     public function address() 
