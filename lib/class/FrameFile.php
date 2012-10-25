@@ -5,8 +5,6 @@
  * Usage: FrameFile::controller('index');
  */
 
-namespace kindcent\jewelry;
-
 class FrameFile
 {
     public static function controller($name)

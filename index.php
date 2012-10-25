@@ -13,7 +13,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 define('IN_PTF', 1);
 
-define('APP_ROOT', __DIR__ . '/');
+define('APP_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
 
 require 'config/common.php';
 
@@ -28,8 +28,6 @@ include 'lib/autoload.php';
 
 // 变量初始化
 require 'init.php';
-
-use kindcent\jewelry\FrameFile;
 
 ob_start();
 session_start();

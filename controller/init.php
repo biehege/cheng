@@ -5,9 +5,6 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-use kindcent\Pdb;
-use kindcent\jewelry\model\User;
-
 Pdb::setConfig($config['db']);
 
 $logging_user = User::loggingUser();

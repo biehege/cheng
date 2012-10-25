@@ -339,8 +339,6 @@ function is_mobile() {
         return false;
 }
 
-use kindcent\jewelry\FrameFile;
-
 function smart_view($view, $default = 'default') {
     if (is_mobile() && ($m = FrameFile::view('mobile/' . $view)) && file_exists($m))
         return $m;

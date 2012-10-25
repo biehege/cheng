@@ -10,11 +10,6 @@
  * @version 1.0 $config more human
  */
 
-namespace kindcent;
-
-use \PDO;
-use \Exception;
-
 class Pdb 
 {
     const MASTER = 1;

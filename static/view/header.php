@@ -9,5 +9,10 @@
     <a href="<?= ROOT ?>" title="<?= $config['site']['name'] ?>"><?= $config['site']['name'] ?></a>
 </h1>
 <span>with layout, but without style, without 文案</span>
+<?php if ($has_login): ?>
+<span><?= $user->name ?></span>
+<a href="<?= ROOT ?>login?logout=1">logout</a>
+<?php else: ?>
 <a href="<?= ROOT ?>login?back=<?= $request_uri ?>">login</a>
 <a href="<?= ROOT ?>register?back=<?= $request_uri ?>">register</a>
+<?php endif; ?>

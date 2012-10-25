@@ -4,14 +4,13 @@
  * @author ryan
  */
 
-namespace kindcent\jewelry\model;
-
 class Model 
 {
     protected $id = null;
     protected $info = null;
     
-    public function __construct($para) {
+    public function __construct($para) 
+    {
         if (is_array($para) && isset($para['id'])) {
             $this->id = $para['id'];
             $this->info = $para;
@@ -20,16 +19,26 @@ class Model
         }
     }
     
-    protected function selfCond() {
+    protected function selfCond() 
+    {
         return array('id=?' => $this->id);
     }
 
-    public function __get($name) {
+    public function __get($name) 
+    {
         if ($name == 'id') return $this->id;
         if (empty($this->info)) {
             $this->info = $this->info();
         }
         return $this->info[$name];
+    }
+
+    protected static function defaultConds($conds) 
+    {
+        return array_merge(array(
+            'limit' => 10,
+            'offset' => 0,
+        ), $conds);
     }
 }
 

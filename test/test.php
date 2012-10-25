@@ -1,18 +1,10 @@
 <?php
 
-namespace kindcent;
-
-use kindcent\Pdb;
-use kindcent\jewelry\model\Model;
-use kindcent\jewelry\model\User;
-
 require 'lib/test.php'; // test functions
 
 require_once APP_ROOT . 'lib/function.php';
 require_once APP_ROOT . 'lib/autoload.php';
 include_once APP_ROOT . 'config/common.php';
-
-
 
 // case 1 autoload
 $id = 101;
@@ -37,6 +29,7 @@ $real_db_arr = Pdb::fetchRow('*', User::$table, array('id=?' => $id));
 unset($real_db_arr['create_time']);
 unset($real_db_arr['id']);
 test($real_db_arr, $db_arr, array('name' => 'register user db'));
+Pdb::del(User::$table, array('name=?' => $username)); // clear side effect
 
 // case 2 login session 
 

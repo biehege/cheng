@@ -4,11 +4,6 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-namespace kindcent\jewelry\model;
-
-use kindcent\Pdb;
-use \Exception;
-
 class User extends Model
 {
     public static $table = 'user';

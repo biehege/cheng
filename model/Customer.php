@@ -4,9 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-namespace kindcent\jewelry\model;
-
-class Customer extends ListableModel 
+class Customer extends Model 
 {
     public static $table = 'customer';
 
