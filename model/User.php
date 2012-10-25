@@ -20,14 +20,25 @@ class User extends Model
 
     public function check($username, $password)
     {
-        return Pdo::exists(self::$table, array(
+        return Pdb::exists(self::$table, array(
             'name=?' => $username,
-            'password=?', $password));
+            'password=?' => md5($password)));
+    }
+
+    public function getByName($username)
+    {
+        $cond = array('name=?' => $username);
+        return new self(Pdb::fetchRow('*', self::$table, $cond));
     }
 
     public function login()
     {
         $_SESSION['se_user_id'] = $this->id;
+    }
+
+    public function logout()
+    {
+        $_SESSION['se_user_id'] = 0;
     }
 
     public function instance()

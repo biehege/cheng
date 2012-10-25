@@ -23,14 +23,16 @@ $username = _post('username');
 $password = _post('password');
 
 $msg = '';
-if ($is_post) {
+if ($by_post) {
     if (User::check($username, $password)) {
         $user = User::getByName($username);
-        $type = $user->type;
+        $user->login();
+        $type = strtolower($user->type);
         $$type = $user->instance();
-        $$type->login();
         $back_url = _get('back') ?: DEFAULT_LOGIN_REDIRECT_URL;
         redirect($back_url);
+    } else {
+        $msg = $config['error']['info']['USERNAME_OR_PASSWORD_INCORRECT'];
     }
 }
 

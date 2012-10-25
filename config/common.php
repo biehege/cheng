@@ -57,4 +57,5 @@ $config['error']['info'] = array(
     'REPASSWORD_EMPTY' => 'plz reEnter your password to confirm',
     'PASSWORD_NOT_SAME' => 'sorry, password not the same, plz reEnter',
     'USERNAME_EMPTY' => 'username empty',
+    'USERNAME_OR_PASSWORD_INCORRECT' => 'user name or password not right',
 );
