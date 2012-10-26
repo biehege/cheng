@@ -8,6 +8,15 @@ class Customer extends Model
 {
     public static $table = 'customer';
 
+    protected function info() {
+        $ret = Pdb::fetchRow('*', self::$table, $this->selfCond());
+        if ($ret === false) {
+            throw new Exception("no customer, id: $this->id");
+        }
+        $ret['user'] = new User($ret['user']);
+        return $ret;
+    }
+
     public function listProducts($conds)
     {
         $conds = self::defaultConds($conds);
@@ -81,5 +90,43 @@ class Customer extends Model
             array('user' => $user->id, 'adopted' => 0), 
             self::$table);
         return new self(Pdb::lastInsertId());
+    }
+
+    public function visitProduct(Product $prd)
+    {
+        $expire = '20'; //???
+        if (!in_array($prd->id, self::visitingProducts())) {
+            Pdb::insert(
+                array(
+                    'user' => $this->user->id,
+                    'time=NOW()' => null,
+                    'action' => 'visitProduct',
+                    'target' => $prd->id,
+                    ),
+                UserLog::$table
+            );
+            self::addVisitingProduct($prd);
+        }
+    }
+
+    public function visitingProducts() {
+        if (isset($_COOKIE['visiting_products'])) {
+            return json_decode($_COOKIE['visiting_products']);
+        } else {
+            return array();
+        }
+    }
+
+    public function addVisitingProduct($prd)
+    {
+        $prd_id = $prd->id;
+        if (!isset($_COOKIE['visiting_products'][$prd_id])) {
+            setcookie(
+                'visiting_products[' . $prd_id . ']',
+                '1',
+                strtotime('+30min'), 
+                '/'
+            );
+        }
     }
 }
