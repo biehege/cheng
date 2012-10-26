@@ -5,7 +5,7 @@
  */
 class Price
 {
-    public static $table = 'product';
+    public static $table = 'price';
     // public static $types = array('gold', 'pt');
 
     public static function current($type) 
@@ -26,7 +26,7 @@ class Price
             'ORDER BY id desc');
     }
 
-    public static update($type, $price)
+    public static function update($type, $price)
     {
         Pdb::insert(
             array(
