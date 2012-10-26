@@ -17,7 +17,7 @@ class Admin extends Model
         Pdb::update(array('adopted' => 1), Customer::$table, array('id=?' => $cus->id));
     }
 
-    public function listCustomer($conds)
+    public function listCustomer($conds = array())
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
@@ -26,7 +26,17 @@ class Admin extends Model
             $conds['adopted=?'] = $adopted ? 1 : 0;
         }
         return array_map(function ($info) {
+            $info['user'] = new User($info['user']);
             return new Customer($info);
-        }, Pdb::fetchAll('*', Customer::$table, $conds, $tail));
+        }, Pdb::fetchAll('*', Customer::$table, $conds, null, $tail));
+    }
+
+    public function listFactory($conds) 
+    {
+        extract(self::defaultConds($conds));
+        $tail = "LIMIT $limit OFFSET $offset";
+        return array_map(function ($id) {
+            return new Factory($id);
+        }, Pdb::fetchAll('id', Factory::$table, null, null, $tail));
     }
 }
