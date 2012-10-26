@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `product`
     `small_stone` TINYINT NOT NULL,
     `remark` TEXT,
     `carve_allow` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
-    `create_time` DATETIME,
+    `post_time` DATETIME,
     PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 

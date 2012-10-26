@@ -39,4 +39,11 @@ class Admin extends Model
             return new Factory($id);
         }, Pdb::fetchAll('id', Factory::$table, null, null, $tail));
     }
+
+    public postProduct($info)
+    {
+        Pdb::insert(
+            $info,
+            Product::$table);
+    }
 }
