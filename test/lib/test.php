@@ -1,6 +1,6 @@
 <?php
 
-function test($I_got, $u_thought, $options)
+function test($I_got, $u_thought, $options = array())
 {
     if (isset($options['name'])) {
         $name = $options['name'];
