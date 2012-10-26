@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `cart`
 CREATE TABLE IF NOT EXISTS `big_order`
 (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY(id)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- relation between big and small orders
@@ -94,11 +95,9 @@ CREATE TABLE IF NOT EXISTS `small_order`
     `address` INT(10) UNSIGNED NOT NULL, -- address, since address will chang by user
     `factory` INT(10) UNSIGNED NOT NULL, -- factory
 
-    `product` INT(10) UNSIGNED NOT NULL,
     `size` SMALLINT(4) UNSIGNED NOT NULL,
     `carve_text` VARCHAR(120),
     `material` CHAR(20) NOT NULL,
-    `create_time` DATETIME,
 
     `state` ENUM(
         'InCart',
@@ -126,6 +125,7 @@ CREATE TABLE IF NOT EXISTS `small_order`
     `factory_st` TINYINT(2),
     `factory_st_weight` DECIMAL(4, 2),
 
+    `add_cart_time` DATETIME,
     `create_time` DATETIME,
     `to_factory_time` DATETIME,
     `factory_confirm_time` DATETIME,
