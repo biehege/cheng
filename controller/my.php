@@ -12,9 +12,13 @@ switch ($user_type) {
     case 'SuperAdmin':
         $admins = $superadmin->listAdmin();
         break;
+
+    case 'Admin':
+        $customers = $admin->listCustomer();
+        break;
     
     default:
-        # code...
+        throw new Exception('should not be here, user type: ' . $user_type);
         break;
 }
 
