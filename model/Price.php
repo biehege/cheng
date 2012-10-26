@@ -6,7 +6,6 @@
 class Price
 {
     public static $table = 'price';
-    // public static $types = array('gold', 'pt');
 
     public static function current($type) 
     {
