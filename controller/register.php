@@ -44,7 +44,7 @@ if ($by_post) {
     } elseif (empty($email)) {
         $msg = $ERROR_INFO['EMAIL_EMPTY'];
     } else {
-        $user = User::register(
+        $customer = Customer::register(
             compact(
                 'username', 
                 'password', 
@@ -52,6 +52,7 @@ if ($by_post) {
                 'phone',
                 'email'
             ));
+        $user = ($customer->user);
         $user->login();
         $back_url = _req('back') ?: DEFAULT_LOGIN_REDIRECT_URL;
         redirect($back_url);
