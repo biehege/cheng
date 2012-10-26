@@ -34,6 +34,9 @@ class User extends Model
     public function login()
     {
         $_SESSION['se_user_id'] = $this->id;
+
+        // log it
+        UserLog::log($this->id);
     }
 
     public function logout()
@@ -86,5 +89,12 @@ class User extends Model
             self::$table
         );
         return new self(Pdb::lastInsertId());
+    }
+
+    public static function loginHistory()
+    {
+        $cond = array('user=?' => $this->id);
+        $tail = "LIMIT $limit OFFSET $offset";
+        return Pdb::fetchAll('*', UserLog::$table, $cond, null, $tail);
     }
 }
