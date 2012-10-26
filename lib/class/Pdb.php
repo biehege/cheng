@@ -242,6 +242,8 @@ class PdoHelper {
 
         // if only one, then chop
         $ret = $sm->fetch(PDO::FETCH_ASSOC);
+        if ($ret === false)
+            return false;
         if (count($ret) === 1) {
             $ret = reset($ret);
         }
@@ -352,11 +354,8 @@ class PdoHelper {
         $sm = $this->prepare("SELECT $fields FROM $tables $where $orders $tail");
         self::bindValues($sm, array_values($cond_arr));
         if ($sm->execute()) {
-            $ret = array();
+            $ret = false;
             while ($row = $sm->fetch(PDO::FETCH_ASSOC)) {
-
-                // ??
-
                 if (count($row) == 1) {
                     // will it ok?
                     $row = reset($row);
