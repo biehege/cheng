@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `factory`
 CREATE TABLE IF NOT EXISTS `setting`
 (
     `key` CHAR(30) NOT NULL,
-    `value` CHAR(30) NOT NULL,
+    `value` CHAR(30) NOT NULL
 ) ENGINE=MyISAM;
 
 -- price
