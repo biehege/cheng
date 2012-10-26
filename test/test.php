@@ -68,3 +68,7 @@ $id = Pdb::lastInsertId();
 $real_arr = Pdb::fetchRow('name, password, type', User::$table, array('id=?' => $id));
 test($real_arr, $ideal_arr, array('name' => 'Super Admin create Admin, db'));
 Pdb::del(User::$table, array('name=?' => $username));
+
+// case 4 Admin post Product, db
+$info = array(
+    );

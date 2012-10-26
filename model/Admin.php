@@ -40,10 +40,12 @@ class Admin extends Model
         }, Pdb::fetchAll('id', Factory::$table, null, null, $tail));
     }
 
-    public postProduct($info)
+    public function postProduct($info)
     {
         Pdb::insert(
-            $info,
+            array_merge(
+                $info,
+                array('post_time=NOW()' => null)),
             Product::$table);
     }
 }
