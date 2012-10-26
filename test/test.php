@@ -21,13 +21,13 @@ test(kind_of_equal($a, $b), true, array('name' => 'test for kind_of_equal()'));
 
 Pdb::setConfig($config['db']);
 
-// case 3 register user, db
+// case 3 register customer, user db
 $username = 'test_user';
 $password = 'password';
 $realname = '小池';
 $phone = '13711231212';
 $email = 'cumt.xiaochi@gmail.com';
-User::register(
+Customer::register(
     compact(
         'username',
         'password',
@@ -44,11 +44,14 @@ $ideal_arr = array(
 );
 
 $id = Pdb::lastInsertId();
+$customer = new Customer($id);
+$id = $customer->user->id;
 $real_arr = Pdb::fetchRow('*', User::$table, array('id=?' => $id));
 unset($real_arr['create_time']);
 unset($real_arr['id']);
-test($real_arr, $ideal_arr, array('name' => 'register user, db'));
+test($real_arr, $ideal_arr, array('name' => 'register customer, db'));
 Pdb::del(User::$table, array('name=?' => $username)); // clear side effect
+Pdb::del(Customer::$table, array('user=?' => $id));
 
 // case 3 Super Admin create Admin, db
 
