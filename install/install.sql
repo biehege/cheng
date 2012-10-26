@@ -68,7 +68,6 @@ CREATE TABLE IF NOT EXISTS `cart`
 (
     `customer` INT(10) UNSIGNED NOT NULL,
     `small_order` INT(10) UNSIGNED NOT NULL,
-    `num` SMALLINT(2) UNSIGNED NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM;
 
 -- big_order is relation between order and order_entry

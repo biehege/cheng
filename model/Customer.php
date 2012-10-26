@@ -56,6 +56,20 @@ class Customer extends Model
         return Cart::createFromCustomer($this);
     }
 
+    public function addProductToCart(Product $prd, $opts)
+    {
+        // make an new order
+        $order = Order::create($this->id, $prd, $opts);
+
+        Pdb::insert(
+            array(
+                'customer' => $this->id,
+                'small_order' => $order->id,
+            ), 
+            Cart::$table
+        );
+    }
+
     public function listOrders($conds)
     {
         extract(slef::defaultConds($conds));
@@ -70,7 +84,7 @@ class Customer extends Model
             Pdb::fetchALL('*', Order::$table, $tail)
         );
     }
-    
+
     public function submitCart(Cart $cart)
     {
         $prd_combine = $cart->productCombine();

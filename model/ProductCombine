@@ -1,9 +1,7 @@
 <?php
-!defined('IN_PTF') && exit('ILLEGAL EXECUTION');
-
-require_once Pf::model('Model');
 
 /**
+ * we will del it
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 class ProductCombine extends ListableModel 

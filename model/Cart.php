@@ -12,15 +12,6 @@ class Cart
         $this->customer_id = $cus->id;
     }
 
-    public function add(Product $prd, $opts) 
-    {
-        $num = i($opts['num']) ?: 1;
-        Pdb::insert(array(
-            'product_buy' => $prd->id,
-            'num' => $num
-        ), cart_product);
-    }
-
     public function listProduct($conds) {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limt OFFSET $offset";
