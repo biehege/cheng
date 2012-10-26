@@ -22,7 +22,8 @@ class UserLog
             array(
                 'user' => $user_id,
                 'action' => 'Login',
-                'time=NOW()' => null),
-            self::$table,)
+                'time=NOW()' => null
+            ),
+            self::$table);
     }
 }

@@ -31,17 +31,18 @@ CREATE TABLE IF NOT EXISTS `customer`
     PRIMARY KEY(id)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
--- address
+-- address never del(for bill to ref)
 CREATE TABLE IF NOT EXISTS `address`
 (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `is_del` TINYINT(1) NOT NULL DEFAULT '0',
     `name` CHAR(20) NOT NULL COMMENT '姓名',
     `phone` CHAR(20) NOT NULL,
     `detail` TEXT NOT NULL,
     PRIMARY KEY(id)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
--- product
+-- product, actually, it's product type
 CREATE TABLE IF NOT EXISTS `product`
 (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -62,39 +63,50 @@ CREATE TABLE IF NOT EXISTS `product`
     PRIMARY KEY(id)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
--- product_combine
-CREATE TABLE IF NOT EXISTS `product_combine`
+-- cart
+CREATE TABLE IF NOT EXISTS `cart`
 (
-    `group` INT(10) UNSIGNED NOT NULL COMMENT 'group id',
-    `product` INT(10) UNSIGNED NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=101;
+    `customer` INT(10) UNSIGNED NOT NULL,
+    `small_order` INT(10) UNSIGNED NOT NULL,
+    `num` SMALLINT(2) UNSIGNED NOT NULL DEFAULT '1'
+) ENGINE=MyISAM;
 
--- product_buy
-CREATE TABLE IF NOT EXISTS `product_buy`
+-- big_order is relation between order and order_entry
+CREATE TABLE IF NOT EXISTS `big_order`
 (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+) ENGINE=MyISAM AUTO_INCREMENT=101;
+
+-- relation between big and small orders
+CREATE TABLE IF NOT EXISTS `big_to_small_order`
+(
+    `big` INT(10) UNSIGNED NOT NULL,
+    `small` INT(10) UNSIGNED NOT NULL
+) ENGINE=MyISAM;
+
+-- small_order
+CREATE TABLE IF NOT EXISTS `small_order`
+(
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `order_no` CHAR(20) NOT NULL COMMENT '订单号',
+    `product` INT(10) UNSIGNED NOT NULL, -- product
+    `customer` INT(10) UNSIGNED NOT NULL, -- user
+    `address` INT(10) UNSIGNED NOT NULL, -- address, since address will chang by user
+    `factory` INT(10) UNSIGNED NOT NULL, -- factory
+
     `product` INT(10) UNSIGNED NOT NULL,
     `size` SMALLINT(4) UNSIGNED NOT NULL,
     `carve_text` VARCHAR(120),
     `material` CHAR(20) NOT NULL,
     `create_time` DATETIME,
-    PRIMARY KEY(id)
-) ENGINE=MyISAM AUTO_INCREMENT=101;
 
--- order_
-CREATE TABLE IF NOT EXISTS `order_`
-(
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `no` CHAR(20) NOT NULL COMMENT '订单号',
-    `products` INT(10) UNSIGNED NOT NULL, -- product_combine
-    `customer` INT(10) UNSIGNED NOT NULL, -- user
-    `factory` INT(10) UNSIGNED NOT NULL, -- factory
     `state` ENUM(
-        "ToBeConfirmed",
-        "InFactory",
-        "FactoryConfirmed",
-        "FactoryDone",
-        "Done"
+        'InCart',
+        'ToBeConfirmed',
+        'InFactory',
+        'FactoryConfirmed',
+        'FactoryDone',
+        'Done'
     ) NOT NULL DEFAULT 'ToBeConfirmed',
 
     `gold_weight` DECIMAL(4, 2) NOT NULL,
@@ -125,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `order_`
 
     `customer_remark` TEXT,
     `admin_remark` TEXT,
+
     PRIMARY KEY(id)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 

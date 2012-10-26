@@ -12,8 +12,19 @@ if ($user === false) {
     $has_login = false;
 } else {
     $has_login = true;
-    $type = strtolower($user->type);
+    $user_type = $user->type;
+    $type = strtolower($user_type); // $type is a temp var
     $$type = $user->instance();
+
+    switch ($user_type) {
+        case 'Customer':
+            $cart = $customer->cart();
+            break;
+        
+        default:
+            throw new Exception('unrecognize type: ' . $user_type);
+            break;
+    }
 }
 
 // sometimes, ? will came, so trim it

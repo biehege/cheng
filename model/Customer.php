@@ -50,9 +50,10 @@ class Customer extends Model
         return new Address($id);
     }
 
+    // cart is a Cart
     public function cart()
     {
-        return new Cart(Pdb::fetchRow('cart', self::$table, $this->selfCond()));
+        return Cart::createFromCustomer($this);
     }
 
     public function listOrders($conds)
