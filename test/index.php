@@ -17,7 +17,14 @@ define('APP_ROOT', __DIR__ . '/../');
 </head>
 <body>
     <h1>Test for Cheng</h1>
+    <div class="conclusion fail" id="pre-box">SOME FAIL!</div>
     <ol><?php include 'test.php'; ?></ol>
     <div class="conclusion <?= $all_pass? 'pass' : 'fail' ?>"><?= $all_pass? 'ALL PASS' : 'SOME FAIL!' ?></div>
+    <script>
+    window.onload = function () {
+        var box = document.getElementById('pre-box');
+        box.style.display = 'none';
+    };
+    </script>
 </body>
 </html>
