@@ -6,7 +6,7 @@
  */
 class Order extends Model 
 {
-    public static $table = 'order_'; // when came across a key word
+    public static $table = 'small_order'; // when came across a key word
 
     public static function creat(Customer $cus, Product $prd, $opts)
     {
@@ -16,8 +16,17 @@ class Order extends Model
                 array(
                     'customer' => $cus->id,
                     'product' => $prd->id,
-                    '')),
+                    'state' => 'InCart',
+                    'add_cart_time=NOW()' => null)),
+            self::$table);
+    }
 
-            )
+    public function submit()
+    {
+        Pdb::update(
+            array(
+                'state' => 'TobeConfirmed',
+                'submit_time=NOW()' => null),
+            slef::$table);
     }
 }

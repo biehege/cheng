@@ -5,28 +5,32 @@
  */
 class Cart
 {
-    public static $table = 'customer';
+    public static $table = 'cart';
 
     public static function createFromCustomer(Customer $cus)
     {
-        $this->customer_id = $cus->id;
+        $this->owner_id = $cus->id;
     }
 
-    public function listProduct($conds) {
-        extract(self::defaultConds($conds));
-        $tail = "LIMIT $limt OFFSET $offset";
-        return Pdb::fetchAll('id', cart_product);
+    public function orders() {
+        return array_map(function ($id) {
+            return new Order($id);
+        }, Pdb::fetchAll('id', self::$table); // no paging here
     }
 
-    public function count() 
+    public function count()
     {
-        return Pdb::count(cart_product, array('cart=?' => $this->id));
+        return Pdb::count(
+            self::$table, 
+            array('customer=?' => $this->owner_id));
     }
 
-    public function del(Product $prd)
+    public function del(Order $order)
     {
-        Pdb::del(cart_product, array(
-            'cart=?' => $this->id, 
-            'product=?' => $prd->id));
+        Pdb::del(
+            self::$table, 
+            array(
+                'customer=?' => $this->owner_id, 
+                'order=?' => $order->id));
     }
 }

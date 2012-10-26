@@ -15,12 +15,14 @@ CREATE TABLE IF NOT EXISTS `user`
     `phone` CHAR(20) NOT NULL DEFAULT '',
     `email` CHAR(40) NOT NULL DEFAULT '',
     `create_time` DATETIME,
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`),
+    UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- root user
 INSERT INTO `user` (name, password, type, create_time) 
-            VALUES ('root', md5('root'), 'SuperAdmin', NOW()) ON DUPLICATE KEY UPDATE name='root';
+            VALUES ('root', md5('root'), 'SuperAdmin', NOW()) 
+                ON DUPLICATE KEY UPDATE name=name;
 
 -- customer
 CREATE TABLE IF NOT EXISTS `customer`
@@ -28,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `customer`
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `user` INT(10) UNSIGNED NOT NULL,
     `adopted` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否被通过',
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- address never del(for bill to ref)
@@ -39,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `address`
     `name` CHAR(20) NOT NULL COMMENT '姓名',
     `phone` CHAR(20) NOT NULL,
     `detail` TEXT NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- product, actually, it's product type
@@ -51,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `product`
     `image1` VARCHAR(100),
     `image2` VARCHAR(100),
     `image3` VARCHAR(100),
-    `type` CHAR(20) NOT NULL,
+    `type` CHAR(20) NOT NULL, -- new a table?
     `material` CHAR(120) NOT NULL COMMENT 'JSON', 
     `weight` DECIMAL(10, 2),
     `rabbet_start` DECIMAL(2, 2) NOT NULL,
@@ -60,8 +62,23 @@ CREATE TABLE IF NOT EXISTS `product`
     `remark` TEXT,
     `carve_allow` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
     `create_time` DATETIME,
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
+
+-- product_type
+CREATE TABLE IF NOT EXISTS `product_type`
+(
+    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` CHAR(60) NOT NULL,
+    PRIMARY KEY(`id`),
+    UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=101;
+
+INSERT INTO `product_type` -- default types
+    (name) 
+    VALUES 
+    ('女戒'), ('男戒'), ('对戒'), ('吊坠'), ('耳坠'), ('手镯/手链')
+        ON DUPLICATE KEY UPDATE name=name;
 
 -- cart
 CREATE TABLE IF NOT EXISTS `cart`
@@ -74,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `cart`
 CREATE TABLE IF NOT EXISTS `big_order`
 (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- relation between big and small orders
@@ -125,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `small_order`
     `factory_st_weight` DECIMAL(4, 2),
 
     `add_cart_time` DATETIME,
-    `create_time` DATETIME,
+    `submit_time` DATETIME,
     `to_factory_time` DATETIME,
     `factory_confirm_time` DATETIME,
     `factory_done_time` DATETIME,
@@ -137,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `small_order`
     `customer_remark` TEXT,
     `admin_remark` TEXT,
 
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- factory
@@ -145,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `factory`
 (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name` CHAR(60) NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- setting 全局设定
@@ -162,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `price`
     `type` CHAR(10) NOT NULL, -- ENUM('PT950', 'AU750')
     `price` DECIMAL(8,2) NOT NULL,
     `time` DATETIME NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- login history
@@ -173,5 +190,5 @@ CREATE TABLE IF NOT EXISTS `user_log`
     `action` ENUM('Login', 'StartBill', 'DoneBill', 'ViewProduct') NOT NULL,
     `target` INT(10) UNSIGNED,
     `time` DATETIME NOT NULL,
-    PRIMARY KEY(id)
+    PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;

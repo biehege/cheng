@@ -64,10 +64,8 @@ class Customer extends Model
         Pdb::insert(
             array(
                 'customer' => $this->id,
-                'small_order' => $order->id,
-            ), 
-            Cart::$table
-        );
+                'small_order' => $order->id,),
+            Cart::$table);
     }
 
     public function listOrders($conds)
@@ -87,10 +85,12 @@ class Customer extends Model
 
     public function submitCart(Cart $cart)
     {
+        // big order
+        $bigOrder = BigOrder::createFromCart($cart);
+
         $prd_combine = $cart->productCombine();
         Pdb::insert(
             array(
-                'products' => $prd_combine->id,
                 'state'    => 'ToBeConfirmed',
                 'customer' => $this->id,
                 'create_time=NOW()' => null), 
