@@ -56,10 +56,10 @@ CREATE TABLE IF NOT EXISTS `product`
     `type` CHAR(20) NOT NULL, -- new a table?
     `material` CHAR(120) NOT NULL COMMENT 'JSON', 
     `weight` DECIMAL(10, 2),
-    `rabbet_start` DECIMAL(2, 2) NOT NULL,
-    `rabbet_end` DECIMAL(2, 2) NOT NULL,
-    `small_stone` TINYINT NOT NULL,
-    `remark` TEXT,
+    `rabbet_start` DECIMAL(2, 2) NOT NULL COMMENT '镶口',
+    `rabbet_end` DECIMAL(2, 2) NOT NULL COMMENT '镶口',
+    `small_stone` TINYINT(2) NOT NULL,
+    `remark` TEXT COMMENT '说明', 
     `carve_allow` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
     `post_time` DATETIME,
     PRIMARY KEY(`id`)

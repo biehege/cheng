@@ -47,5 +47,6 @@ class Admin extends Model
                 $info,
                 array('post_time=NOW()' => null)),
             Product::$table);
+        return new Product(Pdb::lastInsertId());
     }
 }

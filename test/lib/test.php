@@ -1,23 +1,37 @@
 <?php
 
+function begin_test()
+{
+    echo '<hr>' . PHP_EOL;
+}
+
 function test($I_got, $u_thought, $options = array())
 {
-    if (isset($options['name'])) {
-        $name = $options['name'];
-    } else if (isset($GLOBALS['name'])) {
-        $name = $GLOBALS['name'];
-    } else {
-        $name = 'test';
+    $options = array_merge( // default options
+        array(
+            'name' => 'test',
+            'compare' => 'equal'), // compare method
+        $options);
+    $name = $options['name'];
+    $compare = $options['compare'];
+
+    switch ($compare) {
+        case 'equal':
+            $success = kind_of_equal($I_got, $u_thought);
+            break;
+
+        case 'in':
+            $success = array_contain($I_got, $u_thought);
+            break;
+        
+        default:
+            throw new Exception("bad compare method: $compare");
+            break;
     }
-    
-    if (kind_of_equal($I_got, $u_thought)) {
-        $success = 1;
-        $fail = 0;
-    } else {
-        $success = 0;
-        $fail = 1;
+    $fail = !$success;
+    if ($fail)
         $GLOBALS['all_pass'] = false;
-    }
+
     include 'static/entry.html';
 }
 
@@ -33,6 +47,19 @@ function kind_of_equal($a, $b)
             return false;
         if (!kind_of_equal($value, $b[$key]))
             return false;
+    }
+    return true;
+}
+
+function array_contain($big_arr, $small_arr)
+{
+    if (!is_array($big_arr) || !is_array($small_arr)) {
+        return false;
+    }
+    foreach ($small_arr as $key => $value) {
+        if (!isset($big_arr[$key])) {
+            return false;
+        }
     }
     return true;
 }
