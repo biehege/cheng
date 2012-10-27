@@ -264,6 +264,10 @@ class PdoHelper {
     }
 
     public function count($tables, $conds=array()) {
+        if ($conds !== null && !is_array($conds)) {
+            d($conds);
+            throw new Exception('conds not array');
+        }
         $tables = self::precomposite($tables);
         $where = $conds? "WHERE ".implode(' AND ', array_keys($conds)) : '';
         $sm = $this->prepare("SELECT count(*) FROM $tables $where");

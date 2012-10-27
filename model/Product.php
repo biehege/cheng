@@ -7,6 +7,11 @@ class Product extends Model
 {
     public static $table = 'product';
 
+    public static function count()
+    {
+        return Pdb::count(self::$table);
+    }
+
     public static function listProduct($conds = array()) 
     {
         extract(self::defaultConds($conds));

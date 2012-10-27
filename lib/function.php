@@ -272,13 +272,13 @@ function _req($para, $default = '')
     return isset($_REQUEST[$para]) && $_REQUEST[$para] ? trim($_REQUEST[$para]) : $default;
 }
 
-function _post()
+function _post($vars)
 {
     $ret = make_array_from_name_list_and_source(func_get_args(), $_POST);
     return (1 === func_num_args()) ? reset($ret) : $ret;
 }
 
-function _get($name, $default = '')
+function _get($vars)
 {
     $ret = make_array_from_name_list_and_source(func_get_args(), $_GET);
     return (1 === func_num_args()) ? reset($ret) : $ret;
@@ -286,6 +286,7 @@ function _get($name, $default = '')
 
 function make_array_from_name_list_and_source($namelist, &$source_arr)
 {
+    // what if $namelist is an empty array
     $default = '';
     return array_map(function ($name) use($default) {
         return isset($_POST[$name]) ? trim($_POST[$name]) : $default;

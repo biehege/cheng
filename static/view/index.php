@@ -51,10 +51,13 @@
                     <span>货号：<?= $prd->sn ?></span>
                 </div>
                 <div>镶口：<?= $prd->rabbet_start ?>-<?= $prd->rabbet_end ?> ct</div>
-                <div>手寸</div>
-                <div>手寸</div>
-                <div>手寸</div>
-                <div>手寸</div>
+                <div>手寸：</div>
+                <div>刻字：</div>
+                <div>辅石：<?= $prd->small_stone ?></div>
+                <div>
+                    <span>工费：<?= $setting::get('labor_expense') ?></span>
+                    <span> 损耗：<?= $setting::get('wear_tear') ?></span>
+                </div>
             </div>
             <div class="right">
             </div>
