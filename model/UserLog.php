@@ -10,7 +10,7 @@ class UserLog
 
     public static function history()
     {
-        return array_map(function ($info) {
+        return safe_array_map(function ($info) {
             $info['user'] = new User($info['user']);
             return $info;
         }, Pdb::fetchAll('*', self::$table));

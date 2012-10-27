@@ -23,7 +23,7 @@ class Customer extends Model
         $limit = $conds['limit'];
         $offset = $conds['offset'];
         $tail = "LIMIT $limit OFFSET $offset";
-        return array_map(function ($info) {
+        return safe_array_map(function ($info) {
             return new Product($info);
         }, Pdb::fetchALL('*', Product::$table, array(), array(), $tail));
     }
@@ -72,7 +72,7 @@ class Customer extends Model
     {
         extract(slef::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
-        return array_map(
+        return safe_array_map(
             function ($info) {
                 $pb = new productCombine($info['products']);
                 $info['products'] = $pb->products();

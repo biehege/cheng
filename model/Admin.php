@@ -25,17 +25,19 @@ class Admin extends Model
         if (isset($adopted)) {
             $conds['adopted=?'] = $adopted ? 1 : 0;
         }
-        return array_map(function ($info) {
+        $cus_infos = Pdb::fetchAll('*', Customer::$table, $conds, null, $tail);
+        return safe_array_map(function ($info) {
             $info['user'] = new User($info['user']);
             return new Customer($info);
-        }, Pdb::fetchAll('*', Customer::$table, $conds, null, $tail));
+        }, $cus_infos);
     }
 
     public function listFactory($conds) 
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
-        return array_map(function ($id) {
+        $ids = 
+        return safe_array_map(function ($id) {
             return new Factory($id);
         }, Pdb::fetchAll('id', Factory::$table, null, null, $tail));
     }

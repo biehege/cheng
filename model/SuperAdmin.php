@@ -27,7 +27,7 @@ class SuperAdmin extends Model
         extract(self::defaultConds($conds));
         $conds = array('type=?' => 'Admin');
         $tail = "LIMIT $limit OFFSET $offset";
-        return array_map(function ($info) {
+        return safe_array_map(function ($info) {
             return new Admin($info);
         }, Pdb::fetchAll('*', User::$table, $conds, array(), $tail));
     }

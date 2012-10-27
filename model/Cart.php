@@ -19,9 +19,8 @@ class Cart
     }
 
     public function orders() {
-        return array_map(function ($id) {
-            return new Order($id);
-        }, Pdb::fetchAll('id', self::$table)); // no paging here
+        $ids = Pdb::fetchAll('small_order', self::$table);
+        return safe_array_map(function ($id) { return new Order($id); }, $ids); // no paging here
     }
 
     public function count()

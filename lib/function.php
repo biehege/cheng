@@ -6,6 +6,8 @@
  * @version 7.5 d() will determin good style when is_ajax
  */
 
+/* short names */
+
 function i(&$param, $or='') {
     return isset($param)? $param : $or;
 }
@@ -13,6 +15,36 @@ function i(&$param, $or='') {
 function h($str) {
     return htmlspecialchars($str);
 }
+
+/* $_GET, $_POST, $_REQUEST helpers or shortens */
+
+function _req($para, $default = '') 
+{
+    return isset($_REQUEST[$para]) && $_REQUEST[$para] ? trim($_REQUEST[$para]) : $default;
+}
+
+function _post($vars)
+{
+    $ret = make_array_from_name_list_and_source(func_get_args(), $_POST);
+    return (1 === func_num_args()) ? reset($ret) : $ret;
+}
+
+function _get($vars)
+{
+    $ret = make_array_from_name_list_and_source(func_get_args(), $_GET);
+    return (1 === func_num_args()) ? reset($ret) : $ret;
+}
+
+function make_array_from_name_list_and_source($namelist, &$source_arr)
+{
+    // what if $namelist is an empty array
+    $default = '';
+    return array_map(function ($name) use($default) {
+        return isset($_POST[$name]) ? trim($_POST[$name]) : $default;
+    }, $namelist);
+}
+
+/* html node */
 
 function js_node($src='', $code='') {
     $src_str = $src? ' src="' . ROOT . 'static/js/'.$src.'.js?v='. JS_VER .'"' : '';
@@ -59,6 +91,8 @@ function friendly_time($date_time_str) {
     }
 }
 
+/* debug helpers */
+
 // little function to help us print_r() or dump() things
 function d($param, $var_dump=0) {
     if (defined('DEBUG')) $debug = DEBUG;
@@ -82,6 +116,8 @@ function d($param, $var_dump=0) {
         return;
     }
 }
+
+/* image upload helpers */
 
 /**
  * what is this?
@@ -238,13 +274,6 @@ function file_ext($file_name) {
     return end($arr);
 }
 
-function out_json($arr, $quit=true) {
-    echo json_encode($arr);
-    if($quit){
-        exit;
-    }
-}
-
 // usage: 
 //     $url could be empty, which will go to index, 
 //     could be out link, such "http://google.com"
@@ -265,32 +294,6 @@ function sae_log($msg){
     sae_set_display_errors(false);//关闭信息输出
     sae_debug($msg);//记录日志
     sae_set_display_errors(true);//记录日志后再打开信息输出，否则会阻止正常的错误信息的显示
-}
-
-function _req($para, $default = '') 
-{
-    return isset($_REQUEST[$para]) && $_REQUEST[$para] ? trim($_REQUEST[$para]) : $default;
-}
-
-function _post($vars)
-{
-    $ret = make_array_from_name_list_and_source(func_get_args(), $_POST);
-    return (1 === func_num_args()) ? reset($ret) : $ret;
-}
-
-function _get($vars)
-{
-    $ret = make_array_from_name_list_and_source(func_get_args(), $_GET);
-    return (1 === func_num_args()) ? reset($ret) : $ret;
-}
-
-function make_array_from_name_list_and_source($namelist, &$source_arr)
-{
-    // what if $namelist is an empty array
-    $default = '';
-    return array_map(function ($name) use($default) {
-        return isset($_POST[$name]) ? trim($_POST[$name]) : $default;
-    }, $namelist);
 }
 
 function is_mobile() {
@@ -348,7 +351,8 @@ function is_mobile() {
         return false;
 }
 
-function smart_view($view, $default = 'default') {
+function smart_view($view, $default = 'default') 
+{
     if (is_mobile() && ($m = FrameFile::view('mobile/' . $view)) && file_exists($m))
         return $m;
     if (($file = FrameFile::view($view)) && file_exists($file))
@@ -356,4 +360,11 @@ function smart_view($view, $default = 'default') {
     if (is_mobile() && ($m = FrameFile::view('mobile/' . $default)) && file_exists($m))
         return $m;
     return FrameFile::view($default);
+}
+
+function safe_array_map($call, $arr)
+{
+    if ($arr === false)
+        return array();
+    return array_map($call, $arr);
 }
