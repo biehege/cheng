@@ -7,6 +7,11 @@ class Product extends Model
 {
     public static $table = 'product';
 
+    protected function info()
+    {
+        return Pdb::fetchRow('*', self::$table, $this->selfCond());
+    }
+
     public static function count()
     {
         return Pdb::count(self::$table);

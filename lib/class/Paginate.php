@@ -14,7 +14,6 @@
  * $paging->setCurPage(isset($_GET['p']) ? $_GET['p'] : 1);
  * $offset = $paging->offset();
  */
-namespace kindcent;
 
 class Paginate {
 

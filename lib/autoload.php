@@ -13,8 +13,4 @@ spl_autoload_register(function ($classname) {
         require_once $model_file;
     elseif (file_exists($lib_file))
         require_once $lib_file;
-    // $root = APP_ROOT . 'lib' . DIRECTORY_SEPARATOR . 'vender' . DIRECTORY_SEPARATOR;
-    // $file = $root . str_replace('\\', DIRECTORY_SEPARATOR, $classname) . '.php';
-    // if (file_exists($file)) 
-    //     require_once $file;
 });

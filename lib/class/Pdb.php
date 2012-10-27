@@ -228,7 +228,9 @@ class PdoHelper {
         return $para;
     }
 
-    public function fetchRow($fields, $tables, $conds=array(), $orders=array(), $tail='') { // why there is $orders ????
+    public function fetchRow($fields, $tables, $conds = array(), $orders = array(), $tail='') { // why there is $orders ????
+        if ($conds === null) 
+            $conds = array();
         $fields = self::precomposite($fields);
         $tables = self::precomposite($tables);
         $where = $conds? "WHERE ".implode(' AND ', array_keys($conds)) : '';
@@ -250,7 +252,9 @@ class PdoHelper {
         return $ret;
     }
 
-    public function exists($tables, $conds=array(), $tail='') { // why there is $orders ????
+    public function exists($tables, $conds = array(), $tail='') { // why there is $orders ????
+        if ($conds === null)
+            $conds = array();
         $tables = self::precomposite($tables);
         $where = $conds? "WHERE ".implode(' AND ', array_keys($conds)) : '';
         $sm = $this->prepare("SELECT count(*) FROM $tables $where $tail LIMIT 1");
@@ -263,8 +267,10 @@ class PdoHelper {
         return reset($sm->fetch(PDO::FETCH_NUM)) == 1;
     }
 
-    public function count($tables, $conds=array()) {
-        if ($conds !== null && !is_array($conds)) {
+    public function count($tables, $conds = array()) {
+        if ($conds === null)
+            $conds = array();
+        if (!is_array($conds)) {
             d($conds);
             throw new Exception('conds not array');
         }
@@ -328,6 +334,8 @@ class PdoHelper {
     }
 
     public function update($arr, $table, $conds = array(), $tail = '') {
+        if ($conds === null)
+            $conds = array();
         $para_list = self::valueParaList($arr);
         $conds_str = implode(' AND ', array_keys($conds));
         $where = $conds_str? "WHERE $conds_str" : '';
@@ -340,13 +348,15 @@ class PdoHelper {
         }
     }
 
-    public function fetchAll($fields, $tables, $conds=array(), $orders=array(), $tail='') 
+    public function fetchAll($fields, $tables, $conds = array(), $orders=array(), $tail='') 
     {
         // if ret arr length is 1, then simplify it?
         if (is_array($fields)) // precomposite
             $fields = implode(',', $fields);
         if (is_array($tables))
             $tables = implode (',', $tables);
+        if ($conds === null)
+            $conds = array();
         $cond_arr = $conds;
         if (is_array($cond_arr)) { // ????
             $conds = implode(' AND ', array_keys($cond_arr));

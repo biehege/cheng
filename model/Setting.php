@@ -19,7 +19,7 @@ class Setting
             throw new Exception('no array');
         }
         foreach ($arr as $key => $value) {
-            Pdb::update(compact('value'), self::$table, array('key=?', $key));
+            Pdb::update(compact('value'), self::$table, array('`key`=?', $key));
         }
     }
 
@@ -33,9 +33,9 @@ class Setting
         $ret = array();
         foreach ($keys as $key){
             $ret[$key] = Pdb::fetchRow(
-                'value', 
+                '`value`', 
                 self::$table, 
-                array('key=?' => $key));
+                array('`key`=?' => $key));
         }
         return count($ret) === 1 ? reset($ret) : $ret;
     }
