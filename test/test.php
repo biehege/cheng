@@ -13,27 +13,10 @@ if (_get('a') === 'clear') {
     
     // case 3
     $username = 'test_user';
-    $customer_ids = Pdb::fetchAll('id', User::$table, array('name=?' => $username));
-    $all_cus = Pdb::fetchAll('*', Customer::$table);
-    foreach ($all_cus as $cus) {
-        if (!Pdb::exists(User::$table, array('id=?' => $cus['user']))) {
-            Pdb::del(Customer::$table, array('id=?' => $cus['id']));
-        }
-    }
-    if ($customer_ids) {
-        foreach ($customer_ids as $customer_id) {
-            Pdb::del(User::$table, array('id=?' => $customer_id));
-            Pdb::del(Customer::$table, array('user=?' => $customer_id));
+    $customer_ids = Pdb::del(User::$table, array('name=?' => $username));
 
-            // case 6
-            $customer_cond = array('customer=?' => $customer_id);
-            $order_ids = Pdb::fetchAll('id', Cart::$table, $customer_cond);
-            Pdb::del(Cart::$table, $customer_cond);
-            foreach ($order_ids as $order_id) {
-                Pdb::del(Order::$table, array('id=?' => $order_id));
-            }
-        }
-    }
+    // can be replaced with clear db
+    clear_db(Customer::$table, User::$table, 'user');
 
     // case 4
     $username = 'test_admin';
@@ -41,10 +24,12 @@ if (_get('a') === 'clear') {
 
     // case 5
     Pdb::del(Product::$table, array('name LIKE ?' => '%_test'));
+    // or 
+    // clear_db(Product::$table, User::$table, 'user')
 
     // case 6
-    // Pdb::del(Cart::$table);
-    // Pdb::del(Order::$table);
+    clear_db(Cart::$table, Customer::$table, 'customer', 'customer');
+    clear_db(Order::$table, Customer::$table, 'customer'); // what if Order submited??
 
     exit;
 }
@@ -88,9 +73,10 @@ $ideal_arr = array(
 );
 $id = $customer->user->id;
 $real_arr = Pdb::fetchRow('*', User::$table, array('id=?' => $id));
-unset($real_arr['create_time']);
-unset($real_arr['id']);
-test($real_arr, $ideal_arr, array('name' => 'register customer, db'));
+test(
+    $real_arr, 
+    $ideal_arr, 
+    array('name' => 'register customer, db', 'compare' => 'in'));
 
 
 // case 4 Super Admin create Admin, db
@@ -132,3 +118,5 @@ $opts = array(
     );
 $order = $customer->addProductToCart($product, $opts);
 test(1, 1, array('name' => 'Customer add a Product to Cart'));
+
+// case 7 Customer submit a Cart
