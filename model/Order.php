@@ -28,6 +28,6 @@ class Order extends Model
             array(
                 'state' => 'TobeConfirmed',
                 'submit_time=NOW()' => null),
-            slef::$table);
+            self::$table);
     }
 }

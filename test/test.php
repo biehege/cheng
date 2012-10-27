@@ -24,12 +24,17 @@ if (_get('a') === 'clear') {
 
     // case 5
     Pdb::del(Product::$table, array('name LIKE ?' => '%_test'));
-    // or 
-    // clear_db(Product::$table, User::$table, 'user')
 
     // case 6
     clear_db(Cart::$table, Customer::$table, 'customer', 'customer');
     clear_db(Order::$table, Customer::$table, 'customer'); // what if Order submited??
+
+    // case 7
+    clear_db('big_to_small_order', Order::$table, 'small', 'small');
+    $big_order_ids = Pdb::fetchAll('id', BigOrder::$table);
+    foreach ($big_order_ids as $id)
+        if (!Pdb::exists('big_to_small_order', array('big=?' => $id)))
+            Pdb::del(BigOrder::$table, array('id=?' => $id));
 
     exit;
 }
@@ -114,9 +119,23 @@ test(
 
 // case 6 Customer add a Product to Cart
 begin_test();
+$old_entry_num = Pdb::count(Order::$table);
 $opts = array(
     );
 $order = $customer->addProductToCart($product, $opts);
-test(1, 1, array('name' => 'Customer add a Product to Cart'));
+$entry_num = Pdb::count(Order::$table);
+test(
+    $old_entry_num + 1, 
+    +$entry_num, 
+    array('name' => 'Customer add a Product to Cart'));
 
 // case 7 Customer submit a Cart
+begin_test();
+$old_entry_num = Pdb::count(BigOrder::$table);
+$customer->submitCart();
+$entry_num = Pdb::count(BigOrder::$table);
+test(
+    $old_entry_num + 1,
+    +$entry_num,
+    array('name' => 'Customer submit a Cart'));
+

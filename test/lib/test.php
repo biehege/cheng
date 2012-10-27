@@ -2,7 +2,7 @@
 
 function begin_test()
 {
-    echo '<hr>' . PHP_EOL;
+    echo '<hr><!-- test begin -->' . PHP_EOL;
 }
 
 function test($I_got, $u_thought, $options = array())
@@ -67,14 +67,12 @@ function array_contain($big_arr, $small_arr)
 // remove all entries
 // which cannot be refered by $ref_table by $ref_key 
 // in $main_table
-function clear_db($main_table, $ref_table, $ref_key, $back_key = 'id')
+function clear_db($main_table, $ref_table, $ref_key, $back_key = 'id', $ref_id = 'id')
 {
     $all = Pdb::fetchAll('*', $main_table);
     if ($all === false)
         return;
-    foreach ($all as $info) {
-        if (!Pdb::exists($ref_table, array('id=?' => $info[$ref_key]))) {
+    foreach ($all as $info) 
+        if (!Pdb::exists($ref_table, array($ref_id . '=?' => $info[$ref_key]))) {
             Pdb::del($main_table, array($back_key . '=?' => $info[$back_key]));
-        }
-    }
 }

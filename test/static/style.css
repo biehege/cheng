@@ -9,4 +9,20 @@
 }
 .conclusion {
     font-size: xx-large;
+    clear: both;
+}
+
+h1, h2, ol {
+    margin: 0;
+}
+hr {
+    margin: 1px;
+    clear: both;
+}
+.clear.btn {
+    float: right;
+    display: block;
+}
+h1 {
+    float: left;
 }

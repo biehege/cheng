@@ -50,7 +50,7 @@ class Customer extends Model
         return new Address($id);
     }
 
-    // cart is a Cart
+    // this function can be integreted in __get()
     public function cart()
     {
         return Cart::createFromCustomer($this);
@@ -84,20 +84,14 @@ class Customer extends Model
         );
     }
 
-    public function submitCart(Cart $cart)
+    public function submitCart()
     {
+        $cart = $this->cart();
+
         // big order
         $bigOrder = BigOrder::createFromCart($cart);
 
-        $prd_combine = $cart->productCombine();
-        Pdb::insert(
-            array(
-                'state'    => 'ToBeConfirmed',
-                'customer' => $this->id,
-                'create_time=NOW()' => null), 
-            Order::$table
-        );
-        return new Order(Pdb::lastInsertId());
+        return $bigOrder;
     }
 
     public function register($kvs) {
