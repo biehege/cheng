@@ -128,15 +128,15 @@ CREATE TABLE IF NOT EXISTS `small_order`
     `wear_tear` TINYINT(2) NOT NULL,
     `gold_price` DECIMAL(4, 2) NOT NULL,
 
-    `work_fee` DECIMAL(4, 2) NOT NULL,
+    `labor_expense` DECIMAL(4, 2) NOT NULL,
     `small_stone` DECIMAL(4, 2) NOT NULL,
-    `small_stone_fee` DECIMAL(4, 2),
+    `st_expense` DECIMAL(4, 2),
 
     `st_price` DECIMAL(6, 2),
     `st_weight` DECIMAL(4, 2),
 
-    `model_fee` DECIMAL(6, 2),
-    `risk_fee` DECIMAL(6, 2),
+    `model_expense` DECIMAL(6, 2),
+    `risk_expense` DECIMAL(6, 2),
 
     `factory_st` TINYINT(2),
     `factory_st_weight` DECIMAL(4, 2),
@@ -178,10 +178,10 @@ INSERT INTO `setting` -- default settings
     VALUES 
     ('labor_expense', '15'),
     ('wear_tear', '14'),
-    ('st_epxense', '20'),
+    ('st_expense', '20'),
     ('st_price', '2300'),
     ('weight_ratio', '1.2')
-        ON DUPLICATE KEY UPDATE key=key;
+        ON DUPLICATE KEY UPDATE `key`=`key`;
 
 -- price
 CREATE TABLE IF NOT EXISTS `price`
