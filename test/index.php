@@ -15,17 +15,11 @@ define('APP_ROOT', __DIR__ . '/../');
     <link rel="stylesheet" type="text/css" href="static/style.css" />
 </head>
 <body>
-    
     <h1><a href="?">Test for Cheng</a></h1>
-    <a class="clear btn" href="?a=clear">clear all side effects in db</a>
+    <a class="clear btn" href="?exit=1">clear all side effects in db</a>
     <div class="conclusion fail" id="pre-box">SOME FAIL!</div>
     <ol><?php include 'test.php'; ?></ol>
     <div class="conclusion <?= $all_pass? 'pass' : 'fail' ?>"><?= $all_pass? 'ALL PASS' : 'SOME FAIL!' ?></div>
-    <script>
-    window.onload = function () {
-        var box = document.getElementById('pre-box');
-        box.style.display = 'none';
-    };
-    </script>
+    <script src="static/hide.js"></script>
 </body>
 </html>

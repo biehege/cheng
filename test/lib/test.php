@@ -73,6 +73,6 @@ function clear_db($main_table, $ref_table, $ref_key, $back_key = 'id', $ref_id =
     if ($all === false)
         return;
     foreach ($all as $info) 
-        if (!Pdb::exists($ref_table, array($ref_id . '=?' => $info[$ref_key]))) {
+        if (!Pdb::exists($ref_table, array($ref_id . '=?' => $info[$ref_key])))
             Pdb::del($main_table, array($back_key . '=?' => $info[$back_key]));
 }

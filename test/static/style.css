@@ -22,6 +22,7 @@ hr {
 .clear.btn {
     float: right;
     display: block;
+    padding: 5px;
 }
 h1 {
     float: left;

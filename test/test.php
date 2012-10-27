@@ -9,7 +9,8 @@ include_once APP_ROOT . 'config/common.php';
 Pdb::setConfig($config['db']);
 
 // clear side effects for all
-if (_get('a') === 'clear') {
+$clear = 1;
+if ($clear) {
     
     // case 3
     $username = 'test_user';
@@ -32,11 +33,16 @@ if (_get('a') === 'clear') {
     // case 7
     clear_db('big_to_small_order', Order::$table, 'small', 'small');
     $big_order_ids = Pdb::fetchAll('id', BigOrder::$table);
-    foreach ($big_order_ids as $id)
-        if (!Pdb::exists('big_to_small_order', array('big=?' => $id)))
-            Pdb::del(BigOrder::$table, array('id=?' => $id));
+    if ($big_order_ids) 
+        foreach ($big_order_ids as $id)
+            if (!Pdb::exists('big_to_small_order', array('big=?' => $id)))
+                Pdb::del(BigOrder::$table, array('id=?' => $id));
 
-    exit;
+    if (_get('exit')) {
+        echo '<script src="static/hide.js"></script>';
+        echo '<div class="conclusion pass">All Clear!</div>';
+        exit;
+    }
 }
 
 $all_pass = true;
