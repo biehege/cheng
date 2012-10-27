@@ -169,8 +169,19 @@ CREATE TABLE IF NOT EXISTS `factory`
 CREATE TABLE IF NOT EXISTS `setting`
 (
     `key` CHAR(30) NOT NULL,
-    `value` CHAR(30) NOT NULL
+    `value` CHAR(30) NOT NULL,
+    UNIQUE KEY (`key`)
 ) ENGINE=MyISAM;
+
+INSERT INTO `setting` -- default settings
+    (`key`, `value`) 
+    VALUES 
+    ('labor_expense', '15'),
+    ('wear_tear', '14'),
+    ('st_epxense', '20'),
+    ('st_price', '2300'),
+    ('weight_ratio', '1.2')
+        ON DUPLICATE KEY UPDATE key=key;
 
 -- price
 CREATE TABLE IF NOT EXISTS `price`
