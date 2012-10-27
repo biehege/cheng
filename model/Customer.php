@@ -59,13 +59,14 @@ class Customer extends Model
     public function addProductToCart(Product $prd, $opts)
     {
         // make an new order
-        $order = Order::create($this->id, $prd, $opts);
+        $order = Order::create($this, $prd, $opts);
 
         Pdb::insert(
             array(
                 'customer' => $this->id,
                 'small_order' => $order->id,),
             Cart::$table);
+        return $order;
     }
 
     public function listOrders($conds)

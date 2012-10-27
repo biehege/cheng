@@ -25,22 +25,22 @@ function _req($para, $default = '')
 
 function _post($vars)
 {
-    $ret = make_array_from_name_list_and_source(func_get_args(), $_POST);
+    $ret = make_array_by_name_list_from_source(func_get_args(), $_POST);
     return (1 === func_num_args()) ? reset($ret) : $ret;
 }
 
 function _get($vars)
 {
-    $ret = make_array_from_name_list_and_source(func_get_args(), $_GET);
+    $ret = make_array_by_name_list_from_source(func_get_args(), $_GET);
     return (1 === func_num_args()) ? reset($ret) : $ret;
 }
 
-function make_array_from_name_list_and_source($namelist, &$source_arr)
+function make_array_by_name_list_from_source($namelist, &$source_arr)
 {
     // what if $namelist is an empty array
     $default = '';
-    return array_map(function ($name) use($default) {
-        return isset($_POST[$name]) ? trim($_POST[$name]) : $default;
+    return array_map(function ($name) use($source_arr, $default) {
+        return isset($source_arr[$name]) ? trim($source_arr[$name]) : $default;
     }, $namelist);
 }
 

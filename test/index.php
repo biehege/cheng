@@ -16,7 +16,8 @@ define('APP_ROOT', __DIR__ . '/../');
     <link rel="stylesheet" type="text/css" href="static/style.css" />
 </head>
 <body>
-    <h1>Test for Cheng</h1>
+    <a href="?a=clear">clear all side effects in db</a>
+    <h1><a href="?">Test for Cheng</a></h1>
     <div class="conclusion fail" id="pre-box">SOME FAIL!</div>
     <ol><?php include 'test.php'; ?></ol>
     <div class="conclusion <?= $all_pass? 'pass' : 'fail' ?>"><?= $all_pass? 'ALL PASS' : 'SOME FAIL!' ?></div>

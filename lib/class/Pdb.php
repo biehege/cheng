@@ -311,7 +311,6 @@ class PdoHelper {
         self::bindValues($sm, array_values($arr));
         $r = $sm->execute();
         if (!$r) {
-            d($this);
             d($this->getLog());
             d($sm->errorInfo());
             throw new Exception();
@@ -328,6 +327,7 @@ class PdoHelper {
         self::bindValues($sm, $conds);
         $r = $sm->execute();
         if (!$r) {
+            d($sm->errorInfo());
             throw new Exception();
         }
         return $r;

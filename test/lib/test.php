@@ -57,7 +57,7 @@ function array_contain($big_arr, $small_arr)
         return false;
     }
     foreach ($small_arr as $key => $value) {
-        if (!isset($big_arr[$key])) {
+        if (!isset($big_arr[$key]) || $big_arr[$key] != $small_arr[$key]) {
             return false;
         }
     }

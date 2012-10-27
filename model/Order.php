@@ -8,7 +8,7 @@ class Order extends Model
 {
     public static $table = 'small_order'; // when came across a key word
 
-    public static function creat(Customer $cus, Product $prd, $opts)
+    public static function create(Customer $cus, Product $prd, $opts)
     {
         Pdb::insert(
             array_merge(
@@ -19,6 +19,7 @@ class Order extends Model
                     'state' => 'InCart',
                     'add_cart_time=NOW()' => null)),
             self::$table);
+        return new self(Pdb::lastInsertId());
     }
 
     public function submit()

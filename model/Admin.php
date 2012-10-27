@@ -36,7 +36,6 @@ class Admin extends Model
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
-        $ids = 
         return safe_array_map(function ($id) {
             return new Factory($id);
         }, Pdb::fetchAll('id', Factory::$table, null, null, $tail));
