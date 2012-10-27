@@ -10,47 +10,29 @@ a {
 }
 .btn {
     cursor: pointer;
+    text-align: center;
+}
+.clear-fix {
+    clear: both;
+}
+.header, .content, .footer {
+    clear: both;
 }
 
 /* 头部 */
 .header {
-    background: #000;
-    padding: 10px 10px;
+    border: 1px solid;
 }
-.header a {
-    color: #fff;
+.header h1, .header .price {
+    float: left;
 }
 .header .account {
     float: right;
 }
-.header .account a{
-    opacity: 0.8;
-    font-size: small;
-    background-repeat: no-repeat;
-    margin-left: 10px;
-}
-.header .account a.name {
-    padding-left: 20px;
-}
-.header .account a:hover {
-    opacity: 1;
-}
-.header h1 {
-    font-size: xx-large;
-    color: #fff;
-    text-align: center;
-}
-.header h1 a {
+.header .info {
     display: block;
+    clear: both;
 }
-.header span {
-    color: white;
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-}
-
-
 /* 脚部 */
 .footer {
     clear: both;

@@ -1,6 +1,46 @@
 /* 
     Document   : index
-    Created on : Sep 22, 2012, 9:01:39 PM
     Author     : ryan
 */
 
+/* 搜索 */
+.search {
+    border: 1px solid;
+}
+.search .type ul {
+    display: inline-block;
+}
+.search .type ul li {
+    display: inline-block;
+}
+
+/* 翻页 */
+.page-info {
+    border: 1px solid;
+}
+
+/* 产品列表 */
+.product-list li {
+    border: 1px solid;
+}
+.product-list .left, .product-list .mid {
+    float: left;
+}
+.product-list .left {
+    width: 150px;
+}
+.product-list .mid {
+    width: 400px;
+}
+.product-list .right {
+    float: right;
+    width: 180px;
+    padding-top: 40px;
+}
+.product-list .right .add.btn {
+    display: block;
+}
+.product-list .right span {
+    display: block;
+    text-align: center;
+}

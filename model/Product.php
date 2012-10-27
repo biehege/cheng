@@ -9,7 +9,9 @@ class Product extends Model
 
     protected function info()
     {
-        return Pdb::fetchRow('*', self::$table, $this->selfCond());
+        $this->info = Pdb::fetchRow('*', self::$table, $this->selfCond());
+        $this->info['price_estimate'] = $this->estimatePrice();
+        return $this->info;
     }
 
     public static function count()
@@ -29,5 +31,15 @@ class Product extends Model
     public static function types()
     {
         return Pdb::fetchAll('name', 'product_type');
+    }
+
+    private function estimatePrice()
+    {
+        // todo 
+        $info = $this->info;
+        return 
+            $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current('PT950') 
+                + Setting::get('labor_expense')
+                + $info['small_stone'] * (Setting::get('st_expense') + Setting::get('st_price'));
     }
 }

@@ -32,10 +32,13 @@ class Setting
         }
         $ret = array();
         foreach ($keys as $key){
-            $ret[$key] = Pdb::fetchRow(
+            $value = Pdb::fetchRow(
                 '`value`', 
                 self::$table, 
                 array('`key`=?' => $key));
+            if ($value === false)
+                throw new Exception("there is no key: $key");
+            $ret[$key] = $value;
         }
         return count($ret) === 1 ? reset($ret) : $ret;
     }

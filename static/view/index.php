@@ -6,7 +6,6 @@
  * @created Jul 17, 2012 9:51:11 AM
  */
 ?>
-<div>index!!!</div>
 <div class="search">
     <form>
         <div class="type">
@@ -60,7 +59,10 @@
                 </div>
             </div>
             <div class="right">
+                <a class="add btn">下订单</a>
+                <span>英格预估价<?= $prd->price_estimate ?></span>
             </div>
+            <br class="clear-fix" />
         </li>
     <?php endforeach ?>
 </ul>
