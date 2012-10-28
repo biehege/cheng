@@ -59,4 +59,5 @@ if (count($arr) == 2 && $arr[1] == 'master') {
     $content = $arr[0];
     $view = 'master';
 }
+
 include smart_view($view); // 渲染 view

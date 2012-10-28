@@ -10,7 +10,6 @@ class Product extends Model
     protected function info()
     {
         $this->info = Pdb::fetchRow('*', self::$table, $this->selfCond());
-        $this->info['price_estimate'] = $this->estimatePrice();
         return $this->info;
     }
 
@@ -33,10 +32,10 @@ class Product extends Model
         return Pdb::fetchAll('name', 'product_type');
     }
 
-    private function estimatePrice()
+    public function estimatePrice()
     {
         // todo 
-        $info = $this->info;
+        $info = $this->info();
         return 
             $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current('PT950') 
                 + Setting::get('labor_expense')

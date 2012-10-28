@@ -6,6 +6,7 @@
  * @created Jul 17, 2012 9:51:11 AM
  */
 ?>
+
 <div class="search">
     <form>
         <div class="type">
@@ -36,6 +37,7 @@
         <span class="image-mode btn" title="大图模式"></span>
     </div>
 </div>
+
 <ul class="product-list">
     <?php foreach ($products as $prd): ?>
         <li>
@@ -45,7 +47,7 @@
                 <img />
             </div>
             <div class="mid">
-                <div>
+                <div><?php $stop = 1; ?>
                     <strong class="name"><?= $prd->name ?></strong>
                     <span>货号：<?= $prd->no ?></span>
                 </div>
@@ -60,7 +62,7 @@
             </div>
             <div class="right">
                 <a class="add btn">下订单</a>
-                <span>英格预估价<?= $prd->price_estimate ?></span>
+                <span>英格预估价<?= $prd->estimatePrice() ?></span>
             </div>
             <br class="clear-fix" />
         </li>

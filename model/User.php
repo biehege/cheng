@@ -57,7 +57,7 @@ class User extends Model
                 return new Customer($this->id);
                 break;
             default:
-                throw new Exception('not here');
+                throw new Exception("unknown user type: $this->type");
                 break;
         }
     }

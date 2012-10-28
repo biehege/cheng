@@ -1,6 +1,7 @@
 <?php
 !defined('IN_PTF') && exit('ILLEGAL EXECUTION');
 ?>
+
 <h1>
     <a href="<?= ROOT ?>" title="<?= $config['site']['name'] ?>"><?= $config['site']['name'] ?></a>
 </h1>
@@ -10,6 +11,7 @@
     <span>PT950: <?= Price::current('PT950') ?></span>
     <span>AU750: <?= Price::current('AU750') ?></span>
 </div>
+
 <div class="account">
     <?php if ($has_login): ?>
         <?php if ($user_type === 'Customer'): ?>

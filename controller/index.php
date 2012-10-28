@@ -34,5 +34,3 @@ $products = Product::listProduct(
 $view .= '?master';
 
 $page['scripts'][] = 'widget';
-
-?>

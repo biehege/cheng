@@ -11,6 +11,12 @@ Pdb::setConfig($config['db']);
 // clear side effects for all
 $clear = 1;
 if ($clear) {
+
+    // unset all session
+    session_start();
+    foreach ($_SESSION as $key => $value) {
+        unset($_SESSION[$key]);
+    }
     
     // case 3
     $username = 'test_user';

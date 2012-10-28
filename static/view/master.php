@@ -25,10 +25,11 @@
     <body>
         <div class="append_parent"></div>
         <div class="header">
+
             <?php include smart_view('header'); ?>
         </div>
         <div class="content">
-            <?php include smart_view($content); ?>
+            <?php include smart_view($content); ?>            
         </div>
         <div class="footer">
             <?php include smart_view('footer'); ?>
