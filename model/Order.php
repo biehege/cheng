@@ -37,7 +37,9 @@ class Order extends Model
         Pdb::update(
             array(
                 'state' => 'TobeConfirmed',
-                'submit_time=NOW()' => null),
+                'submit_time=NOW()' => null,
+                'gold_price' => Price::current('PP??')
+                '???'),
             self::$table);
     }
 

@@ -94,6 +94,8 @@ class Customer extends Model
         // big order
         $bigOrder = BigOrder::createFromCart($cart);
 
+        $this->emptyCart();
+
         return $bigOrder;
     }
 
@@ -141,5 +143,10 @@ class Customer extends Model
                 '/'
             );
         }
+    }
+
+    public function emptyCart() 
+    {
+        Pdb::del(Cart::$table, array('customer' => $this->id));
     }
 }

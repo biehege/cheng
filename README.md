@@ -20,4 +20,6 @@ $cart->totalPrice()
     $order->price()
 clear address table
 
-when cart submit, del it in cart;
+when cart submit, del it in cart ... ok
+
+when cart submit save all status in Settings ... cand current price and so on
