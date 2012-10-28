@@ -9,5 +9,6 @@ if ($user_type !== 'Customer')
 
 $cart = $customer->cart();
 $orders = $cart->orders();
+$addresses = $customer->addresses();
 
 $view .= '?master';

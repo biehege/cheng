@@ -8,6 +8,11 @@ class Address extends Model
 {
     public static $table = 'address';
 
+    public function info()
+    {
+        return Pdb::fetchRow('*', self::$table, $this->selfCond());
+    }
+
     public function edit($key_or_array, $value = null)
     {
         if($key !== null) { // give by key => value

@@ -1,0 +1,18 @@
+.col {
+    display: inline-block;
+    width: 20%;
+}
+.col.title {
+    font-weight: bold;
+    text-align: center;
+}
+.col.info {
+    width: 30%;
+}
+.col.info span {
+    display: inline-block;
+    margin: 0 10px;
+}
+.col.price, .col.del {
+    text-align: center;
+}

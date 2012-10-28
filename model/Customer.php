@@ -28,26 +28,29 @@ class Customer extends Model
         }, Pdb::fetchALL('*', Product::$table, array(), array(), $tail));
     }
 
-    public function address() 
+    public function addresses() 
     {
-        $id = Pdb::fetchRow(
+        $ids = Pdb::fetchAll(
             'address', 
             customer_address, 
             array('customer=?' => $this->id));
 
         // if not found, create one
-        if ($id === false) {
+        if ($ids === false) {
 
             // insert to address db
-            Pdb::insert(array(), Address::$table);
+            Pdb::insert(array('name' => ''), Address::$table);
             $id = Pdb::lastInsertId();
+            $ids = array($id);
 
             // insert to relationship db
             Pdb::insert(
                 array('customer' => $this->id, 'address' => $id), 
                 customer_address);
         }
-        return new Address($id);
+        return array_map(function ($id) {
+            return new Address($id);
+        }, $ids);
     }
 
     // this function can be integreted in __get()

@@ -5,6 +5,7 @@
  */
 class Cart
 {
+    private $orders = null;
     public static $table = 'cart';
 
     private function __construct($owner_id)
@@ -18,9 +19,12 @@ class Cart
         return $cart;
     }
 
+    // just like normal info(), so cache it
     public function orders() {
+        if ($this->orders != null)
+            return $this->orders;
         $ids = Pdb::fetchAll('small_order', self::$table);
-        return safe_array_map(function ($id) { return new Order($id); }, $ids); // no paging here
+        return $this->orders = safe_array_map(function ($id) { return new Order($id); }, $ids); // no paging here
     }
 
     public function count()
@@ -28,6 +32,17 @@ class Cart
         return Pdb::count(
             self::$table, 
             array('customer=?' => $this->owner_id));
+    }
+
+    public function totalPrice()
+    {
+        $orders = $this->orders();
+        return array_sum(
+            array_map(
+                function ($order) {
+                    return +$order->price();
+                }, 
+                $orders));
     }
 
     public function del(Order $order)

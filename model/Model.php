@@ -27,9 +27,8 @@ class Model
     public function __get($name) 
     {
         if ($name == 'id') return $this->id;
-        if (empty($this->info)) {
+        if (empty($this->info))
             $this->info = $this->info();
-        }
         return $this->info[$name];
     }
 
