@@ -33,6 +33,13 @@ CREATE TABLE IF NOT EXISTS `customer`
     PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
+-- customer_address
+CREATE TABLE IF NOT EXISTS `customer_address`
+(
+    `customer` INT(10) UNSIGNED NOT NULL,
+    `address` INT(10) UNSIGNED NOT NULL
+) ENGINE=MyISAM;
+
 -- address never del(for bill to ref)
 CREATE TABLE IF NOT EXISTS `address`
 (
@@ -106,6 +113,7 @@ CREATE TABLE IF NOT EXISTS `small_order`
 (
     `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
     `order_no` CHAR(20) NOT NULL COMMENT '订单号',
+    
     `product` INT(10) UNSIGNED NOT NULL, -- product
     `customer` INT(10) UNSIGNED NOT NULL, -- user
     `address` INT(10) UNSIGNED NOT NULL, -- address, since address will chang by user
