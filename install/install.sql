@@ -154,7 +154,8 @@ CREATE TABLE IF NOT EXISTS `small_order`
     `customer_remark` TEXT,
     `admin_remark` TEXT,
 
-    PRIMARY KEY(`id`)
+    PRIMARY KEY(`id`),
+    UNIQUE KEY(`order_no`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- factory

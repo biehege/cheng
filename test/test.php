@@ -127,7 +127,9 @@ test(
 begin_test();
 $old_entry_num = Pdb::count(Order::$table);
 $opts = array(
-    );
+    'material' => 'PT950',
+    'size' => 12,
+    'carve_text' => 'I love U');
 $order = $customer->addProductToCart($product, $opts);
 $entry_num = Pdb::count(Order::$table);
 test(
@@ -138,11 +140,13 @@ test(
 // case 7 Customer submit a Cart
 begin_test();
 $old_entry_num = Pdb::count(BigOrder::$table);
-$customer->submitCart();
+$big_order = $customer->submitCart();
 $entry_num = Pdb::count(BigOrder::$table);
 test(
     $old_entry_num + 1,
     +$entry_num,
     array('name' => 'Customer submit a Cart'));
 
-// case 8 
+// case 8 Admin Confirmed Order (InFactory)
+$admin->setOrderState($order, 'InFactory');
+test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));

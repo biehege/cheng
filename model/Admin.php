@@ -9,7 +9,12 @@ class Admin extends Model
     
     public function editOrder(Order $order, $settings)
     {
+        Pdb::update($settings, Order::$table, array('id=?' => $order->id));
+    }
 
+    public function setOrderState(Order $order, $state)
+    {
+        $this->editOrder($order, array('state' => $state));
     }
 
     public function adoptCustomer(Customer $cus)
@@ -50,4 +55,5 @@ class Admin extends Model
             Product::$table);
         return new Product(Pdb::lastInsertId());
     }
+
 }
