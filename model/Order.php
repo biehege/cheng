@@ -38,8 +38,13 @@ class Order extends Model
             array(
                 'state' => 'TobeConfirmed',
                 'submit_time=NOW()' => null,
-                'gold_price' => Price::current('PP??')
-                '???'),
+                'gold_price' => Price::current('PP??'),
+                
+                'labor_expense' => Setting::get('labor_expense'),
+                'wear_tear' => Setting::get('wear_tear'),
+                'st_price' => Setting::get('st_price'),
+                'st_expense' => Setting::get('st_expense'),
+                'weight_rate' => Setting::get('weight_ratio'),),
             self::$table);
     }
 

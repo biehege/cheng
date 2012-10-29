@@ -36,8 +36,9 @@ class Product extends Model
     {
         // todo 
         $info = $this->info();
+        $material = $info['material'];
         return 
-            $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current('PT950') 
+            $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current($material) * ($material === 'PT950' ? Setting::get('weight_ratio') : 1)
                 + Setting::get('labor_expense')
                 + $info['small_stone'] * (Setting::get('st_expense') + Setting::get('st_price'));
     }
