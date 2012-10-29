@@ -109,62 +109,43 @@ CREATE TABLE IF NOT EXISTS `big_to_small_order`
 ) ENGINE=MyISAM;
 
 -- small_order
-CREATE TABLE IF NOT EXISTS `small_order`
-(
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `order_no` CHAR(20) NOT NULL COMMENT '订单号',
-    
-    `product` INT(10) UNSIGNED NOT NULL, -- product
-    `customer` INT(10) UNSIGNED NOT NULL, -- user
-    `address` INT(10) UNSIGNED NOT NULL, -- address, since address will chang by user
-    `factory` INT(10) UNSIGNED NOT NULL, -- factory
-
-    `size` SMALLINT(4) UNSIGNED NOT NULL,
-    `carve_text` VARCHAR(120),
-    `material` CHAR(20) NOT NULL,
-
-    `state` ENUM(
-        'InCart',
-        'ToBeConfirmed',
-        'InFactory',
-        'FactoryConfirmed',
-        'FactoryDone',
-        'Done'
-    ) NOT NULL DEFAULT 'ToBeConfirmed',
-
-    `gold_weight` DECIMAL(4, 2) NOT NULL,
-    `wear_tear` TINYINT(2) NOT NULL,
-    `gold_price` DECIMAL(4, 2) NOT NULL,
-
-    `labor_expense` DECIMAL(4, 2) NOT NULL,
-    `small_stone` DECIMAL(4, 2) NOT NULL,
-    `st_expense` DECIMAL(4, 2),
-
-    `st_price` DECIMAL(6, 2),
-    `st_weight` DECIMAL(4, 2),
-
-    `model_expense` DECIMAL(6, 2),
-    `risk_expense` DECIMAL(6, 2),
-
-    `factory_st` TINYINT(2),
-    `factory_st_weight` DECIMAL(4, 2),
-
-    `add_cart_time` DATETIME,
-    `submit_time` DATETIME,
-    `to_factory_time` DATETIME,
-    `factory_confirm_time` DATETIME,
-    `factory_done_time` DATETIME,
-    `all_done_time` DATETIME,
-
-    `factory_price` DECIMAL(8, 2) NOT NULL,
-    `real_price` DECIMAL(8, 2) NOT NULL,
-
-    `customer_remark` TEXT,
-    `admin_remark` TEXT,
-
-    PRIMARY KEY(`id`),
-    UNIQUE KEY(`order_no`)
-) ENGINE=MyISAM AUTO_INCREMENT=101;
+CREATE TABLE IF NOT EXISTS `small_order` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order_no` char(20) NOT NULL COMMENT '订单号',
+  `product` int(10) unsigned NOT NULL,
+  `customer` int(10) unsigned NOT NULL,
+  `address` int(10) unsigned NOT NULL,
+  `factory` int(10) unsigned NOT NULL,
+  `size` smallint(4) unsigned NOT NULL,
+  `carve_text` varchar(120) DEFAULT NULL,
+  `material` char(20) NOT NULL,
+  `state` enum('InCart','ToBeConfirmed','InFactory','FactoryConfirmed','FactoryDone','Done') NOT NULL DEFAULT 'ToBeConfirmed',
+  `gold_weight` decimal(4,2) NOT NULL,
+  `weight_ratio` decimal(2,2) NOT NULL DEFAULT '0.99',
+  `wear_tear` tinyint(2) NOT NULL,
+  `gold_price` decimal(4,2) NOT NULL,
+  `labor_expense` decimal(4,2) NOT NULL,
+  `small_stone` decimal(4,2) NOT NULL,
+  `st_expense` decimal(4,2) DEFAULT NULL,
+  `st_price` decimal(6,2) DEFAULT NULL,
+  `st_weight` decimal(4,2) DEFAULT NULL,
+  `model_expense` decimal(6,2) DEFAULT NULL,
+  `risk_expense` decimal(6,2) DEFAULT NULL,
+  `factory_st` tinyint(2) DEFAULT NULL,
+  `factory_st_weight` decimal(4,2) DEFAULT NULL,
+  `add_cart_time` datetime DEFAULT NULL,
+  `submit_time` datetime DEFAULT NULL,
+  `to_factory_time` datetime DEFAULT NULL,
+  `factory_confirm_time` datetime DEFAULT NULL,
+  `factory_done_time` datetime DEFAULT NULL,
+  `all_done_time` datetime DEFAULT NULL,
+  `factory_price` decimal(8,2) NOT NULL,
+  `real_price` decimal(8,2) NOT NULL,
+  `customer_remark` text,
+  `admin_remark` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `order_no` (`order_no`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101;
 
 -- factory
 CREATE TABLE IF NOT EXISTS `factory`

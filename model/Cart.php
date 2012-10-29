@@ -29,9 +29,13 @@ class Cart
 
     public function count()
     {
-        return Pdb::count(
-            self::$table, 
+        $count = Pdb::count(
+            self::$table,
             array('customer=?' => $this->owner_id));
+        // d($count);
+        // d($this->owner_id);
+        // d(Pdb::getLog());
+        return $count;
     }
 
     public function totalPrice()

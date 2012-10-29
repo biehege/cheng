@@ -151,7 +151,7 @@ class Pdb
         return self::$dbm->lastInsertId();
     }
     
-    public static function del($table, $conds) {
+    public static function del($table, $conds = null) {
         if (empty(self::$dbm)) {
             self::instance();
         }
@@ -322,9 +322,14 @@ class PdoHelper {
     }
 
     public function del($table, $conds) {
-        $conds_str = implode(' AND ', array_keys($conds));
-        $sm = $this->prepare("DELETE FROM $table WHERE $conds_str");
-        self::bindValues($sm, $conds);
+        if (empty($conds))
+            $conds_str = '';
+        else
+            $conds_str = implode(' AND ', array_keys($conds));
+        $where = $conds_str ? "WHERE $conds_str" : '';
+        $sm = $this->prepare("DELETE FROM $table $where");
+        if ($conds)
+            self::bindValues($sm, $conds);
         $r = $sm->execute();
         if (!$r) {
             d($sm->errorInfo());

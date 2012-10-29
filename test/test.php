@@ -44,6 +44,17 @@ if ($clear) {
             if (!Pdb::exists('big_to_small_order', array('big=?' => $id)))
                 Pdb::del(BigOrder::$table, array('id=?' => $id));
 
+    // clear address
+    // $customers = Pdb::fetchAll('*', Customer::$table);
+    // if ($customers) {
+    //     for
+    // } else {
+    //     Pdb::del(Address::$table);
+    // }
+    // clear_db('customer_address', Customer::$table, 'customer', 'customer')
+    // clear_db(Address::$table, Customer::$table, 'address');
+    clear_relation_db(Customer::$table, Address::$table);
+
     if (_get('exit')) {
         echo '<script src="static/hide.js"></script>';
         echo '<div class="conclusion pass">All Clear!</div>';
@@ -95,7 +106,6 @@ test(
     $ideal_arr, 
     array('name' => 'register customer, db', 'compare' => 'in'));
 
-
 // case 4 Super Admin create Admin, db
 begin_test();
 $username = 'test_admin';
@@ -114,10 +124,17 @@ $real_arr = Pdb::fetchRow(
     array('id=?' => $id));
 test($real_arr, $ideal_arr, array('name' => 'Super Admin create Admin, db'));
 
+// case 6 Admin update gold Price
+begin_test();
+$admin->updatePrice('PT950', '1903.21');
+$admin->updatePrice('Au750', '1723.45');
+test(1, 1, array('name' => 'Admin update gold Price'));
+
 // case 5 Admin post Product, db
 begin_test();
 $info = array(
     'name' => '唯爱心形群镶女戒_test',
+    'material' => 'PT950',
     'rabbet_start' => '0.30',
     'rabbet_end' => '0.60',
     'small_stone' => 3);
@@ -143,6 +160,13 @@ test(
     +$entry_num, 
     array('name' => 'Customer add a Product to Cart'));
 
+// case 7 Cart count()
+$cart = $customer->cart();
+test(
+    +$cart->count(),
+    1,
+    array('name' => 'Cart count()'));
+
 // case 7 Customer submit a Cart
 begin_test();
 $old_entry_num = Pdb::count(BigOrder::$table);
@@ -156,3 +180,5 @@ test(
 // case 8 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
+
+

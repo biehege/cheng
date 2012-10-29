@@ -34,17 +34,19 @@ class Order extends Model
 
     public function submit()
     {
+        $this->info = $this->info();
+        $material = $this->info['material'];
+        $cur_price = Price::current($material);
         Pdb::update(
             array(
                 'state' => 'TobeConfirmed',
                 'submit_time=NOW()' => null,
-                'gold_price' => Price::current('PP??'),
-                
+                'gold_price' => $cur_price,
                 'labor_expense' => Setting::get('labor_expense'),
                 'wear_tear' => Setting::get('wear_tear'),
                 'st_price' => Setting::get('st_price'),
                 'st_expense' => Setting::get('st_expense'),
-                'weight_rate' => Setting::get('weight_ratio'),),
+                'weight_ratio' => Setting::get('weight_ratio'),),
             self::$table);
     }
 
@@ -52,8 +54,8 @@ class Order extends Model
     {
         $info = $this->info();
         $prd = $info['product'];
-        return 
-            $prd->weight * (1 + $info['wear_tear']) * $info['gold_price'] 
+        return
+            $prd->weight * (1 + $info['wear_tear']) * $info['gold_price']
             + $info['labor_expense']
             + $prd->small_stone * ($info['st_expense'] + $info['st_price']);
     }

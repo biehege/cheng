@@ -76,3 +76,35 @@ function clear_db($main_table, $ref_table, $ref_key, $back_key = 'id', $ref_id =
         if (!Pdb::exists($ref_table, array($ref_id . '=?' => $info[$ref_key])))
             Pdb::del($main_table, array($back_key . '=?' => $info[$back_key]));
 }
+
+function clear_relation_db($main_table, $ref_table, $relation_table = null, $key_main = null, $key_ref = null)
+{
+    if ($relation_table === null)
+        $relation_table = $main_table . '_' . $ref_table;
+    if ($key_main === null)
+        $relation_table = $main_table;
+    if ($key_ref === null)
+        $key_ref = $ref_table;
+    $all = Pdb::fetchAll('*', $relation_table);
+    if ($all === false) {
+        Pdb::del($ref_table);
+        return;
+    }
+
+    // del in relation table
+    foreach ($all as $info) {
+        if (!Pdb::exists($main_table, array('id=?' => $info[$key_main]))) {
+            Pdb::del($relation_table, array($key_main . '=?' => $info[$key_main]));
+        }
+    }
+
+    // del in ref table
+    $all = Pdb::fetchAll('*', $ref_table);
+    if (empty($all))
+        return;
+    foreach ($all as $info) {
+        $id = $info['id'];
+        if (!Pdb::exists($relation_table, array($key_ref . '=?' => $id)))
+            Pdb::del($ref_table, array('id=?' => $id));
+    }
+}

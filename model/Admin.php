@@ -56,4 +56,9 @@ class Admin extends Model
         return new Product(Pdb::lastInsertId());
     }
 
+    public function updatePrice($type, $price)
+    {
+        Price::update($type, $price);
+    }
+
 }
