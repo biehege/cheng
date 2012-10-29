@@ -10,13 +10,14 @@
 * - if come from register? to register first and then redirect to another because of check in reister
 */
 
+// log out
 if (isset($_GET['logout']) && isset($user)) {
     $user->logout();
     redirect();
 }
 
 if ($has_login) {
-    redirect();
+    redirect(); // to index
 }
 
 $username = _post('username');
@@ -29,7 +30,7 @@ if ($by_post) {
         $user->login();
         $type = strtolower($user->type);
         $$type = $user->instance();
-        $back_url = _get('back') ?: DEFAULT_LOGIN_REDIRECT_URL;
+        $back_url = _get('back_url') ?: DEFAULT_LOGIN_REDIRECT_URL;
         redirect($back_url);
     } else {
         $msg = $config['error']['info']['USERNAME_OR_PASSWORD_INCORRECT'];

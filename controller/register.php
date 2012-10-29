@@ -54,7 +54,7 @@ if ($by_post) {
             ));
         $user = ($customer->user);
         $user->login();
-        $back_url = _req('back') ?: DEFAULT_LOGIN_REDIRECT_URL;
+        $back_url = _req('back_url') ?: DEFAULT_LOGIN_REDIRECT_URL;
         redirect($back_url);
     }
 }
