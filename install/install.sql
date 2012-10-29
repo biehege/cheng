@@ -34,11 +34,11 @@ CREATE TABLE IF NOT EXISTS `customer`
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- customer_address
-CREATE TABLE IF NOT EXISTS `customer_address`
-(
-    `customer` INT(10) UNSIGNED NOT NULL,
-    `address` INT(10) UNSIGNED NOT NULL
-) ENGINE=MyISAM;
+CREATE TABLE IF NOT EXISTS `customer_address` (
+  `customer` int(10) unsigned NOT NULL,
+  `address` int(10) unsigned NOT NULL,
+  `is_default` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- address never del(for bill to ref)
 CREATE TABLE IF NOT EXISTS `address`

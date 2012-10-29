@@ -140,6 +140,15 @@ test(
         'name' => 'Admin post Product, db',
         'compare' => 'in'));
 
+// case 6 Customer eidt Address
+begin_test();
+$address = $customer->defaultAddress();
+$address->edit(array(
+    'name' => '小池',
+    'phone' => '14722320989',
+    'detail' => '深圳罗湖区田贝'));
+test(1, 1, array('name' => 'Customer eidt Address'));
+
 // case 6 Customer add a Product to Cart
 begin_test();
 $old_entry_num = Pdb::count(Order::$table);
@@ -160,6 +169,8 @@ test(
     +$cart->count(),
     1,
     array('name' => 'Cart count()'));
+
+// case 8 Cus
 
 // case 7 Customer submit a Cart
 // begin_test();

@@ -63,6 +63,24 @@ class Customer extends Model
         }, $ids);
     }
 
+    public function defaultAddress()
+    {
+        $default_addr = Pdb::fetchRow(
+            'address',
+            customer_address,
+            array(
+                'customer=?' => $this->id,
+                'is_default=?' => 1));
+        if ($default_addr) {
+            return new Address($default_addr);
+        } else {
+            $addresses = $this->addresses();
+            $addr = $addresses[0];
+            $addr->setDefault();
+            return $addr;
+        }
+    }
+
     // this function can be integreted in __get() ???
     public function cart()
     {
