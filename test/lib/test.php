@@ -82,7 +82,7 @@ function clear_relation_db($main_table, $ref_table, $relation_table = null, $key
     if ($relation_table === null)
         $relation_table = $main_table . '_' . $ref_table;
     if ($key_main === null)
-        $relation_table = $main_table;
+        $key_main = $main_table;
     if ($key_ref === null)
         $key_ref = $ref_table;
     $all = Pdb::fetchAll('*', $relation_table);
