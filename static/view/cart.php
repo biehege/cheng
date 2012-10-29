@@ -58,7 +58,7 @@
     </div>
     <?php foreach ($addresses as $addr): ?>
         <div>
-            <input type="ratio" name="address" value="<?= $addr->id ?>" id="addr<?= $addr->id ?>">
+            <input type="radio" name="address" value="<?= $addr->id ?>" id="addr<?= $addr->id ?>">
             <label for="addr<?= $addr->id ?>"><?= $addr->name ?></label>
             <span><?= $addr->phone ?></span>
             <span><?= $addr->detail ?></span>

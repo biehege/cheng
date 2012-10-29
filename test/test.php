@@ -173,15 +173,15 @@ test(
 // case 8 Cus
 
 // case 7 Customer submit a Cart
-// begin_test();
-// $old_entry_num = Pdb::count(BigOrder::$table);
-// $big_order = $customer->submitCart();
-// $entry_num = Pdb::count(BigOrder::$table);
-// test(
-//     $old_entry_num + 1,
-//     +$entry_num,
-//     array('name' => 'Customer submit a Cart'));
+begin_test();
+$old_entry_num = Pdb::count(BigOrder::$table);
+$big_order = $customer->submitCart();
+$entry_num = Pdb::count(BigOrder::$table);
+test(
+    $old_entry_num + 1,
+    +$entry_num,
+    array('name' => 'Customer submit a Cart'));
 
 // case 8 Admin Confirmed Order (InFactory)
-// $admin->setOrderState($order, 'InFactory');
-// test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
+$admin->setOrderState($order, 'InFactory');
+test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
