@@ -13,9 +13,11 @@ $clear = 1;
 if ($clear) {
 
     // unset all session
-    session_start();
-    foreach ($_SESSION as $key => $value) {
-        unset($_SESSION[$key]);
+    if (1) {
+        session_start();
+        foreach ($_SESSION as $key => $value) {
+            unset($_SESSION[$key]);
+        }
     }
     
     // case 3
@@ -45,14 +47,6 @@ if ($clear) {
                 Pdb::del(BigOrder::$table, array('id=?' => $id));
 
     // clear address
-    // $customers = Pdb::fetchAll('*', Customer::$table);
-    // if ($customers) {
-    //     for
-    // } else {
-    //     Pdb::del(Address::$table);
-    // }
-    // clear_db('customer_address', Customer::$table, 'customer', 'customer')
-    // clear_db(Address::$table, Customer::$table, 'address');
     clear_relation_db(Customer::$table, Address::$table);
 
     if (_get('exit')) {
@@ -168,17 +162,15 @@ test(
     array('name' => 'Cart count()'));
 
 // case 7 Customer submit a Cart
-begin_test();
-$old_entry_num = Pdb::count(BigOrder::$table);
-$big_order = $customer->submitCart();
-$entry_num = Pdb::count(BigOrder::$table);
-test(
-    $old_entry_num + 1,
-    +$entry_num,
-    array('name' => 'Customer submit a Cart'));
+// begin_test();
+// $old_entry_num = Pdb::count(BigOrder::$table);
+// $big_order = $customer->submitCart();
+// $entry_num = Pdb::count(BigOrder::$table);
+// test(
+//     $old_entry_num + 1,
+//     +$entry_num,
+//     array('name' => 'Customer submit a Cart'));
 
 // case 8 Admin Confirmed Order (InFactory)
-$admin->setOrderState($order, 'InFactory');
-test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
-
-
+// $admin->setOrderState($order, 'InFactory');
+// test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));

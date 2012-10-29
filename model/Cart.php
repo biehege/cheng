@@ -32,9 +32,6 @@ class Cart
         $count = Pdb::count(
             self::$table,
             array('customer=?' => $this->owner_id));
-        // d($count);
-        // d($this->owner_id);
-        // d(Pdb::getLog());
         return $count;
     }
 

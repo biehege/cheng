@@ -8,13 +8,14 @@ class Customer extends Model
 {
     public static $table = 'customer';
 
-    protected function info() {
-        $ret = Pdb::fetchRow('*', self::$table, $this->selfCond());
-        if ($ret === false) {
-            throw new Exception("no customer, id: $this->id");
-        }
-        $ret['user'] = new User($ret['user']);
-        return $ret;
+    public function __construct($user_id)
+    {
+        $info = Pdb::fetchRow('*', self::$table, array('user=?' => $user_id));
+        if (empty($info))
+            throw new Exception("no customer, user_id: $user_id");
+        $info['user'] = new User($info['user']);
+        $this->info = $info;
+        $this->id = $info['id'];
     }
 
     public function listProducts($conds)
