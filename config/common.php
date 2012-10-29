@@ -25,7 +25,7 @@ define('ROOT', '/');
 
 define('DEFAULT_LOGIN_REDIRECT_URL', ROOT); // 登录后的默认导向页面
 
-$config['site']['name'] = '项目CHENG';
+$config['site']['name'] = 'EnMond';
 
 $config['db'] = array(
     'host' => 'localhost',
