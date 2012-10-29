@@ -54,7 +54,7 @@ class User extends Model
                 return new Admin($this->id);
                 break;
             case 'Customer':
-                return new Customer($this->id);
+                return Customer::createFromUser($this);
                 break;
             default:
                 throw new Exception("unknown user type: $this->type");

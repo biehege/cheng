@@ -8,19 +8,14 @@ class Customer extends Model
 {
     public static $table = 'customer';
 
-    public function __construct($arg)
+    public static function createFromUser($user)
     {
-        if (is_array($arg) && isset($arg['user_id'])) {
-            $user_id = $arg['user_id'];
-            $info = Pdb::fetchRow('*', self::$table, array('user=?' => $user_id));
-            if (empty($info))
-                throw new Exception("no customer, user_id: $user_id");
-            $info['user'] = new User($info['user']);
-            $this->info = $info;
-            $this->id = $info['id'];
-        } else {
-            parent::__construct($arg);
-        }
+        $user_id = $user->id;
+        $info = Pdb::fetchRow('*', self::$table, array('user=?' => $user_id));
+        if (empty($info))
+            throw new Exception("no customer, user_id: $user_id");
+        $info['user'] = $user;
+        return new self($info);
     }
 
     protected function info() {
@@ -68,7 +63,7 @@ class Customer extends Model
         }, $ids);
     }
 
-    // this function can be integreted in __get()
+    // this function can be integreted in __get() ???
     public function cart()
     {
         return Cart::createFromCustomer($this);
