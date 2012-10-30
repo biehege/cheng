@@ -6,15 +6,16 @@
 
 switch ($user_type) {
     case 'Customer':
-        d('cus');
         $view .= '.customer';
+        break;
+
+    case 'Admin':
+    case 'SuperAdmin':
         break;
     
     default:
-        # code...
+        throw new Exception("unkown user type: $user_type");
         break;
 }
 
-
-
-$view .= '?master';
+$view .= '.' . strtolower($user_type) . '?master';
