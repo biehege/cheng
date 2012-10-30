@@ -23,12 +23,20 @@ class Setting
         }
     }
 
-    public static function get($ka)
+    public static function get($ka = null)
     {
         if (is_string($ka)) {
             $keys = array($ka);
         } elseif (is_array($ka)) {
             $keys = $ka;
+        } elseif (empty($ka)) {
+            // return all key-values
+            $ret = array();
+            $arr = Pdb::fetchAll('*', self::$table);
+            foreach ($arr as $entry) {
+                $ret[$entry['key']] = $entry['value'];
+            }
+            return $ret;
         }
         $ret = array();
         foreach ($keys as $key){

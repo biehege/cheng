@@ -72,6 +72,13 @@ $config['controllers_need_login'] = array(
     'statistics',
     'setting');
 
+$config['setting_name_map'] = array(
+    'labor_expense' => '工费',
+    'wear_tear' => '损耗',
+    'st_expense' => '辅石工费',
+    'st_price' => '辅石价格',
+    'weight_ratio' => '铂金和K金重量比');
+
 // navs
 // $config['navs'] = array(
 //     'my' => array(

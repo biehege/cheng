@@ -7,5 +7,7 @@
 if ($user_type !== 'Admin')
     die('no permission');
 
-Setting::getAll();
+$settings = Setting::get();
+$name_map = $config['setting_name_map'];
+
 $view .= '?master';

@@ -3,4 +3,5 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
+
 $view .= '?master';
