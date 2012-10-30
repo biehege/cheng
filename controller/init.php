@@ -36,5 +36,9 @@ if (in_array($controller, $config['controllers_need_login']) && !$has_login)
 // sometimes, ? will came, so trim it
 $request_uri = reset(explode('?', $_SERVER['REQUEST_URI']));
 
+// build nav array
+$nav['default'] = build_nav($config['navs']['default']);
+$nav['admin'] = build_nav($config['navs']['admin']);
+
 $page['description'] = 'PHP Tiny Frame 很小很小的 PHP 框架';
 $page['keywords'] = array('PHP', '开源', '框架', 'MVC');

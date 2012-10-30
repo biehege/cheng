@@ -93,28 +93,28 @@ function friendly_time($date_time_str) {
 
 /* debug helpers */
 
-// little function to help us print_r() or dump() things
-function d($param, $var_dump=0) {
-    if (defined('DEBUG')) $debug = DEBUG;
-    else $debug = 1;
+// little function to help us print_r() or var_dump() things
+function d($var, $var_dump=0) {
+    $debug = defined('DEBUG') ? DEBUG : 1;
 
-    if ($debug) {
-        $is_ajax = isset($GLOBALS['is_ajax']) && $GLOBALS['is_ajax']; // is ajax
-        $is_cli = PHP_SAPI === 'cli';                                 // is cli mode
-        $html_mode = !($is_ajax || $is_cli);                          // will display in html?
-
-        if ($html_mode) echo '<p><pre>';
-        echo PHP_EOL;
-        if ($var_dump || empty($param) || is_bool($param) || is_string($param)) {
-            var_dump($param);
-        } else {
-            print_r($param);
-        }
-        if ($html_mode) echo '</p></pre>';
-        echo PHP_EOL;
-    } else {
+    if (!$debug) 
         return;
+
+    $is_cli = (PHP_SAPI === 'cli');                              // is cli mode
+    $is_ajax = isset($GLOBALS['is_ajax']) && $GLOBALS['is_ajax']; // is ajax
+    $html_mode = !($is_cli || $is_ajax);                      // will display in html?
+
+    if ($html_mode) 
+        echo '<p><pre>';
+    echo PHP_EOL;
+    if (is_array($var) || is_object($var)) {
+        print_r($var);
+    } else {
+        var_dump($var);
     }
+    if ($html_mode) 
+        echo '</p></pre>';
+    echo PHP_EOL;
 }
 
 /* image upload helpers */
@@ -367,4 +367,50 @@ function safe_array_map($call, $arr)
     if ($arr === false)
         return array();
     return array_map($call, $arr);
+}
+
+function build_nav($str)
+{
+    $str = trim($str);
+    $arr = array();
+    $lines = explode(PHP_EOL, $str);
+    $top_key = '';
+    foreach ($lines as $line) {
+        if (empty($line)) 
+            continue;
+        if (strpos($line, ' ') === 0) { // sub
+            if (empty($top_key)) {
+                throw new Exception('no top key, that means you did not put a top level first, please remove the leading spaces');
+            }
+            $line = trim($line);
+
+            $arr_ = explode(' ', $line);
+            array_shift($arr_); // remove leading char
+            $count = count($arr_);
+            if ($count < 1)
+                throw new Exception("line: $line, must with leading + or -");
+            if ($count < 2) {
+                $arr_[] = '';
+            }
+            list($name, $link) = $arr_;
+
+            $arr[$top_key]['sub'][] = array(
+                'name' => $name,
+                'link' => $link);
+
+            // default
+            $default = strpos($line, '+') === 0;
+            if ($default) {
+                $arr[$top_key]['default'] = $link;
+            }
+        } else { // top
+            list($title, $name) = explode(' ', $line);
+            $top_key = trim($name);
+            if (empty($name)) {
+                throw new Exception('you must provide a name');
+            }
+            $arr[trim($name)] = array('title' => trim($title));
+        }
+    }
+    return $arr;
 }

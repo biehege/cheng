@@ -16,6 +16,9 @@ switch ($user_type) {
     case 'Admin':
         $customers = $admin->listCustomer();
         break;
+
+    case 'Customer':
+        break;
     
     default:
         throw new Exception('should not be here, user type: ' . $user_type);

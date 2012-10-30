@@ -18,7 +18,7 @@
             <a href="<?= ROOT ?>cart">购物车 (<span><?= $cart->count() ?></span>)</a>
         <?php endif; ?>
         <a href="<?= ROOT ?>my"><?= $user->name ?></a>
-        <a href="my/order">我的订单</a>
+        <a href="order">我的订单</a>
         <a href="<?= ROOT ?>login?logout=1">logout</a>
     <?php else: ?>
         <a href="<?= ROOT ?>login?back=<?= $request_uri ?>">登陆</a>

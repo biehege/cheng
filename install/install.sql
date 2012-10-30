@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `product`
     `image1` VARCHAR(100),
     `image2` VARCHAR(100),
     `image3` VARCHAR(100),
-    `type` CHAR(20) NOT NULL, -- new a table?
+    `type` CHAR(20) NOT NULL COMMENT '类型', -- new a table?
     `material` CHAR(120) NOT NULL COMMENT 'JSON', 
     `weight` DECIMAL(10, 2),
     `rabbet_start` DECIMAL(2, 2) NOT NULL COMMENT '镶口',

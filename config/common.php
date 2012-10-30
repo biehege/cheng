@@ -67,3 +67,50 @@ $config['error']['info'] = array(
 $config['controllers_need_login'] = array(
     'index',
     'cart');
+
+// navs
+// $config['navs'] = array(
+//     'my' => array(
+//         'title' => '我的资料',
+//         'defalut' => 'info',
+//         'children' => array(
+//             'info' => array(
+//                 'title' => ))),
+//     'order' => array(),
+//     'product' => array());
+$config['navs']['default'] = '
+我的订单 order
+ - 待确认 tobeconfirmed
+ - 已交工厂 infactory
+ - 工厂完工 done
+ + 全部订单 all
+我的资料 my 
+ + 个人资料 info
+ - 修改密码 password
+';
+$config['navs']['admin'] = '
+订单管理 order
+ - 待确认 tobeconfirmed
+ - 已交工厂 infactory
+ - 工厂完工 done
+ - 已取消 cancel
+ + 全部订单 all
+货品管理 product
+ + 货品列表 
+ - 单品上传 upload
+ - 批量上传 batch
+用户管理 user
+ + 用户列表 
+ - 审核用户 adopt
+ - 新增用户 add
+工厂管理 factory
+ - 工厂列表 
+ - 审核用户 adopt
+ - 新增用户 add
+数据统计 statistics
+ - 历史金价 gold_price
+ + 销量统计 sale
+系统设置 setting
+ + 全局设置
+ - 修改密码 password
+';

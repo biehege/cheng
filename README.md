@@ -16,10 +16,10 @@ cart view
 todo
 ====
 
-$cart->totalPrice()
-    $order->price()
-clear address table
+$cart->totalPrice() ... ok
+    $order->price() ... ok
+clear address table ... ok
 
 when cart submit, del it in cart ... ok
 
-when cart submit save all status in Settings ... cand current price and so on
+when cart submit save all status in Settings ... cand current price and so on ... ok
