@@ -16,13 +16,26 @@ class Price
             'ORDER BY id desc');
     }
 
-    public static function history($type)
+    public static function history($conds = array())
     {
+        extract(self::defaultConds($conds));
+        if (empty($type)) {
+            $cond = null;
+        } else {
+            $cond = array('type=?' => $type);
+        }
+        $tail = "LIMIT $limit OFFSET $offset";
         return Pdb::fetchAll(
             '*',
             self::$table,
-            array('type=?' => $type),
-            'ORDER BY id desc');
+            $cond,
+            'id desc',
+            $tail);
+    }
+
+    public static function total()
+    {
+        return Pdb::count(self::$table);
     }
 
     public static function update($type, $price)
@@ -33,5 +46,14 @@ class Price
                 'price' => $price,
                 'time=NOW()' => null),
             self::$table);
+    }
+
+    private static function defaultConds($conds)
+    {
+        return array_merge(array(
+            'limit' => 50,
+            'offset' => 0,
+            'type' => ''
+        ), $conds);
     }
 }

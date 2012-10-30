@@ -1,0 +1,16 @@
+<?php
+!defined('IN_PTF') && exit('ILLEGAL EXECUTION');
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+?>
+<?php
+$nav_id = 'admin';
+include smart_view('nav');
+?>
+<div class="right-frame">
+    <?php include smart_view('crumb'); ?>
+    <div class="matter">
+        <?php include smart_view($matter); ?>
+    </div>
+</div>
