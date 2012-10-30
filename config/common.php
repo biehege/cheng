@@ -79,6 +79,10 @@ $config['setting_name_map'] = array(
     'st_price' => '辅石价格',
     'weight_ratio' => '铂金和K金重量比');
 
+$config['material_type_map'] = array(
+    'PT950' => 'PT950',
+    'AU750' => 'AU750');
+
 // navs
 // $config['navs'] = array(
 //     'my' => array(

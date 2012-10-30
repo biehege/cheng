@@ -19,11 +19,7 @@ class Price
     public static function history($conds = array())
     {
         extract(self::defaultConds($conds));
-        if (empty($type)) {
-            $cond = null;
-        } else {
-            $cond = array('type=?' => $type);
-        }
+        $cond = self::typeCond($type);
         $tail = "LIMIT $limit OFFSET $offset";
         return Pdb::fetchAll(
             '*',
@@ -33,9 +29,9 @@ class Price
             $tail);
     }
 
-    public static function total()
+    public static function total($type)
     {
-        return Pdb::count(self::$table);
+        return Pdb::count(self::$table, self::typeCond($type));
     }
 
     public static function update($type, $price)
@@ -55,5 +51,15 @@ class Price
             'offset' => 0,
             'type' => ''
         ), $conds);
+    }
+
+    private static function typeCond($type)
+    {
+        if (empty($type) || $type === 'all') {
+            $cond = null;
+        } else {
+            $cond = array('type=?' => $type);
+        }
+        return $cond;
     }
 }
