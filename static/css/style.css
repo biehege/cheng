@@ -67,3 +67,22 @@ form.logreg div label {
 form.logreg .ok.btn {
     margin-left: 110px;
 }
+
+/* 侧边栏 */
+.main-nav {
+    float: left;
+    width: 17%;
+    border: 1px solid;
+}
+.main-nav dt {
+    font-weight: bold;
+}
+.right-frame {
+    float: right;
+    width: 80%;
+}
+
+/* 面包屑导航 */
+.crumb {
+    border: 1px solid;
+}

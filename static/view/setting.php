@@ -8,7 +8,7 @@
 $nav_id = 'admin';
 include smart_view('nav');
 ?>
-<div class="right">
+<div class="right-frame">
     <?php include smart_view('crumb'); ?>
     <h2>价格计算的基础设置</h2>
     <form>

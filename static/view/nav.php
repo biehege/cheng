@@ -4,7 +4,7 @@
 if (!isset($nav_id))
     $nav_id = 'default';
 ?>
-<dl>
+<dl class="main-nav">
     <?php foreach ($navs[$nav_id] as $top_key => $sub): ?>
         <dt><a href="<?= ROOT . $top_key . '/' . $sub['default'] ?>"><?= $sub['title'] ?></a></dt>
         <?php foreach ($sub['sub'] as $entry): ?>

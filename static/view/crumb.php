@@ -13,7 +13,7 @@ foreach ($this_nav['sub'] as $sub_nav) {
     }
 }
 ?>
-<div>
+<div class="crumb">
     <span><?= $this_nav['title'] ?></span>
     <span>&gt;</span>
     <span><?= $sub_title ?></span>    
