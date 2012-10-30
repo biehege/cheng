@@ -66,7 +66,11 @@ $config['error']['info'] = array(
 // pages need login
 $config['controllers_need_login'] = array(
     'index',
-    'cart');
+    'cart',
+    'my',
+    'order',
+    'statistics',
+    'setting');
 
 // navs
 // $config['navs'] = array(
