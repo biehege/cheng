@@ -91,10 +91,15 @@ class User extends Model
         return new self(Pdb::lastInsertId());
     }
 
-    public static function loginHistory()
+    public function loginHistory()
     {
-        $cond = array('user=?' => $this->id);
+        $cond = array('subject=?' => $this->id);
         $tail = "LIMIT $limit OFFSET $offset";
         return Pdb::fetchAll('*', UserLog::$table, $cond, null, $tail);
+    }
+
+    public function loginTimes()
+    {
+        return Pdb::count(UserLog::$table, array('subject=?' => $this->id));
     }
 }

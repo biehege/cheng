@@ -177,4 +177,23 @@ class Customer extends Model
     {
         Pdb::del(Cart::$table, array('customer' => $this->id));
     }
+
+    public function dealTimes()
+    {
+        return Pdb::count(
+            UserLog::$table, 
+            array(
+                'subject=?' => $this->id,
+                'action=?' => 'DoneBill'));
+    }
+
+    public function undoneTimes()
+    {
+        $start_bill_times = Pdb::count(
+            UserLog::$table,
+            array(
+                'subject=?' => $this->id,
+                'action=?' => 'StartBill'));
+        return $start_bill_times - $this->dealTimes();
+    }
 }

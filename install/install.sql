@@ -25,13 +25,15 @@ INSERT INTO `user` (name, password, type, create_time)
                 ON DUPLICATE KEY UPDATE name=name;
 
 -- customer
-CREATE TABLE IF NOT EXISTS `customer`
-(
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `user` INT(10) UNSIGNED NOT NULL,
-    `adopted` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否被通过',
-    PRIMARY KEY(`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=101;
+CREATE TABLE IF NOT EXISTS `customer` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user` int(10) unsigned NOT NULL,
+  `adopted` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否被通过',
+  `gender` char(4) NOT NULL,
+  `qq` char(20) NOT NULL,
+  `city` char(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 
 -- customer_address
 CREATE TABLE IF NOT EXISTS `customer_address` (
@@ -183,13 +185,13 @@ CREATE TABLE IF NOT EXISTS `price`
     PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
--- login history
-CREATE TABLE IF NOT EXISTS `user_log`
-(
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `user` INT(10) UNSIGNED NOT NULL,
-    `action` ENUM('Login', 'StartBill', 'DoneBill', 'ViewProduct') NOT NULL,
-    `target` INT(10) UNSIGNED,
-    `time` DATETIME NOT NULL,
-    PRIMARY KEY(`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=101;
+-- login history or just log for everthing...
+
+CREATE TABLE IF NOT EXISTS `user_log` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `subject` int(10) unsigned NOT NULL COMMENT '主语 user_id or customer_id or ???',
+  `action` enum('Login','StartBill','DoneBill','ViewProduct') NOT NULL COMMENT '动词',
+  `target` int(10) unsigned DEFAULT NULL COMMENT '宾语',
+  `time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
