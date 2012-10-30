@@ -18,4 +18,5 @@ switch ($user_type) {
         break;
 }
 
-$view .= '.' . strtolower($user_type) . '?master';
+$matter = $view . '.' . strtolower($user_type);
+$view = 'board.admin?master';

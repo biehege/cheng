@@ -83,16 +83,18 @@ $config['material_type_map'] = array(
     'PT950' => 'PT950',
     'AU750' => 'AU750');
 
-// navs
-// $config['navs'] = array(
+// navs structure
+// array(
 //     'my' => array(
 //         'title' => '我的资料',
 //         'defalut' => 'info',
-//         'children' => array(
+//         'children' => array( // or sub
 //             'info' => array(
 //                 'title' => ))),
 //     'order' => array(),
 //     'product' => array());
+
+// 普通用户的导航
 $config['navs']['default'] = '
 我的订单 order
  - 待确认 tobeconfirmed
@@ -103,6 +105,8 @@ $config['navs']['default'] = '
  + 个人资料 info
  - 修改密码 password
 ';
+
+// 管理员的导航
 $config['navs']['admin'] = '
 订单管理 order
  - 待确认 tobeconfirmed
