@@ -22,6 +22,7 @@ class Admin extends Model
         Pdb::update(array('adopted' => 1), Customer::$table, array('id=?' => $cus->id));
     }
 
+    // why not customers()
     public function listCustomer($conds = array())
     {
         extract(self::defaultConds($conds));

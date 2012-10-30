@@ -3,4 +3,11 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
-$view .= '?master';
+
+if ($user_type !== 'Admin')
+    die('no permission');
+
+$customers = $admin->listCustomer();
+
+$matter = $view;
+$view = 'board.admin?master';
