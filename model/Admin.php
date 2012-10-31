@@ -55,6 +55,15 @@ class Admin extends Model
         }, $cus_infos);
     }
 
+    public function addFactory($para)
+    {
+        Pdb::insert(
+            array_merge(
+                $para,
+                array('create_time=NOW()' => null)),
+            Factory::$table);
+    }
+
     public function listFactory($conds) 
     {
         extract(self::defaultConds($conds));

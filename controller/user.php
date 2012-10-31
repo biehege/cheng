@@ -13,6 +13,7 @@ switch ($target) {
     case '':
         $customers = $admin->listCustomer();
         break;
+
     case 'add':
         list(
             $username,
@@ -44,6 +45,9 @@ switch ($target) {
                 'remark'));
             redirect('user');
         }
+        break;
+
+    case 'adopt':
         break;
     default:
         throw new Exception("unknown: $target");

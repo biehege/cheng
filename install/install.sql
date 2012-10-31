@@ -144,12 +144,20 @@ CREATE TABLE IF NOT EXISTS `small_order` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=196 ;
 
 -- factory
-CREATE TABLE IF NOT EXISTS `factory`
-(
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `name` CHAR(60) NOT NULL,
-    PRIMARY KEY(`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=101;
+CREATE TABLE IF NOT EXISTS `factory` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(60) NOT NULL COMMENT '工厂名称',
+  `contact` char(20) DEFAULT NULL COMMENT '联系人',
+  `gender` char(10) DEFAULT NULL COMMENT '性别',
+  `phone` char(20) DEFAULT NULL COMMENT '联系电话',
+  `qq` char(20) DEFAULT NULL COMMENT 'QQ',
+  `city` char(20) DEFAULT NULL COMMENT '区域',
+  `done` int(6) DEFAULT NULL COMMENT '成交',
+  `undone` int(6) DEFAULT NULL COMMENT '未结清',
+  `st_remain` decimal(4,2) DEFAULT NULL COMMENT '剩余辅石',
+  `creat_time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 
 -- setting 全局设定
 CREATE TABLE IF NOT EXISTS `setting`
