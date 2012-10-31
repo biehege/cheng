@@ -127,7 +127,7 @@ class Customer extends Model
         return $bigOrder;
     }
 
-    public function register($kvs) {
+    public static function register($kvs) {
         $user = User::register($kvs);
         Pdb::insert(
             array('user' => $user->id, 'adopted' => 0), 
