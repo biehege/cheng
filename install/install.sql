@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `size` smallint(4) unsigned NOT NULL,
   `carve_text` varchar(120) DEFAULT NULL,
   `material` char(20) NOT NULL,
-  `state` enum('InCart','ToBeConfirmed','InFactory','FactoryConfirmed','FactoryDone','Done') NOT NULL DEFAULT 'ToBeConfirmed',
+  `state` enum('InCart','ToBeConfirmed','InFactory','FactoryDone','Done') NOT NULL DEFAULT 'ToBeConfirmed',
   `gold_weight` decimal(4,2) NOT NULL,
   `weight_ratio` decimal(2,2) NOT NULL DEFAULT '0.99',
   `wear_tear` tinyint(2) NOT NULL,
@@ -141,13 +141,15 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `factory_confirm_time` datetime DEFAULT NULL,
   `factory_done_time` datetime DEFAULT NULL,
   `all_done_time` datetime DEFAULT NULL,
+  `estimate_price` decimal(8,2) NOT NULL,
   `factory_price` decimal(8,2) NOT NULL,
   `real_price` decimal(8,2) NOT NULL,
+  `paid` decimal(8,2) NOT NULL,
   `customer_remark` text,
   `admin_remark` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=196 ;
 
 -- factory
 CREATE TABLE IF NOT EXISTS `factory`

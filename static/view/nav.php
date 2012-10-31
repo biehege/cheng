@@ -1,6 +1,8 @@
 <?php
 !defined('IN_PTF') && exit('ILLEGAL EXECUTION');
 
+// 左边栏导航
+
 if (!isset($nav_id))
     $nav_id = 'default';
 ?>

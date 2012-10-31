@@ -83,6 +83,20 @@ $config['material_type_map'] = array(
     'PT950' => 'PT950',
     'AU750' => 'AU750');
 
+$config['order_states'] = array(
+    'InCart' => '...',
+    'ToBeConfirmed' => '待确认',
+    'InFactory' => '已交工厂',
+    'FactoryDone' => '工厂完工',
+    'Done' => '完成');
+
+$config['next_button_map'] = array(
+    'InCart' => '...',
+    'ToBeConfirmed' => '确认',
+    'InFactory' => '完工',
+    'FactoryDone' => '。。。',
+    'Done' => '。。。');
+
 // navs structure
 // array(
 //     'my' => array(
@@ -109,6 +123,7 @@ $config['navs']['default'] = '
 // 管理员的导航
 $config['navs']['admin'] = '
 订单管理 order
+ - 未结清 unpay
  - 待确认 tobeconfirmed
  - 已交工厂 infactory
  - 工厂完工 done

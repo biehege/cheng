@@ -13,23 +13,44 @@ class Product extends Model
         return $this->info;
     }
 
-    public static function count()
+    public static function count($conds = array())
     {
-        return Pdb::count(self::$table);
+        $conds = self::buildDbConds($conds);
+        return Pdb::count(self::$table, $conds);
     }
 
     public static function listProduct($conds = array()) 
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
+        $conds = self::buildDbConds($conds);
+        $order = (isset($sort) && trim($sort))? $sort : null;
         return safe_array_map(function ($id) {
             return new Product($id);
-        }, Pdb::fetchAll('id', self::$table, null, null, $tail));
+        }, Pdb::fetchAll('id', self::$table, $conds, $order, $tail));
     }
 
     public static function types()
     {
         return Pdb::fetchAll('name', 'product_type');
+    }
+
+    public function countSold()
+    {
+        return Pdb::count(
+            Order::$table, 
+            array(
+                'product=?' => $this->id,
+                'state=?' => 'Done'));
+    }
+
+    public function countView()
+    {
+        return Pdb::count(
+            UserLog::$table,
+            array(
+                'target=?' => $this->id,
+                'action=?' => 'ViewProduct'));
     }
 
     public function estimatePrice()
@@ -41,5 +62,26 @@ class Product extends Model
             $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current($material) * ($material === 'PT950' ? Setting::get('weight_ratio') : 1)
                 + Setting::get('labor_expense')
                 + $info['small_stone'] * (Setting::get('st_expense') + Setting::get('st_price'));
+    }
+
+    private static function buildDbConds($conds)
+    {
+        extract(array_merge(
+            array(
+                'name' => '',
+                'no' => '',
+                'type' => ''),
+            $conds));
+        $ret = array();
+        if ($name) {
+            $ret['name LIKE ?'] = '%' . $name . '%';
+        }
+        if ($no) {
+            $ret['no LIKE ?'] = '%' . $no . '%';
+        }
+        if ($type) {
+            $ret['type=?'] = $type;
+        }
+        return $ret;
     }
 }

@@ -8,6 +8,9 @@
 a {
     text-decoration: none;
 }
+td, th {
+    border: 1px solid;
+}
 .btn {
     cursor: pointer;
     text-align: center;

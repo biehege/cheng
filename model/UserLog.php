@@ -16,11 +16,11 @@ class UserLog
         }, Pdb::fetchAll('*', self::$table));
     }
 
-    public static function log($user_id)
+    public static function userLogin($user_id)
     {
         Pdb::insert(
             array(
-                'user' => $user_id,
+                'subject' => $user_id,
                 'action' => 'Login',
                 'time=NOW()' => null
             ),

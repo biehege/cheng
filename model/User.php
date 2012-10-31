@@ -36,7 +36,7 @@ class User extends Model
         $_SESSION['se_user_id'] = $this->id;
 
         // log it
-        UserLog::log($this->id);
+        UserLog::userLogin($this->id);
     }
 
     public function logout()
