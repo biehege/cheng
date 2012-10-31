@@ -29,8 +29,9 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `gender` char(4) NOT NULL,
   `qq` char(20) NOT NULL,
   `city` char(20) NOT NULL,
+  `remark` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=119 ;
 
 -- customer_address
 CREATE TABLE IF NOT EXISTS `customer_address` (

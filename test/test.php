@@ -21,8 +21,7 @@ if ($clear) {
     }
     
     // case 3
-    $username = 'test_user';
-    $customer_ids = Pdb::del(User::$table, array('name=?' => $username));
+    Pdb::del(User::$table, array("name LIKE '%test%'" => null));
 
     // can be replaced with clear db
     clear_db(Customer::$table, User::$table, 'user');
@@ -63,7 +62,7 @@ begin_test();
 $id = 101;
 $model = new Model($id);
 test($model->id, $id, array(
-    'name' => 'spl_autoload_register'));
+    'name' => 'autoload'));
 
 // case 2 test for kind_of_equal()
 begin_test();
@@ -71,7 +70,7 @@ $a = array('z' => 3, 'a' => 42);
 $b = array('a' => 42, 'z' => 3);
 test(kind_of_equal($a, $b), true, array('name' => 'test for kind_of_equal()'));
 
-// case 3 register customer, user db
+// case 3 register Customer, user db
 begin_test();
 $username = 'test_user';
 $password = 'password';
@@ -98,7 +97,7 @@ $real_arr = Pdb::fetchRow('*', User::$table, array('id=?' => $id));
 test(
     $real_arr, 
     $ideal_arr, 
-    array('name' => 'register customer, db', 'compare' => 'in'));
+    array('name' => 'register Customer, db', 'compare' => 'in'));
 
 // case 4 Super Admin create Admin, db
 begin_test();
@@ -185,3 +184,16 @@ test(
 // case 8 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
+
+// case 9 Admin add Customer
+$info = array(
+    'username' => 'user_ca_test',
+    'password' => 'password',
+    'realname' => '小三',
+    'phone' => '1392910065',
+    'qq' => '2981793048',
+    'email' => 'cumt.xao@gmail.com',
+    'address' => '北京某地',
+    'remark' => '这个备注是干啥的？');
+$admin->addCustomer($info);
+test(1, 1, array('name' => 'Admin add Customer'));

@@ -1,3 +1,7 @@
+.pass, .fail {
+    font-family: 'Proxima Nova Regular', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
 .pass {
     background-color: green;
     color: white;
@@ -14,6 +18,7 @@
 
 h1, h2, ol {
     margin: 0;
+    font-family: "Skolar Bold","Times New Roman",serif;
 }
 hr {
     margin: 1px;
@@ -26,4 +31,8 @@ hr {
 }
 h1 {
     float: left;
+}
+h2 {
+    font-size: large;
+    font-weight: 
 }

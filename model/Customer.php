@@ -18,13 +18,19 @@ class Customer extends Model
         return new self($info);
     }
 
-    protected function info() {
+    protected function info() 
+    {
         $ret = Pdb::fetchRow('*', self::$table, $this->selfCond());
         if ($ret === false) {
             throw new Exception("no customer, id: $this->id");
         }
         $ret['user'] = new User($ret['user']);
         return $ret;
+    }
+
+    public function edit($para)
+    {
+        Pdb::update($para, self::$table, $this->selfCond());
     }
 
     public function listProducts($conds)

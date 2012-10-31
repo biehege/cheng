@@ -39,5 +39,5 @@
         <input name="remark" type="name" value="<?= $remark ?>" />
         <span>客户不可见</span>
     </div>
+    <input type="submit" value="确定" />
 </form>
-<div>user.add</div>

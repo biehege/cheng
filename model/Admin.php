@@ -24,8 +24,14 @@ class Admin extends Model
             'password' => i($info['password']),
             'realname' => i($info['realname']),
             'phone' => i($info['phone']),
-            'email' => i($info['email']));
+            'email' => i($info['email']),
+            'create_time=NOW()' => null);
         $cus = Customer::register($user_info);
+        $cus_info = array(
+            'qq' => i($info['qq']),
+            'remark' => i($info['remark']),
+            'adopted' => 1);
+        $cus->edit($cus_info);
     }
 
     public function adoptCustomer(Customer $cus)
