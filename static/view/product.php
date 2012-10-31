@@ -4,8 +4,9 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?> 
-<div class="search">
-    <form>
+<form>
+    <div class="search">
+
         <div>
             <label for="name">名称</label>
             <input name="name" id="name" value="<?= $name ?>" />
@@ -36,8 +37,8 @@
             </select>
         </div>
         <input type="submit" value="搜索" />
-    </form>
-</div>
+    </div>
+</form>
 <div>
     <span>共找到：<?= $total ?>条</span>
     <div class="paging"></div>

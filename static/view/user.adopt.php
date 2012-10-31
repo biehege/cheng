@@ -3,6 +3,5 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
-
-$matter = $view;
-$view = 'board.admin?master';
+?>
+<div>user.adopt</div>

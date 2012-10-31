@@ -10,5 +10,5 @@ if ($user_type !== 'Admin')
 $settings = Setting::get();
 $name_map = $config['setting_name_map'];
 
-$matter = $view;
+$matter = $view . ($target? ".$target" : '');
 $view = 'board.admin?master';

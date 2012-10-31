@@ -1,0 +1,27 @@
+.col.name {
+    width: 10%;
+}
+.col.info {
+    width: 10%;
+}
+.col.realname {
+    width: 10%;
+}
+.col.price-estimate {
+    width: 10%;
+}
+.col.price-factory {
+    width: 10%;
+}
+.col.price-real {
+    width: 10%;
+}
+.col.paid {
+    width: 10%;
+}
+.col.state {
+    width: 10%;
+}
+.col.control {
+    width: 10%;
+}

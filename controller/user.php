@@ -9,5 +9,5 @@ if ($user_type !== 'Admin')
 
 $customers = $admin->listCustomer();
 
-$matter = $view;
+$matter = $view . ($target? ".$target" : '');
 $view = 'board.admin?master';

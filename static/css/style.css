@@ -89,3 +89,18 @@ form.logreg .ok.btn {
 .crumb {
     border: 1px solid;
 }
+
+/* 搜索框 */
+div.search>div {
+    display: inline-block;
+}
+
+/* 模拟表格 */
+.col {
+    display: inline-block;
+    border: 1px solid;
+}
+.col.title {
+    font-weight: bold;
+    text-align: center;
+}
