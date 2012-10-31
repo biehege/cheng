@@ -5,7 +5,6 @@
 <h1>
     <a href="<?= ROOT ?>" title="<?= $config['site']['name'] ?>"><?= $config['site']['name'] ?></a>
 </h1>
-
 <div class="price">
     <span>今日金价</span>
     <span>PT950: <?= Price::current('PT950') ?></span>
@@ -25,4 +24,4 @@
         <a href="<?= ROOT ?>register?back=<?= $request_uri ?>">注册</a>
     <?php endif; ?>
 </div>
-<span class="info">with only html structure, but without layout, without style, without 文案</span>
+<span class="info">with only html structure, and basic layout, without style, without 文案</span>

@@ -17,6 +17,17 @@ class Admin extends Model
         $this->editOrder($order, array('state' => $state));
     }
 
+    public function addCustomer($info) 
+    {
+        $user_info = array(
+            'username' => i($info['username']),
+            'password' => i($info['password']),
+            'realname' => i($info['realname']),
+            'phone' => i($info['phone']),
+            'email' => i($info['email']));
+        $cus = Customer::register($user_info);
+    }
+
     public function adoptCustomer(Customer $cus)
     {
         Pdb::update(array('adopted' => 1), Customer::$table, array('id=?' => $cus->id));
