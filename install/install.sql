@@ -20,9 +20,6 @@ CREATE TABLE IF NOT EXISTS `user`
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
 -- root user
-INSERT INTO `user` (name, password, type, create_time) 
-            VALUES ('root', md5('root'), 'SuperAdmin', NOW()) 
-                ON DUPLICATE KEY UPDATE name=name;
 
 -- customer
 CREATE TABLE IF NOT EXISTS `customer` (
@@ -82,12 +79,6 @@ CREATE TABLE IF NOT EXISTS `product_type`
     PRIMARY KEY(`id`),
     UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
-
-INSERT INTO `product_type` -- default types
-    (name) 
-    VALUES 
-    ('女戒'), ('男戒'), ('对戒'), ('吊坠'), ('耳坠'), ('手镯/手链')
-        ON DUPLICATE KEY UPDATE name=name;
 
 -- cart
 CREATE TABLE IF NOT EXISTS `cart`
@@ -166,16 +157,6 @@ CREATE TABLE IF NOT EXISTS `setting`
     `value` CHAR(30) NOT NULL,
     UNIQUE KEY (`key`)
 ) ENGINE=MyISAM;
-
-INSERT INTO `setting` -- default settings
-    (`key`, `value`) 
-    VALUES 
-    ('labor_expense', '15'),
-    ('wear_tear', '14'),
-    ('st_expense', '20'),
-    ('st_price', '2300'),
-    ('weight_ratio', '1.2')
-        ON DUPLICATE KEY UPDATE `key`=`key`;
 
 -- price
 CREATE TABLE IF NOT EXISTS `price`
