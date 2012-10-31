@@ -131,14 +131,14 @@ $config['navs']['admin'] = '
  + 全部订单 all
 货品管理 product
  + 货品列表 
- - 单品上传 upload
+ - 单品上传 post
  - 批量上传 batch
 用户管理 user
  + 用户列表 
  - 审核用户 adopt
  - 新增用户 add
 工厂管理 factory
- - 工厂列表 
+ + 工厂列表
  - 审核用户 adopt
  - 新增用户 add
 数据统计 statistics
