@@ -26,7 +26,7 @@
             <td class="city"><?= $factory->city ?></td>
             <td class="done"><?= $factory->done ?></td>
             <td class="undone"><?= $factory->undone ?></td>
-            <td class="st_reamain"><?= $factory->st_reamain ?></td>
+            <td class="st_reamain"><?= $factory->st_remain ?></td>
             <td class="control">修改</td>
         </tr>
     <?php endforeach ?>

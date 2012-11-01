@@ -69,6 +69,9 @@ $config['controllers_need_login'] = array(
     'cart',
     'my',
     'order',
+    'product',
+    'user',
+    'factory',
     'statistics',
     'setting');
 
