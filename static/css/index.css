@@ -44,3 +44,23 @@
     display: block;
     text-align: center;
 }
+
+ul.type-selector li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.carve {
+    display: inline-block;
+    position: relative;
+}
+
+.carve .carve-box {
+    display: none;
+    border: 1px solid;
+    position: absolute;
+    background-color: white;
+}
+.carve:hover .carve-box {
+    display: block;
+}

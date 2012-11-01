@@ -30,6 +30,7 @@ $products = Product::listProduct(
         'limit' => $per_page,
         'offset' => $paging->offset()));
 
+$types = Product::types();
 
 $view .= '?master';
 

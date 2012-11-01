@@ -52,12 +52,41 @@
                     <span>货号：<?= $prd->no ?></span>
                 </div>
                 <div>镶口：<?= $prd->rabbet_start ?>-<?= $prd->rabbet_end ?> ct</div>
-                <div>手寸：</div>
-                <div>刻字：</div>
-                <div>辅石：<?= $prd->small_stone ?></div>
                 <div>
-                    <span>工费：<?= Setting::get('labor_expense') ?></span>
-                    <span> 损耗：<?= Setting::get('wear_tear') ?></span>
+                    <span>材质：</span>
+                    <ul class="type-selector">
+                        <?php foreach ($types as $id => $value): ?>
+                            <li data-id="<?= $id ?>"><?= $value ?></li>
+                        <?php endforeach ?>
+                    </ul>
+                </div>
+                <div>
+                    <label for="size">手寸：</label>
+                    <input type="text" name="size" id="size" />
+                </div>
+                <div>
+                    <span>刻字：</span>
+                    <div class="carve">
+                        <span class="text">输入&gt;</span>
+                        <div class="carve-box">
+                            <div>刻字内容</div>
+                            <input type="text" name="carve_text" />
+                            <span class="s1">三</span>
+                            <span class="s2">&amp;</span>
+                            <button class="ok-btn">确定</button>
+                        </div>
+                    </div>
+                    <span>由字母、数字、图形（两种）组成;至多5个字符。</span>
+                </div>
+                <div>
+                    <span>辅石：</span>
+                    <span><?= $prd->small_stone ?>粒</span>
+                </div>
+                <div>
+                    <span>工费：</span>
+                    <span><?= Setting::get('labor_expense') ?>元/件</span>
+                    <span> 损耗：</span>
+                    <span><?= Setting::get('wear_tear') ?>%</span>
                 </div>
             </div>
             <div class="right">
