@@ -124,7 +124,15 @@ $admin->updatePrice('Au750', '1723.45');
 test(1, 1, array('name' => 'Admin update gold Price'));
 
 // case 7 Admin add Factory
-
+begin_test();
+$info = array(
+    'name' => '嘉黛',
+    'contact' => '吴小牛',
+    'phone' => '13526523659',
+    'qq' => '5833652584',
+    'city' => '湖北武汉');
+$admin->addFactory($info);
+test(1, 1, array('name' => 'Admin add Factory'));
 
 // case 5 Admin post Product, db
 begin_test();
