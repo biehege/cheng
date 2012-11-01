@@ -20,5 +20,5 @@ $prices = Price::history(array(
     'limit' => $total,
     'offset' => $paging->offset()));
 
-$matter = $view;
+$matter = $view . '.' . $target;
 $view = 'board.admin?master';
