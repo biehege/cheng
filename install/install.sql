@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `factory` (
   `done` int(6) DEFAULT NULL COMMENT '成交',
   `undone` int(6) DEFAULT NULL COMMENT '未结清',
   `st_remain` decimal(4,2) DEFAULT NULL COMMENT '剩余辅石',
-  `creat_time` datetime NOT NULL,
+  `create_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
 
