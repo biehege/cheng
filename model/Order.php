@@ -11,11 +11,27 @@ class Order extends Model
     public function info()
     {
         $ret = Pdb::fetchRow('*', self::$table, $this->selfCond());
-        $ret['product'] = new Product($ret['product']);
-        $ret['address'] = new Address($ret['address']);
-        $ret['factory'] = new Factory($ret['factory']);
-        $ret['customer'] = new Customer($ret['customer']);
         return $ret;
+    }
+
+    public function customer()
+    {
+        return new Customer($this->customer);
+    }
+
+    public function product()
+    {
+        return new Product($this->product);
+    }
+
+    public function address()
+    {
+        return new Address($this->address);
+    }
+
+    public function factory()
+    {
+        return new Factory($this->factory);
     }
 
     public static function create(Customer $cus, Product $prd, $opts)
@@ -60,6 +76,8 @@ class Order extends Model
             + $prd->small_stone * ($info['st_expense'] + $info['st_price']);
     }
 
+    
+
     public static function count($conds)
     {
         $conds = self::buildDbConds($conds);
@@ -82,7 +100,9 @@ class Order extends Model
     private static function buildDbConds($conds = array())
     {
         extract(array_merge(
-            array(),
+            array(
+                'username' => '',
+                'factory' => ''),
             $conds));
         $ret = array();
         if ($name)

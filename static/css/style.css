@@ -99,6 +99,7 @@ div.search>div {
 .col {
     display: inline-block;
     border: 1px solid;
+    width: 7%;
 }
 .col.title {
     font-weight: bold;
