@@ -5,5 +5,5 @@
  */
 class Factory extends Model 
 {
-    public static $table = 'customer';
+    public static $table = 'factory';
 }

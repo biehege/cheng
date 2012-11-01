@@ -64,7 +64,7 @@ class Admin extends Model
             Factory::$table);
     }
 
-    public function listFactory($conds) 
+    public function listFactory($conds = array()) 
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";

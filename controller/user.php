@@ -7,8 +7,6 @@
 if ($user_type !== 'Admin')
     die('no permission');
 
-
-
 switch ($target) {
     case '':
         $customers = $admin->listCustomer();

@@ -123,6 +123,9 @@ $admin->updatePrice('PT950', '1903.21');
 $admin->updatePrice('Au750', '1723.45');
 test(1, 1, array('name' => 'Admin update gold Price'));
 
+// case 7 Admin add Factory
+
+
 // case 5 Admin post Product, db
 begin_test();
 $info = array(

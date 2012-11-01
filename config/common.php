@@ -139,8 +139,7 @@ $config['navs']['admin'] = '
  - 新增用户 add
 工厂管理 factory
  + 工厂列表
- - 审核用户 adopt
- - 新增用户 add
+ - 新增工厂 add
 数据统计 statistics
  - 历史金价 gold_price
  + 销量统计 sale
