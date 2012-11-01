@@ -3,25 +3,26 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
-?> 
-<div class="search">
-    <form>
+?>
+<form>
+    <div class="search">
         <div>
             <label>查询时间：</label>
             <input name="time_start" type="text" value="<?= $time_start ?>" /> - <input name="time_end" type="text" value="<?= $time_end ?>" />
         </div>
         <div>
             <label>类型：</label>
-            <select name="type">
-                <option value="all" <?= $type == 'all' ? 'selected' : '' ?> >全部</option>
-                <?php foreach ($material_types as $key => $value): ?>
-                    <option value="<?= $key ?>" <?= $type == $key ? 'selected' : '' ?> ><?= $value ?></option>
-                <?php endforeach ?>
-            </select>
+            <?php
+            $field_name = 'type';
+            $default_value = '';
+            $data = $material_types;
+            include smart_view('widget.select');
+            ?>
         </div>
         <input value="搜索" type="submit" />
-    </form>
-</div>
+    
+    </div>
+</form>
 <div>
     <span>发布金价</span>
     <div class="paging"></div>

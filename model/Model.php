@@ -14,8 +14,11 @@ class Model
         if (is_array($para) && isset($para['id'])) {
             $this->id = $para['id'];
             $this->info = $para;
-        } else {
+        } elseif (is_numeric($para)) {
             $this->id = $para;
+        } else {
+            d($para);
+            throw new Exception("not good arg for construct");
         }
     }
     
@@ -26,13 +29,13 @@ class Model
 
     public function __get($name) 
     {
-        if ($name == 'id') return $this->id;
+        if ($name === 'id') return $this->id;
         if (empty($this->info))
             $this->info = $this->info();
         return $this->info[$name];
     }
 
-    protected static function defaultConds($conds) 
+    protected static function defaultConds($conds = array()) 
     {
         return array_merge(array(
             'limit' => 10,

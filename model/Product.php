@@ -32,7 +32,18 @@ class Product extends Model
 
     public static function types()
     {
-        return Pdb::fetchAll('name', 'product_type');
+        $arr = Pdb::fetchAll('id,name', 'product_type');
+        if (empty($arr))
+            throw new Exception("no type");
+
+        // we should write a function for this
+        $ret = array();
+        foreach ($arr as $e) {
+            $key = $e['id'];
+            $value = $e['name'];
+            $ret[$key] = $value;
+        }
+        return $ret;
     }
 
     public function countSold()

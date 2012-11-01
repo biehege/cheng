@@ -91,15 +91,28 @@ class User extends Model
         return new self(Pdb::lastInsertId());
     }
 
-    public function loginHistory()
+    public function loginHistory($conds = array())
     {
-        $cond = array('subject=?' => $this->id);
+        extract(self::defaultConds($conds));
+        $conds = $this->loginConds();
+        $order = 'id desc';
         $tail = "LIMIT $limit OFFSET $offset";
-        return Pdb::fetchAll('*', UserLog::$table, $cond, null, $tail);
+        $ret = safe_array_map(function ($info) {
+            $info['ip'] = $info['info'];
+            return $info;
+        }, Pdb::fetchAll('*', UserLog::$table, $conds, $order, $tail));
+        return $ret;
     }
 
     public function loginTimes()
     {
-        return Pdb::count(UserLog::$table, array('subject=?' => $this->id));
+        return Pdb::count(UserLog::$table, $this->loginConds());
+    }
+
+    private function loginConds()
+    {
+        return array(
+            'subject=?' => $this->id,
+            'action=?' => 'Login');
     }
 }

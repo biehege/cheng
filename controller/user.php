@@ -9,7 +9,36 @@ if ($user_type !== 'Admin')
 
 switch ($target) {
     case '':
-        $customers = $admin->listCustomer();
+
+        $name = _get('name');
+        $username = _get('username');
+        $time_start = _get('time_start');
+        $time_end = _get('time_end');
+        $state = _get('state');
+
+        $conds = compact(
+            'name',
+            'username',
+            'time_start',
+            'time_end',
+            'state');
+
+        $limit = 50;
+        $total = $admin->countCustomer($conds);
+        $paging = new Paginate($limit, $total);
+        $paging->setCurPage(_get('p') ?: 1);
+
+        $conds = array_merge(
+            $conds,
+            array(
+                'limit' => $limit,
+                'offset' => $paging->offset()));
+
+        $customers = $admin->listCustomer($conds);
+
+        $states = array(
+            '0' => '未审核',
+            '1' => '已经审核',);
         break;
 
     case 'add':

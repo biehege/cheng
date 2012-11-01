@@ -61,6 +61,7 @@ switch ($user_type) {
 }
 $conds['customer'] = $customer;
 
+$types = Product::types();
 $state_map = $config['order_states'];
 $next_button_map = $config['next_button_map'];
 
@@ -78,5 +79,5 @@ $orders = Order::listOrder(array_merge(
 if (empty($orders)) 
     $orders = array();
 
-$matter = $view . '.' . strtolower($user_type);
+$matter = $view;
 $view = 'board.admin?master';

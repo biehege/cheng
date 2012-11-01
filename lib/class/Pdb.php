@@ -280,6 +280,7 @@ class PdoHelper {
         self::bindValues($sm, array_values($conds));
         if (!$sm->execute()) {
             d($this->getLog());
+            d($sm->errorInfo());
             throw new Exception;
         }
         return reset($sm->fetch(PDO::FETCH_NUM));

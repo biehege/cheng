@@ -24,7 +24,7 @@ class Customer extends Model
         if ($ret === false) {
             throw new Exception("no customer, id: $this->id");
         }
-        $ret['user'] = new User($ret['user']);
+
         return $ret;
     }
 
@@ -133,12 +133,38 @@ class Customer extends Model
         return $bigOrder;
     }
 
-    public static function register($kvs) {
-        $user = User::register($kvs);
+    public static function create($info)
+    {
+
+        $user_info = array(
+            'username' => i($info['username']),
+            'password' => i($info['password']),
+            'realname' => i($info['realname']),
+            'phone' => i($info['phone']),
+            'email' => i($info['email']),
+            'create_time=NOW()' => null);
+        $user = User::register($user_info);
+
+        // new an account
+        $account = Account::create();
+
         Pdb::insert(
-            array('user' => $user->id, 'adopted' => 0), 
+            array(
+                'user' => $user->id, 
+                'account' => $account->id,
+                'adopted' => 0,
+                'qq' => i($info['qq']),
+                'remark' => i($info['remark']),
+                'adopted' => i($info['adopted'])),
             self::$table);
         return new self(Pdb::lastInsertId());
+    }
+
+    public static function register($info) 
+    {
+        return self::create(array_merge(
+            $info,
+            array('adopted' => 0)));
     }
 
     public function visitProduct(Product $prd)
@@ -193,13 +219,30 @@ class Customer extends Model
                 'action=?' => 'DoneBill'));
     }
 
-    public function undoneTimes()
+    public function orderTimes()
     {
-        $start_bill_times = Pdb::count(
+        return Pdb::count(
             UserLog::$table,
             array(
                 'subject=?' => $this->id,
                 'action=?' => 'StartBill'));
-        return $start_bill_times - $this->dealTimes();
     }
+
+    public function undoneTimes()
+    {
+        return $this->orderTimes() - $this->dealTimes();
+    }
+
+
+
+    public function account()
+    {
+        return new Account($this->account);
+    }
+
+    public function user()
+    {
+        return new User($this->user);
+    }
+
 }

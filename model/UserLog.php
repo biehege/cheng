@@ -22,6 +22,7 @@ class UserLog
             array(
                 'subject' => $user_id,
                 'action' => 'Login',
+                'info' => i($_SERVER['REMOTE_ADDR']), // ip
                 'time=NOW()' => null
             ),
             self::$table);

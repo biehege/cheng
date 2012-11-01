@@ -19,19 +19,18 @@ CREATE TABLE IF NOT EXISTS `user`
     UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
--- root user
-
 -- customer
 CREATE TABLE IF NOT EXISTS `customer` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user` int(10) unsigned NOT NULL,
+  `account` int(10) NOT NULL,
   `adopted` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否被通过',
   `gender` char(4) NOT NULL,
   `qq` char(20) NOT NULL,
   `city` char(20) NOT NULL,
   `remark` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=119 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=154 ;
 
 -- customer_address
 CREATE TABLE IF NOT EXISTS `customer_address` (
@@ -50,6 +49,15 @@ CREATE TABLE IF NOT EXISTS `address`
     `detail` TEXT NOT NULL,
     PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
+
+-- account
+CREATE TABLE IF NOT EXISTS `account` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `remain` decimal(10,2) DEFAULT NULL,
+  `done` decimal(10,2) DEFAULT NULL,
+  `undone` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=119 ;
 
 -- product, actually, it's product type
 CREATE TABLE IF NOT EXISTS `product`
@@ -177,13 +185,13 @@ CREATE TABLE IF NOT EXISTS `price`
     PRIMARY KEY(`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=101;
 
--- login history or just log for everthing...
-
+-- log for everthing...
 CREATE TABLE IF NOT EXISTS `user_log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `subject` int(10) unsigned NOT NULL COMMENT '主语 user_id or customer_id or ???',
   `action` enum('Login','StartBill','DoneBill','ViewProduct') NOT NULL COMMENT '动词',
   `target` int(10) unsigned DEFAULT NULL COMMENT '宾语',
+  `info` varchar(50) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=111 ;

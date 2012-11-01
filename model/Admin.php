@@ -19,19 +19,9 @@ class Admin extends Model
 
     public function addCustomer($info) 
     {
-        $user_info = array(
-            'username' => i($info['username']),
-            'password' => i($info['password']),
-            'realname' => i($info['realname']),
-            'phone' => i($info['phone']),
-            'email' => i($info['email']),
-            'create_time=NOW()' => null);
-        $cus = Customer::register($user_info);
-        $cus_info = array(
-            'qq' => i($info['qq']),
-            'remark' => i($info['remark']),
-            'adopted' => 1);
-        $cus->edit($cus_info);
+        return Customer::create(array_merge(
+            $info,
+            array('adopted' => 1)));
     }
 
     public function adoptCustomer(Customer $cus)
@@ -39,19 +29,32 @@ class Admin extends Model
         Pdb::update(array('adopted' => 1), Customer::$table, array('id=?' => $cus->id));
     }
 
+    public function countCustomer($conds = array())
+    {
+        $conds = self::buildDbConds($conds);
+        $tables = array(
+            Customer::$table . ' as c',
+            User::$table . ' as u',
+            Order::$table . ' as o');
+        return Pdb::count($tables, $conds);
+    }
+
     // why not customers()
     public function listCustomer($conds = array())
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
-        $conds = array();
+        $conds = self::buildDbConds($conds);
         if (isset($adopted)) {
             $conds['adopted=?'] = $adopted ? 1 : 0;
         }
-        $cus_infos = Pdb::fetchAll('*', Customer::$table, $conds, null, $tail);
-        return safe_array_map(function ($info) {
-            $info['user'] = new User($info['user']);
-            return new Customer($info);
+        $tables = array(
+            Customer::$table . ' as c',
+            User::$table . ' as u',
+            Order::$table . ' as o');
+        $cus_infos = Pdb::fetchAll('c.id', $tables, $conds, null, $tail);
+        return safe_array_map(function ($id) {
+            return new Customer($id);
         }, $cus_infos);
     }
 
@@ -88,4 +91,26 @@ class Admin extends Model
         Price::update($type, $price);
     }
 
+    private static function buildDbConds($conds = array()) 
+    {
+        extract($conds);
+        if ($name)
+            $ret['u.realname LIKE ?'] = '%' . $name . '%';
+        if ($username)
+            $ret['u.name LIKE ?'] = '%' . $username . '%';
+
+        // a little bit difficult
+        if ($time_start)
+            $ret['o.submit_time >= ?'] = $time_start;
+        if ($time_end) 
+            $ret['o.submit_time <= ?'] = $time_end;
+        if ($time_start || $time_end)
+            $ret['o.customer=c.id'] = null;
+
+        if ($state)
+            $ret['u.adopted=?'] = $state;
+
+        $ret['c.user=u.id'] = null;
+        return $ret;
+    }
 }

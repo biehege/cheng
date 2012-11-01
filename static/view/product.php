@@ -6,7 +6,6 @@
 ?> 
 <form>
     <div class="search">
-
         <div>
             <label for="name">名称</label>
             <input name="name" id="name" value="<?= $name ?>" />
@@ -17,12 +16,10 @@
         </div>
         <div>
             <label for="">分类</label>
-            <select name="type">
-                <option selected="" value="">请选择</option>
-                <?php foreach ($types as $type): ?>
-                    <option value="<?= $type ?>x"><?= $type ?></option>
-                <?php endforeach ?>
-            </select>
+            <?php
+            $data = $types;
+            include smart_view('widget.select');
+            ?>
         </div>
         <div>
             <label for="">排序</label>

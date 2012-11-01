@@ -1,7 +1,6 @@
 <?php
 
 /**
- *
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 class Address extends Model 
