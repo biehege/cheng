@@ -69,7 +69,9 @@
             <span class="col title price-real">实际价格</span>
         <?php endif ?>
         <span class="col title state">状态</span>
-        <span class="col title control">操作</span>
+        <?php if ($user_type == 'Admin'): ?>
+            <span class="col title control">操作</span>
+        <?php endif ?>
     </div>
     <?php foreach ($orders as $order): $cus = $order->customer(); $user = $cus->user(); $prd = $order->product(); ?>
         <div>
@@ -117,9 +119,11 @@
             <div class="col state">
                 <?= $state_map[$order->state] ?>
             </div>
-            <div class="col control">
-                <button><?= $next_button_map[$order->state] ?></button>
-            </div>
+            <?php if ($user_type == 'Admin'): ?>
+                <div class="col control">
+                    <button><?= $next_button_map[$order->state] ?></button>
+                </div>
+            <?php endif ?>
             <div class="remark">备注
             </div>
             <div class="detail-info">
