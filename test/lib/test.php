@@ -66,15 +66,15 @@ function array_contain($big_arr, $small_arr)
 
 // remove all entries
 // which cannot be refered by $ref_table by $ref_key 
-// in $main_table
-function clear_db($main_table, $ref_table, $ref_key, $back_key = 'id', $ref_id = 'id')
+// in $master_table
+function clear_db($master_table, $ref_table, $ref_key, $back_key = 'id', $ref_id = 'id')
 {
-    $all = Pdb::fetchAll('*', $main_table);
+    $all = Pdb::fetchAll('*', $master_table);
     if ($all === false)
         return;
     foreach ($all as $info) 
         if (!Pdb::exists($ref_table, array($ref_id . '=?' => $info[$ref_key])))
-            Pdb::del($main_table, array($back_key . '=?' => $info[$back_key]));
+            Pdb::del($master_table, array($back_key . '=?' => $info[$back_key]));
 }
 
 function clear_relation_db($main_table, $ref_table, $relation_table = null, $key_main = null, $key_ref = null)
