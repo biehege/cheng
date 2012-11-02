@@ -107,13 +107,13 @@ $real_arr = Pdb::fetchRow(
     array('id=?' => $id));
 test($real_arr, $ideal_arr, array('name' => 'Super Admin create Admin, db'));
 
-// case 6 Admin update gold Price
+// case 5 Admin update gold Price
 begin_test();
 $admin->updatePrice('PT950', '1903.21');
 $admin->updatePrice('Au750', '1723.45');
 test(1, 1, array('name' => 'Admin update gold Price'));
 
-// case 7 Admin add Factory
+// case 6 Admin add Factory
 begin_test();
 $info = array(
     'name' => '嘉黛',
@@ -124,7 +124,7 @@ $info = array(
 $admin->addFactory($info);
 test(1, 1, array('name' => 'Admin add Factory'));
 
-// case 5 Admin post Product, db
+// case 7 Admin post Product, db
 begin_test();
 $info = array(
     'name' => '唯爱心形群镶女戒_test',
@@ -144,7 +144,7 @@ test(
         'name' => 'Admin post Product, db',
         'compare' => 'in'));
 
-// case 6 Customer eidt Address
+// case 8 Customer eidt Address
 begin_test();
 $address = $customer->defaultAddress();
 $address->edit(array(
@@ -153,7 +153,7 @@ $address->edit(array(
     'detail' => '深圳罗湖区田贝'));
 test(1, 1, array('name' => 'Customer eidt Address'));
 
-// case 6 Customer add a Product to Cart
+// case 9 Customer add a Product to Cart
 begin_test();
 $old_entry_num = Pdb::count(Order::$table);
 $opts = array(
@@ -167,16 +167,33 @@ test(
     +$entry_num, 
     array('name' => 'Customer add a Product to Cart'));
 
-// case 7 Cart count()
+// case 10 Cart count()
+begin_test();
 $cart = $customer->cart();
 test(
     +$cart->count(),
     1,
     array('name' => 'Cart count()'));
 
-// case 8 Cus
+// case 11 Customer del a Product from Cart
+begin_test();
+$opts = array(
+    'material' => 'PT950',
+    'size' => 12,
+    'carve_text' => 'I love U');
+$order = $customer->addProductToCart($product, $opts);
+$order = $customer->addProductToCart($product, $opts);
+$cart = $customer->cart();
+$old_num = $cart->count();
+$customer->delProductFromCart($order);
+$cart = $customer->cart();
+$new_num = $cart->count();
+test(
+    $old_num + 1,
+    $new_num,
+    array('name' => 'Customer del a Product from Cart'));
 
-// case 7 Customer submit a Cart
+// case 11 Customer submit a Cart
 begin_test();
 $old_entry_num = Pdb::count(BigOrder::$table);
 $big_order = $customer->submitCart();
@@ -186,11 +203,11 @@ test(
     +$entry_num,
     array('name' => 'Customer submit a Cart'));
 
-// case 8 Admin Confirmed Order (InFactory)
+// case 12 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
 
-// case 9 Admin add Customer
+// case 13 Admin add Customer
 $info = array(
     'username' => 'user_ca_test',
     'password' => 'password',

@@ -32,7 +32,7 @@ class Cart
         $count = Pdb::count(
             self::$table,
             array('customer=?' => $this->owner_id));
-        return $count;
+        return (int) $count;
     }
 
     public function totalPrice()
