@@ -1,7 +1,8 @@
 $(function () {
     $('.del.btn').click(function () {
         var that = $(this);
-        var id = that.parents('.row').data('id');
+        var entry = that.parents('.product-entry');
+        var id = entry.data('id');
         $.get(
             '/cart', 
             {
@@ -9,7 +10,7 @@ $(function () {
                 id: id
             },
             function () {
-                console.log('ok');
+                entry.hide();
             });
     });
 });

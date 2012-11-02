@@ -40,8 +40,11 @@
 .product-list .right .add.btn {
     display: block;
 }
-.product-list .right span {
+.product-list .right .estimate {
     display: block;
+    text-align: center;
+}
+.product-list .right .already {
     text-align: center;
 }
 
@@ -66,4 +69,9 @@ ul.type-selector li.on {
 }
 .carve:hover .carve-box {
     display: block;
+}
+
+.already {
+    display: block;
+    display: none;
 }

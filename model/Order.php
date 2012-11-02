@@ -44,6 +44,7 @@ class Order extends Model
                     'customer' => $cus->id,
                     'product' => $prd->id,
                     'state' => 'InCart',
+                    'estimate_price' => $prd->estimatePrice(),
                     'add_cart_time=NOW()' => null)),
             self::$table);
         return new self(Pdb::lastInsertId());

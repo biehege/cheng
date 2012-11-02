@@ -110,7 +110,7 @@ class Customer extends Model
     {
         Pdb::del(
             Cart::$table,
-            array('small_order' => $order->id)); // this id for customer? not need
+            array('small_order=?' => $order->id)); // this id for customer? not need
     }
 
     public function listOrders($conds)

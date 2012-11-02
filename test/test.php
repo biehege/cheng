@@ -182,18 +182,16 @@ $opts = array(
     'size' => 12,
     'carve_text' => 'I love U');
 $order = $customer->addProductToCart($product, $opts);
-$order = $customer->addProductToCart($product, $opts);
-$cart = $customer->cart();
-$old_num = $cart->count();
+$order = $customer->addProductToCart($product, $opts); // add for twice
+$old_num = $customer->cart()->count();
 $customer->delProductFromCart($order);
-$cart = $customer->cart();
-$new_num = $cart->count();
+$new_num = $customer->cart()->count();
 test(
-    $old_num + 1,
+    $old_num - 1,
     $new_num,
     array('name' => 'Customer del a Product from Cart'));
 
-// case 11 Customer submit a Cart
+// case 12 Customer submit a Cart
 begin_test();
 $old_entry_num = Pdb::count(BigOrder::$table);
 $big_order = $customer->submitCart();
@@ -203,11 +201,11 @@ test(
     +$entry_num,
     array('name' => 'Customer submit a Cart'));
 
-// case 12 Admin Confirmed Order (InFactory)
+// case 13 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
 
-// case 13 Admin add Customer
+// case 14 Admin add Customer
 $info = array(
     'username' => 'user_ca_test',
     'password' => 'password',

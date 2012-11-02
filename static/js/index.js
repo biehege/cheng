@@ -30,6 +30,14 @@ $(function () {
         var material = li.find('.type-selector').data('selected');
         var size = li.find('input[name=size]').val();
         var carveText = li.find('.carve .text').text();
+        if (!material) {
+            alert('请选择材质');
+            return;
+        }
+        if (!size) {
+            alert('请填入手寸');
+            return;
+        }
         $.get(
             '/cart',
             {
@@ -42,6 +50,11 @@ $(function () {
             function (ret) {
                 // 顶部的购物车+1
                 $('.account .cart .count').text(ret);
+
+                var already = li.find('.already');
+                var numBox = already.find('.num');
+                numBox.text(+numBox.text() + 1);
+                already.show();
             });
         // clear for all???
 
