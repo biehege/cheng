@@ -40,7 +40,13 @@ function make_array_by_name_list_from_source($namelist, &$source_arr)
     // what if $namelist is an empty array
     $default = '';
     return array_map(function ($name) use($source_arr, $default) {
-        return isset($source_arr[$name]) ? trim($source_arr[$name]) : $default;
+        if (isset($source_arr[$name])) {
+            // value can be array also, not just string types
+            $value = $source_arr[$name];
+            return is_array($value) ? $value : trim($value);
+        } else {
+            return $default;
+        }
     }, $namelist);
 }
 
