@@ -86,7 +86,8 @@ class Product extends Model
             array(
                 'name' => '',
                 'no' => '',
-                'type' => ''),
+                'type' => '',
+                'stone_size' => ''),
             $conds));
         $ret = array();
         if ($name) {
@@ -97,6 +98,10 @@ class Product extends Model
         }
         if ($type) {
             $ret['type=?'] = $type;
+        }
+        if ($stone_size) {
+            $ret['rabbet_start <= ?'] = $stone_size;
+            $ret['rabbet_end >= ?'] = $stone_size;
         }
         return $ret;
     }

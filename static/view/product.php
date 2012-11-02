@@ -37,8 +37,8 @@
     </div>
 </form>
 <div>
+    <?php include smart_view('paging'); ?>
     <span>共找到：<?= $total ?>条</span>
-    <div class="paging"></div>
 </div>
 <table>
     <tr>
@@ -74,8 +74,8 @@
     <?php endforeach ?>
 </table>
 <div>
+    <?php include smart_view('paging'); ?>
     <input type="checkbox" class="group all" />
     <button class="">批量导出</button>
     <button class="del">批量删除</button>
-    <div class="paging"></div>
 </div>

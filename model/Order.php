@@ -68,7 +68,7 @@ class Order extends Model
             self::$table);
     }
 
-    public function price()
+    public function price() // we need that?
     {
         $info = $this->info();
         $prd = $this->product();

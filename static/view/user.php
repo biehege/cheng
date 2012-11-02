@@ -32,8 +32,8 @@
     <input type="submit" value="搜索" />
 </div>
 <div>
+    <?php include smart_view('paging'); ?>
     <span>共找到<?= $total ?>条</span>
-    <div class="paging"></div>
 </div>
 <div>
     <span class="col title">帐号</span>

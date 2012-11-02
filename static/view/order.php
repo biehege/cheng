@@ -52,8 +52,8 @@
     </div>
 </form>
 <div>
+    <?php include smart_view('paging'); ?>
     <div>共找到：<?= $total ?>条</div>
-    <div class="paging"></div>
 </div>
 <div>
     <div class="title">
@@ -132,7 +132,7 @@
     <?php endforeach ?>
 </div>
 <div>
+    <?php include smart_view('paging'); ?>
     <input type="checkbox" />
     <button>批量导出</button>
-    <div class="paging"></div>
 </div>

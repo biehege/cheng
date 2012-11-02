@@ -17,7 +17,7 @@ $paging = new Paginate($per_page, $total);
 $paging->setCurPage($p);
 $prices = Price::history(array(
     'type' => $type,
-    'limit' => $total,
+    'limit' => $per_page,
     'offset' => $paging->offset()));
 
 $matter = $view . '.' . $target;

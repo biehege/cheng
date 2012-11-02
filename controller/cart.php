@@ -30,18 +30,17 @@ if ($by_ajax) {
         case 'del':
             $id = _req('id');
             $customer->delProductFromCart(new Order($id));
+            echo $customer->cart()->count();
             exit;
 
         default:
             throw new Exception("nuknow action: $action");
             break;
     }
-    if ($action === 'add') {
-        
-    }
 } else {
     $cart = $customer->cart();
     $orders = $cart->orders();
+    $orders_count = count($orders);
     $addresses = $customer->addresses();
 }
 

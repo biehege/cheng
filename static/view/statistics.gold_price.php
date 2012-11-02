@@ -24,8 +24,8 @@
     </div>
 </form>
 <div>
+    <?php include smart_view('paging'); ?>
     <span>发布金价</span>
-    <div class="paging"></div>
 </div>
 <div>
     <span>时间</span>

@@ -35,8 +35,7 @@
     </div>
 </form>
 <div class="page-info">
-    <div class="paging">
-    </div>
+    <?php include smart_view('paging'); ?>
     <div>共有<?= $total ?>款</div>
     <div class="view-switch">
         <span class="list-mode btn" title="列表模式"></span>
