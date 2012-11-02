@@ -20,24 +20,24 @@ if ($clear) {
         }
     }
     
-    // case 3
+    // clear user
     Pdb::del(User::$table, array("name LIKE '%test%'" => null));
 
-    // can be replaced with clear db
+    // clear customer
     clear_db(Customer::$table, User::$table, 'user');
 
-    // case 4
+    // clear user (admin)
     $username = 'test_admin';
     Pdb::del(User::$table, array('name=?' => $username));
 
-    // case 5
+    // clear product
     Pdb::del(Product::$table, array('name LIKE ?' => '%_test'));
 
-    // case 6
+    // clear cart and order
     clear_db(Cart::$table, Customer::$table, 'customer', 'customer');
     clear_db(Order::$table, Customer::$table, 'customer'); // what if Order submited??
 
-    // case 7
+    // clear 
     clear_db('big_to_small_order', Order::$table, 'small', 'small');
     $big_order_ids = Pdb::fetchAll('id', BigOrder::$table);
     if ($big_order_ids) 

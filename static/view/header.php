@@ -14,10 +14,16 @@
 <div class="account">
     <?php if ($has_login): ?>
         <?php if ($user_type === 'Customer'): ?>
-            <a class="cart" href="<?= ROOT ?>cart">购物车 (<span class="count"><?= $cart->count() ?></span>)</a>
-        <?php endif; ?>
-        <a href="<?= ROOT ?>my/info"><?= htmlentities($user->name) ?></a>
-        <a href="<?= ROOT ?>order/all">我的订单</a>
+            <?php if ($user_type === 'Customer'): ?>
+                <a class="cart" href="<?= ROOT ?>cart">购物车 (<span class="count"><?= $cart->count() ?></span>)</a>
+            <?php endif; ?>
+            <a href="<?= ROOT ?>my/info"><?= htmlentities($user->name) ?></a>
+            <a href="<?= ROOT ?>order/all">我的订单</a>
+        <?php else: ?>
+            <span><?= htmlentities($user->name) ?></span>
+            <a href="<?= ROOT ?>order/all">管理中心</a>
+        <?php endif ?>
+        
         <a href="<?= ROOT ?>login?logout=1">logout</a>
     <?php else: ?>
         <a href="<?= ROOT ?>login?back=<?= $request_uri ?>">登陆</a>
