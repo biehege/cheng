@@ -75,3 +75,10 @@ ul.type-selector li.on {
     display: block;
     display: none;
 }
+
+ul.types li {
+    cursor: pointer;
+}
+ul.types li.on {
+    background-color: yellow;
+}

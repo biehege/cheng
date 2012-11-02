@@ -20,6 +20,14 @@ var d = function (arg) {
                 });
             });
             return this;
+        },
+        tabSelect: function () {
+            var all = this;
+            return this.click(function () {
+                var that = $(this);
+                all.removeClass('on');
+                that.addClass('on').parent().data('selected', that.text());
+            });
         }
     };
 

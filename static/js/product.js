@@ -30,8 +30,7 @@ $(function () {
                 ids: ids,
             },
             function () {
-                d('ok');
-                selectedRows.hide();
+                selectedRows.remove();
             });
     });
 });

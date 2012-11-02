@@ -10,7 +10,7 @@
     <form>
         <div class="type">
             <span>分类：</span>
-            <ul>
+            <ul class="types">
                 <?php foreach (Product::types() as $type): ?>
                     <li><?= $type ?></li>
                 <?php endforeach; ?>

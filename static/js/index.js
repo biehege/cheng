@@ -1,12 +1,15 @@
 $(function () {
-    $('.post form').sentencePoster();
+
+    // 最上面的分类
+    $('.types li').widget('tabSelect').click(function () {
+        var addParaToQuery = function (key, value) {
+
+        };
+        addParaToQuery('type', $(this).text());
+    });
 
     // 材质选择按钮
-    var allMaterial = $('.type-selector li').click(function () {
-        var that = $(this);
-        allMaterial.removeClass('on');
-        that.addClass('on').parent().data('selected', that.text());
-    });
+    $('.type-selector li').widget('tabSelect');
 
     // 刻字的确认按钮
     $('.carve').each(function () {

@@ -151,11 +151,13 @@ test(
 // case 8 Admin del Product
 begin_test();
 $info = array_merge($info, array('name' => 'product test to del'));
-$product_to_del = $admin->postProduct($info);
+$product_to_del1 = $admin->postProduct($info);
+$product_to_del2 = $admin->postProduct($info);
 $old_num = Product::count();
-$admin->delProduct($product_to_del);
+$admin->delProduct($product_to_del1);
+$admin->delProduct($product_to_del2->id);
 $new_num = Product::count();
-test($old_num - 1, $new_num, array('name' => 'Admin del Product'));
+test($old_num - 2, $new_num, array('name' => 'Admin del Product'));
 
 
 // case 9 Customer eidt Address

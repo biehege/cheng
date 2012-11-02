@@ -107,8 +107,9 @@ function d($var, $var_dump=0) {
         return;
 
     $is_cli = (PHP_SAPI === 'cli');                              // is cli mode
-    $is_ajax = isset($GLOBALS['is_ajax']) && $GLOBALS['is_ajax']; // is ajax
-    $html_mode = !($is_cli || $is_ajax);                      // will display in html?
+    $is_ajax = isset($GLOBALS['is_ajax']) && $GLOBALS['is_ajax']; // low version
+    $by_ajax = isset($GLOBALS['by_ajax']) && $GLOBALS['by_ajax']; // ajax
+    $html_mode = !($is_cli || $is_ajax || $by_ajax);            // will display in html?
 
     if ($html_mode) 
         echo '<p><pre>';

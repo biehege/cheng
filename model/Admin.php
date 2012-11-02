@@ -91,7 +91,7 @@ class Admin extends Model
         foreach ($prds as $prd) {
             if ($prd instanceof Product) {
                 $id = $prd->id;
-            } elseif (is_numeric($id)) {
+            } elseif (is_numeric($prd)) {
                 $id = $prd;
             } else {
                 d($arg);

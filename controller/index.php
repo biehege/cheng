@@ -13,22 +13,31 @@ if (!$has_login) {
 list(
     $name, 
     $no, 
-    $stone_size) = _get(
+    $stone_size,
+    $type
+) = _get(
     'name',
     'no',
-    'stone_size');
+    'stone_size',
+    'type');
 
 $cur_page = _get('p') ?: 1;
 
-$total = Product::count();
 $per_page = 10;
+$conds = compact(
+    'name',
+    'no',
+    'stone_size',
+    'type');
+$total = Product::count($conds);
 $paging = new Paginate($per_page, $total);
 $paging->setCurPage($cur_page);
 
-$products = Product::listProduct(
+$products = Product::listProduct(array_merge(
+    $conds,
     array(
         'limit' => $per_page,
-        'offset' => $paging->offset()));
+        'offset' => $paging->offset())));
 
 $types = Product::types();
 
