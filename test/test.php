@@ -48,6 +48,9 @@ if ($clear) {
     // clear address
     clear_relation_db(Customer::$table, Address::$table);
 
+    // clear user log
+    clear_db(UserLog::$table, Customer::$table, 'subject');
+
     if (_get('exit')) {
         echo '<script src="static/hide.js"></script>';
         echo '<div class="conclusion pass">All Clear!</div>';
