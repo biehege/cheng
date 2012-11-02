@@ -137,6 +137,7 @@ $info = array(
     'rabbet_end' => '0.60',
     'small_stone' => 3);
 $product = $admin->postProduct($info);
+// but what if we count?
 test(
     Pdb::fetchRow('*', Product::$table, array('id=?' => $product->id)),
     $info,
@@ -144,7 +145,17 @@ test(
         'name' => 'Admin post Product, db',
         'compare' => 'in'));
 
-// case 8 Customer eidt Address
+// case 8 Admin del Product
+begin_test();
+$info = array_merge($info, array('name' => 'product test to del'));
+$product_to_del = $admin->postProduct($info);
+$old_num = Product::count();
+$admin->delProduct($product_to_del);
+$new_num = Product::count();
+test($old_num - 1, $new_num, array('name' => 'Admin del Product'));
+
+
+// case 9 Customer eidt Address
 begin_test();
 $address = $customer->defaultAddress();
 $address->edit(array(
@@ -153,7 +164,7 @@ $address->edit(array(
     'detail' => '深圳罗湖区田贝'));
 test(1, 1, array('name' => 'Customer eidt Address'));
 
-// case 9 Customer add a Product to Cart
+// case 10 Customer add a Product to Cart
 begin_test();
 $old_entry_num = Pdb::count(Order::$table);
 $opts = array(
@@ -167,7 +178,7 @@ test(
     +$entry_num, 
     array('name' => 'Customer add a Product to Cart'));
 
-// case 10 Cart count()
+// case 11 Cart count()
 begin_test();
 $cart = $customer->cart();
 test(
@@ -175,7 +186,7 @@ test(
     1,
     array('name' => 'Cart count()'));
 
-// case 11 Customer del a Product from Cart
+// case 12 Customer del a Product from Cart
 begin_test();
 $opts = array(
     'material' => 'PT950',
@@ -191,7 +202,7 @@ test(
     $new_num,
     array('name' => 'Customer del a Product from Cart'));
 
-// case 12 Customer submit a Cart
+// case 13 Customer submit a Cart
 begin_test();
 $old_entry_num = Pdb::count(BigOrder::$table);
 $big_order = $customer->submitCart();

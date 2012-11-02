@@ -82,7 +82,7 @@ class Order extends Model
     {
         $conds = self::buildDbConds($conds);
         $tables = array(self::$table . ' as o', Product::$table . ' as p');
-        return Pdb::count($tables, $conds);
+        return (int) Pdb::count($tables, $conds);
     }
 
     public static function listOrder($conds)

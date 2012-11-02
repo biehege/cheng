@@ -134,7 +134,7 @@ class Pdb
     public static function count($tables, $conds=array()) {
         if (empty(self::$dbs))
             self::instance(self::SLAVE);
-        return self::$dbs->count($tables, $conds);
+        return (int) self::$dbs->count($tables, $conds);
     }
 
     public static function insert($arr, $table, $tail='') {
@@ -283,7 +283,7 @@ class PdoHelper {
             d($sm->errorInfo());
             throw new Exception;
         }
-        return reset($sm->fetch(PDO::FETCH_NUM));
+        return (int) reset($sm->fetch(PDO::FETCH_NUM));
     }
 
     private static function valueParaList($arr) {

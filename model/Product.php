@@ -16,7 +16,7 @@ class Product extends Model
     public static function count($conds = array())
     {
         $conds = self::buildDbConds($conds);
-        return Pdb::count(self::$table, $conds);
+        return (int) Pdb::count(self::$table, $conds);
     }
 
     public static function listProduct($conds = array()) 

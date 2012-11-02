@@ -11,10 +11,8 @@ if ($by_ajax) {
     switch ($action) {
         case 'del':
             $ids = _get('ids');
-            $prds = array_map(function ($id) {
-                return new product($id);
-            }, json_decode($ids));
-            $admin->delProduct();
+            $ids = json_decode($ids);
+            $admin->delProduct($ids);
             exit;
             break;
         

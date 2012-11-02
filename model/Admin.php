@@ -86,10 +86,21 @@ class Admin extends Model
         return new Product(Pdb::lastInsertId());
     }
 
-    public function delProduct(Product $prd) {
-        Pdb::del(
-            Product::table,
-            array('id=?' => $prd->id));
+    public function delProduct($arg) {
+        $prds = is_array($arg) ? $arg : array($arg);
+        foreach ($prds as $prd) {
+            if ($prd instanceof Product) {
+                $id = $prd->id;
+            } elseif (is_numeric($id)) {
+                $id = $prd;
+            } else {
+                d($arg);
+                throw new Exception("not good arg for del Product");
+            }
+            Pdb::del(
+                Product::$table,
+                array('id=?' => $id));
+        }
     }
 
     public function updatePrice($type, $price)
