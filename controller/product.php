@@ -4,6 +4,26 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
+if ($user_type !== 'Admin')
+    die('you should be Admin');
+
+if ($by_ajax) {
+    switch ($action) {
+        case 'del':
+            $ids = _get('ids');
+            $prds = array_map(function ($id) {
+                return new product($id);
+            }, json_decode($ids));
+            $admin->delProduct();
+            exit;
+            break;
+        
+        default:
+            throw new Exception("unkown action: $action");
+            break;
+    }
+}
+
 switch ($target) {
     case '':
         list(
@@ -101,3 +121,5 @@ switch ($target) {
 
 $matter = $view . ($target ? '.' . $target : '');
 $view = 'board?master';
+
+$page['scripts'][] = 'widget';

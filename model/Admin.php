@@ -86,6 +86,12 @@ class Admin extends Model
         return new Product(Pdb::lastInsertId());
     }
 
+    public function delProduct(Product $prd) {
+        Pdb::del(
+            Product::table,
+            array('id=?' => $prd->id));
+    }
+
     public function updatePrice($type, $price)
     {
         Price::update($type, $price);

@@ -1,35 +1,38 @@
-// 各种小控件
+var d = function (arg) {
+    console.log(arg);
+};
 
-(function ($) {
-    
-    // 句子编辑和发表框
-    $.fn.sentencePoster = function () {
-        var form = $(this);
-        
-        // 自适应的文本框
-        var ta = form.find('textarea').keyup(function () {
-            if (ta.scrollTop() !== 0) {
-                ta.animate({height:ta.get(0).scrollHeight+'px'}, 'fast');
-            }
-        });
-        
-        // 点击完发布按钮后，禁用自身
-        var okBtn = form.find('input[type=submit]').click(function () {
-            ta.addClass('disabled');
-            okBtn.animate({height: 'toggle'}, 'fast');
-        });
-        
-        // 在表单提交期间禁用提交按钮
-        form.submit(function () {
-            okBtn.prop('disabled', true);
-        });
-
-        // 尽量减少发表框的大小和影响
-        // chrome 有bug
-        ta.bind('keyup', function () {
-            okBtn.prop('disabled', ta.val() == '');
-        });
-        
-        return form;
+(function ($, window) {
+    var methods = {
+        checkboxGroup: function () {
+            var allCtrl = this.filter('.all');
+            var eCtrl = this.not('.all');
+            allCtrl.click(function () {
+                var selfCheck = $(this).prop('checked');
+                eCtrl.each(function () {
+                    var that = $(this);
+                    if (that.prop('checked') ^ selfCheck) {
+                        // here why we need to do that??
+                        that.prop('checked', selfCheck)
+                            .click()
+                            .prop('checked', selfCheck);
+                    }
+                });
+            });
+            return this;
+        }
     };
-})(jQuery);
+
+    $.fn.widget = function (method) {
+        if ( methods[method] ) {
+            return methods[method].apply( 
+                this, 
+                Array.prototype.slice.call( arguments, 1 ));
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.widget' );
+        }    
+    }
+})(jQuery, window);
+
+// Usage:
+// $(['input[type=checkbox].group']).widget('checkboxGroup');

@@ -42,7 +42,7 @@
 </div>
 <table>
     <tr>
-        <th><input type="checkbox" name="" /></th>
+        <th><input type="checkbox" name="" class="group all" /></th>
         <th>名称</th>
         <th>款号</th>
         <th>分类</th>
@@ -57,9 +57,9 @@
     </tr>
 
     <?php foreach ($products as $prd): $materials = implode('&nbsp;', $prd->materials()) ?>
-        <tr>
-            <td><input type="checkbox" /></td>
-            <td><img src="<?= $prd->image ?>" /><?= $prd->name ?></td>
+        <tr data-id="<?= $prd->id ?>">
+            <td><input type="checkbox" class="group" /></td>
+            <td><img src="<?= $prd->image1 ?>" /><?= $prd->name ?></td>
             <td><?= $prd->no ?></td>
             <td><?= $prd->type ?></td>
             <td><?= $materials ?></td>
@@ -74,9 +74,8 @@
     <?php endforeach ?>
 </table>
 <div>
-    <input type="checkbox" />
-    <button>批量导出</button>
-    <button>批量下架</button>
-    <button>批量删除</button>
+    <input type="checkbox" class="group all" />
+    <button class="">批量导出</button>
+    <button class="del">批量删除</button>
     <div class="paging"></div>
 </div>
