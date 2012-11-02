@@ -6,11 +6,11 @@
 ?>
 <form>
     <div class="search">
-        <div>
+        <div class="e">
             <label>查询时间：</label>
             <input name="time_start" type="text" value="<?= $time_start ?>" /> - <input name="time_end" type="text" value="<?= $time_end ?>" />
         </div>
-        <div>
+        <div class="e">
             <label>类型：</label>
             <?php
             $field_name = 'type';

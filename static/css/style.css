@@ -94,9 +94,10 @@ form.logreg .ok.btn {
 }
 
 /* 搜索框 */
-div.search>div {
+div.search .e {
     display: inline-block;
 }
+
 
 /* 模拟表格 */
 .col {

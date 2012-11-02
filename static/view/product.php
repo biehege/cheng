@@ -6,22 +6,22 @@
 ?> 
 <form>
     <div class="search">
-        <div>
+        <div class="e">
             <label for="name">名称</label>
             <input name="name" id="name" value="<?= $name ?>" />
         </div>
-        <div>
+        <div class="e">
             <label for="no">款号</label>
             <input name="no" id="no" value="<?= $no ?>" />
         </div>
-        <div>
+        <div class="e">
             <label for="">分类</label>
             <?php
             $data = $types;
             include smart_view('widget.select');
             ?>
         </div>
-        <div>
+        <div class="e">
             <label for="">排序</label>
             <select name="sort1" class="">
                 <option selected="" value="">排序条件</option>

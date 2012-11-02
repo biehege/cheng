@@ -6,27 +6,34 @@
  * @created Jul 17, 2012 9:51:11 AM
  */
 ?>
-<div class="search">
-    <form>
+<form name="search">
+    <div class="search">
         <div class="type">
+            <input name="type" type="hidden" value="<?= $type ?>" />
             <span>分类：</span>
             <ul class="types">
-                <?php foreach (Product::types() as $type): ?>
-                    <li><?= $type ?></li>
+                <?php foreach (Product::types() as $t): ?>
+                    <li class="<?= $type === $t ? 'on' : '' ?>"><?= $t ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
         <div>
-            <label>名称：</label>
-            <input type="text" name="name" value="<?= $name ?>" />
-            <label>款号：</label>
-            <input type="text" name="no" value="<?= $no ?>" />
-            <label>主石大小：</label>
-            <input type="text" name="stone_size" value="<?= $stone_size ?>" />
+            <div class="e">
+                <label>名称：</label>
+                <input type="text" name="name" value="<?= $name ?>" />
+            </div>
+            <div class="e">
+                <label>款号：</label>
+                <input type="text" name="no" value="<?= $no ?>" />
+            </div>
+            <div class="e">
+                <label>主石大小：</label>
+                <input type="text" name="stone_size" value="<?= $stone_size ?>" />
+            </div>
             <input type="submit" value="搜索" />
         </div>
-    </form>
-</div>
+    </div>
+</form>
 <div class="page-info">
     <div class="paging">
     </div>

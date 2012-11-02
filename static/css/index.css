@@ -13,6 +13,15 @@
 .search .type ul li {
     display: inline-block;
 }
+div.type {
+    display: block;
+}
+ul.types li {
+    cursor: pointer;
+}
+ul.types li.on {
+    background-color: yellow;
+}
 
 /* 翻页 */
 .page-info {
@@ -76,9 +85,3 @@ ul.type-selector li.on {
     display: none;
 }
 
-ul.types li {
-    cursor: pointer;
-}
-ul.types li.on {
-    background-color: yellow;
-}

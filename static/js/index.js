@@ -1,11 +1,16 @@
 $(function () {
 
     // 最上面的分类
-    $('.types li').widget('tabSelect').click(function () {
-        var addParaToQuery = function (key, value) {
-
-        };
-        addParaToQuery('type', $(this).text());
+    $('.types li').click(function () {
+        var val = $(this).text();
+        var input = $('input[name=type]');
+        if (val === input.val()) {
+            // clear
+            input.val('');
+        } else {
+            input.val(val);
+        }
+        $('form[name=search]').submit();
     });
 
     // 材质选择按钮

@@ -5,24 +5,24 @@
  */
 ?>
 <div class="search">
-    <div>
+    <div class="e">
         <label for="name">客户名：</label>
         <input name="name" id="name" value="<?= $name ?>" />
     </div>
-    <div>
+    <div class="e">
         <label for="username">帐号：</label>
         <input name="username" id="username" value="<?= $username ?>" />
     </div>
-    <div>
+    <div class="e">
         <label for="">登录次数：</label>
         <?= $user->loginTimes() ?>
     </div>
-    <div>
+    <div class="e">
         <label for="time_start">下单时间：</label>
         <input name="time_start" id="time_start" value="<?= $time_start ?>" />
         <input name="time_end" id="time_end" value="<?= $time_end ?>" />
     </div>
-    <div>
+    <div class="e">
         <label for="">状态：</label>
         <?php
         $field_name = 'state';
