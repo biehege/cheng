@@ -80,4 +80,4 @@ if (empty($orders))
     $orders = array();
 
 $matter = $view;
-$view = 'board.admin?master';
+$view = 'board?master';

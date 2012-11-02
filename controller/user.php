@@ -82,4 +82,4 @@ switch ($target) {
 }
 
 $matter = $view . ($target? ".$target" : '');
-$view = 'board.admin?master';
+$view = 'board?master';

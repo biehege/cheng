@@ -5,7 +5,7 @@
  */
 ?>
 <?php
-$nav_id = 'admin';
+$nav_id = strtolower($user_type);
 include smart_view('nav');
 ?>
 <div class="right-frame">

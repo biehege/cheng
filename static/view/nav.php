@@ -3,7 +3,7 @@
 
 // 左边栏导航
 
-if (!isset($nav_id))
+if (!isset($nav_id) || !isset($navs[$nav_id]))
     $nav_id = 'default';
 ?>
 <dl class="main-nav">
