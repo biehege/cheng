@@ -40,6 +40,7 @@ class Order extends Model
             array_merge(
                 $opts,
                 array(
+                    'order_no' => uniqid(), // ....
                     'customer' => $cus->id,
                     'product' => $prd->id,
                     'state' => 'InCart',
@@ -69,14 +70,12 @@ class Order extends Model
     public function price()
     {
         $info = $this->info();
-        $prd = $info['product'];
+        $prd = $this->product();
         return
             $prd->weight * (1 + $info['wear_tear']) * $info['gold_price']
             + $info['labor_expense']
             + $prd->small_stone * ($info['st_expense'] + $info['st_price']);
     }
-
-    
 
     public static function count($conds)
     {

@@ -128,7 +128,11 @@ test(1, 1, array('name' => 'Admin add Factory'));
 begin_test();
 $info = array(
     'name' => '唯爱心形群镶女戒_test',
-    'material' => 'PT950',
+    'material' => json_encode(array(
+        'PT950', 
+        '18K白',
+        '18K黄',
+        '18K红')),
     'rabbet_start' => '0.30',
     'rabbet_end' => '0.60',
     'small_stone' => 3);

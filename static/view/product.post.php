@@ -1,4 +1,4 @@
-<?php
+materail[<?php
 !defined('IN_PTF') && exit('ILLEGAL EXECUTION');
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
@@ -41,10 +41,10 @@
         <div>
             <label for="material">材质：</label>
             <div>
-                <input name="" type="checkbox" value="PT950" /><label>PT950</label>
-                <input name="" type="checkbox" value="黄18K金" /><label>黄18K金</label>
-                <input name="" type="checkbox" value="白18K金" /><label>白18K金</label>
-                <input name="" type="checkbox" value="红18K金" /><label>红18K金</label>
+                <input name="material[0]" type="checkbox" value="PT950" id="material0" /><label for="material0">PT950</label>
+                <input name="material[1]" type="checkbox" value="黄18K金" id="material1" /><label for="material1">黄18K金</label>
+                <input name="material[2]" type="checkbox" value="白18K金" id="material2" /><label for="material2">白18K金</label>
+                <input name="material[3]" type="checkbox" value="红18K金" id="material3" /><label for="material3">红18K金</label>
             </div>
         </div>
         <div>

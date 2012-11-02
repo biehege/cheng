@@ -49,6 +49,9 @@ ul.type-selector li {
     display: inline-block;
     cursor: pointer;
 }
+ul.type-selector li.on {
+    background-color: yellow;
+}
 
 .carve {
     display: inline-block;

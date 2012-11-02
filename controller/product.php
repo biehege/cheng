@@ -65,6 +65,14 @@ switch ($target) {
             'image1',
             'image2',
             'image3');
+        $material = _post('material');
+        if ($material) {
+            $material = array_values($material);
+        } else {
+            $material = array();
+        }
+        $material = json_encode($material);
+
         if ($by_post) {
             $admin->postProduct(compact(
                 'name',

@@ -21,15 +21,15 @@
     <span class="col del title">删除</span>
 </div>
 <?php foreach ($orders as $order): ?>
-    <?php $prd = $order->product; ?>
-    <div>
+    <?php $prd = $order->product(); ?>
+    <div class="row" data-id="<?= $order->id ?>">
         <div class="col name">
             <img />
             <span><?= $prd->name ?></span>
             <span>货号：<?= $prd->no ?></span>
         </div>
         <div class="col info">
-            <span>材质：<?= $prd->material ?></span>
+            <span>材质：<?= $order->material ?></span>
             <span>手寸：<?= $order->size ?></span>
             <span>刻字：<?= $order->carve_text ?></span>
             <span>镶口：<?= $prd->rabbet_start ?>-<?= $prd->rabbet_end ?> ct</span>
@@ -39,10 +39,10 @@
         </div>
         <div class="col price">
             <div>英格预估价</div>
-            <div><?= $prd->price_estimate ?>元</div>
+            <div><?= $order->estimate_price ?>元</div>
         </div>
         <div class="col del">
-            <span>删除</span>
+            <span class="del btn">删除</span>
         </div>
     </div>
     <div class="remark">填写备注信息&gt;</div>

@@ -56,13 +56,13 @@
         <th>操作</th>
     </tr>
 
-    <?php foreach ($products as $prd): ?>
+    <?php foreach ($products as $prd): $materials = implode('&nbsp;', $prd->materials()) ?>
         <tr>
             <td><input type="checkbox" /></td>
             <td><img src="<?= $prd->image ?>" /><?= $prd->name ?></td>
             <td><?= $prd->no ?></td>
             <td><?= $prd->type ?></td>
-            <td><?= $prd->material ?></td>
+            <td><?= $materials ?></td>
             <td><?= $prd->rabbet_start . '-' . $prd->rabbet_end ?>ct</td>
             <td><?= $prd->small_stone ?></td>
             <td><?= $prd->carve_allow ?></td>

@@ -2,9 +2,10 @@ $(function () {
     $('.post form').sentencePoster();
 
     // 材质选择按钮
-    $('.type-selector li').click(function () {
+    var allMaterial = $('.type-selector li').click(function () {
         var that = $(this);
-        that.addClass('on').parent().data('selected-id', that.data('id'));
+        allMaterial.removeClass('on');
+        that.addClass('on').parent().data('selected', that.text());
     });
 
     // 刻字的确认按钮
@@ -15,9 +16,34 @@ $(function () {
             var text = carve.find('input').val();
             console.log(text);
             if (text) {
+                carve.find('.trigger').hide();
                 carve.find('.text').text(text);
             }
         });
     });
-    
+
+    // 下订单
+    $('.add.btn').click(function () {
+        var that = $(this);
+        var li = that.parents('li');
+        var id = li.data('id');
+        var material = li.find('.type-selector').data('selected');
+        var size = li.find('input[name=size]').val();
+        var carveText = li.find('.carve .text').text();
+        $.get(
+            '/cart',
+            {
+                a: 'add',
+                id: id,
+                material: material,
+                size: size,
+                carveText: carveText
+            },
+            function (ret) {
+                // 顶部的购物车+1
+                $('.account .cart .count').text(ret);
+            });
+        // clear for all???
+
+    });
 });

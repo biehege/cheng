@@ -46,6 +46,11 @@ class Product extends Model
         return $ret;
     }
 
+    public function materials()
+    {
+        return json_decode($this->material);
+    }
+
     public function countSold()
     {
         return Pdb::count(

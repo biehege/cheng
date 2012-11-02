@@ -39,8 +39,8 @@
 </div>
 
 <ul class="product-list">
-    <?php foreach ($products as $prd): ?>
-        <li>
+    <?php foreach ($products as $prd): $materials = $prd->materials(); ?>
+        <li data-id="<?= $prd->id ?>">
             <div class="left">
                 <img />
                 <img />
@@ -55,7 +55,7 @@
                 <div>
                     <span>材质：</span>
                     <ul class="type-selector">
-                        <?php foreach ($types as $id => $value): ?>
+                        <?php foreach ($materials as $id => $value): ?>
                             <li data-id="<?= $id ?>"><?= $value ?></li>
                         <?php endforeach ?>
                     </ul>
@@ -67,7 +67,8 @@
                 <div>
                     <span>刻字：</span>
                     <div class="carve">
-                        <span class="text">输入&gt;</span>
+                        <span class="trigger">输入&gt;</span>
+                        <span class="text"></span>
                         <div class="carve-box">
                             <div>刻字内容</div>
                             <input type="text" name="carve_text" />
@@ -90,7 +91,7 @@
                 </div>
             </div>
             <div class="right">
-                <a class="add btn">下订单</a>
+                <span class="add btn">下订单</span>
                 <span>英格预估价<?= $prd->estimatePrice() ?></span>
             </div>
             <br class="clear-fix" />

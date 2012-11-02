@@ -14,7 +14,7 @@
 <div class="account">
     <?php if ($has_login): ?>
         <?php if ($user_type === 'Customer'): ?>
-            <a href="<?= ROOT ?>cart">购物车 (<span><?= $cart->count() ?></span>)</a>
+            <a class="cart" href="<?= ROOT ?>cart">购物车 (<span class="count"><?= $cart->count() ?></span>)</a>
         <?php endif; ?>
         <a href="<?= ROOT ?>my"><?= $user->name ?></a>
         <a href="<?= ROOT ?>order/all">我的订单</a>

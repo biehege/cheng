@@ -101,9 +101,16 @@ class Customer extends Model
         Pdb::insert(
             array(
                 'customer' => $this->id,
-                'small_order' => $order->id,),
+                'small_order' => $order->id),
             Cart::$table);
         return $order;
+    }
+
+    public function delProductFromCart(Order $order)
+    {
+        Pdb::del(
+            Cart::$table,
+            array('small_order' => $order->id)); // this id for customer? not need
     }
 
     public function listOrders($conds)
