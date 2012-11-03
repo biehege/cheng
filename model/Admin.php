@@ -130,4 +130,35 @@ class Admin extends Model
         $ret['c.user=u.id'] = null;
         return $ret;
     }
+
+    public function confirmOrder(Order $order)
+    {
+        Pdb::update(
+            array(
+                'state' => 'InFactory',
+                'confirm_time=NOW()' => null),
+            Order::$table);
+    }
+
+    public function factoryDoneOrder(Order $order)
+    {
+        Pdb::update(
+            array(
+                'state' => 'FactoryDone',
+                'factory_done_time=NOW()' => null),
+            Order::$table);
+        Pdb::update(
+            array('sold_count=sold_count+1' => null),
+            Product::$table,
+            array('id=?' => $order->product()->id));
+    }
+
+    public function doneOrder(Order $order)
+    {
+        Pdb::update(
+            array(
+                'state' => 'Done',
+                'done_time=NOW()' => null),
+            Order::$table);
+    }
 }

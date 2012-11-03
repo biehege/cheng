@@ -57,7 +57,7 @@ class Order extends Model
         $cur_price = Price::current($material);
         Pdb::update(
             array(
-                'state' => 'TobeConfirmed',
+                'state' => 'ToBeConfirmed',
                 'submit_time=NOW()' => null,
                 'gold_price' => $cur_price,
                 'labor_expense' => Setting::get('labor_expense'),

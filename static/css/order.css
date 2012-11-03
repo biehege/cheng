@@ -1,14 +1,17 @@
 .col.name {
-    width: 10%;
+    width: 8%;
 }
 .col.info {
-    width: 10%;
+    width: 12%;
 }
 .col.realname {
     width: 10%;
 }
 .col.price-estimate {
     width: 10%;
+}
+.col.factory-name {
+    width: 8%;
 }
 .col.price-factory {
     width: 10%;
@@ -20,8 +23,12 @@
     width: 10%;
 }
 .col.state {
-    width: 10%;
+    width: 8%;
 }
 .col.control {
-    width: 10%;
+    width: 8%;
+}
+
+.detail-info {
+    background-color: #ccc;
 }

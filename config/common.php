@@ -93,6 +93,13 @@ $config['order_states'] = array(
     'FactoryDone' => '工厂完工',
     'Done' => '完成');
 
+$config['order_next_action'] = array(
+    'InCart' => '...',
+    'ToBeConfirmed' => 'confirm',
+    'InFactory' => 'factoryDone',
+    'FactoryDone' => 'done',
+    'Done' => '。。。');
+
 $config['next_button_map'] = array(
     'InCart' => '...',
     'ToBeConfirmed' => '确认',

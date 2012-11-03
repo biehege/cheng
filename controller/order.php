@@ -63,6 +63,7 @@ $conds['customer'] = $customer;
 
 $types = Product::types();
 $state_map = $config['order_states'];
+$next_action_map = $config['order_next_action'];
 $next_button_map = $config['next_button_map'];
 
 $per_page = 50;

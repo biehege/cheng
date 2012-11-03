@@ -62,6 +62,7 @@
         <span class="col title realname">姓名</span>
         <span class="col title price-estimate">预估价</span>
         <?php if ($user_type === 'Admin'): ?>
+            <span class="col title factory-name">工厂名称</span>
             <span class="col title price-factory">工厂价格</span>
             <span class="col title price-real">实际售价</span>
             <span class="col title paid">客户已付</span>
@@ -102,6 +103,10 @@
                 <?= $order->estimate_price ?>
             </div>
             <?php if ($user_type === 'Admin'): ?>
+                <div class="col factory-name">
+                    <?= $order->factory()->name ?>
+                    <span class="choose-factory">选择</span>
+                </div>
                 <div class="col price-factory">
                     <?= $order->factory_price ?>
                 </div>
@@ -121,7 +126,7 @@
             </div>
             <?php if ($user_type == 'Admin'): ?>
                 <div class="col control">
-                    <button><?= $next_button_map[$order->state] ?></button>
+                    <button class="<?= $next_action_map[$order->state] ?>"><?= $next_button_map[$order->state] ?></button>
                 </div>
             <?php endif ?>
             <div class="remark">备注
