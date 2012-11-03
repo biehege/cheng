@@ -82,8 +82,9 @@ CREATE TABLE IF NOT EXISTS `product` (
   `remark` text,
   `carve_allow` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `post_time` datetime DEFAULT NULL,
+  `sold_count` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=385 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=405 ;
 
 -- product_type
 CREATE TABLE IF NOT EXISTS `product_type`
@@ -142,10 +143,10 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `factory_st_weight` decimal(4,2) DEFAULT NULL,
   `add_cart_time` datetime DEFAULT NULL,
   `submit_time` datetime DEFAULT NULL,
-  `to_factory_time` datetime DEFAULT NULL,
+  `confirm_time` datetime DEFAULT NULL,
   `factory_confirm_time` datetime DEFAULT NULL,
   `factory_done_time` datetime DEFAULT NULL,
-  `all_done_time` datetime DEFAULT NULL,
+  `done_time` datetime DEFAULT NULL,
   `estimate_price` decimal(8,2) NOT NULL,
   `factory_price` decimal(8,2) NOT NULL,
   `real_price` decimal(8,2) NOT NULL,
@@ -154,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `admin_remark` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=347 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=390 ;
 
 -- factory
 CREATE TABLE IF NOT EXISTS `factory` (
