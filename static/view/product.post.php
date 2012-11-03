@@ -1,31 +1,33 @@
-materail[<?php
+<?php
 !defined('IN_PTF') && exit('ILLEGAL EXECUTION');
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<div class="left">
-    <h3>产品图片上传</h3>
-    <span>图片尺寸要求不小于：400px *400px</span>
-    <form>
-        <span>主图：</span>
-        <input type="file" name="image1" />
-        <span> 默认采用主图显示在产品列表中</span>
-    </form>
-    <form>
-        <span>附图1：</span>
-        <input type="file" name="image1" />
-    </form>
-    <form>
-        <span>附图2：</span>
-        <input type="file" name="image1" />
-    </form>
-    <img />
-    <img />
-    <img />
-</div>
-<div class="right">
-    <form method="post">
+<form action="<?= ROOT ?>product/post" class="auto-load" enctype="multipart/form-data" method="post">
+    <div class="left">
+        <div class="upload">
+            <h3>产品图片上传</h3>
+            <span>图片尺寸要求不小于：400px *400px</span>
+            <div>
+                <span>主图：</span>
+                <input type="file" name="image1" />
+            </div>
+            <div> 默认采用主图显示在产品列表中</div>
+            <div>
+                <span>附图1：</span>
+                <input type="file" name="image2" />
+            </div>
+            <div>
+                <span>附图2：</span>
+                <input type="file" name="image3" />
+            </div>
+        </div>
+        <img src="<?= $image1_thumb ?>" title="主图" />
+        <img src="<?= $image2_thumb ?>" title="附图1" />
+        <img src="<?= $image3_thumb ?>" title="附图2" />
+    </div>
+    <div class="right">
         <div>
             <label for="name">标题：</label>
             <input name="name" type="text" value="<?= $name ?>" id="name" />
@@ -36,7 +38,9 @@ materail[<?php
         </div>
         <div>
             <label for="type">分类：</label>
-            <input name="type" type="text" value="<?= $type ?>" id="type" />
+            <?
+            include smart_view('widget.select');
+            ?>
         </div>
         <div>
             <label for="material">材质：</label>
@@ -50,6 +54,7 @@ materail[<?php
         <div>
             <label for="weight">重量：</label>
             <input name="weight" type="text" value="<?= $weight ?>" id="weight" />
+            <span>18K金</span>
         </div>
         <div>
             <label for="">镶口：</label>
@@ -63,7 +68,17 @@ materail[<?php
         <div>
             <label for="remark">说明：</label>
             <input name="remark" type="text" value="<?= $remark ?>" id="remark" />
+            <span>仅自己可见</span>
         </div>
+        <input type="hidden" value="<?= $image1 ?>" name="image1" />
+        <input type="hidden" value="<?= $image1_400 ?>" name="image1_400" />
+        <input type="hidden" value="<?= $image1_thumb ?>" name="image1_thumb" />
+        <input type="hidden" value="<?= $image2 ?>" name="image2" />
+        <input type="hidden" value="<?= $image2_400 ?>" name="image2_400" />
+        <input type="hidden" value="<?= $image2_thumb ?>" name="image2_thumb" />
+        <input type="hidden" value="<?= $image3 ?>" name="image3" />
+        <input type="hidden" value="<?= $image3_400 ?>" name="image3_400" />
+        <input type="hidden" value="<?= $image3_thumb ?>" name="image3_thumb" />
         <input type="submit" value="发布产品" />
-    </form>
-</div>
+    </div>
+</form>

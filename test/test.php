@@ -129,9 +129,10 @@ test(1, 1, array('name' => 'Admin add Factory'));
 
 // case 7 Admin post Product, db
 begin_test();
+$prd_types = Product::types();
 $info = array(
     'name' => '唯爱心形群镶女戒_test',
-    'type' => '女戒',
+    'type' => reset(array_keys($prd_types)),
     'material' => json_encode(array(
         'PT950', 
         '18K白',

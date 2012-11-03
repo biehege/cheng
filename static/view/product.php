@@ -59,16 +59,16 @@
     <?php foreach ($products as $prd): $materials = implode('&nbsp;', $prd->materials()) ?>
         <tr data-id="<?= $prd->id ?>">
             <td><input type="checkbox" class="group" /></td>
-            <td><img src="<?= $prd->image1 ?>" /><?= $prd->name ?></td>
+            <td><img src="<?= $prd->image1_thumb ?>" /><?= $prd->name ?></td>
             <td><?= $prd->no ?></td>
-            <td><?= $prd->type ?></td>
+            <td><?= $types[$prd->type] ?></td>
             <td><?= $materials ?></td>
             <td><?= $prd->rabbet_start . '-' . $prd->rabbet_end ?>ct</td>
             <td><?= $prd->small_stone ?></td>
             <td><?= $prd->carve_allow ?></td>
             <td><?= $prd->remark ?></td>
-            <td><?= $prd->countSold() ?></td>
-            <td><?= $prd->countView() ?></td>
+            <td><?= $prd->sold_count ?></td>
+            <td><?= $prd->view_count ?></td>
             <td>编辑</td>
         </tr>
     <?php endforeach ?>

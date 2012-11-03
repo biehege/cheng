@@ -107,7 +107,7 @@ function d($var, $var_dump=0) {
         return;
 
     $is_cli = (PHP_SAPI === 'cli');                              // is cli mode
-    $is_ajax = isset($GLOBALS['is_ajax']) && $GLOBALS['is_ajax']; // low version
+    $is_ajax = isset($GLOBALS['is_ajax']) && $GLOBALS['is_ajax']; // compitible for low version
     $by_ajax = isset($GLOBALS['by_ajax']) && $GLOBALS['by_ajax']; // ajax
     $html_mode = !($is_cli || $is_ajax || $by_ajax);            // will display in html?
 
@@ -161,7 +161,7 @@ function image_resize ($file_content, $crop, $width, $height, $new_width, $new_h
 }
 
 /**
- *
+ * main function
  * @param type $image like $_FILE['xx']
  * @param type $opt resize crop width height
  * @return string url of the final img
@@ -241,12 +241,10 @@ function image_file_resize($tmp_img_file, $image_type, $crop, $new_width, $new_h
 
 // write file content to dst
 function write_upload($content, $file_name) {
-    
     if (ON_SERVER) {
         $up_domain = UP_DOMAIN;
         $s = new SaeStorage();
         $s->write($up_domain , $file_name , $content);
-//        unlink($tmp_img); // maybe we don't need to do that
         return $s->getUrl($up_domain ,$file_name);
     } else {
         $root = 'data/';

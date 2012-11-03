@@ -60,25 +60,30 @@ CREATE TABLE IF NOT EXISTS `account` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=119 ;
 
 -- product, actually, it's product type
-CREATE TABLE IF NOT EXISTS `product`
-(
-    `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `no` CHAR(20) NOT NULL COMMENT '款号',
-    `name` CHAR(60) NOT NULL,
-    `image1` VARCHAR(100),
-    `image2` VARCHAR(100),
-    `image3` VARCHAR(100),
-    `type` CHAR(20) NOT NULL COMMENT '类型', -- new a table?
-    `material` CHAR(120) NOT NULL COMMENT 'JSON', 
-    `weight` DECIMAL(10, 2),
-    `rabbet_start` DECIMAL(2, 2) NOT NULL COMMENT '镶口',
-    `rabbet_end` DECIMAL(2, 2) NOT NULL COMMENT '镶口',
-    `small_stone` TINYINT(2) NOT NULL,
-    `remark` TEXT COMMENT '说明', 
-    `carve_allow` TINYINT(1) UNSIGNED NOT NULL DEFAULT '1',
-    `post_time` DATETIME,
-    PRIMARY KEY(`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=101;
+CREATE TABLE IF NOT EXISTS `product` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `no` char(20) NOT NULL COMMENT '款号',
+  `name` char(60) NOT NULL,
+  `image1` varchar(100) DEFAULT NULL,
+  `image2` varchar(100) DEFAULT NULL,
+  `image3` varchar(100) DEFAULT NULL,
+  `image1_400` varchar(100) NOT NULL,
+  `image2_400` varchar(100) NOT NULL,
+  `image3_400` varchar(100) NOT NULL,
+  `image1_thumb` varchar(100) NOT NULL,
+  `image2_thumb` varchar(100) NOT NULL,
+  `image3_thumb` varchar(100) NOT NULL,
+  `type` char(20) NOT NULL,
+  `material` char(120) NOT NULL COMMENT 'JSON',
+  `weight` decimal(10,2) DEFAULT NULL,
+  `rabbet_start` decimal(2,2) NOT NULL,
+  `rabbet_end` decimal(2,2) NOT NULL,
+  `small_stone` tinyint(4) NOT NULL,
+  `remark` text,
+  `carve_allow` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `post_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=385 ;
 
 -- product_type
 CREATE TABLE IF NOT EXISTS `product_type`

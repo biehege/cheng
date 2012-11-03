@@ -22,6 +22,7 @@ if ($by_ajax) {
     }
 }
 
+$types = Product::types();
 switch ($target) {
     case '':
         list(
@@ -38,7 +39,7 @@ switch ($target) {
 
         $sort = $sort1 ? $sort1 . ' ' . $sort2 : '';
 
-        $types = Product::types();
+        
 
         $p = _get('p') ?: 1;
         $per_page = 50;
@@ -57,6 +58,9 @@ switch ($target) {
             'sort' => $sort));
         break;
     case 'post':
+
+        $types = Product::types();
+
         list(
             $name,
             $no,
@@ -66,10 +70,7 @@ switch ($target) {
             $rabbet_start,
             $rabbet_end,
             $small_stone,
-            $remark,
-            $image1,
-            $image2,
-            $image3
+            $remark
         ) = _post(
             'name',
             'no',
@@ -79,10 +80,18 @@ switch ($target) {
             'rabbet_start',
             'rabbet_end',
             'small_stone',
-            'remark',
-            'image1',
-            'image2',
-            'image3');
+            'remark');
+
+        $image1 = _post('image1');
+        $image1_400 = _post('image1_400');
+        $image1_thumb = _post('image1_thumb');
+        $image2 = _post('image2');
+        $image2_400 = _post('image2_400');
+        $image2_thumb = _post('image2_thumb');
+        $image3 = _post('image3');
+        $image3_400 = _post('image3_400');
+        $image3_thumb = _post('image3_thumb');
+
         $material = _post('material');
         if ($material) {
             $material = array_values($material);
@@ -92,22 +101,62 @@ switch ($target) {
         $material = json_encode($material);
 
         if ($by_post) {
-            $admin->postProduct(compact(
-                'name',
-                'no',
-                'type',
-                'material',
-                'weight',
-                'rabbet_start',
-                'rabbet_end',
-                'small_stone',
-                'remark',
+
+            $img_names = array(
                 'image1',
                 'image2',
-                'image3'));
-            redirect('product');
-        }
+                'image3');
+            foreach ($img_names as $img_name) {
+                if ($_FILES[$img_name]['name']) {
 
+                    $uploading = 1;
+
+                    // upload
+                    $$img_name = make_image($_FILES[$img_name]); // orgin
+
+                    // big
+                    ${$img_name . '_400'} = make_image(
+                        $_FILES[$img_name],
+                        array(
+                            'crop' => 1,
+                            'resize' => 1,
+                            'width' => 400,
+                            'height' => 400));
+
+                    // thumb
+                    ${$img_name . '_thumb'} = make_image(
+                        $_FILES[$img_name],
+                        array(
+                            'crop' => 1,
+                            'resize' => 1,
+                            'width' => 80,
+                            'height' => 80));
+                }
+            }
+
+            if (!isset($uploading)) {
+                $admin->postProduct(compact(
+                    'name',
+                    'no',
+                    'type',
+                    'material',
+                    'weight',
+                    'rabbet_start',
+                    'rabbet_end',
+                    'small_stone',
+                    'remark',
+                    'image1',
+                    'image1_400',
+                    'image1_thumb',
+                    'image2',
+                    'image2_400',
+                    'image2_thumb',
+                    'image3',
+                    'image3_400',
+                    'image3_thumb'));
+                redirect('product');
+            }
+        }
         break;
     case 'batch':
         break;

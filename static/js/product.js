@@ -33,4 +33,9 @@ $(function () {
                 selectedRows.remove();
             });
     });
+
+    // 图片上传
+    $('form.auto-load input[type=file]').change(function () {
+        $(this).parents('form.auto-load').submit();
+    });
 });
