@@ -41,6 +41,13 @@ switch ($user_type) {
 
     case 'Admin':
     case 'SuperAdmin':
+
+        if ($by_ajax) {
+            $id = _get('id');
+            $admin->__call($action . 'Order', new Order($id));
+            exit;
+        }
+
         list(
             $customer,
             $username,

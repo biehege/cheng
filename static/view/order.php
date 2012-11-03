@@ -75,7 +75,7 @@
         <?php endif ?>
     </div>
     <?php foreach ($orders as $order): $cus = $order->customer(); $user = $cus->user(); $prd = $order->product(); ?>
-        <div>
+        <div class="entry" data-id="<?= $order->id ?>">
             <div>
                 <input type="checkbox" />
                 <span>订单号：<?= $order->order_no ?></span>
@@ -126,7 +126,7 @@
             </div>
             <?php if ($user_type == 'Admin'): ?>
                 <div class="col control">
-                    <button class="<?= $next_action_map[$order->state] ?>"><?= $next_button_map[$order->state] ?></button>
+                    <button class="next-btn" data-action="<?= $next_action_map[$order->state] ?>"><?= $next_button_map[$order->state] ?></button>
                 </div>
             <?php endif ?>
             <div class="remark">备注
