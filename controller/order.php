@@ -42,9 +42,24 @@ switch ($user_type) {
     case 'Admin':
     case 'SuperAdmin':
 
+        $factories = Factory::names();
+        d($factories);
+
         if ($by_ajax) {
-            $id = _get('id');
-            $admin->__call($action . 'Order', new Order($id));
+            switch ($action) {
+                case 'change_factory':
+                    $factory_id = _get('factory_id');
+                    $order_id = _get('order_id');
+                    $order = new Order($order_id);
+                    $order->edit('factory', $factory_id);
+                    echo $factories[$factory_id];
+                    exit;
+                
+                default:
+                    $id = _get('id');
+                    $admin->__call($action . 'Order', new Order($id));
+                    break;
+            }
             exit;
         }
 
@@ -60,6 +75,8 @@ switch ($user_type) {
             compact(
                 'username',
                 'factory'));
+
+        $page['append_divs']['factory-select'] = 'factory.select';
         break;
     
     default:

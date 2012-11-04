@@ -5,6 +5,8 @@
  */
 if (!isset($field_name))
     $field_name = 'type';
+if (!isset($$field_name))
+    $$field_name = '';
 if (!isset($default_value))
     $default_value = '';
 if (!isset($data)) {

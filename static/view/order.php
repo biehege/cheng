@@ -104,8 +104,8 @@
             </div>
             <?php if ($user_type === 'Admin'): ?>
                 <div class="col factory-name">
-                    <?= $order->factory()->name ?>
-                    <span class="choose-factory">选择</span>
+                    <span class="text"><?= $order->factory()->name ?></span>
+                    <span class="choose-factory-btn">选择</span>
                 </div>
                 <div class="col price-factory">
                     <?= $order->factory_price ?>

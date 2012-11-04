@@ -57,6 +57,26 @@ td, th {
 
 /* 404 页面 */
 
+/* 附加层 */
+.append-parent {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 1, 1, 0.2);
+    display: none;
+}
+.append-div {
+    background-color: white;
+    width: 500px;
+    margin: auto;
+    margin-top: 150px;
+    display: none;
+}
+.append-div .close-btn {
+    cursor: pointer;
+    float: right;
+    display: block;
+}
 
 /* login or register */
 form.logreg div {
@@ -97,7 +117,6 @@ form.logreg .ok.btn {
 div.search .e {
     display: inline-block;
 }
-
 
 /* 模拟表格 */
 .col {

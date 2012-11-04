@@ -166,12 +166,12 @@ CREATE TABLE IF NOT EXISTS `factory` (
   `phone` char(20) DEFAULT NULL COMMENT '联系电话',
   `qq` char(20) DEFAULT NULL COMMENT 'QQ',
   `city` char(20) DEFAULT NULL COMMENT '区域',
-  `done` int(6) DEFAULT NULL COMMENT '成交',
-  `undone` int(6) DEFAULT NULL COMMENT '未结清',
-  `st_remain` decimal(4,2) DEFAULT NULL COMMENT '剩余辅石',
+  `done` int(6) DEFAULT '0' COMMENT '成交',
+  `undone` int(6) DEFAULT '0' COMMENT '未结清',
+  `st_remain` decimal(4,2) DEFAULT '0.00' COMMENT '剩余辅石',
   `create_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=101 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=172 ;
 
 -- setting 全局设定
 CREATE TABLE IF NOT EXISTS `setting`

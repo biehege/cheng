@@ -22,7 +22,14 @@
         ?>
     </head>
     <body>
-        <div class="append_parent"></div>
+        <div class="append-parent">
+            <?php foreach ($page['append_divs'] as $div_name => $view_name): ?>
+                <div class="<?= $div_name ?> append-div">
+                    <span class="close-btn">X</span>
+                    <?php include smart_view($view_name); ?>
+                </div>
+            <?php endforeach ?>
+        </div>
         <div class="header">
             <?php include smart_view('header'); ?>
         </div>

@@ -32,3 +32,7 @@
 .detail-info {
     background-color: #ccc;
 }
+
+.choose-factory-btn {
+    cursor: pointer;
+}

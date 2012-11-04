@@ -50,6 +50,11 @@ class Order extends Model
         return new self(Pdb::lastInsertId());
     }
 
+    public function edit($key, $value)
+    {
+        Pdb::update(array($key => $value), Order::$table, $this->selfCond());
+    }
+
     public function submit()
     {
         $this->info = $this->info();
