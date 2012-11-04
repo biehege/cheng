@@ -43,7 +43,6 @@ switch ($user_type) {
     case 'SuperAdmin':
 
         $factories = Factory::names();
-        d($factories);
 
         if ($by_ajax) {
             switch ($action) {

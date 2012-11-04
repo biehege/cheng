@@ -6,8 +6,8 @@
  * @created Jun 27, 2012 6:24:01 PM
  */
 
-if (!$has_login) {
-    redirect('login');
+if ($user_type === 'Admin') {
+    redirect('order/all');
 }
 
 list(

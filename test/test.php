@@ -30,6 +30,9 @@ if ($clear) {
     $username = 'test_admin';
     Pdb::del(User::$table, array('name=?' => $username));
 
+    // clear factory
+    Pdb::del(Factory::$table, array("name LIKE '%test%'" => null));
+
     // clear product
     Pdb::del(Product::$table, array('name LIKE ?' => '%_test'));
 
@@ -119,13 +122,13 @@ test(1, 1, array('name' => 'Admin update gold Price'));
 // case 6 Admin add Factory
 begin_test();
 $info = array(
-    'name' => '嘉黛',
+    'name' => '嘉黛_test',
     'contact' => '吴小牛',
     'phone' => '13526523659',
     'qq' => '5833652584',
     'city' => '湖北武汉');
 $admin->addFactory($info);
-test(1, 1, array('name' => 'Admin add Factory'));
+test(count(Factory::names()), 1, array('name' => 'Admin add Factory'));
 
 // case 7 Admin post Product, db
 begin_test();
