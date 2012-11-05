@@ -12,9 +12,10 @@ $(function () {
                 a: action,
                 id: id
             },
-            function () {
+            function (ret) {
                 console.log('ok');
-            });
+                that.data('action', ret.action).text(ret.caption);
+            }, 'json');
     });
 
     // 选择工厂 弹出框

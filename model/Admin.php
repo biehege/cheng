@@ -133,32 +133,50 @@ class Admin extends Model
 
     public function confirmOrder(Order $order)
     {
+        $state = 'InFactory';
         Pdb::update(
             array(
-                'state' => 'InFactory',
+                'state' => $state,
                 'confirm_time=NOW()' => null),
             Order::$table);
+
+        // 记录日志
+        UserLog::adminDealOrder($this, 'confirm', $order, '确认订单');
+
+        return $state;
     }
 
     public function factoryDoneOrder(Order $order)
     {
+        $state = 'FactoryDone';
         Pdb::update(
             array(
-                'state' => 'FactoryDone',
+                'state' => $state,
                 'factory_done_time=NOW()' => null),
             Order::$table);
+
+        // 卖出去的数量 +1
         Pdb::update(
             array('sold_count=sold_count+1' => null),
             Product::$table,
             array('id=?' => $order->product()->id));
+
+        UserLog::adminDealOrder($this, 'factoryDone', $order, '工厂完成');
+
+        return $state;
     }
 
     public function doneOrder(Order $order)
     {
+        $state = 'Done';
         Pdb::update(
             array(
-                'state' => 'Done',
+                'state' => $state,
                 'done_time=NOW()' => null),
             Order::$table);
+
+        UserLog::adminDealOrder($this, 'done', $order, '交易完成');
+
+        return $state;
     }
 }

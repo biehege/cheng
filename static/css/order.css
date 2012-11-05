@@ -32,6 +32,14 @@
 .detail-info {
     background-color: #ccc;
 }
+.detail-info .address {
+    float: left;
+    width: 300px;
+}
+.detail-info .log {
+    float: right;
+    width: 300px;
+}
 
 .choose-factory-btn {
     cursor: pointer;

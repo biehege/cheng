@@ -27,4 +27,16 @@ class UserLog
             ),
             self::$table);
     }
+
+    public static function adminDealOrder(Admin $admin, $action, Order $order, $remark = '')
+    {
+        Pdb::insert(
+            array(
+                'subject' => $admin->id,
+                'action' => $action . 'Order',
+                'target' => $order->id,
+                'info' => $remark,
+                'time=NOW()' => null),
+            self::$table);
+    }
 }

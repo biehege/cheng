@@ -94,18 +94,18 @@ $config['order_states'] = array(
     'Done' => '完成');
 
 $config['order_next_action'] = array(
-    'InCart' => '...',
+    'InCart' => '',
     'ToBeConfirmed' => 'confirm',
     'InFactory' => 'factoryDone',
     'FactoryDone' => 'done',
-    'Done' => '。。。');
+    'Done' => '');
 
 $config['next_button_map'] = array(
-    'InCart' => '...',
+    'InCart' => '',
     'ToBeConfirmed' => '确认',
     'InFactory' => '完工',
-    'FactoryDone' => '。。。',
-    'Done' => '。。。');
+    'FactoryDone' => '',
+    'Done' => '');
 
 // navs structure
 // array(

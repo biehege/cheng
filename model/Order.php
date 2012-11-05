@@ -102,6 +102,19 @@ class Order extends Model
         }, Pdb::fetchAll('o.id', $tables, $conds, $order, $tail));
     }
 
+    public function log()
+    {
+        $ret = Pdb::fetchAll(
+            array(
+                'info as remark',
+                'time'),
+            UserLog::$table,
+            array(
+                'action LIKE ?' => '%Order',
+                'target=?' => $this->id));
+        return  (empty($ret))? array() : $ret;
+    }
+
     private static function buildDbConds($conds = array())
     {
         extract(array_merge(

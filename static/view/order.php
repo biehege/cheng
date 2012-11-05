@@ -132,10 +132,21 @@
             <div class="remark">备注
             </div>
             <div class="detail-info">
-                <?php $address = $cus->defaultAddress() ?>
-                <h4>收件人信息</h4>
-                <div><?= $address->name ?> <?= $address->phone ?></div>
-                <div><?= $address->detail ?></div>
+                <div class="address">
+                    <?php $address = $cus->defaultAddress() ?>
+                    <h4>收件人信息</h4>
+                    <div><?= $address->name ?> <?= $address->phone ?></div>
+                    <div><?= $address->detail ?></div>
+                </div>
+                <div class="log">
+                    <h4>订单处理日志</h4>
+                    <span>跟进&nbsp;&gt;</span>
+                    <?php $order_log = $order->log(); ?>
+                    <?php foreach ($order_log as $entry): ?>
+                        <div class=""><?= $entry['time'] ?> <?= $entry['remark'] ?></div>
+                    <?php endforeach ?>
+                </div>
+                <br class="clear-fix" />
             </div>
         </div>
     <?php endforeach ?>

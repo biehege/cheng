@@ -34,6 +34,11 @@ $conds = compact(
     'type',
     'state');
 
+$types = Product::types();
+$state_map = $config['order_states'];
+$next_action_map = $config['order_next_action'];
+$next_button_map = $config['next_button_map'];
+
 switch ($user_type) {
     case 'Customer':
         $customer = $customer->id;
@@ -56,7 +61,10 @@ switch ($user_type) {
                 
                 default:
                     $id = _get('id');
-                    $admin->__call($action . 'Order', new Order($id));
+                    $action = $admin->__call($action . 'Order', new Order($id));
+                    echo json_encode(array(
+                        'action' => $next_button_map[$action],
+                        'caption' => $next_button_map[$action]));
                     break;
             }
             exit;
@@ -84,10 +92,7 @@ switch ($user_type) {
 }
 $conds['customer'] = $customer;
 
-$types = Product::types();
-$state_map = $config['order_states'];
-$next_action_map = $config['order_next_action'];
-$next_button_map = $config['next_button_map'];
+
 
 $per_page = 50;
 $total = Order::count($conds);
