@@ -128,19 +128,10 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `carve_text` varchar(120) DEFAULT NULL,
   `material` char(20) NOT NULL,
   `state` char(18) NOT NULL,
-  `gold_weight` decimal(4,2) NOT NULL,
-  `weight_ratio` float NOT NULL DEFAULT '1',
-  `wear_tear` tinyint(2) NOT NULL,
-  `gold_price` decimal(4,2) NOT NULL,
-  `labor_expense` decimal(4,2) NOT NULL,
-  `small_stone` decimal(4,2) NOT NULL,
-  `st_expense` decimal(4,2) DEFAULT NULL,
-  `st_price` decimal(6,2) DEFAULT NULL,
-  `st_weight` decimal(4,2) DEFAULT NULL,
-  `model_expense` decimal(6,2) DEFAULT NULL,
-  `risk_expense` decimal(6,2) DEFAULT NULL,
-  `factory_st` tinyint(2) DEFAULT NULL,
-  `factory_st_weight` decimal(4,2) DEFAULT NULL,
+
+  `factory_price` int(10) unsigned NOT NULL,
+  `customer_price` int(10) unsigned NOT NULL,
+
   `add_cart_time` datetime DEFAULT NULL,
   `submit_time` datetime DEFAULT NULL,
   `confirm_time` datetime DEFAULT NULL,
@@ -148,13 +139,30 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `factory_done_time` datetime DEFAULT NULL,
   `done_time` datetime DEFAULT NULL,
   `estimate_price` decimal(8,2) NOT NULL,
-  `factory_price` decimal(8,2) NOT NULL,
-  `real_price` decimal(8,2) NOT NULL,
   `paid` decimal(8,2) NOT NULL,
   `customer_remark` text,
   `admin_remark` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=390 ;
+
+-- price_data
+CREATE TABLE IF NOT EXISTS `price_data` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `gold_weight` decimal(4,2) NOT NULL, --
+  `wear_tear` tinyint(2) NOT NULL, --
+  `gold_price` decimal(4,2) NOT NULL, --
+  `labor_expense` decimal(4,2) NOT NULL, -- 
+  `small_stone` decimal(4,2) NOT NULL, -- 
+  `st_expense` decimal(4,2) DEFAULT NULL, --
+  `st_price` decimal(6,2) DEFAULT NULL, --
+  `st_weight` decimal(4,2) DEFAULT NULL, --
+  `model_expense` decimal(6,2) DEFAULT NULL, --
+  `risk_expense` decimal(6,2) DEFAULT NULL, --
+
+  `final_price` decimal(6,2) DEFAULT NULL, --
+
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=390 ;
 
 -- factory

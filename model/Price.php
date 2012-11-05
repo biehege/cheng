@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * 金价
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 class Price
@@ -14,6 +15,17 @@ class Price
             self::$table, 
             array('type=?' => $type), 
             'ORDER BY id desc');
+    }
+
+    public static function get($type, $time)
+    {
+        return Pdb::fetchRow(
+            'price',
+            self::$table,
+            array(
+                'type=?' => $type,
+                'time >= ?'=> $time),
+            'ORDER BY time ASC');
     }
 
     public static function history($conds = array())
