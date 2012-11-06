@@ -62,7 +62,7 @@ class Order extends Model
         $product = $this->product();
         $info = array(
             'small_stone' => $product->small_stone,
-            'gold_price' => Price::current($material)
+            'gold_price' => Price::current($material),
             'labor_expense' => Setting::get('labor_expense'),
             'wear_tear' => Setting::get('wear_tear'),
             'st_price' => Setting::get('st_price'),

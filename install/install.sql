@@ -127,11 +127,10 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `size` smallint(4) unsigned NOT NULL,
   `carve_text` varchar(120) DEFAULT NULL,
   `material` char(20) NOT NULL,
+  `weight_ratio` decimal(4,2) NOT NULL DEFAULT '1.00',
   `state` char(18) NOT NULL,
-
   `factory_price` int(10) unsigned NOT NULL,
   `customer_price` int(10) unsigned NOT NULL,
-
   `add_cart_time` datetime DEFAULT NULL,
   `submit_time` datetime DEFAULT NULL,
   `confirm_time` datetime DEFAULT NULL,
@@ -144,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `admin_remark` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=390 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=399 ;
 
 -- price_data
 CREATE TABLE IF NOT EXISTS `price_data` (

@@ -45,4 +45,24 @@ $(function () {
             });
         return false;
     });
+
+    // 价格计算
+    $('.price-change-btn').click(function () {
+        var that = $(this);
+        var id = that.parents('entry').data('id');
+        $.get(
+            '/order/' + id,
+            {
+                a: 'change',
+                title: that.data('title'),
+                func: that.data('func')
+            },
+            function (ret) {
+                $('.append-parent').append(ret);
+
+                // 价格弹框的js
+                $()
+            }, 'html');
+    });
+
 });

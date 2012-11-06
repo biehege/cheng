@@ -109,9 +109,11 @@
                 </div>
                 <div class="col price-factory">
                     <?= $order->factory_price ?>
+                    <span class="price-change-btn" data-title="工厂价格计算" data-func="change-factory-price">修改</span>
                 </div>
                 <div class="col price-real">
                     <?= $order->real_price ?>
+                    <span class="price-change-btn" data-title="实际售价计算" data-func="change-customer-price">填写</span>
                 </div>
                 <div class="col paid">
                     <?= $order->paid ?>
