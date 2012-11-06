@@ -123,6 +123,7 @@
                 </div>
                 <div class="col paid">
                     <?= $order->paid ?>
+                    <span class="pay-btn">填写</span>
                 </div>
             <?php else: ?>
                 <div class="col price-real">

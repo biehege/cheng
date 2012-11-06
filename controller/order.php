@@ -76,10 +76,23 @@ switch ($user_type) {
                     }
                     break;
 
-                case 'change_price':
+                case 'get_pay_div':
+                    $order_id = $target;
+                    $order = new Order($order_id);
+                    $cus = $order->customer(); // danger! we rewrite
+                    $account = $cus->account();
+
+                    $should_pay = $order->priceData('customer')->finalPrice();
+                    $paid = $order->paid;
+                    $unpaid = $should_pay - $paid;
+
+                    $div_name = 'order-pay';
+                    $view_name = 'order.pay';
+                    include smart_view('append.div');
+                    exit;
                     
                     break;
-                
+
                 default:
                     $id = _get('id');
                     $action = $admin->__call($action . 'Order', new Order($id));
@@ -91,45 +104,72 @@ switch ($user_type) {
             exit;
         }
 
-        if ($action === 'change_price') {
+        if ($action) {
             if (!is_numeric($target))
                 throw new Exception("target not numeric: $target");
-            $order = new Order($target);
+        }
+        switch ($action) {
+            case 'change_price':
 
-            $type = _post('type');
-            $gold_weight = _post('gold_weight');
-            $wear_tear = _post('wear_tear');
-            $gold_price = _post('gold_price');
-            $labor_expense = _post('labor_expense');
-            $small_stone = _post('small_stone');
-            $st_expense = _post('st_expense');
-            $st_price = _post('st_price');
-            $st_weight = _post('st_weight');
-            $model_expense = _post('model_expense');
-            $risk_expense = _post('risk_expense');
+                if (!$by_post) {
+                    throw new Exception("not by post");
+                }
+                
+                $order = new Order($target);
 
-            $factory_st = _post('factory_st');
-            $factory_st_weigth = _post('factory_st_weigth');
+                $type = _post('type');
+                $gold_weight = _post('gold_weight');
+                $wear_tear = _post('wear_tear');
+                $gold_price = _post('gold_price');
+                $labor_expense = _post('labor_expense');
+                $small_stone = _post('small_stone');
+                $st_expense = _post('st_expense');
+                $st_price = _post('st_price');
+                $st_weight = _post('st_weight');
+                $model_expense = _post('model_expense');
+                $risk_expense = _post('risk_expense');
 
-            $order->changePrice(
-                $type, 
-                compact(
-                    'gold_weight',
-                    'wear_tear',
-                    'gold_price',
-                    'labor_expense',
-                    'small_stone',
-                    'st_expense',
-                    'st_price',
-                    'st_weight',
-                    'model_expense',
-                    'risk_expense'));
+                $factory_st = _post('factory_st');
+                $factory_st_weigth = _post('factory_st_weigth');
 
-            $order->edit(compact(
-                'factory_st',
-                'factory_st_weight'));
+                $order->changePrice(
+                    $type, 
+                    compact(
+                        'gold_weight',
+                        'wear_tear',
+                        'gold_price',
+                        'labor_expense',
+                        'small_stone',
+                        'st_expense',
+                        'st_price',
+                        'st_weight',
+                        'model_expense',
+                        'risk_expense'));
 
-            redirect('order/all');
+                $order->edit(compact(
+                    'factory_st',
+                    'factory_st_weight'));
+
+                redirect('order/all');
+                break;
+
+            case 'deduct':
+                if (!$by_post)
+                    throw new Exception('not by post');
+                $deduct = _post('deduct');
+                $remark = _post('remark');
+                $order = new Order($target);
+                $customer = $order->customer();
+                $account = $customer->account();
+                $admin->deductAccountForOrder($account, $order, $deduct, $remark);
+                $order->edit('paid', $order->paid + $deduct);
+
+                redirect('order/all');
+                break;
+            
+            default:
+                # code...
+                break;
         }
 
         list(
@@ -153,8 +193,6 @@ switch ($user_type) {
         break;
 }
 $conds['customer'] = $customer;
-
-
 
 $per_page = 50;
 $total = Order::count($conds);

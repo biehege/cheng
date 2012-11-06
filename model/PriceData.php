@@ -37,7 +37,7 @@ class PriceData extends Model
                 + $this->st_price * $this->st_weight
                 + $this->model_expense * $this->risk_expense;
         } else {
-            return $this->final_price;
+            return +$this->final_price;
         }
     }
 }

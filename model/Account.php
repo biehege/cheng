@@ -22,4 +22,12 @@ class Account extends Model
             Account::$table);
         return new self(Pdb::lastInsertId());
     }
+
+    public function deduct($money)
+    {
+        Pdb::update(
+            array(
+                "remain = remain-'$money'" => null), // !!! injection
+            self::$table);
+    }
 }

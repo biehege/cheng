@@ -62,3 +62,11 @@
 .order-change.append-div input[type=text] {
     width: 50px;
 }
+
+.order-pay.append-div {
+    width: 500px;
+}
+
+.pay-btn {
+    cursor: pointer;
+}

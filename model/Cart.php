@@ -41,7 +41,7 @@ class Cart
         return array_sum(
             array_map(
                 function ($order) {
-                    return +$order->price();
+                    return $order->priceDate('customer')->finalPrice();
                 }, 
                 $orders));
     }

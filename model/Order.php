@@ -66,7 +66,7 @@ class Order extends Model
     public function edit($key_or_array, $value = null)
     {
         if($value !== null) { // given by key => value
-            $arr = array($key_or_array, $value);
+            $arr = array($key_or_array => $value);
         } else {
             $arr = $key_or_array;
         }
@@ -100,14 +100,11 @@ class Order extends Model
             self::$table);
     }
 
-    public function price() // we need that?
+    public function price() // we need that? may be not, del it !!!
     {
-        $info = $this->info();
-        $prd = $this->product();
-        return
-            $prd->weight * (1 + $info['wear_tear']) * $info['gold_price']
-            + $info['labor_expense']
-            + $prd->small_stone * ($info['st_expense'] + $info['st_price']);
+        // called from where?
+        $customer_price = $this->priceData('customer');
+        return $customer_price->finalPrice();
     }
 
     public static function count($conds)

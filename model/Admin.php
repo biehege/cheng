@@ -58,6 +58,21 @@ class Admin extends Model
         }, $cus_infos);
     }
 
+    public function deductAccountForOrder(Account $account, Order $order, $money, $remark)
+    {
+        $account->deduct($money);
+
+        // log
+        Pdb::insert(
+            array(
+                'subject' => $this->id,
+                'action' => 'DeductAccount',
+                'target' => $order->id,
+                'info' => json_encode(compact('money', 'remark')),
+                'time=NOW()' => null),
+            UserLog::$table);
+    }
+
     public function addFactory($para)
     {
         Pdb::insert(

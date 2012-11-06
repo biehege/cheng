@@ -58,7 +58,6 @@ $(function () {
                 type: that.data('type')
             },
             function (ret) {
-                var appendDiv = $('<div class="append-div">' + ret + '</div>');
                 var appendDiv = $(ret);
                 $('.append-parent').append(appendDiv).show();
                 appendDiv.show();
@@ -67,4 +66,20 @@ $(function () {
             }, 'html');
     });
 
+    // 客户已付
+    $('.pay-btn').click(function () {
+        var that = $(this);
+        var id = that.parents('.entry').data('id');
+        $.get(
+            '/order/' + id,
+            {
+                a: 'get_pay_div',
+            },
+            function (ret) {
+                var appendDiv = $(ret);
+                $('.append-parent').append(appendDiv).show();
+                appendDiv.show();
+                window.refreshAppendDiv();
+            });
+    });
 });
