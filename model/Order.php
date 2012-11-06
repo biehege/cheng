@@ -59,17 +59,26 @@ class Order extends Model
     {
         $this->info = $this->info();
         $material = $this->info['material'];
-        $cur_price = Price::current($material);
+        $product = $this->product();
+        $info = array(
+            'small_stone' => $product->small_stone,
+            'gold_price' => Price::current($material)
+            'labor_expense' => Setting::get('labor_expense'),
+            'wear_tear' => Setting::get('wear_tear'),
+            'st_price' => Setting::get('st_price'),
+            'st_expense' => Setting::get('st_expense'),
+            'st_weight' => 0,
+            'model_expense' => 0,
+            'risk_expense' => Setting::get('risk_expense'));
+        $factory_price = PriceData::create($info);
+        $customer_price = PriceData::create($info);
         Pdb::update(
             array(
                 'state' => 'ToBeConfirmed',
                 'submit_time=NOW()' => null,
-                'gold_price' => $cur_price,
-                'labor_expense' => Setting::get('labor_expense'),
-                'wear_tear' => Setting::get('wear_tear'),
-                'st_price' => Setting::get('st_price'),
-                'st_expense' => Setting::get('st_expense'),
-                'weight_ratio' => Setting::get('weight_ratio'),),
+                'factory_price' => $factory_price->id,
+                'customer_price' => $customer_price->id,
+                'weight_ratio' => $material === 'PT950' ? Setting::get('weight_ratio') : 1),
             self::$table);
     }
 

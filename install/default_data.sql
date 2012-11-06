@@ -20,5 +20,6 @@ INSERT INTO `setting`
     ('wear_tear', '14'),
     ('st_expense', '20'),
     ('st_price', '2300'),
-    ('weight_ratio', '1.2')
+    ('weight_ratio', '1.2'),
+    ('risk_expense', '25')
         ON DUPLICATE KEY UPDATE `key`=`key`;

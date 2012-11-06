@@ -222,11 +222,11 @@ test(
     +$entry_num,
     array('name' => 'Customer submit a Cart'));
 
-// case 13 Admin Confirmed Order (InFactory)
+// case 14 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
 
-// case 14 Admin add Customer
+// case 15 Admin add Customer
 $info = array(
     'username' => 'user_ca_test',
     'password' => 'password',
