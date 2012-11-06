@@ -37,7 +37,8 @@ class Order extends Model
 
     public function priceData($name)
     {
-        return new Pricedata($this->__get($name . '_price'));
+        $name = strtolower($name . '_price');
+        return new Pricedata($this->__get($name));
     }
 
     public static function create(Customer $cus, Product $prd, $opts)

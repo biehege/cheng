@@ -67,9 +67,8 @@ td, th {
 }
 .append-div {
     background-color: white;
-    width: 500px;
     margin: auto;
-    margin-top: 150px;
+    margin-top: 50px;
     display: none;
 }
 .append-div .close-btn {

@@ -129,6 +129,8 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `material` char(20) NOT NULL,
   `weight_ratio` decimal(4,2) NOT NULL DEFAULT '1.00',
   `state` char(18) NOT NULL,
+  `factory_st` smallint(3) NOT NULL DEFAULT '0' COMMENT '工厂配石（粒）',
+  `factory_st_weight` decimal(4,2) NOT NULL DEFAULT '0.00' COMMENT '工厂配石重量（克拉）',
   `factory_price` int(10) unsigned NOT NULL,
   `customer_price` int(10) unsigned NOT NULL,
   `add_cart_time` datetime DEFAULT NULL,
@@ -143,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `admin_remark` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=399 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=411 ;
 
 -- price_data
 CREATE TABLE IF NOT EXISTS `price_data` (

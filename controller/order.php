@@ -63,7 +63,11 @@ switch ($user_type) {
                     if (is_numeric($target)) {
                         $title = _get('title');
                         $type = _get('type');
-                        $order = new Order($target);
+
+                        $order_id = $target;
+                        $order = new Order($order_id);
+                        
+                        $div_name = 'order-change';
                         $view_name = 'order.change';
                         include smart_view('append.div');
                         exit;

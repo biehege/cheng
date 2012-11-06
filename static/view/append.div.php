@@ -5,6 +5,7 @@
  */
 if (!isset($div_name))
     $div_name = '';
+
 ?>
 <div class="<?= $div_name ?> append-div">
     <span class="close-btn">X</span>

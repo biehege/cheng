@@ -44,3 +44,21 @@
 .choose-factory-btn {
     cursor: pointer;
 }
+
+.order-change.append-div {
+    width: 700px;
+}
+.order-change.append-div .box-container {
+    float: left;
+    width: 100px;
+}
+.box-container .box {
+    border: 1px dotted;
+    height: 150px;
+}
+.order-change.append-div .more-info {
+    clear: both;
+}
+.order-change.append-div input[type=text] {
+    width: 50px;
+}
