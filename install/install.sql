@@ -148,21 +148,19 @@ CREATE TABLE IF NOT EXISTS `small_order` (
 -- price_data
 CREATE TABLE IF NOT EXISTS `price_data` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `gold_weight` decimal(4,2) NOT NULL, --
-  `wear_tear` tinyint(2) NOT NULL, --
-  `gold_price` decimal(4,2) NOT NULL, --
-  `labor_expense` decimal(4,2) NOT NULL, -- 
-  `small_stone` decimal(4,2) NOT NULL, -- 
-  `st_expense` decimal(4,2) DEFAULT NULL, --
-  `st_price` decimal(6,2) DEFAULT NULL, --
-  `st_weight` decimal(4,2) DEFAULT NULL, --
-  `model_expense` decimal(6,2) DEFAULT NULL, --
-  `risk_expense` decimal(6,2) DEFAULT NULL, --
-
-  `final_price` decimal(6,2) DEFAULT NULL, --
-
+  `gold_weight` decimal(4,2) NOT NULL,
+  `wear_tear` tinyint(2) NOT NULL,
+  `gold_price` decimal(4,2) NOT NULL,
+  `labor_expense` decimal(4,2) NOT NULL,
+  `small_stone` smallint(3) NOT NULL,
+  `st_expense` decimal(4,2) DEFAULT NULL,
+  `st_price` decimal(6,2) DEFAULT NULL,
+  `st_weight` decimal(4,2) DEFAULT NULL,
+  `model_expense` decimal(6,2) DEFAULT NULL,
+  `risk_expense` decimal(6,2) DEFAULT NULL,
+  `final_price` decimal(6,2) DEFAULT NULL COMMENT '因为可能会直接强行修改这个值',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=390 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=404 ;
 
 -- factory
 CREATE TABLE IF NOT EXISTS `factory` (
