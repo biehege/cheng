@@ -41,6 +41,12 @@ class Order extends Model
         return new Pricedata($this->__get($name));
     }
 
+    public function changePrice($type, $info) 
+    {
+        $pd = $this->priceData($type);
+        $pd->edit($info);
+    }
+
     public static function create(Customer $cus, Product $prd, $opts)
     {
         Pdb::insert(
@@ -57,9 +63,14 @@ class Order extends Model
         return new self(Pdb::lastInsertId());
     }
 
-    public function edit($key, $value)
+    public function edit($key_or_array, $value = null)
     {
-        Pdb::update(array($key => $value), Order::$table, $this->selfCond());
+        if($value !== null) { // given by key => value
+            $arr = array($key_or_array, $value);
+        } else {
+            $arr = $key_or_array;
+        }
+        Pdb::update($arr, self::$table, $this->selfCond());
     }
 
     public function submit()
@@ -144,8 +155,8 @@ class Order extends Model
         if ($product_no) {
             $ret['p.no=?'] = $product_no;
         }
-        if ($no) {
-            $ret['o.no=?'] = $no;
+        if ($order_no) {
+            $ret['o.order_no=?'] = $order_no;
         }
         if ($time_start)
             $ret['o.submit_time >= ?'] = $time_start;

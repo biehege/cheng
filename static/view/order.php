@@ -15,8 +15,8 @@
             <input type="text" name="product_no" id="product_no" />
         </div>
         <div class="e">
-            <label for="no">订单号：</label>
-            <input type="text" name="no" id="no" />
+            <label for="order_no">订单号：</label>
+            <input type="text" name="order_no" id="order_no" />
         </div>
         <div class="e">
             <label for="type">分类：</label>

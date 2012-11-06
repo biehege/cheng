@@ -62,8 +62,8 @@ $(function () {
                 var appendDiv = $(ret);
                 $('.append-parent').append(appendDiv).show();
                 appendDiv.show();
+                window.refreshAppendDiv();
 
-                // 价格弹框的js ????
             }, 'html');
     });
 

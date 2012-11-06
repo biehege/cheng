@@ -6,7 +6,9 @@
 ?>
 <h3><?= $title ?></h3>
 <form method="post" action="<?= ROOT . 'order/' . $order_id ?>">
+    <input type="hidden" name="a" value="change_price">
     <input type="hidden" name="type" value="<?= $type ?>">
+
     <span>订单号： <?= $order->order_no ?></span>
     <span>姓名：<?= $order->customer()->user()->name ?></span>
     <span>工厂名称：<?= $order->factory()->name ?></span>
@@ -83,9 +85,9 @@
     <?php if ($type === 'Factory'): ?>
         <div class="more-info">
             其中，工厂配石
-            <input name="facotry_st" value="<?= $order->facotry_st ?>">
+            <input name="factory_st" value="<?= $order->factory_st ?>">
             粒，共
-            <input name="facotry_st_weight" value="<?= $order->facotry_st_weight ?>">
+            <input name="factory_st_weight" value="<?= $order->factory_st_weight ?>">
             克拉
         </div>
     <?php elseif ($type === 'Customer'): ?>
@@ -95,6 +97,5 @@
             <span>AU750：<?= Price::get('AU750', $order->submit_time) ?>元/克</span>
         </div>
     <?php endif ?>
-    
     <input type="submit" value="确定">
 </form>

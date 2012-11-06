@@ -7,14 +7,14 @@
 list(
     $name,
     $product_no,
-    $no,
+    $order_no,
     $type,
     $time_start,
     $time_end,
     $state) = _get(
         'name',
         'product_no',
-        'no',
+        'order_no',
         'type',
         'time_start',
         'time_end',
@@ -28,7 +28,7 @@ if ($state === 'all')
 $conds = compact(
     'name',
     'product_no',
-    'no',
+    'order_no',
     'time_start',
     'time_end',
     'type',
@@ -77,34 +77,7 @@ switch ($user_type) {
                     break;
 
                 case 'change_price':
-                    if (!is_numeric($target))
-                        throw new Exception("target not numeric: $target");
-                    $order = new Order($target);
-                    $type = _post('type');
-                    $gold_weight = _post('gold_weight');
-                    $wear_tear = _post('wear_tear');
-                    $gold_price = _post('gold_price');
-                    $labor_expense = _post('labor_expense');
-                    $small_stone = _post('small_stone');
-                    $st_expense = _post('st_expense');
-                    $st_price = _post('st_price');
-                    $st_weight = _post('st_weight');
-                    $model_expense = _post('model_expense');
-                    $risk_expense = _post('risk_expense');
-
-                    $order->changePrice(
-                        $type, 
-                        compact(
-                            'gold_weight',
-                            'wear_tear',
-                            'gold_price',
-                            'labor_expense',
-                            'small_stone',
-                            'st_expense',
-                            'st_price',
-                            'st_weight',
-                            'model_expense',
-                            'risk_expense'));
+                    
                     break;
                 
                 default:
@@ -116,6 +89,47 @@ switch ($user_type) {
                     break;
             }
             exit;
+        }
+
+        if ($action === 'change_price') {
+            if (!is_numeric($target))
+                throw new Exception("target not numeric: $target");
+            $order = new Order($target);
+
+            $type = _post('type');
+            $gold_weight = _post('gold_weight');
+            $wear_tear = _post('wear_tear');
+            $gold_price = _post('gold_price');
+            $labor_expense = _post('labor_expense');
+            $small_stone = _post('small_stone');
+            $st_expense = _post('st_expense');
+            $st_price = _post('st_price');
+            $st_weight = _post('st_weight');
+            $model_expense = _post('model_expense');
+            $risk_expense = _post('risk_expense');
+
+            $factory_st = _post('factory_st');
+            $factory_st_weigth = _post('factory_st_weigth');
+
+            $order->changePrice(
+                $type, 
+                compact(
+                    'gold_weight',
+                    'wear_tear',
+                    'gold_price',
+                    'labor_expense',
+                    'small_stone',
+                    'st_expense',
+                    'st_price',
+                    'st_weight',
+                    'model_expense',
+                    'risk_expense'));
+
+            $order->edit(compact(
+                'factory_st',
+                'factory_st_weight'));
+
+            redirect('order/all');
         }
 
         list(

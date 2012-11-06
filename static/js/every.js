@@ -9,8 +9,11 @@
 $(function () {
     
     // 附加层的关闭按钮
-    $('.append-div .close-btn').click(function () {
-        d('click');
-        $(this).parents('.append-div').hide().parents('.append-parent').hide();
-    });
+    window.refreshAppendDiv = function () {
+        $('.append-div .close-btn').click(function () {
+            $(this).parents('.append-div').hide().parents('.append-parent').hide();
+        });
+    };
+    window.refreshAppendDiv();
+    
 });
