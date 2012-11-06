@@ -27,4 +27,17 @@ class PriceData extends Model
         }
         Pdb::update($arr, self::$table, $this->selfCond());
     }
+
+    public function finalPrice()
+    {
+        if ($this->final_price === null) {
+            // caculate
+            return $this->gold_weight + $this->gold_weight * $this->wear_tear 
+                + $this->labor_expense + $this->small_stone * $this->st_expense
+                + $this->st_price * $this->st_weight
+                + $this->model_expense * $this->risk_expense;
+        } else {
+            return $this->final_price;
+        }
+    }
 }

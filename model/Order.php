@@ -31,7 +31,13 @@ class Order extends Model
 
     public function factory()
     {
+        // can be not set yet
         return new Factory($this->factory);
+    }
+
+    public function priceData($name)
+    {
+        return new Pricedata($this->__get($name . '_price'));
     }
 
     public static function create(Customer $cus, Product $prd, $opts)

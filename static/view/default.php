@@ -24,7 +24,7 @@
         <div class="header">
             <?php include smart_view('header'); ?>
         </div>
-        <div class="misssing">
+        <div class="misssing" title="<?= i($GLOBALS['view_looking_for']) ?>">
             没有页面 404
         </div>
     </body>

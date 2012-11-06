@@ -6,10 +6,11 @@
 ?>
 <h3><?= $title ?></h3>
 <form method="post" action="<?= ROOT . 'order/' . $order_id ?>">
-    <input type="hidden" name="a" value="<?= $func ?>">
+    <input type="hidden" name="type" value="<?= $type ?>">
     <span>订单号： <?= $order->order_no ?></span>
     <span>姓名：<?= $order->customer()->user()->name ?></span>
-    <span>工厂名称：<?= $order->facotry()->name ?></span>
+    <span>工厂名称：<?= $order->factory()->name ?></span>
+    <?php $price = $order->priceData($type); ?>
     <div>
         <span>合计价格：</span>
         <span><?= $order->price ?></span>
@@ -79,10 +80,21 @@
         </div>
         <div>版费+风险费</div>
     </div>
-    <div>
-        <span>客户下单当天的金价为</span>
-        <span>PT950：<?= Price::get('PT950', $order->submit_time) ?>元/克</span>
-        <span>AU750：<?= Price::get('AU750', $order->submit_time) ?>元/克</span>
-    </div>
+    <?php if ($func === 'Factory'): ?>
+        <div>
+            其中，工厂配石
+            <input name="facotry_st" value="<?= $facotry_st ?>">
+            粒，共
+            <input name="facotry_st_weight" value="<?= $facotry_st_weight ?>">
+            克拉
+        </div>
+    <?php elseif ($func === 'Customer'): ?>
+        <div>
+            <span>客户下单当天的金价为</span>
+            <span>PT950：<?= Price::get('PT950', $order->submit_time) ?>元/克</span>
+            <span>AU750：<?= Price::get('AU750', $order->submit_time) ?>元/克</span>
+        </div>
+    <?php endif ?>
+    
     <input type="submit" value="确定">
 </form>

@@ -58,6 +58,50 @@ switch ($user_type) {
                     $order->edit('factory', $factory_id);
                     echo $factories[$factory_id];
                     exit;
+
+                case 'get_price_div':
+                    if (is_numeric($target)) {
+                        $title = _get('title');
+                        $type = _get('type');
+                        $order = new Order($target);
+                        $view_name = 'order.change';
+                        include smart_view('append.div');
+                        exit;
+                    } else {
+                        throw new Exception("unknown to get: $target");
+                    }
+                    break;
+
+                case 'change_price':
+                    if (!is_numeric($target))
+                        throw new Exception("target not numeric: $target");
+                    $order = new Order($target);
+                    $type = _post('type');
+                    $gold_weight = _post('gold_weight');
+                    $wear_tear = _post('wear_tear');
+                    $gold_price = _post('gold_price');
+                    $labor_expense = _post('labor_expense');
+                    $small_stone = _post('small_stone');
+                    $st_expense = _post('st_expense');
+                    $st_price = _post('st_price');
+                    $st_weight = _post('st_weight');
+                    $model_expense = _post('model_expense');
+                    $risk_expense = _post('risk_expense');
+
+                    $order->changePrice(
+                        $type, 
+                        compact(
+                            'gold_weight',
+                            'wear_tear',
+                            'gold_price',
+                            'labor_expense',
+                            'small_stone',
+                            'st_expense',
+                            'st_price',
+                            'st_weight',
+                            'model_expense',
+                            'risk_expense'));
+                    break;
                 
                 default:
                     $id = _get('id');

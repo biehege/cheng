@@ -74,7 +74,13 @@
             <span class="col title control">操作</span>
         <?php endif ?>
     </div>
-    <?php foreach ($orders as $order): $cus = $order->customer(); $user = $cus->user(); $prd = $order->product(); ?>
+    <?php foreach ($orders as $order): ?>
+        <?php 
+        $cus = $order->customer(); 
+        $user = $cus->user(); 
+        $prd = $order->product(); 
+        $customer_price = $order->priceData('customer');
+        ?>
         <div class="entry" data-id="<?= $order->id ?>">
             <div>
                 <input type="checkbox" />
@@ -92,9 +98,9 @@
                 <span>手寸：<?= $order->size ?></span>
                 <span>刻字：<?= $order->carve_text ?></span>
                 <span>镶口：<?= $prd->rabbet_start . '-' . $prd->rabbet_end ?>ct</span>
-                <span>辅石：<?= $order->small_stone ?></span>
-                <span>工费：<?= $order->labor_expense ?></span>
-                <span>损耗：<?= $order->wear_tear ?></span>
+                <span>辅石：<?= $customer_price->small_stone ?>粒</span>
+                <span>工费：<?= $customer_price->labor_expense ?></span>
+                <span>损耗：<?= $customer_price->wear_tear ?></span>
             </div>
             <div class="col realname">
                 <?= $user->realname ?>
@@ -109,18 +115,18 @@
                 </div>
                 <div class="col price-factory">
                     <?= $order->factory_price ?>
-                    <span class="price-change-btn" data-title="工厂价格计算" data-func="change-factory-price">修改</span>
+                    <span class="price-change-btn" data-title="工厂价格计算" data-type="Factory">修改</span>
                 </div>
                 <div class="col price-real">
-                    <?= $order->real_price ?>
-                    <span class="price-change-btn" data-title="实际售价计算" data-func="change-customer-price">填写</span>
+                    <?= $customer_price->finalPrice() ?>
+                    <span class="price-change-btn" data-title="实际售价计算" data-type="Customer">填写</span>
                 </div>
                 <div class="col paid">
                     <?= $order->paid ?>
                 </div>
             <?php else: ?>
                 <div class="col price-real">
-                    <?= $order->real_price ?>
+                    <?= $customer_price->real_price ?>
                 </div>
             <?php endif ?>
             <div class="col state">

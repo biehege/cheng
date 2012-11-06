@@ -358,6 +358,7 @@ function is_mobile() {
 
 function smart_view($view, $default = 'default') 
 {
+    $GLOBALS['view_looking_for'] = $view;
     if (is_mobile() && ($m = FrameFile::view('mobile/' . $view)) && file_exists($m))
         return $m;
     if (($file = FrameFile::view($view)) && file_exists($file))

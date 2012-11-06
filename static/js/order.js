@@ -49,19 +49,21 @@ $(function () {
     // 价格计算
     $('.price-change-btn').click(function () {
         var that = $(this);
-        var id = that.parents('entry').data('id');
+        var id = that.parents('.entry').data('id');
         $.get(
             '/order/' + id,
             {
-                a: 'change',
+                a: 'get_price_div',
                 title: that.data('title'),
-                func: that.data('func')
+                type: that.data('type')
             },
             function (ret) {
-                $('.append-parent').append(ret);
+                var appendDiv = $('<div class="append-div">' + ret + '</div>');
+                var appendDiv = $(ret);
+                $('.append-parent').append(appendDiv).show();
+                appendDiv.show();
 
-                // 价格弹框的js
-                $()
+                // 价格弹框的js ????
             }, 'html');
     });
 
