@@ -1,8 +1,4 @@
 
-var d = function (arg) {
-    console.log(arg);
-};
-
 $(function () {
 
     // 多选框

@@ -1,6 +1,25 @@
 
 $(function () {
 
+    // 不是我啰嗦，这些get_xxx_div的操作真的可以抽象出来
+
+    // 修改订单信息
+    $('.edit-info-btn').click(function () {
+        var that = $(this);
+        var id = that.parents('.entry').data('id');
+        $.get(
+            '/order/' + id,
+            {
+                a: 'get_info_div'
+            },
+            function (ret) {
+                var appendDiv = $(ret);
+                $('.append-parent').append(appendDiv).show();
+                appendDiv.show();
+                window.refreshAppendDiv();
+            });
+    });
+
     // 订单推进
     $('.next-btn').click(function () {
         var that = $(this);

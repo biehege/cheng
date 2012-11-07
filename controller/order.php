@@ -59,6 +59,20 @@ switch ($user_type) {
                     echo $factories[$factory_id];
                     exit;
 
+                case 'get_info_div':
+                    if (!is_numeric($target))
+                        throw new Exception("unkown id: $target");
+                    $order_id = $target;
+                    $order = new Order($order_id);
+                    $cus = $order->customer();
+                    $product = $order->product();
+                    $materials = $product->materials();
+
+                    $div_name = 'order-edit';
+                    $view_name = 'order.edit';
+                    include smart_view('append.div');
+                    break;
+
                 case 'get_price_div':
                     if (is_numeric($target)) {
                         $title = _get('title');
@@ -90,7 +104,6 @@ switch ($user_type) {
                     $view_name = 'order.pay';
                     include smart_view('append.div');
                     exit;
-                    
                     break;
 
                 default:
@@ -105,10 +118,32 @@ switch ($user_type) {
         }
 
         if ($action) {
-            if (!is_numeric($target))
+            if (is_numeric($target)) {
+                $order_id = $target;
+            } else {
                 throw new Exception("target not numeric: $target");
+            }
         }
         switch ($action) {
+            case 'edit_order':
+
+                $material = _post('material');
+                $size = _post('size');
+                $carve_text = _post('carve_text');
+                $customer_remark = _post('customer_remark');
+
+                $order = new Order($order_id);
+
+                $order->edit(compact(
+                    'material',
+                    'size',
+                    'carve_text',
+                    'customer_remark'));
+
+                redirect('order/all');
+
+                break;
+
             case 'change_price':
 
                 if (!$by_post) {
@@ -168,7 +203,7 @@ switch ($user_type) {
                 break;
             
             default:
-                # code...
+                // we do nothing here
                 break;
         }
 

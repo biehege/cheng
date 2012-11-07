@@ -45,6 +45,14 @@
     cursor: pointer;
 }
 
+.pay-btn {
+    cursor: pointer;
+}
+
+.edit-info-btn {
+    cursor: pointer;
+}
+
 .order-change.append-div {
     width: 700px;
 }
@@ -67,6 +75,8 @@
     width: 500px;
 }
 
-.pay-btn {
-    cursor: pointer;
+
+
+.order-edit.append-div {
+    width: 600px;
 }

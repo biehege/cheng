@@ -86,7 +86,7 @@
                 <input type="checkbox" />
                 <span>订单号：<?= $order->order_no ?></span>
                 <span>下单时间：<?= $order->submit_time ?></span>
-                <span>修改</span>
+                <span class="edit-info-btn">修改</span>
             </div>
             <div class="col name">
                 <img />
