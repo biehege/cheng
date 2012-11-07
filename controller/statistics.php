@@ -26,7 +26,7 @@ switch ($target) {
     case 'sale':
         $divide = _get('divide') ?: 'day'; // day or month
 
-        $data = Stastics::saleRecord(compact('divide'));
+        $data = Statistics::saleRecord(compact('divide'));
 
         break;
     

@@ -4,5 +4,8 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<div>statistics.sale</div>
+<ul>
+    <li><a href="?divide=day">每日销量柱状统计图</a></li>
+    <li><a href="?divide=month">每月销量柱状统计图</a></li>
+</ul>
 <?php include smart_view('col.graph') ?>
