@@ -135,7 +135,10 @@
             </div>
             <?php if ($user_type == 'Admin'): ?>
                 <div class="col control">
-                    <button class="next-btn" data-action="<?= $next_action_map[$order->state] ?>"><?= $next_button_map[$order->state] ?></button>
+                    <?php $caption = $next_button_map[$order->state]; ?>
+                    <?php if ($caption): ?>
+                        <button class="next-btn" data-action="<?= $next_action_map[$order->state] ?>"><?= $caption ?></button>
+                    <?php endif ?>
                 </div>
             <?php endif ?>
             <div class="remark">备注
