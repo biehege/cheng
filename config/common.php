@@ -55,9 +55,11 @@ define('customer_address', 'customer_address');
 $config['error']['info'] = array(
     'PASSWORD_EMPTY' => 'plz enter password',
     'REPASSWORD_EMPTY' => 'plz reEnter your password to confirm',
+    'NEW_PASSWORD_EMPTY' => '请输入新密码',
     'PASSWORD_NOT_SAME' => 'sorry, password not the same, plz reEnter',
     'USERNAME_EMPTY' => 'username empty',
     'USERNAME_OR_PASSWORD_INCORRECT' => 'user name or password not right',
+    'PASSWORD_INCORRECT' => '密码不正确',
     'USER_ALREADY_EXISTS' => 'username already exists, choose another one',
     'REALNAME_EMPTY' => '请填写真实姓名',
     'PHONE_EMPTY' => '请填写手机号码',

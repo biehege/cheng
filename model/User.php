@@ -18,17 +18,30 @@ class User extends Model
         return Pdb::exists(self::$table, array('name=?' => $username));
     }
 
-    public function check($username, $password)
+    public static function check($username, $password)
     {
         return Pdb::exists(self::$table, array(
             'name=?' => $username,
             'password=?' => md5($password)));
     }
 
+    public function checkPassword($password)
+    {
+        return md5($password) === $this->password;
+    }
+
     public function getByName($username)
     {
         $cond = array('name=?' => $username);
         return new self(Pdb::fetchRow('*', self::$table, $cond));
+    }
+
+    public function changePassword($new_password)
+    {
+        Pdb::update(
+            array(
+                'password' => md5($new_password)),
+            self::$table);
     }
 
     public function login()
