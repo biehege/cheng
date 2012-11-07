@@ -77,6 +77,11 @@ $config['controllers_need_login'] = array(
     'statistics',
     'setting');
 
+$config['customer_state'] = array(
+    'ToBeAdopted' => '等待审核',
+    'Adopted' => '审核通过',
+    'Ban' => '拒绝访问');
+
 $config['setting_name_map'] = array(
     'labor_expense' => '工费',
     'wear_tear' => '损耗',
@@ -88,7 +93,7 @@ $config['material_type_map'] = array(
     'PT950' => 'PT950',
     'AU750' => 'AU750');
 
-$config['order_states'] = array(
+$config['order_states'] = array( // remove s??
     'InCart' => '...',
     'ToBeConfirmed' => '待确认',
     'InFactory' => '已交工厂',
@@ -147,7 +152,6 @@ $config['navs']['admin'] = '
  - 批量上传 batch
 用户管理 user
  + 用户列表 
- - 审核用户 adopt
  - 新增用户 add
 工厂管理 factory
  + 工厂列表

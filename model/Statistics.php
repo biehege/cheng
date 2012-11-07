@@ -13,7 +13,7 @@ class Statistics
 
         $date = new DateTime();
         $ret = array();
-        for ($i=69; $i >= 0; $i--) { 
+        for ($i=0; $i < 60; $i++) { 
             $date->sub($interval);
             if ($divide === 'day') {
                 $ret[$i] = self::daySaleInfo($date->format('Y-m-d'));
@@ -21,7 +21,7 @@ class Statistics
                 $ret[$i] = self::monthSaleInfo($date->format('Y-m'));
             }
         }
-        return $ret;
+        return array_reverse($ret);
     }
 
     public static function daySaleInfo($day_string) // a day
@@ -31,7 +31,7 @@ class Statistics
 
     public static function monthSaleInfo($month_str)
     {
-        return self::saleInfo($month_str, "DATE_FORMAT(done_time,'%Y-%c')=?");
+        return self::saleInfo($month_str, "DATE_FORMAT(done_time,'%Y-%m')=?");
     }
 
     private static function saleInfo($date_str, $format)
@@ -41,8 +41,9 @@ class Statistics
             Order::$table, 
             array($format => $date_str));
         return array(
+            'date' => $date_str,
             'count' => count($arr),
-            'sum' => array_sum($arr));
+            'sum' => $arr ? array_sum($arr) : 0);
     }
 
 }

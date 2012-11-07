@@ -254,4 +254,4 @@ for ($i=1; $i < $day_count; $i++) {
     $date->sub($interval);
 }
 $data = Statistics::saleRecord(array('divide' => 'day'));
-test(count($data), 70, array('name' => 'Statistics'));
+test(count($data), 60, array('name' => 'Statistics'));

@@ -9,3 +9,4 @@
     <li><a href="?divide=month">每月销量柱状统计图</a></li>
 </ul>
 <?php include smart_view('col.graph') ?>
+<div><?php echo $start.'到'.$end; ?></div>

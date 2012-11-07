@@ -26,8 +26,18 @@ switch ($target) {
     case 'sale':
         $divide = _get('divide') ?: 'day'; // day or month
 
-        $data = Statistics::saleRecord(compact('divide'));
+        $format_map = array(
+            'day' => 'Y年m月d日',
+            'month' => 'Y年m月');
 
+        $data = Statistics::saleRecord(compact('divide'));
+        $date = new DateTime();
+        $format = $format_map[$divide];
+        $date->sub(DateInterval::createFromDateString("1 $divide"));
+        $end = $date->format($format);
+        $date->sub(DateInterval::createFromDateString("59 $divide"));
+        $start = $date->format($format);
+        
         break;
     
     default:

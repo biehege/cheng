@@ -159,10 +159,9 @@ class Customer extends Model
             array(
                 'user' => $user->id, 
                 'account' => $account->id,
-                'adopted' => 0,
                 'qq' => i($info['qq']),
                 'remark' => i($info['remark']),
-                'adopted' => i($info['adopted'])),
+                'state' => i($info['adopted']) ? 'Adopted' : 'ToBeAdopted'),
             self::$table);
         return new self(Pdb::lastInsertId());
     }

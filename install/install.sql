@@ -24,13 +24,13 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user` int(10) unsigned NOT NULL,
   `account` int(10) NOT NULL,
-  `adopted` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否被通过',
+  `state` char(20) NOT NULL COMMENT '是否被通过',
   `gender` char(4) NOT NULL,
   `qq` char(20) NOT NULL,
   `city` char(20) NOT NULL,
   `remark` varchar(200) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=154 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=361 ;
 
 -- customer_address
 CREATE TABLE IF NOT EXISTS `customer_address` (
