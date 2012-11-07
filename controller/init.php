@@ -9,7 +9,7 @@
 Pdb::setConfig($config['db']);
 
 // login
-$user = User::loggingUser();
+$user = User::loggingUser(); // but the var here should be long such as $logging_user
 if ($user === false) {
     $has_login = false;
 } else {

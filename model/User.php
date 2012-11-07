@@ -30,6 +30,16 @@ class User extends Model
         return md5($password) === $this->password;
     }
 
+    public function edit($key_or_array, $value = null)
+    {
+        if($value !== null) { // given by key => value
+            $arr = array($key_or_array => $value);
+        } else {
+            $arr = $key_or_array;
+        }
+        Pdb::update($arr, self::$table, $this->selfCond());
+    }
+
     public function getByName($username)
     {
         $cond = array('name=?' => $username);

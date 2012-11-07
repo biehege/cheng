@@ -26,6 +26,7 @@
         <label for="">状态：</label>
         <?php
         $field_name = 'state';
+        $data = $customer_states;
         include smart_view('widget.select');
         ?>
     </div>
@@ -49,7 +50,7 @@
     <span class="col title">修改</span>
 </div>
 <?php foreach ($customers as $cus): $user_ = $cus->user(); $account = $cus->account() ?>
-    <div>
+    <div class="entry" data-id="<?= $cus->id ?>">
         <div class="col "><?= $user_->name ?></div>
         <div class="col "><?= $user_->realname ?></div>
         <div class="col "><?= $cus->gender ?></div>
@@ -59,8 +60,8 @@
         <div class="col "><?= $user_->loginTimes() ?></div>
         <div class="col "><?= $cus->dealTimes() ?></div>
         <div class="col "><?= $cus->undoneTimes() ?></div>
-        <div class="col "><?= $cus->adopted? '审核通过' : '未审核' ?></div>
-        <div class="col ">修改<?php if (!$cus->adopted): ?><a href='<?= ROOT . 'customer/' . $cus->id ?>?a=accept'>审核通过此人</a><?php endif; ?></div>
+        <div class="col "><?= $customer_states[$cus->state] ?></div>
+        <div class="col "><span class="edit-btn">修改</span></div>
     </div>
     <div>
         <table class="login-info">

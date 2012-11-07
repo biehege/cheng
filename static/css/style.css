@@ -127,3 +127,8 @@ div.search .e {
     font-weight: bold;
     text-align: center;
 }
+
+/*翻页*/
+.paging {
+    float: right;
+}

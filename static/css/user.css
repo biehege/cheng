@@ -4,3 +4,10 @@
 .detail-info {
     float: right;
 }
+.edit-btn {
+    cursor: pointer;
+}
+
+.user-edit.append-div {
+    width: 600px;
+}

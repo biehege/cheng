@@ -7,6 +7,8 @@
 if ($user_type !== 'Admin')
     die('no permission');
 
+$customer_states = $config['customer_state'];
+
 switch ($target) {
     case '':
 
@@ -36,9 +38,6 @@ switch ($target) {
 
         $customers = $admin->listCustomer($conds);
 
-        $states = array(
-            '0' => '未审核',
-            '1' => '已经审核',);
         break;
 
     case 'add':
@@ -77,7 +76,71 @@ switch ($target) {
     case 'adopt':
         break;
     default:
-        throw new Exception("unknown: $target");
+
+        if (is_numeric($target)) {
+            $cus_id = $target;
+            if ($by_ajax) {
+                switch ($action) {
+                    case 'get_edit_div':
+                        $cus = new Customer($cus_id);
+                        $user_ = $cus->user();
+
+                        $div_name = 'user-edit';
+                        $view_name = 'user.edit';
+                        include smart_view('append.div');
+                        exit;
+                        break;
+                    
+                    default:
+                        throw new Exception("unkonw action: $action");
+                        break;
+                }
+            } else {
+                switch ($action) {
+                    case 'edit':
+                        if ($by_post) {
+                            $cus = new Customer($cus_id);
+
+                            $username = _post('username');
+                            $password = _post('password');
+                            $realname = _post('realname');
+                            $phone = _post('phone');
+                            $qq = _post('qq');
+                            $email = _post('email');
+                            $address = _post('address');
+                            $remark = _post('remark');
+                            $state = _post('state');
+
+                            $user_ = $cus->user();
+                            if ($password) {
+                                $user_->changePassword($password);
+                            }
+                            if ($username || $realname || $phone || $email) {
+                                $user_->edit(array(
+                                    'name' => $username,
+                                    'realname' => $realname,
+                                    'phone' => $phone,
+                                    'email' => $email));
+                            }
+                            if ($qq || $remark || $state) {
+                                $cus->edit(compact('qq', 'remark', 'state'));
+                            }
+                            if ($address) {
+                                $addr = $cus->defaultAddress();
+                                $addr->edit(array('detail' => $address));
+                            }
+                            redirect('user');
+                        }
+                        break;
+                    
+                    default:
+                        throw new Exception("unkonw action: $action");
+                        break;
+                }
+            }
+        } else {
+            throw new Exception("unknown: $target");
+        }
         break;
 }
 
