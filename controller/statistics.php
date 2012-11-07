@@ -4,21 +4,37 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-$time_start = _get('time_start');
-$time_end = _get('time_end');
-$type = _get('type');
+switch ($target) {
+    case 'gold_price':
+        $time_start = _get('time_start');
+        $time_end = _get('time_end');
+        $type = _get('type');
 
-$material_types = $config['material_type_map'];
+        $material_types = $config['material_type_map'];
 
-$p = _get('p') ?: 1;
-$per_page = 50;
-$total = Price::total($type);
-$paging = new Paginate($per_page, $total);
-$paging->setCurPage($p);
-$prices = Price::history(array(
-    'type' => $type,
-    'limit' => $per_page,
-    'offset' => $paging->offset()));
+        $p = _get('p') ?: 1;
+        $per_page = 50;
+        $total = Price::total($type);
+        $paging = new Paginate($per_page, $total);
+        $paging->setCurPage($p);
+        $prices = Price::history(array(
+            'type' => $type,
+            'limit' => $per_page,
+            'offset' => $paging->offset()));
+        break;
+
+    case 'sale':
+        $divide = _get('divide') ?: 'day'; // day or month
+
+        $data = Stastics::saleRecord(compact('divide'));
+
+        break;
+    
+    default:
+        throw new Exception("unkown target: $target");
+        break;
+}
+
 
 $matter = $view . '.' . $target;
 $view = 'board?master';

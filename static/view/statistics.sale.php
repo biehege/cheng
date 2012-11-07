@@ -5,3 +5,4 @@
  */
 ?>
 <div>statistics.sale</div>
+<?php include smart_view('col.graph') ?>
