@@ -4,7 +4,6 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<a href="<?= ROOT ?>user/add">create admin</a>
 <h2>admin list</h2>
 <ul>
     <?php foreach ($admins as $admin): ?>

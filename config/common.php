@@ -170,7 +170,7 @@ $config['navs']['admin'] = '
 // 总管理员的导航 
 // 其实本有更好的办法，操，你怎么这么傻呢王霄池
 $config['navs']['superadmin'] = '
-管理员 user
+管理员 admin
  + 管理员列表 
  - 新增管理员 add
 系统设置 setting
