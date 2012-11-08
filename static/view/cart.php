@@ -53,7 +53,12 @@
                     
                 </div>
             </div>
-            <div class="remark">填写备注信息&gt;</div>
+            <div class="remark">
+                <form class="remark">
+                    <input name="remark" placeholder="填写备注信息&gt;"/>
+                    <input type="submit" value="确定">
+                </form>
+            </div>
         </div>
     <?php endforeach ?>
     <div class="total-info">
