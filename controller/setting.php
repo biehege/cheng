@@ -32,5 +32,9 @@ if ($by_post) {
     }
 }
 
-$matter = $view . ($target? ".$target" : '');
+if ($target === 'password') {
+    $matter = 'password';
+} else {
+    $matter = $view;
+}
 $view = 'board?master';

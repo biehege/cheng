@@ -31,7 +31,9 @@ if ($by_post) {
         $type = strtolower($user->type);
         $$type = $user->instance();
         $back_url = _get('back_url') ?: DEFAULT_LOGIN_REDIRECT_URL;
+
         redirect($back_url);
+        
     } else {
         $msg = $config['error']['info']['USERNAME_OR_PASSWORD_INCORRECT'];
     }

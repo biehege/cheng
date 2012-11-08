@@ -1,3 +1,20 @@
+
+
+.col.phone {
+    width: 6em;
+}
+.col.qq {
+    width: 6em;
+}
+
+
+
+
+
+.more-info {
+    background-color: #eee;
+    display: none;
+}
 .login-info {
     float: left;
 }

@@ -77,6 +77,9 @@ $config['controllers_need_login'] = array(
     'statistics',
     'setting');
 
+$config['gender'] = array(
+    'male' => '男',
+    'female' => '女');
 $config['customer_state'] = array(
     'ToBeAdopted' => '等待审核',
     'Adopted' => '审核通过',

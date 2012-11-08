@@ -35,7 +35,7 @@ if ($user === false) {
 
 // login check
 if (in_array($controller, $config['controllers_need_login']) && !$has_login)
-    redirect("login?back=$controller");
+    redirect("login?back=$controller/$target");
 
 // sometimes, ? will came, so trim it
 $request_uri = reset(explode('?', $_SERVER['REQUEST_URI']));

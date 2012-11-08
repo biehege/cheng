@@ -31,11 +31,7 @@ class Admin extends Model
 
     public function countCustomer($conds = array())
     {
-        $conds = self::buildDbConds($conds);
-        $tables = array(
-            Customer::$table . ' as c',
-            User::$table . ' as u',
-            Order::$table . ' as o');
+        extract(self::buildDbArgs($conds));
         return Pdb::count($tables, $conds);
     }
 
@@ -44,14 +40,12 @@ class Admin extends Model
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
-        $conds = self::buildDbConds($conds);
+
+        extract(self::buildDbArgs($conds)); // 数据库的条件
+
         if (isset($adopted)) {
             $conds['adopted=?'] = $adopted ? 1 : 0;
         }
-        $tables = array(
-            Customer::$table . ' as c',
-            User::$table . ' as u',
-            Order::$table . ' as o');
         $cus_infos = Pdb::fetchAll('c.id', $tables, $conds, null, $tail);
         return safe_array_map(function ($id) {
             return new Customer($id);
@@ -123,27 +117,34 @@ class Admin extends Model
         Price::update($type, $price);
     }
 
-    private static function buildDbConds($conds = array()) 
+    private static function buildDbArgs($conds = array()) 
     {
         extract($conds);
+
+        $conds = array();
+        $tables = array(
+            User::$table . ' as u',
+            Customer::$table . ' as c');
         if ($name)
-            $ret['u.realname LIKE ?'] = '%' . $name . '%';
+            $conds['u.realname LIKE ?'] = '%' . $name . '%';
         if ($username)
-            $ret['u.name LIKE ?'] = '%' . $username . '%';
+            $conds['u.name LIKE ?'] = '%' . $username . '%';
 
         // a little bit difficult
         if ($time_start)
-            $ret['o.submit_time >= ?'] = $time_start;
+            $conds['o.submit_time >= ?'] = $time_start;
         if ($time_end) 
-            $ret['o.submit_time <= ?'] = $time_end;
-        if ($time_start || $time_end)
-            $ret['o.customer=c.id'] = null;
+            $conds['o.submit_time <= ?'] = $time_end;
+        if ($time_start || $time_end) {
+            $conds['o.customer=c.id'] = null;
+            $tables[] = Order::$table . ' as o';
+        }
 
         if ($state)
-            $ret['u.adopted=?'] = $state;
+            $conds['u.state=?'] = $state;
 
-        $ret['c.user=u.id'] = null;
-        return $ret;
+        $conds['c.user=u.id'] = null;
+        return compact('conds', 'tables');
     }
 
     public function confirmOrder(Order $order)

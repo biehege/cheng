@@ -40,8 +40,8 @@
     <span class="col title">帐号</span>
     <span class="col title">客户名</span>
     <span class="col title">性别</span>
-    <span class="col title">电话</span>
-    <span class="col title">QQ</span>
+    <span class="col title phone">电话</span>
+    <span class="col title qq">QQ</span>
     <span class="col title">区域</span>
     <span class="col title">登录</span>
     <span class="col title">成交</span>
@@ -50,64 +50,66 @@
     <span class="col title">修改</span>
 </div>
 <?php foreach ($customers as $cus): $user_ = $cus->user(); $account = $cus->account() ?>
-    <div class="entry" data-id="<?= $cus->id ?>">
-        <div class="col "><?= $user_->name ?></div>
-        <div class="col "><?= $user_->realname ?></div>
-        <div class="col "><?= $cus->gender ?></div>
-        <div class="col "><?= $user_->phone ?></div>
-        <div class="col "><?= $cus->qq ?></div>
-        <div class="col "><?= $cus->city ?></div>
-        <div class="col "><?= $user_->loginTimes() ?></div>
-        <div class="col "><?= $cus->dealTimes() ?></div>
-        <div class="col "><?= $cus->undoneTimes() ?></div>
-        <div class="col "><?= $customer_states[$cus->state] ?></div>
-        <div class="col "><span class="edit-btn">修改</span></div>
-    </div>
     <div>
-        <table class="login-info">
-            <tr>
-                <td>注册信息</td>
-                <td><?= $user_->create_time ?></td>
-            </tr>
-            <tr>
-                <td>登录历史</td>
-                <td>
-                    <?php foreach ($user_->loginHistory() as $entry): ?>
-                        <div><?= $entry['time'] ?> <?= $entry['ip'] ?></div>
-                    <?php endforeach ?>
-                </td>
-            </tr>
-        </table>
-        <table class="detail-info">
-            <tr>
-                <td>用户姓名</td><td><?= $user->realname ?></td>
-            </tr>
-            <tr>
-                <td>账户余额</td><td><?= $account->remain ?></td>
-            </tr>
-            <tr>
-                <td>成交金额</td><td><?= $account->done ?></td>
-            </tr>
-            <tr>
-                <td>未结清金额</td><td><?= $account->undone ?></td>
-            </tr>
-            <tr>
-                <td>成交次数</td><td><?= $cus->dealTimes() ?></td>
-            </tr>
-            <tr>
-                <td>下单次数</td><td><?= $cus->orderTimes() ?></td>
-            </tr>
-            <tr>
-                <td>邮箱</td><td><?= $user->email ?></td>
-            </tr>
-            <tr>
-                <td>地址</td><td><?= $cus->defaultAddress()->detail ?></td>
-            </tr>
-            <tr>
-                <td>用户备注</td><td><?= $cus->remark ?></td>
-            </tr>
-        </table>
-        <br class="clear-fix">
+        <div class="entry" data-id="<?= $cus->id ?>">
+            <div class="col "><?= $user_->name ?></div>
+            <div class="col "><?= $user_->realname ?></div>
+            <div class="col "><?= $cus->gender ?></div>
+            <div class="col phone"><?= $user_->phone ?></div>
+            <div class="col qq"><?= $cus->qq ?></div>
+            <div class="col "><?= $cus->city ?></div>
+            <div class="col "><?= $user_->loginTimes() ?></div>
+            <div class="col "><?= $cus->dealTimes() ?></div>
+            <div class="col "><?= $cus->undoneTimes() ?></div>
+            <div class="col "><?= $customer_states[$cus->state] ?></div>
+            <div class="col "><span class="edit-btn">修改</span></div>
+        </div>
+        <div class="more-info">
+            <table class="login-info">
+                <tr>
+                    <td>注册信息</td>
+                    <td><?= $user_->create_time ?></td>
+                </tr>
+                <tr>
+                    <td>登录历史</td>
+                    <td>
+                        <?php foreach ($user_->loginHistory() as $entry): ?>
+                            <div><?= $entry['time'] ?> <?= $entry['ip'] ?></div>
+                        <?php endforeach ?>
+                    </td>
+                </tr>
+            </table>
+            <table class="detail-info">
+                <tr>
+                    <td>用户姓名</td><td><?= $user->realname ?></td>
+                </tr>
+                <tr>
+                    <td>账户余额</td><td><?= $account->remain ?></td>
+                </tr>
+                <tr>
+                    <td>成交金额</td><td><?= $account->done ?></td>
+                </tr>
+                <tr>
+                    <td>未结清金额</td><td><?= $account->undone ?></td>
+                </tr>
+                <tr>
+                    <td>成交次数</td><td><?= $cus->dealTimes() ?></td>
+                </tr>
+                <tr>
+                    <td>下单次数</td><td><?= $cus->orderTimes() ?></td>
+                </tr>
+                <tr>
+                    <td>邮箱</td><td><?= $user->email ?></td>
+                </tr>
+                <tr>
+                    <td>地址</td><td><?= $cus->defaultAddress()->detail ?></td>
+                </tr>
+                <tr>
+                    <td>用户备注</td><td><?= $cus->remark ?></td>
+                </tr>
+            </table>
+            <br class="clear-fix">
+        </div>
     </div>
 <?php endforeach; ?>
 </table>

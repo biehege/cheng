@@ -1,5 +1,12 @@
 
 $(function () {
+
+    // 展开详细信息
+    $('.entry').click(function () {
+        $(this).siblings('.more-info').toggle();
+    });
+
+    // 修改订单按钮
     $('.edit-btn').click(function () {
         var that = $(this);
         var cusId = that.parents('.entry').data('id');
