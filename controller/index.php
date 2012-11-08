@@ -9,6 +9,9 @@
 if ($user_type === 'Admin') {
     redirect('order/all');
 }
+if ($user_type === 'SuperAdmin') {
+    redirect('admin');
+}
 
 list(
     $name, 

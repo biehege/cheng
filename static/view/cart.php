@@ -35,9 +35,9 @@
                     <span>手寸：<?= $order->size ?></span>
                     <span>刻字：<?= $order->carve_text ?></span>
                     <span>镶口：<?= $prd->rabbet_start ?>-<?= $prd->rabbet_end ?> ct</span>
-                    <span>辅石：<?= $order->small_stone ?>粒</span>
-                    <span>工费：<?= $order->labor_expense ?>元/件</span>
-                    <span>损耗：<?= $order->wear_tear ?>%</span>
+                    <span>辅石：<?= $prd->small_stone ?>粒</span>
+                    <span>工费：<?= $labor_expense ?>元/件</span>
+                    <span>损耗：<?= $wear_tear ?>%</span>
                 </div>
                 <div class="col price">
                     <div>英格预估价</div>
@@ -57,8 +57,14 @@
         </div>
     <?php endforeach ?>
     <div class="total-info">
-        <div>共计<?= $cart->count() ?>件</div>
-        <div>预估总价<?= $cart->totalPrice() ?>元</div>
+        <span>
+            共计
+            <strong><?= $cart->count() ?>件</strong>
+        </span>
+        <span>
+            预估总价
+            <strong><?= $cart->totalPrice() ?>元</strong>
+        </span>
     </div>
 <?php else: ?>
     <div>你的购物车中还没有商品</div>

@@ -42,6 +42,11 @@ if ($by_ajax) {
     $orders = $cart->orders();
     $orders_count = count($orders);
     $addresses = $customer->addresses();
+
+    if ($orders_count > 0) {
+        $labor_expense = Setting::get('labor_expense');
+        $wear_tear = Setting::get('wear_tear');
+    }
 }
 
 

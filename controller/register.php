@@ -52,7 +52,7 @@ if ($by_post) {
                 'phone',
                 'email'
             ));
-        $user = ($customer->user);
+        $user = $customer->user();
         $user->login();
         $back_url = _req('back_url') ?: DEFAULT_LOGIN_REDIRECT_URL;
         redirect($back_url);
@@ -60,3 +60,4 @@ if ($by_post) {
 }
 
 $view .= '?master';
+$page['scripts'][] = 'jquery.validate.min';

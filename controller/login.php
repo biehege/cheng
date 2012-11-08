@@ -32,6 +32,10 @@ if ($by_post) {
             case 'SuperAdmin':
                 $back_url = 'user';
                 break;
+
+            case 'Admin':
+            case 'Customer':
+                break;
             
             default:
                 throw new Exception("unkonwn user type: $user->$type");
@@ -45,3 +49,5 @@ if ($by_post) {
 }
 
 $view .= '?master';
+
+$page['scripts'][] = 'jquery.validate.min';
