@@ -129,7 +129,7 @@ $config['next_button_map'] = array(
 //     'product' => array());
 
 // 普通用户的导航
-$config['navs']['default'] = '
+$config['navs']['customer'] = '
 我的订单 order
  - 待确认 tobeconfirmed
  - 已交工厂 infactory
@@ -165,4 +165,14 @@ $config['navs']['admin'] = '
 系统设置 setting
  + 全局设置
  - 修改密码 password
+';
+
+// 总管理员的导航 
+// 其实本有更好的办法，操，你怎么这么傻呢王霄池
+$config['navs']['superadmin'] = '
+管理员 user
+ + 管理员列表 
+ - 新增管理员 add
+系统设置 setting
+ + 修改密码 password
 ';

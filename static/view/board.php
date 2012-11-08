@@ -4,10 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<?php
-$nav_id = strtolower($user_type);
-include smart_view('nav');
-?>
+<?php include smart_view('nav'); ?>
 <div class="right-frame">
     <?php include smart_view('crumb'); ?>
     <div class="matter">

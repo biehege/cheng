@@ -41,8 +41,8 @@ if (in_array($controller, $config['controllers_need_login']) && !$has_login)
 $request_uri = reset(explode('?', $_SERVER['REQUEST_URI']));
 
 // build nav array
-$navs['default'] = build_nav($config['navs']['default']);
-$navs['admin'] = build_nav($config['navs']['admin']);
+if ($has_login)
+    $navs = build_nav($config['navs'][strtolower($user_type)]);
 
 $page['description'] = 'PHP Tiny Frame 很小很小的 PHP 框架';
 $page['keywords'] = array('PHP', '开源', '框架', 'MVC');

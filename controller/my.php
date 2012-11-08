@@ -10,7 +10,7 @@ if (!$has_login)
 $user_type = $user->type;
 switch ($user_type) {
     case 'SuperAdmin':
-        $admins = $superadmin->listAdmin();
+        
         break;
 
     case 'Admin':

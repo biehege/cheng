@@ -4,6 +4,8 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
+// we will del this file
+
 $msg = '';
 $ERROR_INFO = $config['error']['info'];
 switch ($target) {

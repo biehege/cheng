@@ -3,14 +3,5 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
+// we should del it
 ?>
-<a href="<?= ROOT ?>create/admin">create admin</a>
-<h2>admin list</h2>
-<ul>
-    <?php foreach ($admins as $admin): ?>
-    <li>
-        <strong><?= $admin->name ?></strong>
-        <span>create in: <?= $admin->create_time ?></span>
-    </li>
-    <?php endforeach; ?>
-</ul>

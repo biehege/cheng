@@ -4,18 +4,14 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-/**
-* todo:
-* test for back_url
-* - if come from register? to register first and then redirect to another because of check in reister
-*/
-
-// log out
+// login out
 if (isset($_GET['logout']) && isset($user)) {
     $user->logout();
     redirect();
 }
 
+// if user is already logged in, 
+// to index since we didn't provide such a link
 if ($has_login) {
     redirect(); // to index
 }
@@ -32,6 +28,15 @@ if ($by_post) {
         $$type = $user->instance();
         $back_url = _get('back_url') ?: DEFAULT_LOGIN_REDIRECT_URL;
 
+        switch ($user->type) {
+            case 'SuperAdmin':
+                $back_url = 'user';
+                break;
+            
+            default:
+                throw new Exception("unkonwn user type: $user->$type");
+                break;
+        }
         redirect($back_url);
         
     } else {

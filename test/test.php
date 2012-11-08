@@ -95,7 +95,14 @@ test(
     1, 
     array('name' => 'register Customer, db'));
 
-// case 4 Super Admin create Admin, db
+// case 4 User::check($username, $password)
+begin_test();
+test(
+    User::check($username, $password),
+    true,
+    array('name' => 'User::check($username, $password)'));
+
+// case 5 Super Admin create Admin, db
 begin_test();
 $username = 'test_admin';
 $password = 'password';
@@ -113,13 +120,13 @@ $real_arr = Pdb::fetchRow(
     array('id=?' => $id));
 test($real_arr, $ideal_arr, array('name' => 'Super Admin create Admin, db'));
 
-// case 5 Admin update gold Price
+// case 6 Admin update gold Price
 begin_test();
 $admin->updatePrice('PT950', '1903.21');
 $admin->updatePrice('Au750', '1723.45');
 test(1, 1, array('name' => 'Admin update gold Price'));
 
-// case 6 Admin add Factory
+// case 7 Admin add Factory
 begin_test();
 $info = array(
     'name' => '嘉黛_test',
@@ -130,7 +137,7 @@ $info = array(
 $admin->addFactory($info);
 test(count(Factory::names()), 1, array('name' => 'Admin add Factory'));
 
-// case 7 Admin post Product, db
+// case 8 Admin post Product, db
 begin_test();
 $prd_types = Product::types();
 $info = array(
