@@ -132,3 +132,8 @@ div.search .e {
 .paging {
     float: right;
 }
+
+/*错误提示*/
+.error {
+    color: red;
+}

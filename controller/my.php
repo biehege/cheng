@@ -39,6 +39,8 @@ switch ($user_type) {
 
                     redirect('my/info');
                 }
+
+                
                 break;
             case 'password':
                 $msg = '';
@@ -81,3 +83,5 @@ if ($target === 'password') {
     $matter = "$view.$target";
 }
 $view = 'board?master';
+
+$page['scripts'][] = 'jquery.validate.min';

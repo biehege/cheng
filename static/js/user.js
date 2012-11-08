@@ -22,4 +22,7 @@ $(function () {
                 window.refreshAppendDiv();
             });
     });
+
+    // 表单验证
+    $('form.add').validate();
 });

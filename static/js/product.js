@@ -34,4 +34,7 @@ $(function () {
     $('form.auto-load input[type=file]').change(function () {
         $(this).parents('form.auto-load').submit();
     });
+
+    // 表单验证
+    $('form.post').validate();
 });

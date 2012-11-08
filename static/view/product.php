@@ -26,7 +26,6 @@
             <select name="sort1" class="">
                 <option selected="" value="">排序条件</option>
                 <option value="count_sold">已售数量</option>
-                <option value="count_view">浏览人次</option>
             </select>
             <select name="sort2" class="">
                 <option selected="" value="desc">降序</option>
@@ -52,7 +51,6 @@
         <th>刻字</th>
         <th>说明</th>
         <th>已售</th>
-        <th>浏览</th>
         <th>操作</th>
     </tr>
 
@@ -68,7 +66,6 @@
             <td><?= $prd->carve_allow ?></td>
             <td><?= $prd->remark ?></td>
             <td><?= $prd->sold_count ?></td>
-            <td><?= $prd->view_count ?></td>
             <td>编辑</td>
         </tr>
     <?php endforeach ?>

@@ -39,9 +39,11 @@
         <?php
         echo js_node('jquery-1.7.2.min'), "\n";
         echo js_var('_G', array('ROOT'=>ROOT)), "\n";
-        echo js_node('every');
+        echo js_node('every'), PHP_EOL;
+        if (file_exists(_js($controller)))
+            $page['scripts'][] = $controller;
         foreach ($page['scripts'] as $script) {
-            echo js_node($script), "\n";
+            echo js_node($script), PHP_EOL;
         }
         ?>
     </body>

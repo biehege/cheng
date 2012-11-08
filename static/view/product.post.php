@@ -4,7 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<form action="<?= ROOT ?>product/post" class="auto-load" enctype="multipart/form-data" method="post">
+<form action="<?= ROOT ?>product/post" class="auto-load post" enctype="multipart/form-data" method="post">
     <div class="left">
         <div class="upload">
             <h3>产品图片上传</h3>
@@ -30,11 +30,11 @@
     <div class="right">
         <div>
             <label for="name">标题：</label>
-            <input name="name" type="text" value="<?= $name ?>" id="name" />
+            <input name="name" type="text" value="<?= $name ?>" id="name" class="required" />
         </div>
         <div>
             <label for="no">款号：</label>
-            <input name="no" type="text" value="<?= $no ?>" id="no" />
+            <input name="no" type="text" value="<?= $no ?>" id="no" class="required" />
         </div>
         <div>
             <label for="type">分类：</label>
@@ -53,21 +53,21 @@
         </div>
         <div>
             <label for="weight">重量：</label>
-            <input name="weight" type="text" value="<?= $weight ?>" id="weight" />
+            <input name="weight" type="text" value="<?= $weight ?>" id="weight" class="required" />
             <span>18K金</span>
         </div>
         <div>
             <label for="">镶口：</label>
-            <input name="rabbet_start" type="text" value="<?= $rabbet_start ?>" id="rabbet_start" />
-            <input name="rabbet_end" type="text" value="<?= $rabbet_end ?>" id="rabbet_end" />
+            <input name="rabbet_start" type="text" value="<?= $rabbet_start ?>" id="rabbet_start" class="required" />
+            <input name="rabbet_end" type="text" value="<?= $rabbet_end ?>" id="rabbet_end" class="required" />
         </div>
         <div>
             <label for="small_stone">辅石：</label>
-            <input name="small_stone" type="text" value="<?= $small_stone ?>" id="small_stone" />
+            <input name="small_stone" type="text" value="<?= $small_stone ?>" id="small_stone" class="required" />
         </div>
         <div>
             <label for="remark">说明：</label>
-            <input name="remark" type="text" value="<?= $remark ?>" id="remark" />
+            <input name="remark" type="text" value="<?= $remark ?>" id="remark" class="" />
             <span>仅自己可见</span>
         </div>
         <input type="hidden" value="<?= $image1 ?>" name="image1" />

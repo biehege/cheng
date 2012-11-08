@@ -30,7 +30,8 @@ switch ($target) {
                 'email',
                 'address',
                 'remark'));
-            redirect('facotry'); // to list
+            
+            redirect('factory'); // to list
         }
         break;
     
@@ -41,3 +42,5 @@ switch ($target) {
 
 $matter = $view . ($target? ".$target" : '');
 $view = 'board?master';
+
+$page['scripts'][] = 'jquery.validate.min';

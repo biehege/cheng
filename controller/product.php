@@ -169,4 +169,5 @@ switch ($target) {
 $matter = $view . ($target ? '.' . $target : '');
 $view = 'board?master';
 
+$page['scripts'][] = 'jquery.validate.min';
 $page['scripts'][] = 'widget';

@@ -47,8 +47,6 @@ if (!file_exists(FrameFile::controller($controller))) {
 // auto include if there exists css or js file same name with controller
 if (file_exists(_css($controller)))
     $page['styles'][] = $controller;
-if (file_exists(_js($controller)))
-    $page['scripts'][] = $controller;
 
 // execute controller
 include FrameFile::controller($controller);

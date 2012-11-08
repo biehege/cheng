@@ -18,8 +18,9 @@ class Setting
         } else {
             throw new Exception('no array');
         }
+        d($arr);
         foreach ($arr as $key => $value) {
-            Pdb::update(compact('value'), self::$table, array('`key`=?', $key));
+            Pdb::update(compact('value'), self::$table, array('`key`=?' => $key));
         }
     }
 
