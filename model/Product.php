@@ -69,11 +69,12 @@ class Product extends Model
                 'action=?' => 'ViewProduct'));
     }
 
-    public function estimatePrice()
+    public function estimatePrice($opts = array())
     {
-        // todo 
+        extract($opts);
         $info = $this->info();
-        $material = $info['material'];
+        if (!isset($material))
+            $material =  reset(json_decode($info['material']));
         return 
             $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current($material) * ($material === 'PT950' ? Setting::get('weight_ratio') : 1)
                 + Setting::get('labor_expense')

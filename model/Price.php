@@ -13,7 +13,7 @@ class Price
         return Pdb::fetchRow(
             'price', 
             self::$table, 
-            array('type=?' => $type), 
+            self::typeCond($type), 
             'ORDER BY id desc');
     }
 
@@ -22,9 +22,9 @@ class Price
         return Pdb::fetchRow(
             'price',
             self::$table,
-            array(
-                'type=?' => $type,
-                'time >= ?'=> $time),
+            array_merge(
+                self::typeCond($type),
+                array('time >= ?'=> $time)),
             'ORDER BY time ASC');
     }
 
@@ -67,11 +67,15 @@ class Price
 
     private static function typeCond($type)
     {
+        $map = $GLOBALS['config']['material_type_name_map'];
+
         if (empty($type) || $type === 'all') {
             $cond = null;
         } else {
+            $type = $map[$type];
             $cond = array('type=?' => $type);
         }
         return $cond;
     }
+
 }

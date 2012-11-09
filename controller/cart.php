@@ -47,6 +47,11 @@ if ($by_ajax) {
     }
 }
 
+if ($by_post) {
+    $customer->submitCart();
+    redirect('order/tobeconfirmed');
+}
+
 $view .= '?master';
 
 $page['scripts'][] = 'jquery.form';

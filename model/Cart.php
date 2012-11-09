@@ -38,12 +38,10 @@ class Cart
     public function totalPrice()
     {
         $orders = $this->orders();
-        return array_sum(
-            array_map(
-                function ($order) {
-                    return $order->product()->estimatePrice();
-                }, 
-                $orders));
+        $price_arr = array_map(function ($order) {
+            return $order->estimate_price;
+        }, $orders);
+        return array_sum($price_arr);
     }
 
     public function del(Order $order)

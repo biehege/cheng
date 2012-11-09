@@ -87,7 +87,7 @@
             <label for="addr<?= $addr->id ?>"><?= $addr->name ?></label>
             <span><?= $addr->phone ?></span>
             <span><?= $addr->detail ?></span>
+        </div>
     <?php endforeach ?>
     <input type="submit" value="提交订单" />
 </form>
-
