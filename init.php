@@ -4,7 +4,7 @@
 // c is controller
 // a is action
 $controller = _req('c', 'index');
-$action = _req('a');
+$action = _req('a') ?: _req('action');
 $target = _req('target');
 
 $by_ajax = i($_REQUEST['is_ajax']) || (strtolower(i($_SERVER['HTTP_X_REQUESTED_WITH'])) == strtolower('XMLHttpRequest'));
