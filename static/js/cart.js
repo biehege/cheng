@@ -31,8 +31,6 @@ $(function () {
     var submitBtn = $('form.remark input[type=submit]');
     $('form.remark input[type=text]').focus(function () {
         submitBtn.show();
-    }).focusout(function () {
-        submitBtn.hide();
     });
     $('form.remark').ajaxForm(function () {
         submitBtn.hide();

@@ -206,9 +206,9 @@ CREATE TABLE IF NOT EXISTS `price`
 CREATE TABLE IF NOT EXISTS `user_log` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `subject` int(10) unsigned NOT NULL COMMENT '主语 user_id or customer_id or ???',
-  `action` enum('Login','StartBill','DoneBill','ViewProduct') NOT NULL COMMENT '动词',
+  `action` char(20) NOT NULL COMMENT '动词',
   `target` int(10) unsigned DEFAULT NULL COMMENT '宾语',
   `info` varchar(50) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=111 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;

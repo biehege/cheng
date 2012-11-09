@@ -4,7 +4,6 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-
 if ($by_ajax && $action === 'get_price') {
     $prd = new Product($target);
     $material = _get('material');

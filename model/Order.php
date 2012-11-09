@@ -98,7 +98,18 @@ class Order extends Model
                 'factory_price' => $factory_price->id,
                 'customer_price' => $customer_price->id,
                 'weight_ratio' => $material === 'PT950' ? Setting::get('weight_ratio') : 1),
-            self::$table);
+            self::$table,
+            $this->selfCond());
+
+        $customer = $this->customer();
+        Pdb::insert(
+            array(
+                'subject' => $customer->id,
+                'action' => 'SubmitOrder',
+                'target' => $this->id,
+                'time=NOW()' => null,
+                'info' => $customer->user()->realname . ' 提交订单'),
+            UserLog::$table);
     }
 
     public function price() // we need that? may be not, del it !!!
@@ -110,18 +121,17 @@ class Order extends Model
 
     public static function count($conds)
     {
-        $conds = self::buildDbConds($conds);
-        $tables = array(self::$table . ' as o', Product::$table . ' as p');
+            // tables and $conds
+        extract(self::buildDbArgs($conds));
         return (int) Pdb::count($tables, $conds);
     }
 
     public static function listOrder($conds)
     {
         extract(self::defaultConds($conds));
-        $tables = array(self::$table . ' as o', Product::$table . ' as p');
-        $conds = self::buildDbConds($conds);
-        $order = array();
         $tail = "LIMIT $limit OFFSET $offset";
+        extract(self::buildDbArgs($conds));
+        $order = array('submit_time DESC');
         return safe_array_map(function ($id) {
             return new Order($id);
         }, Pdb::fetchAll('o.id', $tables, $conds, $order, $tail));
@@ -140,48 +150,53 @@ class Order extends Model
         return  (empty($ret))? array() : $ret;
     }
 
-    private static function buildDbConds($conds = array())
+    // tables and $conds
+    private static function buildDbArgs($conds = array())
     {
         extract(array_merge(
             array(
                 'username' => '',
                 'factory' => ''),
             $conds));
-        $ret = array();
+        $tables = array(self::$table . ' as o');
+        $conds = array();
         if ($name)
-            $ret['p.name LIKE ?'] = '%' . $name . '%';
+            $conds['p.name LIKE ?'] = '%' . $name . '%';
         if ($product_no) {
-            $ret['p.no=?'] = $product_no;
+            $conds['p.no=?'] = $product_no;
         }
         if ($order_no) {
-            $ret['o.order_no=?'] = $order_no;
+            $conds['o.order_no=?'] = $order_no;
         }
         if ($time_start)
-            $ret['o.submit_time >= ?'] = $time_start;
+            $conds['o.submit_time >= ?'] = $time_start;
         if ($time_end)
-            $ret['o.submit_time <= ?'] = $time_end;
+            $conds['o.submit_time <= ?'] = $time_end;
         if ($type) {
-            $ret['p.type=?'] = $type;
+            $conds['p.type=?'] = $type;
         }
         if ($state) {
-            $ret['o.state=?'] = $state;
+            $conds['o.state=?'] = $state;
         } else {
-            $ret['o.state <> ?'] = 'InCart'; // for all
+            $conds['o.state <> ?'] = 'InCart'; // for all
         }
         if ($username) {
             $user = User::createByName($username);
             $customer = $user->instance();
-            $ret['o.customer=?'] = $customer->id;
+            $conds['o.customer=?'] = $customer->id;
         }
         if ($factory) {
             $factory = Factory::createByName($factory);
-            $ret['o.factory=?'] = $factory->id;
+            $conds['o.factory=?'] = $factory->id;
         }
         if ($customer) {
             if (is_numeric($customer)) {
-                $ret['o.customer=?'] = $customer;
+                $conds['o.customer=?'] = $customer;
             }
         }
-        return $ret;
+        if ($name || $product_no || $type) {
+            $tables[] = Product::$table . ' as p';
+        }
+        return compact('conds', 'tables');
     }
 }

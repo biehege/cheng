@@ -42,11 +42,15 @@
         <div class="e">
             <label for="time">下单时间：</label>
             <input type="text" name="time_start" id="time" />
+            -
             <input type="text" name="time_end" id="time" />
         </div>
         <div class="e">
             <label for="state">状态：</label>
-            <input type="text" name="state" id="state" />
+            <?php 
+            $field_name = 'state'; 
+            $data = $state_map;
+            include smart_view('widget.select'); ?>
         </div>
         <input type="submit" value="搜索" />
     </div>
@@ -141,7 +145,9 @@
                     <?php endif ?>
                 </div>
             <?php endif ?>
-            <div class="remark">备注
+            <div class="remark">
+                <span>备注</span>
+                <span><?= $order->customer_remark ?></span>
             </div>
             <div class="detail-info">
                 <div class="address">
@@ -152,7 +158,11 @@
                 </div>
                 <div class="log">
                     <h4>订单处理日志</h4>
-                    <span>跟进&nbsp;&gt;</span>
+
+                    <?php if ($user_type == 'Admin'): ?>
+                        <span>跟进&nbsp;&gt;</span>
+                    <?php endif ?>
+                    
                     <?php $order_log = $order->log(); ?>
                     <?php foreach ($order_log as $entry): ?>
                         <div class=""><?= $entry['time'] ?> <?= $entry['remark'] ?></div>

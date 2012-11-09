@@ -19,7 +19,7 @@ $(function () {
         var entry = that.parents('.entry');
         var id = entry.data('id');
         $.get(
-            'product',
+            '/product',
             {
                 action: 'get_price',
                 material: that.text(),

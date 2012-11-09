@@ -104,7 +104,7 @@ $config['material_type_name_map'] = array(
     '红18K金' => 'AU750');
 
 $config['order_states'] = array( // remove s??
-    'InCart' => '...',
+    //'InCart' => '...',
     'ToBeConfirmed' => '待确认',
     'InFactory' => '已交工厂',
     'FactoryDone' => '工厂完工',

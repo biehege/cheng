@@ -259,6 +259,7 @@ for ($i=1; $i < $day_count; $i++) {
             'customer' => $customer->id,
             'state' => 'Done',
             'paid' => rand(3000, 8000),
+            'state' => 'Done',
             'submit_time' => 'NOW()',
             'done_time' => $date->format('Y-m-d H:i:s')),
         Order::$table);

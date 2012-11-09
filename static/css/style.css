@@ -132,6 +132,10 @@ div.search .e {
 .paging {
     float: right;
 }
+.padding .on { /*fuck*/
+    font-weight: bold;
+    color: red;
+}
 
 /*错误提示*/
 .error {
