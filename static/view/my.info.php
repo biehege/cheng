@@ -3,8 +3,14 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
+
+$address = $customer->defaultAddress()->detail;
 ?>
-<div>请完善您的个人信息</div>
+
+<?php if (empty($address)): ?>
+    <div>请完善您的个人信息</div>
+<?php endif ?>
+
 <form method="post" class="info">
     <div>
         <label for="">账户：</label>
@@ -35,7 +41,7 @@
     </div>
     <div>
         <label for="address">地址：</label>
-        <input name="address" type="text" value="<?= $customer->defaultAddress()->detail ?>" class="">
+        <input name="address" type="text" value="<?= $address ?>" class="">
     </div>
     <input type="submit" value="确定">
 </form>
