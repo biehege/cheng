@@ -141,14 +141,20 @@
                 <div class="col control">
                     <?php $caption = $next_button_map[$order->state]; ?>
                     <?php if ($caption): ?>
-                        <button class="next-btn" data-action="<?= $next_action_map[$order->state] ?>"><?= $caption ?></button>
+                        <button class="next-btn"><?= $caption ?></button>
                     <?php endif ?>
                 </div>
             <?php endif ?>
             <div class="remark">
-                <span>备注</span>
+                <span>备注：</span>
                 <span><?= $order->customer_remark ?></span>
             </div>
+            <?php if ($user_type === 'Admin'): ?>
+                <div class="remark">
+                    <span>管理员备注：</span>
+                    <span><?= $order->admin_remark ?></span>
+                </div>
+            <?php endif ?>
             <div class="detail-info">
                 <div class="address">
                     <?php $address = $cus->defaultAddress() ?>
