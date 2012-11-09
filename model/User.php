@@ -49,9 +49,9 @@ class User extends Model
     public function changePassword($new_password)
     {
         Pdb::update(
-            array(
-                'password' => md5($new_password)),
-            self::$table);
+            array('password' => md5($new_password)),
+            self::$table,
+            $this->selfCond());
     }
 
     public function login()
