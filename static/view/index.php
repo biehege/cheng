@@ -44,7 +44,7 @@
 </div>
 <ul class="product-list">
     <?php foreach ($products as $prd): $materials = $prd->materials(); ?>
-        <li data-id="<?= $prd->id ?>">
+        <li class="entry" data-id="<?= $prd->id ?>">
             <div class="left">
                 <img />
                 <img />
@@ -97,7 +97,10 @@
             <div class="right">
                 <div class="already">已下单 <span class="num"></span></div>
                 <div class="add btn">下订单</div>
-                <div class="estimate">英格预估价<?= $prd->estimatePrice() ?></div>
+                <div class="estimate">
+                    英格预估价
+                    <span class="price"><?= $prd->estimatePrice() ?></span>
+                </div>
             </div>
             <br class="clear-fix" />
         </li>

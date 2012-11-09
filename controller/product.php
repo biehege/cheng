@@ -4,6 +4,14 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
+
+if ($by_ajax && $action === 'get_price') {
+    $prd = new Product($target);
+    $material = _get('material');
+    echo $prd->estimatePrice(compact('material'));
+    exit;
+}
+
 if ($user_type !== 'Admin')
     die('you should be Admin');
 
@@ -15,7 +23,7 @@ if ($by_ajax) {
             $admin->delProduct($ids);
             exit;
             break;
-        
+
         default:
             throw new Exception("unkown action: $action");
             break;

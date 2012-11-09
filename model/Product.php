@@ -75,10 +75,10 @@ class Product extends Model
         $info = $this->info();
         if (!isset($material))
             $material =  reset(json_decode($info['material']));
-        return 
-            $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current($material) * ($material === 'PT950' ? Setting::get('weight_ratio') : 1)
+        $price = $info['weight'] * (1 + Setting::get('wear_tear')) * Price::current($material) * ($material === 'PT950' ? Setting::get('weight_ratio') : 1)
                 + Setting::get('labor_expense')
                 + $info['small_stone'] * (Setting::get('st_expense') + Setting::get('st_price'));
+        return round($price, 2);
     }
 
     private static function buildDbConds($conds)

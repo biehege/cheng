@@ -14,7 +14,21 @@ $(function () {
     });
 
     // 材质选择按钮
-    $('.type-selector li').widget('tabSelect');
+    $('.type-selector li').widget('tabSelect').click(function () {
+        var that = $(this);
+        var entry = that.parents('.entry');
+        var id = entry.data('id');
+        $.get(
+            'product',
+            {
+                action: 'get_price',
+                material: that.text(),
+                target: id
+            },
+            function (ret) {
+                entry.find('.estimate .price').text(ret);
+            });
+    });
 
     // 刻字的确认按钮
     $('.carve').each(function () {

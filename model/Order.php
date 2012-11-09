@@ -49,6 +49,7 @@ class Order extends Model
 
     public static function create(Customer $cus, Product $prd, $opts)
     {
+        $material = $opts['material'];
         Pdb::insert(
             array_merge(
                 $opts,
@@ -57,7 +58,7 @@ class Order extends Model
                     'customer' => $cus->id,
                     'product' => $prd->id,
                     'state' => 'InCart',
-                    'estimate_price' => $prd->estimatePrice(),
+                    'estimate_price' => $prd->estimatePrice(compact('material')),
                     'add_cart_time=NOW()' => null)),
             self::$table);
         return new self(Pdb::lastInsertId());
