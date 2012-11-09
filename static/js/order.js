@@ -23,18 +23,16 @@ $(function () {
     // 订单推进
     $('.next-btn').click(function () {
         var that = $(this);
-        var action = that.data('action');
-        var id = that.parents('entry').data('id');
+        var id = that.parents('.entry').data('id');
         $.get(
             '/order',
             {
-                a: action,
-                id: id
+                action: 'get_action_div',
+                target: id
             },
             function (ret) {
-                console.log('ok');
-                that.data('action', ret.action).text(ret.caption);
-            }, 'json');
+                $$.appendDiv.show(ret);
+            }, 'html');
     });
 
     // 选择工厂 弹出框
@@ -101,4 +99,5 @@ $(function () {
                 window.refreshAppendDiv();
             });
     });
+
 });

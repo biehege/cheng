@@ -70,6 +70,9 @@ switch ($user_type) {
         $factories = Factory::names();
 
         if ($by_ajax) {
+            $order_id = $target;
+            $order = new Order($order_id);
+
             switch ($action) {
                 case 'change_factory':
                     $factory_id = _get('factory_id');
@@ -79,11 +82,16 @@ switch ($user_type) {
                     echo $factories[$factory_id];
                     exit;
 
+                case 'get_action_div': 
+                    $view_name = 'order.control';
+                    include smart_view('append.div');
+                    exit;
+                    break;
+
                 case 'get_info_div':
                     if (!is_numeric($target))
                         throw new Exception("unkown id: $target");
-                    $order_id = $target;
-                    $order = new Order($order_id);
+                    
                     $cus = $order->customer();
                     $product = $order->product();
                     $materials = $product->materials();
@@ -127,11 +135,8 @@ switch ($user_type) {
                     break;
 
                 default:
-                    $id = _get('id');
-                    $action = $admin->__call($action . 'Order', new Order($id));
-                    echo json_encode(array(
-                        'action' => $next_button_map[$action],
-                        'caption' => $next_button_map[$action]));
+                    $admin->__call($action . 'Order', new Order($order_id));
+                    redirect('order/' . 'all');
                     break;
             }
             exit;
