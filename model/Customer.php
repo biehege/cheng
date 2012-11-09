@@ -128,6 +128,11 @@ class Customer extends Model
         );
     }
 
+    public function changeOrderRemark(Order $order, $remark)
+    {
+        $order->edit('customer_remark', $remark);
+    }
+
     public function submitCart()
     {
         $cart = $this->cart();

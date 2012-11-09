@@ -152,7 +152,6 @@ $config['navs']['admin'] = '
 货品管理 product
  + 货品列表 
  - 单品上传 post
- - 批量上传 batch
 用户管理 user
  + 用户列表 
  - 新增用户 add

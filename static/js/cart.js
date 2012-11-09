@@ -26,4 +26,30 @@ $(function () {
     $('.del .popup .cancel-btn').click(function () {
         $(this).parent().hide();
     });
+
+    // 备注表单
+    var submitBtn = $('form.remark input[type=submit]');
+    $('form.remark input[type=text]').focus(function () {
+        submitBtn.show();
+    }).focusout(function () {
+        submitBtn.hide();
+    });
+    $('form.remark').ajaxForm(function () {
+        submitBtn.hide();
+    });
+
+    // 编辑地址
+    $('.edit-addr-btn').click(function () {
+        var id = $('input[name=address][checked]').data('id');
+        $.get(
+            '/address', 
+            {
+                action: 'get_edit_div',
+                target: id
+            },
+            function (ret) {
+                $$.appendDiv.show(ret);
+            },
+            'html');
+    });
 });

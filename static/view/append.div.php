@@ -4,7 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 if (!isset($div_name))
-    $div_name = '';
+    $div_name = str_replace('.', '-', $view_name);
 
 ?>
 <div class="<?= $div_name ?> append-div">

@@ -33,3 +33,15 @@ h2 {
 .popup .ok-btn, .popup .cancel-btn {
     cursor: pointer;
 }
+
+form.remark input[type=submit] {
+    display: none;
+}
+
+.address-edit.append-div {
+    width: 500px;
+}
+.edit-addr-btn {
+    cursor: pointer;
+    float: right;
+}

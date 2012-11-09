@@ -7,8 +7,6 @@
 if ($user_type !== 'Customer')
     exit('no permission');
 
-
-
 if ($by_ajax) {
     switch ($action) {
         case 'add':
@@ -49,5 +47,6 @@ if ($by_ajax) {
     }
 }
 
-
 $view .= '?master';
+
+$page['scripts'][] = 'jquery.form';

@@ -41,7 +41,27 @@ $next_button_map = $config['next_button_map'];
 
 switch ($user_type) {
     case 'Customer':
-        $customer = $customer->id;
+
+        if ($by_ajax) {
+            switch ($action) {
+                case 'change_remark':
+                    $remark = _post('remark');
+
+                    $order = new Order($target);
+                    if ($remark) {
+                        $customer->changeOrderRemark($order, $remark);
+                    }
+                    echo $order->customer_remark;
+                    exit;
+                
+                default:
+                    throw new Exception("unkown action: $action");
+                    break;
+            }
+        }
+
+        $customer = $customer->id; // for next
+
         break;
 
     case 'Admin':

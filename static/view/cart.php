@@ -50,12 +50,13 @@
                         <span class="cancel-btn">取消</span>
                     </div>
                     <span class="del btn">删除</span>
-                    
                 </div>
             </div>
             <div class="remark">
-                <form class="remark">
-                    <input name="remark" placeholder="填写备注信息&gt;"/>
+                <form class="remark" method="post" action="<?= ROOT ?>order">
+                    <input type="hidden" name="target" value="<?= $order->id ?>" />
+                    <input type="hidden" name="action" value="change_remark">
+                    <input type="text" name="remark" placeholder="填写备注信息&gt;" value="<?= $order->customer_remark ?>" />
                     <input type="submit" value="确定">
                 </form>
             </div>
@@ -78,11 +79,11 @@
 <form method="post">
     <div>
         <span>请确认您的收件地址：</span>
-        <span>编辑</span>
+        <span class="edit-addr-btn">编辑</span>
     </div>
     <?php foreach ($addresses as $addr): ?>
         <div>
-            <input type="radio" name="address" value="<?= $addr->id ?>" id="addr<?= $addr->id ?>">
+            <input type="radio" name="address" value="<?= $addr->id ?>" id="addr<?= $addr->id ?>" data-id="<?= $addr->id ?>" checked />
             <label for="addr<?= $addr->id ?>"><?= $addr->name ?></label>
             <span><?= $addr->phone ?></span>
             <span><?= $addr->detail ?></span>
