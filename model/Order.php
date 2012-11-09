@@ -86,7 +86,7 @@ class Order extends Model
             'wear_tear' => Setting::get('wear_tear'),
             'st_price' => Setting::get('st_price'),
             'st_expense' => Setting::get('st_expense'),
-            'st_weight' => 0,
+            'st_weight' => $product->st_weight,
             'model_expense' => 0,
             'risk_expense' => Setting::get('risk_expense'));
         $factory_price = PriceData::create($info);

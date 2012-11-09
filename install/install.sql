@@ -79,12 +79,13 @@ CREATE TABLE IF NOT EXISTS `product` (
   `rabbet_start` decimal(2,2) NOT NULL,
   `rabbet_end` decimal(2,2) NOT NULL,
   `small_stone` tinyint(4) NOT NULL,
+  `st_weight` decimal(4,2) NOT NULL DEFAULT '0.00',
   `remark` text,
   `carve_allow` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `post_time` datetime DEFAULT NULL,
   `sold_count` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=405 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=573 ;
 
 -- product_type
 CREATE TABLE IF NOT EXISTS `product_type`

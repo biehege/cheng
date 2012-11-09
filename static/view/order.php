@@ -127,7 +127,7 @@
                 </div>
             <?php else: ?>
                 <div class="col price-real">
-                    <?= $customer_price->real_price ?>
+                    <?= $customer_price->finalPrice() ?>
                 </div>
             <?php endif ?>
             <div class="col state">

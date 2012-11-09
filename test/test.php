@@ -150,7 +150,8 @@ $info = array(
         '18K红')),
     'rabbet_start' => '0.30',
     'rabbet_end' => '0.60',
-    'small_stone' => 3);
+    'small_stone' => 3,
+    'st_weight' => 2.1);
 $product = $admin->postProduct($info);
 // but what if we count?
 test(

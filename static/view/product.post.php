@@ -62,8 +62,11 @@
             <input name="rabbet_end" type="text" value="<?= $rabbet_end ?>" id="rabbet_end" class="required" />
         </div>
         <div>
-            <label for="small_stone">辅石：</label>
+            <label for="small_stone">辅石数量：</label>
             <input name="small_stone" type="text" value="<?= $small_stone ?>" id="small_stone" class="required" />
+            <label for="st_weight">重量：</label>
+            <input name="st_weight" type="text" value="<?= $st_weight ?>" id="st_weight" class="required" />
+            <span>克拉</span>
         </div>
         <div>
             <label for="remark">说明：</label>

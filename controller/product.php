@@ -78,6 +78,7 @@ switch ($target) {
             $rabbet_start,
             $rabbet_end,
             $small_stone,
+            $st_weight,
             $remark
         ) = _post(
             'name',
@@ -88,6 +89,7 @@ switch ($target) {
             'rabbet_start',
             'rabbet_end',
             'small_stone',
+            'st_weight',
             'remark');
 
         $image1 = _post('image1');
@@ -152,6 +154,7 @@ switch ($target) {
                     'rabbet_start',
                     'rabbet_end',
                     'small_stone',
+                    'st_weight',
                     'remark',
                     'image1',
                     'image1_400',
@@ -162,6 +165,7 @@ switch ($target) {
                     'image3',
                     'image3_400',
                     'image3_thumb'));
+                
                 redirect('product');
             }
         }
