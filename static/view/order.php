@@ -63,6 +63,7 @@
     <div class="title">
         <span class="col title name">名称</span>
         <span class="col title info">详细规格</span>
+        <span class="col title stone">主石</span>
         <span class="col title realname">姓名</span>
         <span class="col title price-estimate">预估价</span>
         <?php if ($user_type === 'Admin'): ?>
@@ -105,6 +106,11 @@
                 <span>辅石：<?= $customer_price->small_stone ?>粒</span>
                 <span>工费：<?= $customer_price->labor_expense ?></span>
                 <span>损耗：<?= $customer_price->wear_tear ?></span>
+            </div>
+            <div class="col title stone">
+                <?= $order->stone()->size ?>
+                ct
+                <span class="stone-btn">填写</span>
             </div>
             <div class="col realname">
                 <?= $user->realname ?>

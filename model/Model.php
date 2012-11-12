@@ -27,6 +27,16 @@ class Model
         return array('id=?' => $this->id);
     }
 
+    public function edit($key_or_array, $value = null)
+    {
+        if($value !== null) { // given by key => value
+            $arr = array($key_or_array => $value);
+        } else {
+            $arr = $key_or_array;
+        }
+        Pdb::update($arr, i(self::$table), $this->selfCond()); // why we need that? that doesn't make any sense
+    }
+
     public function __get($name) 
     {
         if ($name === 'id') return $this->id;

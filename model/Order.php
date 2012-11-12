@@ -41,6 +41,11 @@ class Order extends Model
         return new Pricedata($this->__get($name));
     }
 
+    public function stone() 
+    {
+        return new Stone($this->stone);
+    }
+
     public function changePrice($type, $info) 
     {
         $pd = $this->priceData($type);

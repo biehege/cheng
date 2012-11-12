@@ -23,15 +23,15 @@
             <div class="total1"></div>
             <div>
                 <label for="gold_weight">金重：</label>
-                <input type="text" value="<?= $price->gold_weight ?>" name="gold_weight" id="gold_weight">
+                <input type="text" value="<?= $price->gold_weight ?>" name="gold_weight" id="gold_weight" class="required" />
             </div>
             <div>
                 <label for="wear_teaar">损耗：</label>
-                <input type="text" value="<?= $price->wear_tear ?>" name="wear_teaar" id="wear_teaar">
+                <input type="text" value="<?= $price->wear_tear ?>" name="wear_teaar" id="wear_teaar" class="required" />
             </div>
             <div>
                 <label for="gold_price">金价：</label>
-                <input type="text" value="<?= $price->gold_price ?>" name="gold_price" id="gold_price">
+                <input type="text" value="<?= $price->gold_price ?>" name="gold_price" id="gold_price" class="required" />
             </div>
         </div>
         <div>(金重+金重*损耗）*金价</div>
@@ -41,15 +41,15 @@
             <div class="total2"></div>
             <div>
                 <label for="labor_expense">工费：</label>
-                <input type="text" value="<?= $price->labor_expense ?>" name="labor_expense" id="labor_expense">
+                <input type="text" value="<?= $price->labor_expense ?>" name="labor_expense" id="labor_expense" class="required" />
             </div>
             <div>
                 <label for="small_stone">辅石数量：</label>
-                <input type="text" value="<?= $price->small_stone ?>" name="small_stone" id="small_stone">
+                <input type="text" value="<?= $price->small_stone ?>" name="small_stone" id="small_stone" class="required" />
             </div>
             <div>
                 <label for="st_expense">辅石工费：</label>
-                <input type="text" value="<?= $price->st_expense ?>" name="st_expense" id="st_expense">
+                <input type="text" value="<?= $price->st_expense ?>" name="st_expense" id="st_expense" class="required" />
             </div>
         </div>
         <div>工费+辅石数量*辅石工费</div>
@@ -59,11 +59,11 @@
             <div class="total3"></div>
             <div>
                 <label for="st_price">辅石价：</label>
-                <input type="text" value="<?= $price->st_price ?>" name="st_price" id="st_price">
+                <input type="text" value="<?= $price->st_price ?>" name="st_price" id="st_price" class="required" />
             </div>
             <div>
                 <label for="st_weight">辅石重量：</label>
-                <input type="text" value="<?= $price->st_weight ?>" name="st_weight" id="st_weight">
+                <input type="text" value="<?= $price->st_weight ?>" name="st_weight" id="st_weight" class="required" />
             </div>
         </div>
         <div>辅石价*重量</div>
@@ -73,11 +73,11 @@
             <div class="total4"></div>
             <div>
                 <label for="model_expense">起版费：</label>
-                <input type="text" value="<?= $price->model_expense ?>" name="model_expense" id="model_expense">
+                <input type="text" value="<?= $price->model_expense ?>" name="model_expense" id="model_expense" class="required" />
             </div>
             <div>
                 <label for="risk_expense">风险费：</label>
-                <input type="text" value="<?= $price->risk_expense ?>" name="risk_expense" id="risk_expense">
+                <input type="text" value="<?= $price->risk_expense ?>" name="risk_expense" id="risk_expense" class="required" />
             </div>
         </div>
         <div>版费+风险费</div>
@@ -85,9 +85,9 @@
     <?php if ($type === 'Factory'): ?>
         <div class="more-info">
             其中，工厂配石
-            <input name="factory_st" value="<?= $order->factory_st ?>">
+            <input name="factory_st" value="<?= $order->factory_st ?>" class="required" />
             粒，共
-            <input name="factory_st_weight" value="<?= $order->factory_st_weight ?>">
+            <input name="factory_st_weight" value="<?= $order->factory_st_weight ?>" class="required" />
             克拉
         </div>
     <?php elseif ($type === 'Customer'): ?>

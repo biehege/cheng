@@ -10,6 +10,8 @@ $(function () {
 
     // 附加层的关闭按钮
     var refreshAllAppendDivFunc = function () {
+        // 表单验证
+        $('.append-div form').validate();
         $('.append-div .close-btn').click(function () {
             $(this).parents('.append-div').hide().parents('.append-parent').hide();
         });

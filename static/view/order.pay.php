@@ -27,7 +27,7 @@
     <input type="hidden" name="a" value="deduct">
     <div>
         <label>扣款金额：</label>
-        <input type="text" name="deduct" value="">
+        <input type="text" name="deduct" value="" class="required" >
         <span>* 请填写数值</span>
     </div>
     <label>备注说明：</label>

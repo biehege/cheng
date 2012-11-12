@@ -125,6 +125,7 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `customer` int(10) unsigned NOT NULL,
   `address` int(10) unsigned NOT NULL,
   `factory` int(10) unsigned NOT NULL,
+  `stone` int(10) unsigned NOT NULL COMMENT '主石，0代表无',
   `size` smallint(4) unsigned NOT NULL,
   `carve_text` varchar(120) DEFAULT NULL,
   `material` char(20) NOT NULL,
@@ -146,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `admin_remark` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=411 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13517 ;
 
 -- price_data
 CREATE TABLE IF NOT EXISTS `price_data` (
@@ -227,3 +228,17 @@ CREATE TABLE IF NOT EXISTS `account_log` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;
 
+-- stone
+CREATE TABLE IF NOT EXISTS `stone` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `weight` int(11) NOT NULL,
+  `cut` int(11) NOT NULL,
+  `color` int(11) NOT NULL,
+  `polish` varchar(10) NOT NULL COMMENT '抛光',
+  `clarity` varchar(10) NOT NULL COMMENT '净度',
+  `symmetry` varchar(10) NOT NULL COMMENT '对称',
+  `certificate` varchar(20) NOT NULL COMMENT '证书',
+  `no` varchar(20) NOT NULL COMMENT '证书号',
+  `remark` varchar(200) NOT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='主石' AUTO_INCREMENT=1 ;

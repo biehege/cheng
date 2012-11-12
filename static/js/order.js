@@ -100,4 +100,17 @@ $(function () {
             });
     });
 
+    // 填写主石
+    $('.stone-btn').click(function () {
+        var id = $(this).parents('.entry').data('id');
+        $.get(
+            '/order',
+            {
+                action: 'get_stone_div',
+                target: id
+            },
+            function (ret) {
+                $$.appendDiv.show(ret);
+            }, 'html');
+    });
 });
