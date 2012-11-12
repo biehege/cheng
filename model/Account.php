@@ -30,4 +30,9 @@ class Account extends Model
                 "remain = remain-'$money'" => null), // !!! injection
             self::$table);
     }
+
+    public function history()
+    {
+        return new AccountHistory($this->id);
+    }
 }

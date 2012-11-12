@@ -189,7 +189,8 @@ class Admin extends Model
             array(
                 'state' => $state,
                 'done_time=NOW()' => null),
-            Order::$table);
+            Order::$table,
+            array('id=?', $order->id));
 
         UserLog::adminDealOrder($this, 'done', $order, '交易完成');
 

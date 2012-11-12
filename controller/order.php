@@ -66,7 +66,6 @@ switch ($user_type) {
 
     case 'Admin':
     case 'SuperAdmin':
-
         $factories = Factory::names();
 
         if ($by_ajax) {
@@ -135,8 +134,7 @@ switch ($user_type) {
                     break;
 
                 default:
-                    $admin->__call($action . 'Order', new Order($order_id));
-                    redirect('order/' . 'all');
+                    throw new Exception("ajax action not allowed: $action");
                     break;
             }
             exit;
@@ -145,6 +143,7 @@ switch ($user_type) {
         if ($action) {
             if (is_numeric($target)) {
                 $order_id = $target;
+                $order = new Order($order_id);
             } else {
                 throw new Exception("target not numeric: $target");
             }
@@ -227,8 +226,32 @@ switch ($user_type) {
                 redirect('order/all');
                 break;
             
+            case '':
+                // do nothing here
+                break;
+
+            case 'confirm':
+                $admin->confirmOrder($order);
+                redirect('order/all');
+                break;
+
+            case 'factoryDone':
+                $admin->factoryDoneOrder($order);
+                redirect('order/all');
+                break;
+
+            case 'done':
+                $admin->doneOrder($order);
+                redirect('order/all');
+                break;
+
+            case 'cancel':
+                $admin->cancelOrder($order);
+                redirect('order/all');
+                break;
+
             default:
-                // we do nothing here
+                throw new Exception("unkown action: $action");
                 break;
         }
 

@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `done` decimal(10,2) DEFAULT NULL,
   `undone` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=119 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=363 ;
 
 -- product, actually, it's product type
 CREATE TABLE IF NOT EXISTS `product` (
@@ -212,3 +212,18 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;
+
+-- log special for account
+CREATE TABLE IF NOT EXISTS `account_log` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `account` int(10) unsigned NOT NULL COMMENT 'id of account',
+  `name` char(20) NOT NULL COMMENT '名称|备注',
+  `order` int(10) unsigned NOT NULL COMMENT '相关订单',
+  `money` decimal(10,2) NOT NULL COMMENT '金额 ',
+  `type` char(20) NOT NULL COMMENT ' 类型',
+  `remain` decimal(10,2) NOT NULL COMMENT '账户余额',
+  `pay_type` char(20) NOT NULL COMMENT '支付方式',
+  `time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;
+
