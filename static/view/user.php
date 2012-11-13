@@ -50,7 +50,8 @@
     <span class="col title">状态</span>
     <span class="col title">修改</span>
 </div>
-<?php foreach ($customers as $cus): $user_ = $cus->user(); $account = $cus->account() ?>
+<?php foreach ($customers as $cus):  ?>
+    <?php $user_ = $cus->user(); $account = $cus->account(); ?>
     <div>
         <div class="entry" data-id="<?= $cus->id ?>">
             <div class="col "><?= $user_->name ?></div>

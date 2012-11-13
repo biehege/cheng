@@ -83,13 +83,13 @@ $password = 'password';
 $realname = '小池';
 $phone = '13711231212';
 $email = 'cumt.xiaochi@gmail.com';
-$customer = Customer::register(
-    compact(
-        'username',
-        'password',
-        'realname',
-        'phone',
-        'email'));
+$info = compact(
+    'username',
+    'password',
+    'realname',
+    'phone',
+    'email');
+$customer = Customer::register($info);
 test(
     1, 
     1, 

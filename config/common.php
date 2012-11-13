@@ -124,6 +124,10 @@ $config['next_button_map'] = array(
     'FactoryDone' => '',
     'Done' => '');
 
+$config['account_type'] = array(
+    'supplement' => '充值',
+    'consume' => '消费');
+
 // navs structure
 // array(
 //     'my' => array(

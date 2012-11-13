@@ -77,87 +77,103 @@ switch ($target) {
         break;
         
     default:
+        if (!is_numeric($target)) {
+            throw new Exception("unknown: $target, is it a customer?");
+        }
+        $cus_id = $target;
+        switch ($action) {
+            case '':
+                // do nothing
+                break;
 
-        if (is_numeric($target)) {
-            $cus_id = $target;
-            if ($by_ajax) {
-                switch ($action) {
-                    case 'get_edit_div':
-                        $cus = new Customer($cus_id);
-                        $user_ = $cus->user();
-
-                        $div_name = 'user-edit';
-                        $view_name = 'user.edit';
-                        include smart_view('append.div');
-                        exit;
-                        break;
-                    
-                    default:
-                        throw new Exception("unkonw action: $action");
-                        break;
+            case 'get_edit_div':
+                if (!$by_ajax) {
+                    throw new Exception("$action must be get by ajax");
                 }
-            } else {
+                $cus = new Customer($cus_id);
+                $user_ = $cus->user();
 
-                switch ($action) {
-                    case 'edit':
-                        if ($by_post) {
-                            $cus = new Customer($cus_id);
+                $div_name = 'user-edit';
+                $view_name = 'user.edit';
+                include smart_view('append.div');
+                exit;
 
-                            $username = _post('username');
-                            $password = _post('password');
-                            $realname = _post('realname');
-                            $phone = _post('phone');
-                            $qq = _post('qq');
-                            $email = _post('email');
-                            $address = _post('address');
-                            $remark = _post('remark');
-                            $state = _post('state');
+            case 'edit':
+                if ($by_post) {
+                    $cus = new Customer($cus_id);
 
-                            $user_ = $cus->user();
-                            if ($password) {
-                                $user_->changePassword($password);
-                            }
-                            if ($username || $realname || $phone || $email) {
-                                $user_->edit(array(
-                                    'name' => $username,
-                                    'realname' => $realname,
-                                    'phone' => $phone,
-                                    'email' => $email));
-                            }
-                            if ($qq || $remark || $state) {
-                                $cus->edit(compact('qq', 'remark', 'state'));
-                            }
-                            if ($address) {
-                                $addr = $cus->defaultAddress();
-                                $addr->edit(array('detail' => $address));
-                            }
-                            redirect('user');
-                        }
-                        break;
+                    $username = _post('username');
+                    $password = _post('password');
+                    $realname = _post('realname');
+                    $phone = _post('phone');
+                    $qq = _post('qq');
+                    $email = _post('email');
+                    $address = _post('address');
+                    $remark = _post('remark');
+                    $state = _post('state');
 
-                    default:
-                        throw new Exception("unkonw action: $action");
-                        break;
+                    $user_ = $cus->user();
+                    if ($password) {
+                        $user_->changePassword($password);
+                    }
+                    if ($username || $realname || $phone || $email) {
+                        $user_->edit(array(
+                            'name' => $username,
+                            'realname' => $realname,
+                            'phone' => $phone,
+                            'email' => $email));
+                    }
+                    if ($qq || $remark || $state) {
+                        $cus->edit(compact('qq', 'remark', 'state'));
+                    }
+                    if ($address) {
+                        $addr = $cus->defaultAddress();
+                        $addr->edit(array('detail' => $address));
+                    }
+                    redirect('user');
                 }
-            }
-        } else {
-            throw new Exception("unknown: $target");
+                break;
+            
+            default:
+                throw new Exception("unkonw action: $action");
+                break;
         }
         break;
 }
-d('hee');
-$arr = explode('/', $target);
-d($arr);
-if (count($arr) === 2 && is_numeric(reset($arr)) && end($arr) === 'account') {
-    $cus_id = $arr[0];
-    $target = $arr[1];
+
+// account
+if ($argument === 'account') {
     $cus = new Customer($cus_id);
-    $account = $cus->$account();
-    $history = $account->history();
-    d('we here');
+    $user_ = $cus->user();
+    $account = $cus->account();
+
+    $time_start = _get('time_start');
+    $time_end = _get('time_end');
+    $type = _get('type');
+
+    $conds = compact(
+        'time_start',
+        'time_end',
+        'type');
+
+    $per_page = 50;
+    $total = $account->countHistory($conds);
+    $paging = new Paginate($per_page, $total);
+    $paging->setCurPage(_get('p') ?: 1);
+    $types = $config['account_type'];
+
+    $history = $account->history(array_merge(
+        $conds,
+        array(
+            'limit' => $per_page,
+            'offset' => $paging->offset())));
+
+    $matter = $view . '.account';
+
+} else {
+    $matter = $view . ($target? ".$target" : '');
 }
 
-$matter = $view . ($target? ".$target" : '');
 $view = 'board?master';
 
 $page['scripts'][] = 'jquery.validate.min';

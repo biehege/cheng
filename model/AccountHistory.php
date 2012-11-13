@@ -3,7 +3,7 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
-class Account extends Model
+class AccountHistory extends Model
 {
     public static $table = 'account_log';
 

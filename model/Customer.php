@@ -24,7 +24,6 @@ class Customer extends Model
         if ($ret === false) {
             throw new Exception("no customer, id: $this->id");
         }
-
         return $ret;
     }
 
@@ -147,7 +146,6 @@ class Customer extends Model
 
     public static function create($info)
     {
-
         $user_info = array(
             'username' => i($info['username']),
             'password' => i($info['password']),
@@ -173,9 +171,7 @@ class Customer extends Model
 
     public static function register($info) 
     {
-        return self::create(array_merge(
-            $info,
-            array('adopted' => 0)));
+        return self::create(array_merge($info, array('adopted' => 0)));
     }
 
     public function visitProduct(Product $prd)
@@ -195,7 +191,8 @@ class Customer extends Model
         }
     }
 
-    public function visitingProducts() {
+    public function visitingProducts() // we need no this function
+    {
         if (isset($_COOKIE['visiting_products'])) {
             return json_decode($_COOKIE['visiting_products']);
         } else {
@@ -244,8 +241,6 @@ class Customer extends Model
         return $this->orderTimes() - $this->dealTimes();
     }
 
-
-
     public function account()
     {
         return new Account($this->account);
@@ -255,5 +250,4 @@ class Customer extends Model
     {
         return new User($this->user);
     }
-
 }

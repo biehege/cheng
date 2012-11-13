@@ -10,8 +10,6 @@
     <input type="text" name="time_end" value="<?= $time_end ?>">
     <label>类型：</label>
     <?php $field_name = 'type'; include smart_view('widget.select') ?>
-    <select>
-    </select>
     <select name="sort">
         <option selected="" value="desc">时间降序</option>
         <option value="asc">时间升序</option>

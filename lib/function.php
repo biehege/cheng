@@ -114,7 +114,9 @@ function d($var, $var_dump=0) {
     if ($html_mode) 
         echo '<p><pre>';
     echo PHP_EOL;
-    if (is_array($var) || is_object($var)) {
+    if ($var_dump) {
+        var_dump($var);
+    } elseif (is_array($var) || is_object($var)) {
         print_r($var);
     } else {
         var_dump($var);
