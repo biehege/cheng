@@ -46,6 +46,7 @@
     <span class="col title">登录</span>
     <span class="col title">成交</span>
     <span class="col title">未结清</span>
+    <span class="col title account">账户余额</span>
     <span class="col title">状态</span>
     <span class="col title">修改</span>
 </div>
@@ -61,6 +62,7 @@
             <div class="col "><?= $user_->loginTimes() ?></div>
             <div class="col "><?= $cus->dealTimes() ?></div>
             <div class="col "><?= $cus->undoneTimes() ?></div>
+            <div class="col account"><a href="<?= ROOT . 'user/' . $cus->id . '/account' ?>"><?= $account->remain ?></a></div>
             <div class="col "><?= $customer_states[$cus->state] ?></div>
             <div class="col "><span class="edit-btn">修改</span></div>
         </div>

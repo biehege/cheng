@@ -97,6 +97,7 @@ switch ($target) {
                         break;
                 }
             } else {
+
                 switch ($action) {
                     case 'edit':
                         if ($by_post) {
@@ -133,7 +134,7 @@ switch ($target) {
                             redirect('user');
                         }
                         break;
-                    
+
                     default:
                         throw new Exception("unkonw action: $action");
                         break;
@@ -143,6 +144,17 @@ switch ($target) {
             throw new Exception("unknown: $target");
         }
         break;
+}
+d('hee');
+$arr = explode('/', $target);
+d($arr);
+if (count($arr) === 2 && is_numeric(reset($arr)) && end($arr) === 'account') {
+    $cus_id = $arr[0];
+    $target = $arr[1];
+    $cus = new Customer($cus_id);
+    $account = $cus->$account();
+    $history = $account->history();
+    d('we here');
 }
 
 $matter = $view . ($target? ".$target" : '');
