@@ -9,7 +9,7 @@ class AccountHistory extends Model
 
     public function info()
     {
-        return Pdb::fetchAll('*', self::$table, array('account=?' => $this->id));
+        return Pdb::fetchRow('*', self::$table, $this->selfCond());
     }
 
     public function order()

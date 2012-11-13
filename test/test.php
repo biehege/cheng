@@ -54,6 +54,9 @@ if ($clear) {
     // clear user log
     clear_db(UserLog::$table, Customer::$table, 'subject');
 
+    // clear account log
+    clear_db(AccountHistory::$table, Account::$table, 'account');
+
     if (_get('exit')) {
         echo '<script src="static/hide.js"></script>';
         echo '<div class="conclusion pass">All Clear!</div>';
@@ -247,11 +250,18 @@ $stone = $order->stone();
 $stone->edit($info);
 test(1, 1, array('name' => 'Admin(?) edit Stone'));
 
-// case 14 Admin Confirmed Order (InFactory)
+// case 16 Admin rechage Account
+begin_test();
+$account = $customer->account();
+$admin->rechargeAccount($account, 4000);
+$admin->deductAccountForOrder($account, $order, 200, 'what?');
+test(1, 1, array('name' => 'Admin rechage Account'));
+
+// case 17 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
 
-// case 15 Admin add Customer
+// case 18 Admin add Customer
 $info = array(
     'username' => 'user_ca_test',
     'password' => 'password',

@@ -165,6 +165,11 @@ class Pdb
         return self::$dbm->update($arr, $table, $conds, $tail);
     }
 
+    public static function log()
+    {
+        return self::getLog();
+    }
+
     public static function getLog() { // how about change this name to log()???
         $ret = array();
         if (self::$dbm) {

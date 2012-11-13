@@ -52,7 +52,24 @@ class Admin extends Model
         }, $cus_infos);
     }
 
-    public function deductAccountForOrder(Account $account, Order $order, $money, $remark)
+    public function rechargeAccount(Account $account, $money)
+    {
+        $account->recharge($money);
+
+        // log
+        Pdb::insert(
+            array(
+                'time=NOW()' => null,
+                'account' => $account->id,
+                'name' => '充值',
+                'money' => $money,
+                'type' => 'recharge',
+                'remain' => $account->remain,
+                'pay_type' => '转账'),
+            AccountHistory::$table);
+    }
+
+    public function deductAccountForOrder(Account $account, Order $order, $money, $remark = '')
     {
         $account->deduct($money);
 

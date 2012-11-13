@@ -150,11 +150,15 @@ if ($argument === 'account') {
     $time_start = _get('time_start');
     $time_end = _get('time_end');
     $type = _get('type');
+    $sort = _get('sort');
+
+    $sorts = $config
 
     $conds = compact(
         'time_start',
         'time_end',
-        'type');
+        'type',
+        'sort');
 
     $per_page = 50;
     $total = $account->countHistory($conds);

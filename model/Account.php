@@ -23,6 +23,14 @@ class Account extends Model
         return new self(Pdb::lastInsertId());
     }
 
+    public function recharge($money)
+    {
+        Pdb::update(
+            array("remain = remain+'$money'" => null),
+            self::$table);
+
+    }
+
     public function deduct($money)
     {
         if (!is_numeric($money)) {
@@ -44,7 +52,11 @@ class Account extends Model
         extract($conds);
         $tail = "LIMIT $limit OFFSET $offset";
         extract(self::buildHistoryArg($conds));
-        $ids = Pdb::fetchAll('id', AccountHistory::$table, $conds);
+        if (!isset($sort) || empty($sort)) {
+            $sort = 'DESC';
+        }
+        $order = array("time $sort");
+        $ids = Pdb::fetchAll('id', AccountHistory::$table, $conds, $order);
         return safe_array_map(function ($id) {
             return new AccountHistory($id);
         }, $ids);
@@ -52,14 +64,19 @@ class Account extends Model
 
     private static function buildHistoryArg($conds)
     {
-        extract($conds);
+        extract(array_merge(
+            array(
+                'time_start' => '',
+                'time_end' => '',
+                'type' => ''),
+            $conds));
         $conds = array();
-        if (isset($time_start)) {
+        if (($time_start)) {
             $conds['time >= ?'] = $time_start;
         }
-        if (isset($time_end))
+        if (($time_end))
             $conds['time <= ?'] = $time_end;
-        if (isset($type))
+        if (($type))
             $conds['type=?'] = $type;
         return compact('conds');
     }
