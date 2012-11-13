@@ -231,9 +231,9 @@ CREATE TABLE IF NOT EXISTS `account_log` (
 -- stone
 CREATE TABLE IF NOT EXISTS `stone` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `weight` int(11) NOT NULL,
-  `cut` int(11) NOT NULL,
-  `color` int(11) NOT NULL,
+  `weight` decimal(4,2) NOT NULL,
+  `cut` varchar(11) NOT NULL,
+  `color` varchar(11) NOT NULL,
   `polish` varchar(10) NOT NULL COMMENT '抛光',
   `clarity` varchar(10) NOT NULL COMMENT '净度',
   `symmetry` varchar(10) NOT NULL COMMENT '对称',
@@ -241,4 +241,4 @@ CREATE TABLE IF NOT EXISTS `stone` (
   `no` varchar(20) NOT NULL COMMENT '证书号',
   `remark` varchar(200) NOT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='主石' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='主石' AUTO_INCREMENT=1245 ;

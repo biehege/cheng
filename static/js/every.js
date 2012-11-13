@@ -9,16 +9,19 @@
 $(function () {
 
     // 附加层的关闭按钮
+    var appendParent = $('.append-parent');
     var refreshAllAppendDivFunc = function () {
+        
         // 表单验证
-        $('.append-div form').validate();
-        $('.append-div .close-btn').click(function () {
+        var forms = $('.append-div form');
+        forms.validate();
+
+        appendParent.find('.close-btn').click(function () {
             $(this).parents('.append-div').hide().parents('.append-parent').hide();
         });
     };
     window.refreshAppendDiv = refreshAllAppendDivFunc;
 
-    var appendParent = $('.append-parent');
     var xcjsLib = {
         appendDiv: {
             refreshAll: refreshAllAppendDivFunc,
@@ -34,6 +37,7 @@ $(function () {
             add: function (html) {
                 var div = $(html);
                 appendParent.append(div);
+                this.refreshAll();
                 return div;
             }
         }

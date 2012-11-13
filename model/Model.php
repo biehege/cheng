@@ -34,7 +34,12 @@ class Model
         } else {
             $arr = $key_or_array;
         }
-        Pdb::update($arr, i(self::$table), $this->selfCond()); // why we need that? that doesn't make any sense
+
+        // why we need that, fuck!
+        $class_vars = get_class_vars(get_class($this));
+        $table = $class_vars['table'];
+
+        Pdb::update($arr, $table, $this->selfCond()); // why we need that? that doesn't make any sense
     }
 
     public function __get($name) 

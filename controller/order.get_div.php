@@ -17,7 +17,7 @@ switch ($action) {
         break;
 
     case 'get_info_div':
-        if (!is_numeric($target))
+        if (!is_numeric($target)) // to del
             throw new Exception("unkown id: $target");
         
         $cus = $order->customer();
@@ -58,6 +58,13 @@ switch ($action) {
 
         $div_name = 'order-pay';
         $view_name = 'order.pay';
+        include smart_view('append.div');
+        break;
+
+    case 'get_stone_div':
+        $stone = $order->stone();
+
+        $view_name = 'order.stone';
         include smart_view('append.div');
         break;
 

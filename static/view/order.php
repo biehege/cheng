@@ -108,7 +108,7 @@
                 <span>损耗：<?= $customer_price->wear_tear ?></span>
             </div>
             <div class="col title stone">
-                <?= $order->stone()->size ?>
+                <?= $order->stone()->weight ?>
                 ct
                 <span class="stone-btn">填写</span>
             </div>

@@ -173,6 +173,7 @@ $new_num = Product::count();
 test($old_num - 2, $new_num, array('name' => 'Admin del Product'));
 
 
+
 // case 9 Customer eidt Address
 begin_test();
 $address = $customer->defaultAddress();
@@ -220,7 +221,7 @@ test(
     $new_num,
     array('name' => 'Customer del a Product from Cart'));
 
-// case 13 Customer submit a Cart
+// case 14 Customer submit a Cart
 begin_test();
 $old_entry_num = Pdb::count(BigOrder::$table);
 $big_order = $customer->submitCart();
@@ -229,6 +230,22 @@ test(
     $old_entry_num + 1,
     +$entry_num,
     array('name' => 'Customer submit a Cart'));
+
+// case 15 Admin(?) edit Stone
+begin_test();
+$info = array(
+    'weight' => '3',
+    'cut' => 'EX',
+    'color' => '',
+    'polish' => '',
+    'clarity' => '',
+    'symmetry' => '',
+    'certificate' => '',
+    'no' => '',
+    'remark' => '');
+$stone = $order->stone();
+$stone->edit($info);
+test(1, 1, array('name' => 'Admin(?) edit Stone'));
 
 // case 14 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');

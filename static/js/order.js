@@ -56,7 +56,6 @@ $(function () {
                 order_id: orderId
             },
             function (ret) {
-                console.log('ok');
                 div.hide().parents('.append-parent').hide();
                 $('.entry[data-id=' + orderId + '] .factory-name .text').text(ret);
             });

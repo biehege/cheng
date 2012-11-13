@@ -68,7 +68,7 @@ switch ($user_type) {
         $factories = Factory::names();
 
         // get some divs
-        if ($by_ajax && is_numeric($target) && preg_match('get_.+_div', $action)) {
+        if ($by_ajax && is_numeric($target) && preg_match('/get_.+_div/', $action)) {
             include FrameFile::controller('order.get_div');
             exit;
         }
@@ -93,8 +93,9 @@ switch ($user_type) {
         }
 
         // 对订单的操作，通过表单post过来的
-        if ($by_ajax && $by_post && is_numeric($target)) {
+        if ($action && $by_post && is_numeric($target)) {
             include FrameFile::controller('order.control');
+            exit;
         }
 
         list(
@@ -136,4 +137,4 @@ if (empty($orders))
 $matter = $view;
 $view = 'board?master';
 
-$page['scripts'][] = 'jquery.validate';
+$page['scripts'][] = 'jquery.validate.min';

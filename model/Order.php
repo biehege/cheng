@@ -43,6 +43,14 @@ class Order extends Model
 
     public function stone() 
     {
+        $stone_id = $this->stone;
+        if (empty($stone_id)) {
+            $stone = Stone::create();
+            $stone_id = $stone->id;
+            $this->edit('stone', $stone_id);
+            $this->stone = $stone_id;
+            return $stone;
+        }
         return new Stone($this->stone);
     }
 

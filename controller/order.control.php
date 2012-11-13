@@ -4,7 +4,6 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 
-
 $order_id = $target;
 $order = new Order($order_id);
 switch ($action) {
@@ -84,6 +83,32 @@ switch ($action) {
 
         redirect('order/all');
         break;
+
+    case 'edit_stone':
+        $weight = _post('weight');
+        $cut = _post('cut');
+        $color = _post('color');
+        $polish = _post('polish');
+        $clarity = _post('clarity');
+        $symmetry = _post('symmetry');
+        $certificate = _post('certificate');
+        $no = _post('no');
+        $remark = _post('remark');
+
+        $stone = $order->stone();
+        $info = compact(
+            'weight',
+            'cut',
+            'color',
+            'polish',
+            'clarity',
+            'symmetry',
+            'certificate',
+            'no',
+            'remark');
+        $stone->edit($info);
+        redirect('order/all');
+        break;
     
     case '':
         // do nothing here
@@ -113,3 +138,4 @@ switch ($action) {
         throw new Exception("unkown action: $action");
         break;
 }
+exit;
