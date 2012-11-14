@@ -14,6 +14,7 @@
         <th>成交</th>
         <th>未结清</th>
         <th>剩余辅石</th>
+        <th>账户余额</th>
         <th>修改</th>
 
     </tr>
@@ -26,7 +27,8 @@
             <td class="city"><?= $factory->city ?></td>
             <td class="done"><?= $factory->done ?></td>
             <td class="undone"><?= $factory->undone ?></td>
-            <td class="st_reamain"><?= $factory->st_remain ?></td>
+            <td class="st_reamain"><a href="<?= ROOT . 'factory/' . $factory->id . '/stone' ?>"><?= $factory->st_remain ?></a></td>
+            <td><a href="<?= ROOT . 'factory/' . $factory->id . '/account' ?>"><?= $factory->account()->remain() ?></a></td>
             <td class="control">修改</td>
         </tr>
     <?php endforeach ?>

@@ -25,4 +25,18 @@ $(function () {
 
     // 表单验证
     $('form.add').validate();
+
+    // 用户充值
+    $('.recharge-btn').click(function () {
+        var id = $(this).data('id'); // customer id
+        $.get(
+            '/user',
+            {
+                action: 'get_recharge_div',
+                target: id
+            },
+            function (ret) {
+                $$.appendDiv.show(ret);
+            });
+    });
 });

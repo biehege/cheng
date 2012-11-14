@@ -20,6 +20,7 @@
     <span><?= $user_->realname ?></span>
     <span>账户余额：</span>
     <span><?= $account->remain ?></span>
+    <button class="recharge-btn" data-id="<?= $target ?>">用户充值</button>
 </div>
 <?php include smart_view('paging'); ?>
 <table>

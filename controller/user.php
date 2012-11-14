@@ -98,6 +98,15 @@ switch ($target) {
                 include smart_view('append.div');
                 exit;
 
+            case 'get_recharge_div':
+                $cus = new Customer($cus_id);
+                $user_ = $cus->user();
+                $account = $cus->account();
+
+                $view_name = 'user.account.recharge';
+                include smart_view('append.div');
+                exit;
+
             case 'edit':
                 if ($by_post) {
                     $cus = new Customer($cus_id);
