@@ -224,9 +224,10 @@ CREATE TABLE IF NOT EXISTS `account_log` (
   `type` char(20) NOT NULL COMMENT ' 类型',
   `remain` decimal(10,2) NOT NULL COMMENT '账户余额',
   `pay_type` char(20) NOT NULL COMMENT '支付方式',
+  `remark` varchar(200) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=237 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=284 ;
 
 -- stone
 CREATE TABLE IF NOT EXISTS `stone` (

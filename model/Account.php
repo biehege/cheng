@@ -33,7 +33,6 @@ class Account extends Model
         Pdb::update(
             array("remain = remain+'$money'" => null),
             self::$table);
-
     }
 
     public function deduct($money)

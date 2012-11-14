@@ -107,6 +107,14 @@ switch ($target) {
                 include smart_view('append.div');
                 exit;
 
+            case 'recharge':
+                $cus = new Customer($cus_id);
+                $account = $cus->account();
+                $money = _get('money');
+                $remark = _get('remark');
+                $admin->rechargeAccount($account, $money, $remark);
+                break;
+
             case 'edit':
                 if ($by_post) {
                     $cus = new Customer($cus_id);

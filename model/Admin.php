@@ -52,7 +52,7 @@ class Admin extends Model
         }, $cus_infos);
     }
 
-    public function rechargeAccount(Account $account, $money)
+    public function rechargeAccount(Account $account, $money, $remark = '')
     {
         $account->recharge($money);
 
@@ -65,7 +65,8 @@ class Admin extends Model
                 'money' => $money,
                 'type' => 'recharge',
                 'remain' => $account->remain,
-                'pay_type' => '转账'),
+                'pay_type' => '转账',
+                'remark' => $remark),
             AccountHistory::$table);
     }
 
