@@ -140,8 +140,10 @@ $info = array(
     'phone' => '13526523659',
     'qq' => '5833652584',
     'city' => '湖北武汉');
-$admin->addFactory($info);
+$factory = $admin->addFactory($info);
 test(count(Factory::names()), 1, array('name' => 'Admin add Factory'));
+
+
 
 // case 8 Admin post Product, db
 begin_test();
@@ -263,6 +265,18 @@ test(1, 1, array('name' => 'Admin recharge Account'));
 // case 17 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
+
+// case 8 Admin recharge Factory Account, then use it
+begin_test();
+$factory_account = $factory->account();
+$admin->rechargeAccount($factory_account, 30000, 'hello');
+$factory_st_account = $factory->stAccount();
+$admin->rechargeAccount($factory_st_account, 2.1, 'hellzz');
+$remark = 'hellozze';
+$weight = 2.5;
+$num = 3;
+$admin->useStoneForOrder($factory, $order, $weight, $num, $remark);
+test(1, 1, array('name' => 'Admin recharge Factory Account, then use it'));
 
 // case 18 Admin add Customer
 $info = array(

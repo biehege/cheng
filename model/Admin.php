@@ -98,6 +98,23 @@ class Admin extends Model
             AccountHistory::$table);
     }
 
+    public function useStoneForOrder(Factory $factory, Order $order, $weight, $num, $remark)
+    {
+        $account = $factory->stAccount();
+        $account->deduct($weight);
+
+        // log 
+        Pdb::insert(
+            array(
+                '`time` = NOW()' => null,
+                'account' => $account->id,
+                'name' => '工厂用料',
+                '`order`' => $order->id,
+                'money' => $weight, // 貌似这个名字叫做value 更好
+                'type' => 'factory',
+                'remain' => $account->remain()),
+            AccountHistory::$table);
+    }
     public function addFactory($para)
     {
         Pdb::insert(
@@ -105,6 +122,7 @@ class Admin extends Model
                 $para,
                 array('create_time=NOW()' => null)),
             Factory::$table);
+        return new Factory(Pdb::lastInsertId());
     }
 
     public function listFactory($conds = array()) 

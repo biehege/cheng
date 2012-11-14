@@ -129,8 +129,8 @@ $config['account_type'] = array(
     'consume' => '消费');
 
 $config['st_type'] = array(
-    'DESC' => '英格用料',
-    'ASC' => '工厂用料');
+    'me' => '英格用料',
+    'factory' => '工厂用料');
 
 $config['account_sort'] = array(
     'DESC' => '时间降序',

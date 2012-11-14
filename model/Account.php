@@ -35,9 +35,9 @@ class Account extends Model
             self::$table);
     }
 
-    public function deduct($money)
+    public function deduct($money, $num = 0)
     {
-        if (!is_numeric($money)) {
+        if (!is_numeric($money) || !is_numeric($num)) {
             throw new Exception("money must be numeric: $money");
         }
         Pdb::update(
