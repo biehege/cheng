@@ -278,22 +278,22 @@ $admin->addCustomer($info);
 test(1, 1, array('name' => 'Admin add Customer'));
 
 // case 16 Statistics
-begin_test();
-$date = new DateTime();
-$interval = new DateInterval('P1D');
-$day_count = 500;
-for ($i=1; $i < $day_count; $i++) { 
-    Pdb::insert(
-        array(
-            'order_no' => uniqid(),
-            'customer' => $customer->id,
-            'state' => 'Done',
-            'paid' => rand(3000, 8000),
-            'state' => 'Done',
-            'submit_time' => 'NOW()',
-            'done_time' => $date->format('Y-m-d H:i:s')),
-        Order::$table);
-    $date->sub($interval);
-}
-$data = Statistics::saleRecord(array('divide' => 'day'));
-test(count($data), 60, array('name' => 'Statistics'));
+// begin_test();
+// $date = new DateTime();
+// $interval = new DateInterval('P1D');
+// $day_count = 500;
+// for ($i=1; $i < $day_count; $i++) { 
+//     Pdb::insert(
+//         array(
+//             'order_no' => uniqid(),
+//             'customer' => $customer->id,
+//             'state' => 'Done',
+//             'paid' => rand(3000, 8000),
+//             'state' => 'Done',
+//             'submit_time' => 'NOW()',
+//             'done_time' => $date->format('Y-m-d H:i:s')),
+//         Order::$table);
+//     $date->sub($interval);
+// }
+// $data = Statistics::saleRecord(array('divide' => 'day'));
+// test(count($data), 60, array('name' => 'Statistics'));
