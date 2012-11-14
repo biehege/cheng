@@ -128,9 +128,15 @@ $config['account_type'] = array(
     'supplement' => '充值',
     'consume' => '消费');
 
+$config['st_type'] = array(
+    'DESC' => '英格用料',
+    'ASC' => '工厂用料');
+
 $config['account_sort'] = array(
     'DESC' => '时间降序',
     'ASC' => '时间升序');
+
+
 
 // navs structure
 // array(

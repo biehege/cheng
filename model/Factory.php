@@ -21,4 +21,27 @@ class Factory extends Model
         }
         return $ret;
     }
+
+    public function account()
+    {
+        $account_id = $this->account;
+        if (empty($account_id)) {
+            $account = Account::create();
+            $this->edit('account', $account->id);
+            return $account;
+        }
+        return new Account($this->account);
+    }
+
+    public function stAccount()
+    {
+        $account_id = $this->account;
+        if (empty($account_id)) {
+            $account = Account::create();
+            $this->edit('st_account', $account->id);
+            return $account;
+        }
+
+        return new Account($this->st_account);
+    }
 }

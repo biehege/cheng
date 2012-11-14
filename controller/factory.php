@@ -36,11 +36,72 @@ switch ($target) {
         break;
     
     default:
-        throw new Exception("unkown: $target");
+        if (!is_numeric($target))
+            throw new Exception("unkown: $target");
         break;
 }
 
-$matter = $view . ($target? ".$target" : '');
+
+if ($argument && $target) {
+
+    $sorts = $config['account_sort'];
+    $factory = new Factory($target);
+
+
+    $time_start = _get('time_start');
+    $time_end = _get('time_end');
+    $type = _get('type');
+    $sort = _get('sort');
+
+    $conds = compact(
+        'time_start',
+        'time_end',
+        'type',
+        'sort');
+
+    
+
+
+
+    switch ($argument) {
+        case 'stone':
+            $types = $config['st_type'];
+            
+            $account = $factory->stAccount();
+            break;
+
+        case 'account':
+            $types = $config['account_type'];
+
+            $account = $factory->account();
+            break;
+        
+        default:
+            throw new Exception("arg: $argument", 1);
+            
+            break;
+    }
+
+
+
+
+
+    $per_page = 50;
+    $total = $account->countHistory($conds);
+    $paging = new Paginate($per_page, $total);
+    $paging->setCurPage(_get('p') ?: 1);
+    
+    $history = $account->history(array_merge(
+        $conds,
+        array(
+            'limit' => $per_page,
+            'offset' => $paging->offset())));
+
+    $matter = "$view.$argument";
+} else {
+    $matter = $view . ($target? ".$target" : '');
+}
+
 $view = 'board?master';
 
 $page['scripts'][] = 'jquery.validate.min';

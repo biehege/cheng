@@ -54,10 +54,11 @@ CREATE TABLE IF NOT EXISTS `address`
 CREATE TABLE IF NOT EXISTS `account` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `remain` decimal(10,2) DEFAULT NULL,
+  `num_remain` int(10) NOT NULL,
   `done` decimal(10,2) DEFAULT NULL,
   `undone` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=363 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='其实这个是钱的账户还是辅石的账户，从数据角度讲，无关紧要' AUTO_INCREMENT=476 ;
 
 -- product, actually, it's product type
 CREATE TABLE IF NOT EXISTS `product` (
@@ -178,12 +179,14 @@ CREATE TABLE IF NOT EXISTS `factory` (
   `city` char(20) DEFAULT NULL COMMENT '区域',
   `address` char(50) NOT NULL,
   `remark` varchar(200) NOT NULL,
+  `account` int(10) NOT NULL,
+  `st_account` int(10) NOT NULL,
   `done` int(6) DEFAULT '0' COMMENT '成交',
   `undone` int(6) DEFAULT '0' COMMENT '未结清',
-  `st_remain` decimal(4,2) DEFAULT '0.00' COMMENT '剩余辅石',
+  `st_remain` decimal(4,2) DEFAULT '0.00' COMMENT '剩余辅石,we need this?',
   `create_time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=117 ;
 
 -- setting 全局设定
 CREATE TABLE IF NOT EXISTS `setting`
@@ -221,13 +224,14 @@ CREATE TABLE IF NOT EXISTS `account_log` (
   `name` char(20) NOT NULL COMMENT '名称|备注',
   `order` int(10) unsigned NOT NULL COMMENT '相关订单',
   `money` decimal(10,2) NOT NULL COMMENT '金额 ',
+  `num` int(9) NOT NULL,
   `type` char(20) NOT NULL COMMENT ' 类型',
   `remain` decimal(10,2) NOT NULL COMMENT '账户余额',
   `pay_type` char(20) NOT NULL COMMENT '支付方式',
   `remark` varchar(200) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=284 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=291 ;
 
 -- stone
 CREATE TABLE IF NOT EXISTS `stone` (
