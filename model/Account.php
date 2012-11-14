@@ -12,6 +12,11 @@ class Account extends Model
         return Pdb::fetchRow('*', self::$table, $this->selfCond());
     }
 
+    public function remain()
+    {
+        return Pdb::fetchRow('remain', self::$table, $this->selfCond());
+    }
+
     public static function create()
     {
         Pdb::insert(

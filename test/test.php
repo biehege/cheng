@@ -253,12 +253,12 @@ $stone = $order->stone();
 $stone->edit($info);
 test(1, 1, array('name' => 'Admin(?) edit Stone'));
 
-// case 16 Admin rechage Account
+// case 16 Admin recharge Account
 begin_test();
 $account = $customer->account();
 $admin->rechargeAccount($account, 4000);
-$admin->deductAccountForOrder($account, $order, 200, 'what?');
-test(1, 1, array('name' => 'Admin rechage Account'));
+$admin->payOrder($order, 200, 'what?');
+test(1, 1, array('name' => 'Admin recharge Account'));
 
 // case 17 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');

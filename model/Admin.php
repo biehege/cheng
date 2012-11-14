@@ -82,6 +82,18 @@ class Admin extends Model
                 'info' => json_encode(compact('money', 'remark')),
                 'time=NOW()' => null),
             UserLog::$table);
+
+        // accout log
+        Pdb::insert(
+            array(
+                '`time` = NOW()' => null,
+                'name' => '订单扣款',
+                '`order`' => $order->id,
+                'money' => $money,
+                '`type`' => 'consume',
+                'remain' => $account->remain(),
+                'pay_type' => '账户扣款'),
+            AccountHistory::$table);
     }
 
     public function addFactory($para)
@@ -164,6 +176,7 @@ class Admin extends Model
         return compact('conds', 'tables');
     }
 
+
     public function confirmOrder(Order $order)
     {
         $state = 'InFactory';
@@ -177,6 +190,21 @@ class Admin extends Model
         UserLog::adminDealOrder($this, 'confirm', $order, '确认订单');
 
         return $state;
+    }
+    public function payOrder(Order $order, $deduct, $remark = '')
+    {
+        if (!is_numeric($deduct))
+            throw new Exception("money not numeric: $deduct");
+        $customer = $order->customer();
+        $account = $customer->account();
+        $this->deductAccountForOrder($account, $order, $deduct, $remark);
+        // 关于在这里引起混乱的财务问题，我们还是使用update语句吧
+        // db 是该改改了
+        Pdb::update(
+            array("paid = paid + '$deduct'" => null), 
+            Order::$table, 
+            $order->selfCond());
+        // $order->edit('paid', $order->paid + $deduct);
     }
 
     public function factoryDoneOrder(Order $order)

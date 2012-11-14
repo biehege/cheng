@@ -33,10 +33,11 @@
         <td>支付方式</td>
     </tr>
     <?php foreach ($history as $entry): ?>
+        <?php $order_no = $entry->order()->order_no; ?>
         <tr>
             <td><?= $entry->time ?></td>
             <td><?= $entry->name ?></td>
-            <td><?= $entry->order()->order_no ?></td>
+            <td><a href="<?= ROOT . 'order?order_no=' . $order_no ?>"><?= $order_no ?></a></td>
             <td><?= $entry->money ?></td>
             <td><?= $entry->type ?></td>
             <td><?= $entry->remain ?></td>

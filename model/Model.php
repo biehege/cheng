@@ -22,7 +22,7 @@ class Model
         }
     }
     
-    protected function selfCond() 
+    public function selfCond() 
     {
         return array('id=?' => $this->id);
     }

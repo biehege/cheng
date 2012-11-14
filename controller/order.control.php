@@ -75,11 +75,13 @@ switch ($action) {
             throw new Exception('not by post');
         $deduct = _post('deduct');
         $remark = _post('remark');
-        $order = new Order($target);
-        $customer = $order->customer();
-        $account = $customer->account();
-        $admin->deductAccountForOrder($account, $order, $deduct, $remark);
-        $order->edit('paid', $order->paid + $deduct);
+
+        // $customer = $order->customer();
+        // $account = $customer->account();
+        // $admin->deductAccountForOrder($account, $order, $deduct, $remark);
+        // $order->edit('paid', $order->paid + $deduct);
+
+        $admin->payOrder($order, $deduct, $remark);
 
         redirect('order/all');
         break;
