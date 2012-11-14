@@ -77,6 +77,34 @@ function clear_db($master_table, $ref_table, $ref_key, $back_key = 'id', $ref_id
             Pdb::del($master_table, array($back_key . '=?' => $info[$back_key]));
 }
 
+function clear_11_db($master_table, $slave_table, $ref_key = null)
+{
+    if ($ref_key === null)
+        $ref_key = $slave_table;
+    $ids = Pdb::fetchAll('id', $slave_table);
+    if (empty($ids))
+        return;
+    foreach ($ids as $id) {
+        if (!Pdb::exists($master_table, array("$ref_key = ?" => $id))) {
+            Pdb::del($slave_table, array('id = ?' => $id));
+        }
+    }
+}
+
+function clear_1m_db($master_table, $ref_table, $ref_key = null)
+{
+    if ($ref_key === null)
+        $ref_key = $master_table;
+    $ids = Pdb::fetchAll($ref_key, $ref_table);
+    if (empty($ids))
+        return;
+    foreach ($ids as $id) {
+        if (!Pdb::exists($master_table, array('id = ?' => $id))) {
+            Pdb::del($ref_table, array("$ref_key = ?" => $id));
+        }
+    }
+}
+
 function clear_relation_db($main_table, $ref_table, $relation_table = null, $key_main = null, $key_ref = null)
 {
     if ($relation_table === null)

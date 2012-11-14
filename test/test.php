@@ -54,8 +54,11 @@ if ($clear) {
     // clear user log
     clear_db(UserLog::$table, Customer::$table, 'subject');
 
+    // clear account
+    clear_11_db(Customer::$table, Account::$table);
+
     // clear account log
-    clear_db(AccountHistory::$table, Account::$table, 'account');
+    clear_1m_db(Account::$table, AccountHistory::$table);
 
     if (_get('exit')) {
         echo '<script src="static/hide.js"></script>';

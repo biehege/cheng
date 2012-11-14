@@ -152,7 +152,7 @@ if ($argument === 'account') {
     $type = _get('type');
     $sort = _get('sort');
 
-    $sorts = $config
+    $sorts = $config['account_sort'];
 
     $conds = compact(
         'time_start',

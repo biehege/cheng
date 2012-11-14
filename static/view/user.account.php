@@ -10,7 +10,7 @@
     <input type="text" name="time_end" value="<?= $time_end ?>">
     <label>类型：</label>
     <?php $field_name = 'type'; include smart_view('widget.select') ?>
-    <?php $field_name = 'sort'; include smart_view('widget.select') ?>
+    <?php $field_name = 'sort'; $data = $sorts; $no_default = 1; include smart_view('widget.select') ?>
     <input type="submit" value="搜索">
 </form>
 <div>

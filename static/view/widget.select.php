@@ -14,7 +14,9 @@ if (!isset($data)) {
 }
 ?>
 <select name="<?= $field_name ?>">
-    <option value="<?= $default_value ?>" <?= $$field_name == 'all' ? 'selected' : '' ?> >全部</option>
+    <?php if (!isset($no_default) || !$no_default): ?>
+        <option value="<?= $default_value ?>" <?= $$field_name == 'all' ? 'selected' : '' ?> >全部</option>
+    <?php endif ?>
     <?php foreach ($data as $key => $value): ?>
         <option value="<?= $key ?>" <?= $$field_name == $key ? 'selected' : '' ?> ><?= $value ?></option>
     <?php endforeach ?>
