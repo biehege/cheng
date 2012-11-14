@@ -32,6 +32,7 @@
         <td>类型</td>
         <td>账户余额</td>
         <td>支付方式</td>
+        <td>备注</td>
     </tr>
     <?php foreach ($history as $entry): ?>
         <?php $order_no = $entry->order()->order_no; ?>
@@ -39,10 +40,11 @@
             <td><?= $entry->time ?></td>
             <td><?= $entry->name ?></td>
             <td><a href="<?= ROOT . 'order?order_no=' . $order_no ?>"><?= $order_no ?></a></td>
-            <td><?= $entry->money ?></td>
+            <td><?= $entry->type === 'consume' ? '-' : '' ?><?= $entry->money ?></td>
             <td><?= $entry->type ?></td>
             <td><?= $entry->remain ?></td>
             <td><?= $entry->pay_type ?></td>
+            <td><?= $entry->remark ?></td>
         </tr>
     <?php endforeach ?>
 </table>

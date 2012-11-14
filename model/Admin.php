@@ -88,6 +88,7 @@ class Admin extends Model
         Pdb::insert(
             array(
                 '`time` = NOW()' => null,
+                'account' => $account->id,
                 'name' => '订单扣款',
                 '`order`' => $order->id,
                 'money' => $money,

@@ -47,7 +47,7 @@ class Account extends Model
 
     public function countHistory($conds = array())
     {
-        extract(self::buildHistoryArg($conds));
+        extract($this->buildHistoryArg($conds));
         return Pdb::count(AccountHistory::$table, $conds);
     }
 
@@ -55,7 +55,7 @@ class Account extends Model
     {
         extract($conds);
         $tail = "LIMIT $limit OFFSET $offset";
-        extract(self::buildHistoryArg($conds));
+        extract($this->buildHistoryArg($conds));
         if (!isset($sort) || empty($sort)) {
             $sort = 'DESC';
         }
@@ -66,7 +66,7 @@ class Account extends Model
         }, $ids);
     }
 
-    private static function buildHistoryArg($conds)
+    private function buildHistoryArg($conds)
     {
         extract(array_merge(
             array(
@@ -74,7 +74,7 @@ class Account extends Model
                 'time_end' => '',
                 'type' => ''),
             $conds));
-        $conds = array();
+        $conds = array('account=?' => $this->id);
         if (($time_start)) {
             $conds['time >= ?'] = $time_start;
         }
@@ -84,5 +84,4 @@ class Account extends Model
             $conds['type=?'] = $type;
         return compact('conds');
     }
-
 }
