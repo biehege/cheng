@@ -143,8 +143,6 @@ $info = array(
 $factory = $admin->addFactory($info);
 test(count(Factory::names()), 1, array('name' => 'Admin add Factory'));
 
-
-
 // case 8 Admin post Product, db
 begin_test();
 $prd_types = Product::types();
@@ -161,6 +159,12 @@ $info = array(
     'small_stone' => 3,
     'st_weight' => 2.1);
 $product = $admin->postProduct($info);
+// add more
+$info2 = $info;
+for ($i=0; $i < 50; $i++) {
+    $info2['name'] = $info2['name'] . $i;
+    $admin->postProduct($info2);
+}
 // but what if we count?
 test(
     Pdb::fetchRow('*', Product::$table, array('id=?' => $product->id)),
