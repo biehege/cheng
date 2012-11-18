@@ -104,7 +104,7 @@
                     <div>
                         <span>工费：</span>
                         <span><?= Setting::get('labor_expense') ?>元/件</span>
-                        <span> 损耗：</span>
+                        <span class="wt-label"> 损耗：</span>
                         <span><?= Setting::get('wear_tear') ?>%</span>
                     </div>
                 </div>

@@ -201,6 +201,13 @@
     background-color: #007dcc;
     color: white;
 }
+.product-list .material-selector li:hover {
+    background-color: #48B0F1;
+    color: white;
+}
+.product-list .material-selector li.on:hover {
+    background-color: #007dcc;
+}
 .product-list .mid .size {
     clear: both;
 }
@@ -219,6 +226,9 @@
 }
 .product-list .mid .carve-text .instruction {
     color: #b7b7b7;
+}
+.product-list .mid .wt-label {
+    padding-left: 50px;
 }
 
 .product-list .right {
