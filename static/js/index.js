@@ -13,8 +13,22 @@ $(function () {
         $('form[name=search]').submit();
     });
 
+    // 幻灯片
+    $('.slide').each(function () {
+        var slide = $(this);
+        slide.find('.indicator li').hover(function () {
+            var that = $(this);
+            that.addClass('on').siblings().removeClass('on');
+            var i = that.index();
+            slide.find('.img-wrap').animate({
+                left: (- i * 170) + 'px'
+            }, 'fast');
+        }).eq(0).addClass('on');
+    });
+    
+
     // 材质选择按钮
-    $('.type-selector li').widget('tabSelect').click(function () {
+    $('.material-selector li').widget('tabSelect').click(function () {
         var that = $(this);
         var entry = that.parents('.entry');
         var id = entry.data('id');
@@ -26,7 +40,7 @@ $(function () {
                 target: id
             },
             function (ret) {
-                entry.find('.estimate .price').text(ret);
+                entry.find('.estimate .price .num').text(ret);
             });
     });
 
@@ -49,7 +63,7 @@ $(function () {
         var that = $(this);
         var li = that.parents('li');
         var id = li.data('id');
-        var material = li.find('.type-selector').data('selected');
+        var material = li.find('.material-selector').data('selected');
         var size = li.find('input[name=size]').val();
         var carveText = li.find('.carve .text').text();
         if (!material) {

@@ -210,12 +210,17 @@ class Admin extends Model
 
         return $state;
     }
+
+    public function payFactoryForOrder($factory, $order, $money, $remark = '')
+    {
+        
+    }
     public function payOrder(Order $order, $deduct, $remark = '')
     {
         if (!is_numeric($deduct))
             throw new Exception("money not numeric: $deduct");
         $customer = $order->customer();
-        $account = $customer->account();
+        $account = $customer->account(); // where is customer?
         $this->deductAccountForOrder($account, $order, $deduct, $remark);
         // 关于在这里引起混乱的财务问题，我们还是使用update语句吧
         // db 是该改改了

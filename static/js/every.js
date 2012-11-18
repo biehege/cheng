@@ -14,7 +14,8 @@ $(function () {
         
         // 表单验证
         var forms = $('.append-div form');
-        forms.validate();
+        if (forms.validate)
+            forms.validate();
 
         appendParent.find('.close-btn').click(function () {
             $(this).parents('.append-div').hide().parents('.append-parent').hide();

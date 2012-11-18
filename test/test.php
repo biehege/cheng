@@ -266,19 +266,20 @@ test(1, 1, array('name' => 'Admin recharge Account'));
 $admin->setOrderState($order, 'InFactory');
 test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
 
-// case 8 Admin recharge Factory Account, then use it
+// case 18 Admin recharge Factory Account, then use it(stone)
 begin_test();
 $factory_account = $factory->account();
 $admin->rechargeAccount($factory_account, 30000, 'hello');
 $factory_st_account = $factory->stAccount();
-$admin->rechargeAccount($factory_st_account, 2.1, 'hellzz');
+$admin->rechargeAccount($factory_st_account, 2.8, 'hellzz');
 $remark = 'hellozze';
-$weight = 2.5;
+$weight = 2.1;
 $num = 3;
 $admin->useStoneForOrder($factory, $order, $weight, $num, $remark);
-test(1, 1, array('name' => 'Admin recharge Factory Account, then use it'));
+$admin->payFactoryForOrder($factory, $order, 3000, 'remark');
+test(1, 1, array('name' => 'Admin recharge Factory Account, then use it(stone)'));
 
-// case 18 Admin add Customer
+// case 19 Admin add Customer
 $info = array(
     'username' => 'user_ca_test',
     'password' => 'password',

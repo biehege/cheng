@@ -27,13 +27,13 @@
                 <?php include smart_view('append.div'); ?>
             <?php endforeach ?>
         </div>
-        <div class="header">
+        <div class="header-wrap">
             <?php include smart_view('header'); ?>
         </div>
-        <div class="content">
+        <div class="content-wrap">
             <?php include smart_view($content); ?>
         </div>
-        <div class="footer">
+        <div class="footer-wrap">
             <?php include smart_view('footer'); ?>
         </div>
         <?php

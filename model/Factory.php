@@ -35,7 +35,7 @@ class Factory extends Model
 
     public function stAccount()
     {
-        $account_id = $this->account;
+        $account_id = $this->st_account;
         if (empty($account_id)) {
             $account = Account::create();
             $this->edit('st_account', $account->id);
