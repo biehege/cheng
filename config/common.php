@@ -99,9 +99,9 @@ $config['material_type_map'] = array(
 $config['material_type_name_map'] = array(
     'PT950' => 'PT950',
     'AU750' => 'AU750',
-    '黄18K金' => 'AU750',
-    '白18K金' => 'AU750',
-    '红18K金' => 'AU750');
+    '18K黄' => 'AU750',
+    '18K白' => 'AU750',
+    '18K红' => 'AU750');
 
 $config['order_states'] = array( // remove s??
     //'InCart' => '...',

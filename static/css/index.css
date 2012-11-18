@@ -114,6 +114,9 @@
     padding-left: 20px;
     color: #838484;
 }
+.paging {
+    float: right;
+}
 
 /* 产品列表 */
 .product-list {

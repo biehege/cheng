@@ -175,11 +175,35 @@ div.search .e {
 
 /*翻页*/
 .paging {
-    float: right;
+    color: #8d8d8d;
 }
-.padding .on { /*fuck*/
-    font-weight: bold;
-    color: red;
+.paging .btn {
+    color: #8d8d8d;
+    display: block;
+    float: left;
+    height: 22px;
+    border: 1px solid #c5c5c5;
+    line-height: 22px;
+    text-align: center;
+}
+.paging .btn:hover {
+    background-color: #F1F1F1;
+}
+.paging .num {
+    width: 22px;
+    margin: 9px 9px 9px 0;
+}
+.paging .on {
+    background-color: #dfdfdf;
+}
+.paging .ommision {
+    display: block;
+    float: left;
+    margin: 9px;
+}
+.paging .next-page-btn {
+    width: 60px;
+    margin: 9px;
 }
 
 /*错误提示*/

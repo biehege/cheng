@@ -3,20 +3,20 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
- 
+
 $min = $paging->viewMin();
 $max = $paging->viewMax();
 $cur_page = $paging->curPage();
+$href_prefix = $paging->hrefPrefix();
 ?>
 <?php if ($paging->maxPage() > 1): ?>
 <div class="paging">
-    <?php if ($paging->reachStart()): ?><span>...</span><?php endif; ?>
+    <?php if ($paging->reachStart()): ?><span class="ommision">...</span><?php endif; ?>
     <?php for ($i = $min; $i <= $max; $i++): ?>
-        <span class="<?= $i == $cur_page? 'on' : '' ?>">
-            <a href="?p=<?= $i ?>"><?= $i ?></a>
-        </span>
+        <a class="num btn <?= $i == $cur_page? 'on' : '' ?>" href="?<?= $href_prefix . $i ?>"><?= $i ?></a>
     <?php endfor; ?>
-    <?php if ($paging->reachEnd()): ?><span>...</span><?php endif; ?>
-    <?php if ($paging->hasNext()): ?><a href="?p=<?= $cur_page+1 ?>" class="next-page btn">下一页</a><?php endif; ?>
+    <?php if ($paging->reachEnd()): ?><span class="ommision">...</span><?php endif; ?>
+    <?php if ($paging->hasNext()): ?><span data-p="<?= $cur_page+1 ?>" class="next-page-btn btn">下一页</span><?php endif; ?>
+    <br class="clear-fix" />
 </div>
 <?php endif; ?>

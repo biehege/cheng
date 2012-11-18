@@ -121,4 +121,5 @@
         <?php endforeach ?>
     </ul>
     <?php include smart_view('paging'); ?>
+    <br class="clear-fix" />
 </div>
