@@ -38,17 +38,17 @@ td, th {
     line-height: 24px;
 }
 
-.header-wrap .price {
+.header-wrap .gold-price {
     float: left;
     margin-left: 5px;
 }
-.header-wrap .price span {
+.header-wrap .gold-price span {
 }
-.header-wrap .price .lbl {
+.header-wrap .gold-price .lbl {
     font-weight: bold;
     padding-right: 5px;
 }
-.header-wrap .price .info {
+.header-wrap .gold-price .info {
     color: #2b749d;
 }
 
@@ -164,8 +164,8 @@ div.search .e {
 
 /* 模拟表格 */
 .col {
-    display: inline-block;
-    border: 1px solid;
+    display: block; /*for ie 6, fuck!!!*/
+    float: left;
     width: 7%;
 }
 .col.title {
