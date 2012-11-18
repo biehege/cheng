@@ -3,6 +3,19 @@ $(function () {
 
     // 不是我啰嗦，这些get_xxx_div的操作真的可以抽象出来
 
+    $('.price-detail-btn').click(function () {
+        var id = $(this).parents('.entry').data('id');
+        $.get(
+            '/order',
+            {
+                action: 'get_price_detail_div',
+                target: id
+            },
+            function (ret) {
+                $$.appendDiv.show(ret);
+            });
+    });
+
     // 修改订单信息
     $('.edit-info-btn').click(function () {
         var that = $(this);

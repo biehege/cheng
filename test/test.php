@@ -34,7 +34,7 @@ if ($clear) {
     Pdb::del(Factory::$table, array("name LIKE '%test%'" => null));
 
     // clear product
-    Pdb::del(Product::$table, array('name LIKE ?' => '%_test'));
+    Pdb::del(Product::$table, array('name LIKE ?' => '%_test%'));
 
     // clear cart and order
     clear_db(Cart::$table, Customer::$table, 'customer', 'customer');
@@ -157,12 +157,17 @@ $info = array(
     'rabbet_start' => '0.30',
     'rabbet_end' => '0.60',
     'small_stone' => 3,
-    'st_weight' => 2.1);
+    'st_weight' => 2.1,
+    'image1_400' => '/data/upload/201211/18/50a8d4adabe4f.jpg',
+    'image2_400' => '/data/upload/201211/03/50952f2cdd152.jpeg',
+    'image1_thumb' => '/data/upload/201211/18/50a8d4adaeed8.jpg',
+    'image2_thumb' => '/data/upload/201211/03/509cb8be38ee8.jpeg');
 $product = $admin->postProduct($info);
 // add more
-$info2 = $info;
+
 for ($i=0; $i < 50; $i++) {
-    $info2['name'] = $info2['name'] . $i;
+    $info2 = $info;
+    $info2['name'] = $info['name'] . $i;
     $admin->postProduct($info2);
 }
 // but what if we count?

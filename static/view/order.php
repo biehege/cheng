@@ -59,12 +59,14 @@
     <?php include smart_view('paging'); ?>
     <div>共找到：<?= $total ?>条</div>
 </div>
-<div>
+<div class="order">
     <div class="title">
         <span class="col title name">名称</span>
         <span class="col title info">详细规格</span>
-        <span class="col title stone">主石</span>
-        <span class="col title realname">姓名</span>
+        <?php if ($user_type === 'Admin'): ?>
+            <span class="col title stone">主石</span>
+            <span class="col title realname">姓名</span>
+        <?php endif ?>
         <span class="col title price-estimate">预估价</span>
         <?php if ($user_type === 'Admin'): ?>
             <span class="col title factory-name">工厂名称</span>
@@ -82,21 +84,25 @@
     <?php foreach ($orders as $order): ?>
         <?php 
         $cus = $order->customer(); 
-        $user = $cus->user(); 
+        $user = $cus->user();
         $prd = $order->product(); 
         $customer_price = $order->priceData('customer');
         ?>
         <div class="entry" data-id="<?= $order->id ?>">
-            <div>
-                <input type="checkbox" />
-                <span>订单号：<?= $order->order_no ?></span>
-                <span>下单时间：<?= $order->submit_time ?></span>
-                <span class="edit-info-btn">修改</span>
+            <div class="brief-info">
+                <input type="checkbox" for="order-no-<?= $order->id ?>" />
+                <lable id="order-no-<?= $order->id ?>" class="e">订单号：<?= $order->order_no ?></lable>
+                <span class="e">下单时间：<?= $order->submit_time ?></span>
+                <?php if ($user_type === 'Admin'): ?>
+                    <span class="edit-info-btn">修改</span>
+                <?php endif ?>
             </div>
             <div class="col name">
-                <img />
-                <span><?= $prd->name ?></span>
-                <span>款号：<?= $prd->no ?></span>
+                <img src="<?= $prd->image1_thumb ?>" />
+                <div class="text-wrap">
+                    <span class="text"><?= $prd->name ?></span>
+                    <span>款号：<?= $prd->no ?></span>
+                </div>
             </div>
             <div class="col info">
                 <span>材质：<?= $order->material ?></span>
@@ -107,16 +113,18 @@
                 <span>工费：<?= $customer_price->labor_expense ?></span>
                 <span>损耗：<?= $customer_price->wear_tear ?></span>
             </div>
-            <div class="col title stone">
-                <?= $order->stone()->weight ?>
-                ct
-                <span class="stone-btn">填写</span>
-            </div>
-            <div class="col realname">
-                <?= $user->realname ?>
-            </div>
+            <?php if ($user_type === 'Admin'): ?>
+                <div class="col stone">
+                    <?= $order->stone()->weight ?>
+                    ct
+                    <span class="stone-btn">填写</span>
+                </div>
+                <div class="col realname">
+                    <?= $user->realname ?>
+                </div>
+            <?php endif ?>
             <div class="col price-estimate">
-                <?= $order->estimate_price ?>
+                ￥<?= $order->estimate_price ?>
             </div>
             <?php if ($user_type === 'Admin'): ?>
                 <div class="col factory-name">
@@ -137,7 +145,8 @@
                 </div>
             <?php else: ?>
                 <div class="col price-real">
-                    <?= $customer_price->finalPrice() ?>
+                    ￥<?= $customer_price->finalPrice() ?>
+                    <img class="price-detail-btn" title="价格详情" src="<?= ROOT ?>static/img/i.gif">
                 </div>
             <?php endif ?>
             <div class="col state">
@@ -161,27 +170,7 @@
                     <span><?= $order->admin_remark ?></span>
                 </div>
             <?php endif ?>
-            <div class="detail-info">
-                <div class="address">
-                    <?php $address = $cus->defaultAddress() ?>
-                    <h4>收件人信息</h4>
-                    <div><?= $address->name ?> <?= $address->phone ?></div>
-                    <div><?= $address->detail ?></div>
-                </div>
-                <div class="log">
-                    <h4>订单处理日志</h4>
-
-                    <?php if ($user_type == 'Admin'): ?>
-                        <span>跟进&nbsp;&gt;</span>
-                    <?php endif ?>
-                    
-                    <?php $order_log = $order->log(); ?>
-                    <?php foreach ($order_log as $entry): ?>
-                        <div class=""><?= $entry['time'] ?> <?= $entry['remark'] ?></div>
-                    <?php endforeach ?>
-                </div>
-                <br class="clear-fix" />
-            </div>
+            
         </div>
     <?php endforeach ?>
 </div>

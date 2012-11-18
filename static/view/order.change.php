@@ -4,7 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<h3><?= $title ?></h3>
+<h3 class="title"><?= $title ?></h3>
 <form method="post" action="<?= ROOT . 'order/' . $order_id ?>">
     <input type="hidden" name="a" value="change_price">
     <input type="hidden" name="type" value="<?= $type ?>">

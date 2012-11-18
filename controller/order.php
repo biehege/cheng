@@ -42,17 +42,23 @@ $next_button_map = $config['next_button_map'];
 switch ($user_type) {
     case 'Customer':
 
-        if ($by_ajax) {
+        if ($by_ajax && is_numeric($target)) {
+            $order_id = $target;
+            $order = new Order($order_id);
             switch ($action) {
                 case 'change_remark':
                     $remark = _post('remark');
-
-                    $order = new Order($target);
                     if ($remark) {
                         $customer->changeOrderRemark($order, $remark);
                     }
                     echo $order->customer_remark;
                     exit;
+
+                case 'get_price_detail_div':
+                    $view_name = 'order.price';
+                    include smart_view('append.div');
+                    exit;
+                    break;
                 
                 default:
                     throw new Exception("unkown action: $action");
