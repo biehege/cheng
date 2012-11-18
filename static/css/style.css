@@ -1,6 +1,5 @@
 /* 
     Document   : style
-    Created on : Sep 21, 2012, 1:14:09 PM
     Author     : ryan
 */
 
@@ -29,6 +28,24 @@ td, th {
     margin: auto;
     clear: both;
 }
+/* text input */
+.ti {
+    padding: 0 3px;
+    height: 20px;
+    border: 1px solid #c5e2ff;
+    box-shadow: 1px 1px 1px  #919191 inset;
+}
+/*button*/
+.mbtn {
+    border: none;
+    background-color: #0073b3;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.mbtn:hover {
+    background-color: #1389CA;
+}
 
 /* 头部 */
 .header-wrap {
@@ -50,6 +67,7 @@ td, th {
 }
 .header-wrap .gold-price .info {
     color: #2b749d;
+    padding-right: 5px;
 }
 
 .header-wrap .account {
@@ -138,14 +156,31 @@ form.logreg .ok.btn {
 /* 侧边栏 */
 .main-nav {
     float: left;
-    width: 17%;
-    border: 1px solid;
+    width: 150px;
+    background-color: #c5e2ff;
 }
 .main-nav dt {
     font-weight: bold;
+    background-color: #3f77ac;
+    padding-left: 25px;
+    height: 30px;
+    line-height: 30px;
 }
-.main-nav dd.on {
-    background-color: yellow;
+.main-nav dt a {
+    color: white;
+}
+.main-nav dd {
+    padding: 4px 10px 4px 10px;
+}
+.main-nav dd a {
+    color: #3f77ac;
+    display: block;
+    height: 26px;
+    line-height: 26px;
+    padding-left: 15px;
+}
+.main-nav dd.on a {
+    background-color: #96c8fb;
 }
 .right-frame {
     float: right;
@@ -154,7 +189,11 @@ form.logreg .ok.btn {
 
 /* 面包屑导航 */
 .crumb {
-    border: 1px solid;
+    background-color: #f7f7f7;
+    height: 28px;
+    line-height: 28px;
+    border-top: 1px solid #d2d2d2;
+    padding-left: 15px;
 }
 
 /* 搜索框 */

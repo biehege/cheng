@@ -8,15 +8,15 @@
     <div class="search">
         <div class="e">
             <label for="name">名称：</label>
-            <input type="text" name="name" id="name" />
+            <input class="ti" type="text" name="name" id="name" />
         </div>
         <div class="e">
             <label for="product_no">款号：</label>
-            <input type="text" name="product_no" id="product_no" />
+            <input class="ti" type="text" name="product_no" id="product_no" />
         </div>
         <div class="e">
             <label for="order_no">订单号：</label>
-            <input type="text" name="order_no" id="order_no" />
+            <input class="ti" type="text" name="order_no" id="order_no" />
         </div>
         <div class="e">
             <label for="type">分类：</label>
@@ -28,22 +28,22 @@
         <?php if ($user_type === 'Admin'): ?>
             <div class="e">
                 <label for="customer">客户名：</label>
-                <input type="text" name="customer" id="customer" />
+                <input class="ti" type="text" name="customer" id="customer" />
             </div>
             <div class="e">
                 <label for="username">用户名：</label>
-                <input type="text" name="username" id="username" />
+                <input class="ti" type="text" name="username" id="username" />
             </div>
             <div class="e">
                 <label for="factory">工厂名：</label>
-                <input type="text" name="factory" id="factory" />
+                <input class="ti" type="text" name="factory" id="factory" />
             </div>
         <?php endif ?>
         <div class="e">
             <label for="time">下单时间：</label>
-            <input type="text" name="time_start" id="time" />
+            <input class="ti" type="text" name="time_start" id="time" />
             -
-            <input type="text" name="time_end" id="time" />
+            <input class="ti" type="text" name="time_end" id="time" />
         </div>
         <div class="e">
             <label for="state">状态：</label>
@@ -52,7 +52,7 @@
             $data = $state_map;
             include smart_view('widget.select'); ?>
         </div>
-        <input type="submit" value="搜索" />
+        <input type="submit" value="搜索" class="mbtn" />
     </div>
 </form>
 <div>

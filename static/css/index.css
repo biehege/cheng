@@ -215,12 +215,7 @@
     clear: both;
 }
 .product-list .size input {
-    padding: 0 3px;
     width: 70px;
-    height: 20px;
-    border: 1px solid #c5e2ff;
-
-    box-shadow: 1px 1px 1px  #919191 inset;
 }
 .product-list .mid .carve .trigger {
     color: #007dcc;

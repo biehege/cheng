@@ -1,3 +1,30 @@
+.content-wrap {
+    width: 1000px;
+    margin: auto;
+}
+
+.right-frame {
+    width: 842px;
+}
+
+.search {
+    padding-top: 10px;
+}
+.search .e {
+    height: 34px;
+    line-height: 34px;
+    padding-left: 15px;
+}
+.search .e .ti {
+    width: 110px;
+}
+.search .mbtn {
+    width: 64px;
+    height: 26px;
+    border: 1px solid #2b749d;
+    margin-left: 20px;
+}
+
 .col.name {
     width: 8%;
 }

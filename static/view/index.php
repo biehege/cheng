@@ -10,7 +10,6 @@
     <div class="search">
         <div class="type">
             <input name="type" type="hidden" value="<?= $type ?>" />
-
             <ul class="types">
                 <?php foreach (Product::types() as $t): ?>
                     <li class="<?= $type === $t ? 'on' : '' ?>"><?= $t ?></li>
@@ -31,7 +30,7 @@
             </div>
             <div class="e">
                 <label for="stone-size">镶石大小：</label>
-                <input id="stone-size" class="text-in " type="text" name="stone_size" value="<?= $stone_size ?>" />
+                <input id="stone-size" class="text-in" type="text" name="stone_size" value="<?= $stone_size ?>" />
                 <span>ct</span>
             </div>
             <input class="search-btn" type="submit" value="搜索" />
@@ -80,7 +79,7 @@
                     </div>
                     <div class="size">
                         <label for="size">手寸：</label>
-                        <input type="text" name="size" id="size" />
+                        <input class="ti" type="text" name="size" id="size" />
                     </div>
                     <div class="carve-text">
                         <span>刻字：</span>
