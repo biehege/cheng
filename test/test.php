@@ -151,9 +151,9 @@ $info = array(
     'type' => reset(array_keys($prd_types)),
     'material' => json_encode(array(
         'PT950', 
-        '18K白',
-        '18K黄',
-        '18K红')),
+        '白18K金',
+        '黄18K金',
+        '红18K金')),
     'rabbet_start' => '0.30',
     'rabbet_end' => '0.60',
     'small_stone' => 3,

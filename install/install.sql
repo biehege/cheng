@@ -142,13 +142,14 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `factory_confirm_time` datetime DEFAULT NULL,
   `factory_done_time` datetime DEFAULT NULL,
   `done_time` datetime DEFAULT NULL,
+  `real_price` decimal(10,2) NOT NULL DEFAULT '0.00',
   `estimate_price` decimal(8,2) NOT NULL,
   `paid` decimal(8,2) NOT NULL,
   `customer_remark` text,
   `admin_remark` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13517 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35762 ;
 
 -- price_data
 CREATE TABLE IF NOT EXISTS `price_data` (
