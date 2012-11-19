@@ -115,13 +115,16 @@ td, th {
 .append-div {
     background-color: white;
     margin: auto;
-    margin-top: 50px;
     display: none;
+    position: absolute;
 }
 .append-div .close-btn {
     cursor: pointer;
     float: right;
     display: block;
+}
+.append-div > .title {
+    cursor: move;
 }
 
 /*中部*/

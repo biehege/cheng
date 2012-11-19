@@ -6,45 +6,94 @@
     console.log(arg);
  };
 
-$(function () {
+
+// 我自己做的库
+(function () {
 
     // 附加层的关闭按钮
-    var appendParent = $('.append-parent');
-    var refreshAllAppendDivFunc = function () {
-        
-        // 表单验证
-        var forms = $('.append-div form');
-        if (forms.validate)
-            forms.validate();
+    var appendParent = null;
+    var refreshAllAppendDivFunc = 
+    window.refreshAppendDiv = refreshAllAppendDivFunc; // 兼容性
 
-        appendParent.find('.close-btn').click(function () {
-            $(this).parents('.append-div').hide().parents('.append-parent').hide();
-        });
-    };
-    window.refreshAppendDiv = refreshAllAppendDivFunc;
+    var xcJsLib = {
+    appendDiv: {
+        hasInit: false,
+        appendParent: null,
+        init: function () {
+            this.appendParent = $('.append-parent');
+            this.hasInit = true;
+        },
+        refreshAll: function () {
+            if (!this.hasInit)
+                this.init();
 
-    var xcjsLib = {
-        appendDiv: {
-            refreshAll: refreshAllAppendDivFunc,
-            show: function (arg) {
-                var argIsHtml = 1;
-                if (argIsHtml) {
-                    var html = arg;
-                    var div = this.add(html);
-                    div.show();
-                    appendParent.show();
+            // 表单验证
+            var forms = $('.append-div form');
+            if (forms.validate)
+                forms.validate();
+
+            var ap = this.appendParent;
+            ap.find('.close-btn').click(function () {
+                $(this).parents('.append-div').hide().parents('.append-parent').hide();
+            });
+
+            var isDown = false;
+            var title = ap.find('.title');
+            var origX, origY;
+            title.mousedown(function (e) {
+                isDown = true;
+                var divPos = title.parents('.append-div').offset();
+                origX = e.pageX - divPos.left;
+                origY = e.pageY - divPos.top;
+            }).mouseup(function () {
+                isDown = false;
+            }).mouseout(function () {
+                isDown = false; // fix bug
+            }).mousemove(function (e) {
+                var x, y;
+                if (isDown) {
+                    x = e.pageX;
+                    y = e.pageY;
+                    title.parents('.append-div').offset({
+                        left: x - origX,
+                        top: y - origY
+                    });
                 }
-            },
-            add: function (html) {
-                var div = $(html);
-                appendParent.append(div);
-                this.refreshAll();
-                return div;
+            });
+        },
+        show: function (arg) {
+            if (!this.hasInit)
+                this.init();
+            var argIsHtml = 1;
+            if (argIsHtml) {
+                var html = arg;
+                var div = this.add(html);
+                div.show();
+                var ap = this.appendParent;
+                ap.show();
+                var w = ap.width();
+                var h = ap.height();
+                var dw = w - div.width();
+                var dh = h - div.height();
+                div.offset({
+                    top: dh > 0 ? dh / 2 : 0,
+                    left: dw > 0 ? dw / 2 : 0
+                });
             }
+        },
+        add: function (html) {
+            if (!this.hasInit)
+                this.init();
+            var div = $(html);
+            this.appendParent.append(div);
+            this.refreshAll();
+            return div;
         }
+    }
     };
-    window.$$ = xcjsLib;
+    window.$$ = xcJsLib;
+})();
 
+$(function () {
     $$.appendDiv.refreshAll();
-
 });
