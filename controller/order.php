@@ -55,6 +55,7 @@ switch ($user_type) {
                     exit;
 
                 case 'get_price_detail_div':
+                    $price = $order->priceData('customer');
                     $view_name = 'order.price';
                     include smart_view('append.div');
                     exit;

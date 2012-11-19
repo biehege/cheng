@@ -175,14 +175,17 @@
     padding-bottom: 10px;
 }
 
-.order-change.append-div {
-    width: 700px;
+.append-div {
     padding: 18px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.43);
 }
-.order-change.append-div .box-container {
+
+.order-change.append-div {
+    width: 700px;
+}
+.order-change.append-div .box-wrap {
     float: left;
-    width: 100px;
+    width: 160px;
 }
 .append-div .title {
     font-size: 14px;
@@ -191,7 +194,7 @@
     border-bottom: 1px solid #828282;
 }
 
-.box-container .box {
+.box-wrap .box {
     border: 1px dotted;
     height: 150px;
 }
@@ -221,4 +224,28 @@
 
 .order-stone.append-div {
     width: 600px;
+}
+
+.order-price.append-div {
+    width: 700px;
+}
+.order-price .box-wrap {
+    float: left;
+    width: 160px;
+    margin-right: 8px;
+    color: #2d2d2d;
+    text-align: center;
+}
+.append-div .box-wrap .total {
+    height: 43px;
+    line-height: 43px;
+    font-size: 20px;
+}
+.order-price .box-wrap .explain {
+    text-align: center;
+    color: #b9b9b9;
+}
+
+.order-price .more-info {
+    clear: both;
 }
