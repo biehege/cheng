@@ -8,6 +8,6 @@ if (!isset($div_name))
 
 ?>
 <div class="<?= $div_name ?> append-div">
-    <span class="close-btn">X</span>
+    <img src="<?= ROOT ?>static/img/close-btn.gif" class="close-btn">
     <?php include smart_view($view_name); ?>
 </div>
