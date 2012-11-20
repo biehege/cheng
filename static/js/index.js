@@ -50,12 +50,19 @@ $(function () {
         carve.find('.ok-btn').click(function () {
             var that = $(this);
             var text = carve.find('input').val();
-            console.log(text);
             if (text) {
                 carve.find('.trigger').hide();
                 carve.find('.text').text(text);
             }
+            that.parents('.carve-box').hide();
         });
+    });
+
+    // 心形符号
+    $('.add-heart-btn').click(function () {
+        var that = $(this);
+        var input = that.parents('.carve-box').find('input');
+        input.val(input.val() + '♥').focus();
     });
 
     // 下订单

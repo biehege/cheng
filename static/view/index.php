@@ -87,14 +87,15 @@
                             <span class="trigger">输入&gt;</span>
                             <span class="text"></span>
                             <div class="carve-box">
-                                <div>刻字内容</div>
-                                <input type="text" name="carve_text" />
-                                <span class="s1">三</span>
-                                <span class="s2">&amp;</span>
-                                <button class="ok-btn">确定</button>
+                                <div>刻字内容：</div>
+                                <div>
+                                    <input type="text" name="carve_text" class="ti" />
+                                    <button class="ok-btn mbtn">确定</button>
+                                </div>
+                                <img src="<?= ROOT ?>static/img/heart-add.gif" class="add-heart-btn">
                             </div>
                         </div>
-                        <span class="instruction">由字母、数字、图形（两种）组成;至多5个字符。</span>
+                        <span class="instruction">由字母、数字、图形组成；至多5个字符。</span>
                     </div>
                     <div>
                         <span>辅石：</span>

@@ -277,12 +277,27 @@
 
 .carve .carve-box {
     display: none;
-    border: 1px solid;
+    width: 290px;
+    height: 73px;
     position: absolute;
     background-color: white;
+    top: 0;
+    left: 29px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.43);
+    padding: 6px 10px;
+    color: #838484;
 }
 .carve:hover .carve-box {
     display: block;
+}
+.carve .carve-box .ti {
+    width: 180px;
+}
+.carve .carve-box .mbtn {
+    width: 50px;
+    height: 21px;
+    line-height: 20px;
+    margin-left: 25px;
 }
 
 .already {
