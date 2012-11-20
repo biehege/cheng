@@ -292,8 +292,9 @@ class PdoHelper {
     }
 
     private static function valueParaList($arr) {
-        return implode(',', array_map(function ($name, $value) {
-            if ($value === false || $value === null) {
+        return implode(', ', array_map(function ($name, $value) {
+            $find = strpos($name, '=');
+            if ($value === false || $value === null || $find !== false) {
                 return $name;
             } else {
                 return $name.'=?';

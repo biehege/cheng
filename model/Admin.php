@@ -216,14 +216,17 @@ class Admin extends Model
         $account = $factory->account();
         $account->deduct($money);
 
+        Pdb::update(
+            array('paid_factory = paid_factory + ?' => $money),
+            Order::$table,
+            $order->selfCond());
         Pdb::insert(
             array(
                 'account' => $account->id,
-                'order' => $order->id,
+                '`order`' => $order->id,
                 'money' => $money,
                 'remark' => $remark,
-                'time=NOW()' => null,
-                ''),
+                'time=NOW()' => null),
             AccountHistory::$table);
 
     }
