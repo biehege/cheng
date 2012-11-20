@@ -35,6 +35,7 @@ class Account extends Model
             self::$table);
     }
 
+    // 这里注意！可能导致数据不一致，解决方案是只使用log db(innoDB)来获得余额
     public function deduct($money, $num = 0)
     {
         if (!is_numeric($money) || !is_numeric($num)) {

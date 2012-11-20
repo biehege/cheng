@@ -213,7 +213,19 @@ class Admin extends Model
 
     public function payFactoryForOrder($factory, $order, $money, $remark = '')
     {
-        
+        $account = $factory->account();
+        $account->deduct($money);
+
+        Pdb::insert(
+            array(
+                'account' => $account->id,
+                'order' => $order->id,
+                'money' => $money,
+                'remark' => $remark,
+                'time=NOW()' => null,
+                ''),
+            AccountHistory::$table);
+
     }
     public function payOrder(Order $order, $deduct, $remark = '')
     {

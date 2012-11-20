@@ -113,7 +113,7 @@ switch ($target) {
                 $money = _get('money');
                 $remark = _get('remark');
                 $admin->rechargeAccount($account, $money, $remark);
-                redirect('user?username=' . $cus->user()->name);
+                redirect('user/' . $cus->id . '/account');
                 break;
 
             case 'edit':

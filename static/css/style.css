@@ -47,6 +47,12 @@ td, th {
     background-color: #1389CA;
 }
 
+/*table*/
+.table-row {
+    clear: both;
+    display: block;
+}
+
 /* 头部 */
 .header-wrap {
 }

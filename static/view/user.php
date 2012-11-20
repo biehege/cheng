@@ -52,7 +52,7 @@
 </div>
 <?php foreach ($customers as $cus):  ?>
     <?php $user_ = $cus->user(); $account = $cus->account(); ?>
-    <div>
+    <div class="table-row">
         <div class="entry" data-id="<?= $cus->id ?>">
             <div class="col "><?= $user_->name ?></div>
             <div class="col "><?= $user_->realname ?></div>

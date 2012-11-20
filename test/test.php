@@ -264,12 +264,13 @@ $stone = $order->stone();
 $stone->edit($info);
 test(1, 1, array('name' => 'Admin(?) edit Stone'));
 
-// case 16 Admin recharge Account
+// case 16 Admin recharge Account then use it to pay order
 begin_test();
 $account = $customer->account();
 $admin->rechargeAccount($account, 4000);
+sleep(1);
 $admin->payOrder($order, 200, 'what?');
-test(1, 1, array('name' => 'Admin recharge Account'));
+test(1, 1, array('name' => 'Admin recharge Account then use it to pay order'));
 
 // case 17 Admin Confirmed Order (InFactory)
 $admin->setOrderState($order, 'InFactory');
@@ -281,6 +282,8 @@ $factory_account = $factory->account();
 $admin->rechargeAccount($factory_account, 30000, 'hello');
 $factory_st_account = $factory->stAccount();
 $admin->rechargeAccount($factory_st_account, 2.8, 'hellzz');
+// 注意，这里有问题，凡是和账户相关的time，都应该有个timestamp不然不能确定准确的执行时间
+sleep(1);
 $remark = 'hellozze';
 $weight = 2.1;
 $num = 3;
