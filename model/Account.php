@@ -42,7 +42,7 @@ class Account extends Model
             throw new Exception("money must be numeric: $money");
         }
         Pdb::update(
-            array("remain = remain-'$money'" => null), // !!! injection
+            array("remain = remain - ?" => $money),
             self::$table);
     }
 

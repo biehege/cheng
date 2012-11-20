@@ -59,9 +59,6 @@ if ($argument && $target) {
         'type',
         'sort');
 
-    
-
-
 
     switch ($argument) {
         case 'stone':
@@ -74,6 +71,7 @@ if ($argument && $target) {
             $types = $config['account_type'];
 
             $account = $factory->account();
+            $orders = Order::listOrder(array('factory_id' => $factory->id));
             break;
         
         default:

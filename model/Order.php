@@ -169,7 +169,16 @@ class Order extends Model
         extract(array_merge(
             array(
                 'username' => '',
-                'factory' => ''),
+                'factory' => '',
+                'factory_id' => null,
+                'customer' => null,
+                'name' => '',
+                'product_no' => '',
+                'order_no' => '',
+                'time_start' => '',
+                'time_end' => '',
+                'type' => null,
+                'state' => null),
             $conds));
         $tables = array(self::$table . ' as o');
         $conds = array();
@@ -200,7 +209,12 @@ class Order extends Model
         }
         if ($factory) {
             $factory = Factory::createByName($factory);
+            if (empty($factory))
+                throw new Exception("cannot find factory: $factory");
             $conds['o.factory=?'] = $factory->id;
+        }
+        if ($factory_id) {
+            $conds['o.factory = ?'] = $factory_id;
         }
         if ($customer) {
             if (is_numeric($customer)) {

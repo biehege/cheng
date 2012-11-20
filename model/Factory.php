@@ -7,6 +7,16 @@ class Factory extends Model
 {
     public static $table = 'factory';
 
+    public static function createByName($name)
+    {
+        $id = Pdb::fetchRow('id', self::$table, array('name = ?' => $name));
+        if ($id) {
+            return new self($id);
+        } else {
+            return false;
+        }
+    }
+
     public function info()
     {
         return Pdb::fetchRow('*', self::$table, $this->selfCond());
