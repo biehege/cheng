@@ -222,11 +222,11 @@ class PdoHelper {
     }
 
     // 已废弃
-    private static function usefulValues($arr) {
-        return array_filter($arr, function ($v) {
-            return !($v === false);
-        });
-    }
+    // private static function usefulValues($arr) {
+    //     return array_filter($arr, function ($v) {
+    //         return !($v === false);
+    //     });
+    // }
     private static function precomposite($para) {
         if (is_array($para))
             $para = implode(',', $para);
