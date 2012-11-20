@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `done` decimal(10,2) DEFAULT NULL,
   `undone` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='其实这个是钱的账户还是辅石的账户，从数据角度讲，无关紧要' AUTO_INCREMENT=633 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='钱的账户或者辅石的账户' AUTO_INCREMENT=633 ;
 
 -- product, actually, it's product type
 CREATE TABLE IF NOT EXISTS `product` (
