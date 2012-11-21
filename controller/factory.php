@@ -82,8 +82,6 @@ if ($argument && $target) {
 
 
 
-
-
     $per_page = 50;
     $total = $account->countHistory($conds);
     $paging = new Paginate($per_page, $total);

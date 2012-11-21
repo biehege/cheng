@@ -107,9 +107,15 @@ class Customer extends Model
 
     public function delProductFromCart(Order $order)
     {
+        // del it from cart
         Pdb::del(
             Cart::$table,
             array('small_order=?' => $order->id)); // this id for customer? not need
+
+        // del it from order db
+        Pdb::del(
+            Order::$table,
+            $order->selfCond());
     }
 
     public function listOrders($conds)

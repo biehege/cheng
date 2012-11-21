@@ -195,6 +195,11 @@ class Admin extends Model
         return compact('conds', 'tables');
     }
 
+    public function sendOrderToFactory(Order $order, Factory $factory)
+    {
+        $this->setOrderState($order, 'InFactory');
+        $order->edit('factory', $factory->id);
+    }
 
     public function confirmOrder(Order $order)
     {

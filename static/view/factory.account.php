@@ -29,8 +29,8 @@
     </tr>
     <?php foreach ($orders as $order): ?>
         <?php 
-        $final_price = $order->priceDate('factory')->final();
-        $paid = $order->factory_paid;
+        $final_price = $order->priceData('factory')->finalPrice();
+        $paid = $order->paid_factory;
         ?>
         <tr>
             <td><a href="<?= ROOT . 'order?order_no=' . $order->order_no ?>"><?= $order->order_no ?></a></td>

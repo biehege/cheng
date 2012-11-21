@@ -9,63 +9,61 @@ include_once APP_ROOT . 'config/common.php';
 Pdb::setConfig($config['db']);
 
 // clear side effects for all
-$clear = 1;
-if ($clear) {
 
-    // unset all session
-    if (1) {
-        session_start();
-        foreach ($_SESSION as $key => $value) {
-            unset($_SESSION[$key]);
-        }
-    }
-    
-    // clear user
-    Pdb::del(User::$table, array("name LIKE '%test%'" => null));
-
-    // clear customer
-    clear_db(Customer::$table, User::$table, 'user');
-
-    // clear user (admin)
-    $username = 'test_admin';
-    Pdb::del(User::$table, array('name=?' => $username));
-
-    // clear factory
-    Pdb::del(Factory::$table, array("name LIKE '%test%'" => null));
-
-    // clear product
-    Pdb::del(Product::$table, array('name LIKE ?' => '%_test%'));
-
-    // clear cart and order
-    clear_db(Cart::$table, Customer::$table, 'customer', 'customer');
-    clear_db(Order::$table, Customer::$table, 'customer'); // what if Order submited??
-
-    // clear 
-    clear_db('big_to_small_order', Order::$table, 'small', 'small');
-    $big_order_ids = Pdb::fetchAll('id', BigOrder::$table);
-    if ($big_order_ids) 
-        foreach ($big_order_ids as $id)
-            if (!Pdb::exists('big_to_small_order', array('big=?' => $id)))
-                Pdb::del(BigOrder::$table, array('id=?' => $id));
-
-    // clear address
-    clear_relation_db(Customer::$table, Address::$table);
-
-    // clear user log
-    clear_db(UserLog::$table, Customer::$table, 'subject');
-
-    // clear account
-    clear_11_db(Customer::$table, Account::$table);
-
-    // clear account log
-    clear_1m_db(Account::$table, AccountHistory::$table);
-
-    if (_get('exit')) {
-        echo '<script src="static/hide.js"></script>';
-        echo '<div class="conclusion pass">All Clear!</div>';
-        exit;
+// unset all session
+if (1) {
+    session_start();
+    foreach ($_SESSION as $key => $value) {
+        unset($_SESSION[$key]);
     }
 }
+
+// clear user
+Pdb::del(User::$table, array("name LIKE '%test%'" => null));
+
+// clear customer
+clear_db(Customer::$table, User::$table, 'user');
+
+// clear user (admin)
+$username = 'test_admin';
+Pdb::del(User::$table, array('name=?' => $username));
+
+// clear factory
+Pdb::del(Factory::$table, array("name LIKE '%test%'" => null));
+
+// clear product
+Pdb::del(Product::$table, array('name LIKE ?' => '%_test%'));
+
+// clear cart and order
+clear_db(Cart::$table, Customer::$table, 'customer', 'customer');
+clear_db(Order::$table, Customer::$table, 'customer'); // what if Order submited??
+
+// clear 
+clear_db('big_to_small_order', Order::$table, 'small', 'small');
+$big_order_ids = Pdb::fetchAll('id', BigOrder::$table);
+if ($big_order_ids) 
+    foreach ($big_order_ids as $id)
+        if (!Pdb::exists('big_to_small_order', array('big=?' => $id)))
+            Pdb::del(BigOrder::$table, array('id=?' => $id));
+
+// clear address
+clear_relation_db(Customer::$table, Address::$table);
+
+// clear user log
+clear_db(UserLog::$table, Customer::$table, 'subject');
+
+// clear account
+clear_11_db(Customer::$table, Account::$table);
+
+// clear account log
+clear_1m_db(Account::$table, AccountHistory::$table);
+
+if (_get('exit')) {
+    echo '<script src="static/hide.js"></script>';
+    echo '<div class="conclusion pass">All Clear!</div>';
+    exit;
+}
+
 
 $all_pass = true;
 
@@ -189,8 +187,6 @@ $admin->delProduct($product_to_del2->id);
 $new_num = Product::count();
 test($old_num - 2, $new_num, array('name' => 'Admin del Product'));
 
-
-
 // case 9 Customer eidt Address
 begin_test();
 $address = $customer->defaultAddress();
@@ -228,10 +224,13 @@ $opts = array(
     'material' => 'PT950',
     'size' => 12,
     'carve_text' => 'I love U');
-$order = $customer->addProductToCart($product, $opts);
-$order = $customer->addProductToCart($product, $opts); // add for twice
+$opts2 = $opts;
+$opts2['carve_text'] = $opts['carve_text'] . '2';
+$order_to_del = $customer->addProductToCart($product, $opts2);
+$opts2['carve_text'] = $opts['carve_text'] . '3';
+$order_to_del = $customer->addProductToCart($product, $opts2); // add for twice
 $old_num = $customer->cart()->count();
-$customer->delProductFromCart($order);
+$customer->delProductFromCart($order_to_del);
 $new_num = $customer->cart()->count();
 test(
     $old_num - 1,
@@ -247,6 +246,7 @@ test(
     $old_entry_num + 1,
     +$entry_num,
     array('name' => 'Customer submit a Cart'));
+
 
 // case 15 Admin(?) edit Stone
 begin_test();
@@ -264,17 +264,18 @@ $stone = $order->stone();
 $stone->edit($info);
 test(1, 1, array('name' => 'Admin(?) edit Stone'));
 
-// case 16 Admin recharge Account then use it to pay order
+// case 16 Admin recharge customer's Account then use it to pay order
 begin_test();
 $account = $customer->account();
 $admin->rechargeAccount($account, 4000);
 sleep(1);
 $admin->payOrder($order, 200, 'what?');
-test(1, 1, array('name' => 'Admin recharge Account then use it to pay order'));
+test(1, 1, array('name' => 'Admin recharge customer\'s Account then use it to pay order'));
 
-// case 17 Admin Confirmed Order (InFactory)
-$admin->setOrderState($order, 'InFactory');
-test(1, 1, array('name' => 'Admin Confirmed Order (InFactory)'));
+// case 17 Admin Confirmed Order (Send Order to Factory)
+begin_test();
+$admin->sendOrderToFactory($order, $factory);
+test(1, 1, array('name' => 'Admin Confirmed Order (Send Order to Factory)'));
 
 // case 18 Admin recharge Factory Account, then use it(stone)
 begin_test();
