@@ -3,7 +3,7 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
-?> 
+?>
 <div>请填写详细的工厂信息</div>
 <form method="post" class="add">
     <div>

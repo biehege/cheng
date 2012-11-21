@@ -41,6 +41,26 @@ switch ($target) {
         break;
 }
 
+if (is_numeric($target) && ($by_ajax || $by_post)) {
+    $factory = new Factory($target);
+    d($_REQUEST);
+    $order_id = _req('order');
+    $order = new Order($order_id);
+}
+
+if (is_numeric($target) && $by_ajax && $action === 'get_pay_div') {
+    
+    $view_name = 'factory.pay';
+    include smart_view('append.div');
+    exit;
+}
+
+if (is_numeric($target) && $by_post) {
+    $money = _post('money');
+    $remark = _post('remark');
+    $admin->payFactoryForOrder($factory, $order, $money, $remark);
+    redirect("factory/$target/account");
+}
 
 if ($argument && $target) {
 

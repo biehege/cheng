@@ -225,14 +225,14 @@ class Admin extends Model
             array('paid_factory = paid_factory + ?' => $money),
             Order::$table,
             $order->selfCond());
-        Pdb::insert(
-            array(
+
+        $arr = array(
                 'account' => $account->id,
                 '`order`' => $order->id,
                 'money' => $money,
                 'remark' => $remark,
-                'time=NOW()' => null),
-            AccountHistory::$table);
+                '`time`=NOW()' => null);
+        Pdb::insert($arr, AccountHistory::$table);
 
     }
     public function payOrder(Order $order, $deduct, $remark = '')

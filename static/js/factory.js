@@ -1,4 +1,20 @@
 $(function () {
     // 表单验证 
     $('form.add').validate();
+
+    $('.pay-factory-btn').click(function () {
+        var that = $(this);
+        var factory_id = that.parents('table').data('id');
+        var order_id = that.parents('.entry').data('id');
+        $.get(
+            '/factory',
+            {
+                action: 'get_pay_div',
+                target: factory_id,
+                order: order_id
+            },
+            function (ret) {
+                $$.appendDiv.show(ret);
+            });
+    });
 });

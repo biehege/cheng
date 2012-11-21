@@ -15,7 +15,7 @@
     <button class="recharge-btn" data-id="<?= $target ?>">工厂充值</button>
 </div>
 <?php include smart_view('paging'); ?>
-<table>
+<table data-id="<?= $factory->id ?>">
     <tr>
         <td>订单号</td>
         <td>下单时间</td>
@@ -32,7 +32,7 @@
         $final_price = $order->priceData('factory')->finalPrice();
         $paid = $order->paid_factory;
         ?>
-        <tr>
+        <tr class="entry" data-id="<?= $order->id ?>">
             <td><a href="<?= ROOT . 'order?order_no=' . $order->order_no ?>"><?= $order->order_no ?></a></td>
             <td><?= $order->submit_time ?></td>
             <td><?= $order->customer()->user()->realname ?></td>
