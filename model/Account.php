@@ -43,7 +43,8 @@ class Account extends Model
         }
         Pdb::update(
             array("remain = remain - ?" => $money),
-            self::$table);
+            self::$table,
+            $this->selfCond());
     }
 
     public function countHistory($conds = array())

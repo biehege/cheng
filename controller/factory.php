@@ -114,28 +114,22 @@ if ($argument && $target) {
         'type',
         'sort');
 
-
     switch ($argument) {
         case 'stone':
             $types = $config['st_type'];
-            
             $account = $factory->stAccount();
             break;
 
         case 'account':
             $types = $config['account_type'];
-
             $account = $factory->account();
             $orders = Order::listOrder(array('factory_id' => $factory->id));
             break;
         
         default:
             throw new Exception("arg: $argument", 1);
-            
             break;
     }
-
-
 
     $per_page = 50;
     $total = $account->countHistory($conds);

@@ -115,6 +115,7 @@ class Admin extends Model
                 'remain' => $account->remain()),
             AccountHistory::$table);
     }
+
     public function addFactory($para)
     {
         Pdb::insert(

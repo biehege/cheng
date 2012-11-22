@@ -53,12 +53,12 @@ CREATE TABLE IF NOT EXISTS `address`
 -- account
 CREATE TABLE IF NOT EXISTS `account` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `remain` decimal(10,2) DEFAULT NULL,
+  `remain` decimal(10,2) DEFAULT '0.00',
   `num_remain` int(10) NOT NULL COMMENT 'in fact we didn''t need that',
-  `done` decimal(10,2) DEFAULT NULL,
-  `undone` decimal(10,2) DEFAULT NULL,
+  `done` decimal(10,2) DEFAULT '0.00',
+  `undone` decimal(10,2) DEFAULT '0.00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='钱的账户或者辅石的账户' AUTO_INCREMENT=633 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='钱的账户或者辅石的账户' AUTO_INCREMENT=826 ;
 
 -- product, actually, it's product type
 CREATE TABLE IF NOT EXISTS `product` (
