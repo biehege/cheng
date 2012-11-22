@@ -43,12 +43,11 @@ switch ($target) {
 
 if (is_numeric($target) && ($by_ajax || $by_post)) {
     $factory = new Factory($target);
-    d($_REQUEST);
     $order_id = _req('order');
     $order = new Order($order_id);
 }
 
-if (is_numeric($target) && $by_ajax && $action === 'get_pay_div') {
+if (is_numeric($target) && $by_ajax) {
     if ($action === 'get_pay_div') {
         $view_name = 'factory.pay';
         include smart_view('append.div');
@@ -56,6 +55,8 @@ if (is_numeric($target) && $by_ajax && $action === 'get_pay_div') {
     }
     if ($action === 'get_account_records_div') {
         $records = $factory->accountRecords(array('order' => $order_id));
+        include smart_view('factory.account.record');
+        exit;
     }
 }
 

@@ -25,7 +25,7 @@ $(function () {
         $.get(
             '/factory',
             {
-                action: 'get_account_records_div';
+                action: 'get_account_records_div',
                 target: factory_id,
                 order: order_id
             },
