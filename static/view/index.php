@@ -8,6 +8,7 @@
 ?>
 <form name="search">
     <div class="search">
+        <div class="customize-btn">我要定制</div>
         <div class="type">
             <input name="type" type="hidden" value="<?= $type ?>" />
             <ul class="types">

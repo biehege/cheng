@@ -1,5 +1,16 @@
 $(function () {
 
+    $('.customize-btn').click(function () {
+        $.get(
+            '?',
+            {
+                action: 'get_customize_div'
+            },
+            function (ret) {
+                $$.appendDiv.show(ret);
+            });
+    })
+
     // 最上面的分类
     $('.types li').click(function () {
         var val = $(this).text();

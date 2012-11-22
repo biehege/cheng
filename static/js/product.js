@@ -32,7 +32,9 @@ $(function () {
 
     // 图片上传
     $('form.auto-load input[type=file]').change(function () {
-        $(this).parents('form.auto-load').submit();
+        var form = $(this).parents('form.auto-load');
+        form.validate().cancelSubmit = true;
+        form.submit();
     });
 
     // 表单验证
