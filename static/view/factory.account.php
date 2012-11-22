@@ -12,7 +12,6 @@
     <span><?= $factory->contact ?></span>
     <span>未结清总额：</span>
     <span><?= $factory->undone ?></span>
-    <button class="recharge-btn" data-id="<?= $target ?>">工厂充值</button>
 </div>
 <?php include smart_view('paging'); ?>
 <table data-id="<?= $factory->id ?>">

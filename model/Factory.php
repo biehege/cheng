@@ -54,4 +54,15 @@ class Factory extends Model
 
         return new Account($this->st_account);
     }
+
+    public function accountRecords($conds)
+    {
+        $order_id = $conds['order'];
+        return Pdb::fetchAll(
+            '*',
+            AccountHistory::$table,
+            array(
+                'account = ?' => $this->account()->id,
+                '`order` = ?' => $order_id));
+    }
 }
