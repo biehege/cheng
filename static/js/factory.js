@@ -17,4 +17,20 @@ $(function () {
                 $$.appendDiv.show(ret);
             });
     });
+
+    $('.view-order-facotry-btn').click(function () {
+        var that = $(this);
+        var factory_id = that.parents('table').data('id');
+        var order_id = that.parents('.entry').data('id');
+        $.get(
+            '/factory',
+            {
+                action: 'get_account_records_div';
+                target: factory_id,
+                order: order_id
+            },
+            function (ret) {
+                that.siblings('.record').html(ret);
+            });
+    });
 });

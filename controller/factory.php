@@ -49,10 +49,14 @@ if (is_numeric($target) && ($by_ajax || $by_post)) {
 }
 
 if (is_numeric($target) && $by_ajax && $action === 'get_pay_div') {
-    
-    $view_name = 'factory.pay';
-    include smart_view('append.div');
-    exit;
+    if ($action === 'get_pay_div') {
+        $view_name = 'factory.pay';
+        include smart_view('append.div');
+        exit;
+    }
+    if ($action === 'get_account_records_div') {
+        $records = $factory->accountRecords(array('order' => $order_id));
+    }
 }
 
 if (is_numeric($target) && $by_post) {

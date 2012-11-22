@@ -41,7 +41,10 @@
             <td><?= $paid ?></td>
             <td><?= $final_price - $paid ?></td>
             <td><span class="pay-factory-btn">打款</span></td>
-            <td><span class="view-order-facotry-btn">查看</span></td>
+            <td>
+                <span class="view-order-facotry-btn">查看</span>
+                <div class="record"></div>
+            </td>
         </tr>
     <?php endforeach ?>
 </table>
