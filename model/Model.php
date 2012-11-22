@@ -40,6 +40,7 @@ class Model
         $table = $class_vars['table'];
 
         Pdb::update($arr, $table, $this->selfCond()); // why we need that? that doesn't make any sense
+        $this->info = $this->info(); // refresh data
     }
 
     public function __get($name) 

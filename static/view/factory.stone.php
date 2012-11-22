@@ -23,7 +23,6 @@
         <td>重量（ct）</td>
         <td>数量</td>
         <td>类型</td>
-        <td>账户余额</td>
         <td>支付方式</td>
         <td>剩余辅石（ct）</td>
         <td>备注</td>
@@ -37,8 +36,8 @@
             <td><?= $entry->type === 'consume' ? '-' : '' ?><?= $entry->money ?></td>
             <td><?= $entry->num ?></td>
             <td><?= $entry->type ?></td>
-            <td><?= $entry->remain ?></td>
             <td><?= $entry->pay_type ?></td>
+            <td><?= $entry->remain ?></td>
             <td><?= $entry->remark ?></td>
         </tr>
     <?php endforeach ?>
