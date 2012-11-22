@@ -110,6 +110,7 @@ class Order extends Model
                 'submit_time=NOW()' => null,
                 'factory_price' => $factory_price->id,
                 'customer_price' => $customer_price->id,
+                'real_price' => $this->info['estimate_price'],
                 'weight_ratio' => $material === 'PT950' ? Setting::get('weight_ratio') : 1),
             self::$table,
             $this->selfCond());

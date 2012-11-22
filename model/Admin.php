@@ -200,7 +200,7 @@ class Admin extends Model
         $this->setOrderState($order, 'InFactory');
         $order->edit('factory', $factory->id);
         Pdb::update(
-            array('undone = undone + ?' => $order->real_price),
+            array('undone = undone + ?' => $order->priceData('factory')->finalPrice()),
             Factory::$table,
             $factory->selfCond());
     }
@@ -229,6 +229,11 @@ class Admin extends Model
             array('paid_factory = paid_factory + ?' => $money),
             Order::$table,
             $order->selfCond());
+
+        Pdb::update(
+            array('undone = undone - ?' => $money),
+            Factory::$table,
+            $factory->selfCond());
 
         $arr = array(
                 'account' => $account->id,
