@@ -15,7 +15,7 @@
     <button class="supply-btn" data-id="<?= $target ?>">英格供料</button>
 </div>
 <?php include smart_view('paging'); ?>
-<table>
+<table data-id="<?= $factory->id ?>">
     <tr>
         <td>交易时间</td>
         <td>名称</td>

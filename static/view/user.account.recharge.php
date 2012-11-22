@@ -15,7 +15,7 @@
     <span>余额：</span>
     <span><?= $account->remain ?>元</span>
 </div>
-<form action="<?= ROOT ?>user">
+<form action="<?= ROOT ?>user" method="post">
     <input type="hidden" name="action" value="recharge">  
     <input type="hidden" name="target" value="<?= $cus->id ?>">  
     <div>

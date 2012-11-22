@@ -358,6 +358,8 @@ function is_mobile() {
         return false;
 }
 
+// 或许是该改变了，这个检测不存在就，抛出错
+// 不检测，直接不适用这个函数，在master那里直接写
 function smart_view($view, $default = 'default') 
 {
     $GLOBALS['view_looking_for'] = $view;

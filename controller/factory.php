@@ -43,28 +43,58 @@ switch ($target) {
 
 if (is_numeric($target) && ($by_ajax || $by_post)) {
     $factory = new Factory($target);
-    $order_id = _req('order');
-    $order = new Order($order_id);
 }
 
 if (is_numeric($target) && $by_ajax) {
-    if ($action === 'get_pay_div') {
-        $view_name = 'factory.pay';
-        include smart_view('append.div');
-        exit;
-    }
-    if ($action === 'get_account_records_div') {
-        $records = $factory->accountRecords(array('order' => $order_id));
-        include smart_view('factory.account.record');
-        exit;
+    
+    switch ($action) {
+        case 'get_pay_div':
+            $order_id = _req('order');
+            $order = new Order($order_id);
+            $view_name = 'factory.pay';
+            include smart_view('append.div');
+            exit;
+
+        case 'get_account_records_div':
+            $order_id = _req('order');
+            $order = new Order($order_id);
+            $records = $factory->accountRecords(array('order' => $order_id));
+            include smart_view('factory.account.record');
+            exit;
+
+        case 'get_stone_recharge_div':
+            $account = $factory->stAccount();
+            $view_name = 'factory.stone.recharge';
+            include smart_view('append.div');
+            exit;
+
+        default:
+            throw new Exception("ajax not good action: $action");
+            break;
     }
 }
 
 if (is_numeric($target) && $by_post) {
-    $money = _post('money');
-    $remark = _post('remark');
-    $admin->payFactoryForOrder($factory, $order, $money, $remark);
-    redirect("factory/$target/account");
+    switch ($action) {
+        case 'pay':
+            $money = _post('money');
+            $remark = _post('remark');
+            $admin->payFactoryForOrder($factory, $order, $money, $remark);
+            redirect("factory/$target/account");
+            break;
+
+        case 'recharge_stone':
+            $weight = _post('weight');
+            $remark = _post('remark');
+            $account = $factory->stAccount();
+            $admin->rechargeAccount($account, $weight, $remark);
+            redirect("factory/$target/stone");
+            break;
+        
+        default:    
+            throw new Exception("unkown action: $action");
+            break;
+    }
 }
 
 if ($argument && $target) {

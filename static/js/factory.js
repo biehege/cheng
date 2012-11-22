@@ -22,6 +22,7 @@ $(function () {
         var that = $(this);
         var factory_id = that.parents('table').data('id');
         var order_id = that.parents('.entry').data('id');
+        // may be this can use load....
         $.get(
             '/factory',
             {
@@ -31,6 +32,21 @@ $(function () {
             },
             function (ret) {
                 that.siblings('.record').html(ret);
+            });
+    });
+
+    //
+    $('.supply-btn').click(function () {
+        var that = $(this);
+        var factory_id = that.data('id');
+        $.get(
+            '/factory',
+            {
+                action: 'get_stone_recharge_div',
+                target: factory_id,
+            },
+            function (ret) {
+                $$.appendDiv.show(ret);
             });
     });
 });
