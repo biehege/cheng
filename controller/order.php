@@ -119,6 +119,7 @@ switch ($user_type) {
                 'factory'));
 
         $page['append_divs']['factory-select'] = 'factory.select';
+        $page['styles'][] = 'admin';
         break;
     
     default:

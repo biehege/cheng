@@ -199,6 +199,10 @@ class Admin extends Model
     {
         $this->setOrderState($order, 'InFactory');
         $order->edit('factory', $factory->id);
+        Pdb::update(
+            array('undone = undone + ?' => $order->real_price),
+            Factory::$table,
+            $factory->selfCond());
     }
 
     public function confirmOrder(Order $order)

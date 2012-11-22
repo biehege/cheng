@@ -57,17 +57,15 @@
 </form>
 <div>
     <?php include smart_view('paging'); ?>
-    <div>共找到：<?= $total ?>条</div>
 </div>
 <div class="order">
     <div class="title">
         <span class="col title name">名称</span>
         <span class="col title info">详细规格</span>
+        <span class="col title price-estimate">预估价</span>
         <?php if ($user_type === 'Admin'): ?>
             <span class="col title stone">主石</span>
-            <span class="col title realname">姓名</span>
         <?php endif ?>
-        <span class="col title price-estimate">预估价</span>
         <?php if ($user_type === 'Admin'): ?>
             <span class="col title factory-name">工厂名称</span>
             <span class="col title price-factory">工厂价格</span>
@@ -93,6 +91,7 @@
                 <input type="checkbox" for="order-no-<?= $order->id ?>" />
                 <lable id="order-no-<?= $order->id ?>" class="e">订单号：<?= $order->order_no ?></lable>
                 <span class="e">下单时间：<?= $order->submit_time ?></span>
+                <span>收件人：<?= $user->realname ?></span>
                 <?php if ($user_type === 'Admin'): ?>
                     <span class="edit-info-btn">修改</span>
                 <?php endif ?>
@@ -113,19 +112,20 @@
                 <span>工费：<?= $customer_price->labor_expense ?></span>
                 <span>损耗：<?= $customer_price->wear_tear ?></span>
             </div>
-            <?php if ($user_type === 'Admin'): ?>
-                <div class="col stone">
-                    <?= $order->stone()->weight ?>
-                    ct
-                    <span class="stone-btn">填写</span>
-                </div>
-                <div class="col realname">
-                    <?= $user->realname ?>
-                </div>
-            <?php endif ?>
             <div class="col price-estimate">
                 ￥<?= $order->estimate_price ?>
             </div>
+            <?php if ($user_type === 'Admin'): ?>
+                <div class="col stone">
+                    <?php $stone_weight = $order->stone()->weight; ?>
+                    <?php if ($stone_weight == null): ?>
+                        <span class="stone-btn">填写</span>
+                    <?php else: ?>
+                        <span class="stone-btn"><?= $stone_weight ?>ct</span>
+                    <?php endif ?>
+                </div>
+            <?php endif ?>
+            
             <?php if ($user_type === 'Admin'): ?>
                 <div class="col factory-name">
                     <span class="text"><?= $order->factory()->name ?></span>
@@ -136,7 +136,7 @@
                     <span class="price-change-btn" data-title="工厂价格计算" data-type="Factory">修改</span>
                 </div>
                 <div class="col price-real">
-                    <?= $customer_price->finalPrice() ?>
+                    <?= $order->real_price ?>
                     <span class="price-change-btn" data-title="实际售价计算" data-type="Customer">填写</span>
                 </div>
                 <div class="col paid">
@@ -145,7 +145,7 @@
                 </div>
             <?php else: ?>
                 <div class="col price-real">
-                    ￥<?= $customer_price->finalPrice() ?>
+                    ￥<?= $order->real_price ?>
                     <img class="price-detail-btn" title="价格详情" src="<?= ROOT ?>static/img/i.gif">
                 </div>
             <?php endif ?>
