@@ -111,6 +111,7 @@ class Admin extends Model
                 '`order`' => $order->id,
                 'money' => $weight, // 貌似这个名字叫做value 更好
                 'type' => 'factory',
+                'pay_type' => '工厂用料',
                 'remain' => $account->remain()),
             AccountHistory::$table);
     }
