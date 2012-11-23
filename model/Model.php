@@ -24,11 +24,15 @@ class Model
 
     public static function create($info = array())
     {
-        $class_vars = get_class_vars(get_class($this));
-        $table = $class_vars['table'];
-
-        Pdb::insert($info, $table);
+        $self = get_called_class();
+        Pdb::insert($info, $self::$table);
         return new self(Pdb::lastInsertId());
+    }
+
+    public static function read($conds = array())
+    {
+        $self = get_called_class();
+        return Pdb::fetchAll('*', $self::$table);
     }
 
     public function selfCond() 
@@ -36,20 +40,10 @@ class Model
         return array('id=?' => $this->id);
     }
 
+    // 废弃 or just another name, better name
     public function edit($key_or_array, $value = null)
     {
-        if($value !== null) { // given by key => value
-            $arr = array($key_or_array => $value);
-        } else {
-            $arr = $key_or_array;
-        }
-
-        // why we need that, fuck!
-        $class_vars = get_class_vars(get_class($this));
-        $table = $class_vars['table'];
-
-        Pdb::update($arr, $table, $this->selfCond()); // why we need that? that doesn't make any sense
-        $this->info = $this->info(); // refresh data
+        $this->update($key_or_array, $value);
     }
 
     // function same as edit()
@@ -61,11 +55,8 @@ class Model
             $arr = $key_or_array;
         }
 
-        // why we need that, fuck!
-        $class_vars = get_class_vars(get_class($this));
-        $table = $class_vars['table'];
-
-        Pdb::update($arr, $table, $this->selfCond()); // why we need that? that doesn't make any sense
+        $self = get_called_class();
+        Pdb::update($arr, $self::$table, $this->selfCond()); // why we need that? that doesn't make any sense
         $this->info = $this->info(); // refresh data
     }
 

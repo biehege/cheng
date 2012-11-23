@@ -32,7 +32,7 @@ Pdb::del(User::$table, array('name=?' => $username));
 Pdb::del(Factory::$table, array("name LIKE '%test%'" => null));
 
 // clear product
-Pdb::del(Product::$table, array('name LIKE ?' => '%_test%'));
+Pdb::del(Product::$table, array('name LIKE ?' => '%test%'));
 
 // clear cart and order
 clear_db(Cart::$table, Customer::$table, 'customer', 'customer');
