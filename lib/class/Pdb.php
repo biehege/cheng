@@ -7,7 +7,7 @@
  * @file    Pdb
  * @author  ryan <cumt.xiaochi@gmail.com>
  * @created Jul 17, 2012 10:32:14 AM
- * @version 1.0 $config more human
+ * @version 1.1
  */
 
 class Pdb 
@@ -163,6 +163,14 @@ class Pdb
             self::instance();
         }
         return self::$dbm->update($arr, $table, $conds, $tail);
+    }
+
+    public static function exec($sql = '')
+    {
+        if (empty(self::$dbm)) {
+            self::instance();
+        }
+        return self::$dbm->exec($sql);
     }
 
     public static function log()
@@ -394,6 +402,11 @@ class PdoHelper {
             d($sm->errorInfo());
             throw new Exception();
         }
+    }
+
+    public function exec($sql)
+    {
+        $this->db->exec($sql);
     }
 
     public function getLog() {

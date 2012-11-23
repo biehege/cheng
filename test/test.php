@@ -71,6 +71,9 @@ if ($pds) {
     }
 }
 
+// clear stone
+clear_11_db(Order::$table, Stone::$table);
+
 if (_get('exit')) {
     echo '<script src="static/hide.js"></script>';
     echo '<div class="conclusion pass">All Clear!</div>';
@@ -199,14 +202,14 @@ $admin->delProduct($product_to_del2->id);
 $new_num = Product::count();
 test($old_num - 2, $new_num, array('name' => 'Admin del Product'));
 
-// case 10 Customer eidt Address
+// case 10 Customer edit Address
 begin_test();
 $address = $customer->defaultAddress();
 $address->edit(array(
     'name' => '小池',
     'phone' => '14722320989',
     'detail' => '深圳罗湖区田贝'));
-test(1, 1, array('name' => 'Customer eidt Address'));
+test(1, 1, array('name' => 'Customer edit Address'));
 
 // case 11 Customer add a Product to Cart
 begin_test();

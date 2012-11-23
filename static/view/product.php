@@ -45,10 +45,10 @@
         <th>名称</th>
         <th>款号</th>
         <th>分类</th>
-        <th>材质</th>
         <th>镶口</th>
         <th>辅石</th>
-        <th>刻字</th>
+        <th>估重（K金）</th>
+        <th>估价</th>
         <th>说明</th>
         <th>已售</th>
         <th>操作</th>
@@ -60,10 +60,10 @@
             <td><img src="<?= $prd->image1_thumb ?>" /><?= $prd->name ?></td>
             <td><?= $prd->no ?></td>
             <td><?= $types[$prd->type] ?></td>
-            <td><?= $materials ?></td>
             <td><?= $prd->rabbet_start . '-' . $prd->rabbet_end ?>ct</td>
             <td><?= $prd->small_stone ?></td>
-            <td><?= $prd->carve_allow ?></td>
+            <td><?= $prd->estimate_weight ?></td>
+            <td><?= $prd->estimate_price ?></td>
             <td><?= $prd->remark ?></td>
             <td><?= $prd->sold_count ?></td>
             <td>编辑</td>
