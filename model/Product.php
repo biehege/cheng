@@ -19,7 +19,7 @@ class Product extends Model
         return (int) Pdb::count(self::$table, $conds);
     }
 
-    public static function listProduct($conds = array()) 
+    public static function listProduct($conds = array())
     {
         extract(self::defaultConds($conds));
         $tail = "LIMIT $limit OFFSET $offset";
@@ -28,6 +28,16 @@ class Product extends Model
         return safe_array_map(function ($id) {
             return new Product($id);
         }, Pdb::fetchAll('id', self::$table, $conds, $order, $tail));
+    }
+
+    public static function addCustomized($info) {
+        Pdb::insert(
+            array_merge(
+                $info, 
+                array(
+                    'is_customized' => 1,
+                    )),
+            self::$table);
     }
 
     public static function types()
@@ -90,7 +100,7 @@ class Product extends Model
                 'type' => '',
                 'stone_size' => ''),
             $conds));
-        $ret = array();
+        $ret = array('is_customized' = 0);
         if ($name) {
             $ret['name LIKE ?'] = '%' . $name . '%';
         }

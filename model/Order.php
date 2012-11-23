@@ -97,7 +97,8 @@ class Order extends Model
 
     public function submit()
     {
-        $this->info = $this->info();
+        $this->info = $this->info(); // why here?
+        
         $material = $this->info['material'];
         $product = $this->product();
         $info = array(

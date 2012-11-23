@@ -19,7 +19,7 @@ class Stone extends Model
     public static function add($info)
     {
         Pdb::insert(
-            array('size' => $info['size']),
+            array('weight' => $info['weight']),
             self::$table);
         return new self(Pdb::lastInsertId());
     }

@@ -120,19 +120,36 @@ class Customer extends Model
 
     public function customizeOrder($info)
     {
-        extract($info);
-        $stone = Stone::add(array('size' => $info['stone']));
+        $prd_info = array();
+        if (isset($info['images'])) {
+            $images = $info['images'];
+            for ($i=0; $i < count($images); $i++) { 
+                if ($i > 2)
+                    break;
+                // maybe we should make image here
+                $prd_info['image' . $i] = $images[$i];
+                $prd_info['image' . $i . '_400'] = $images[$i];
+                $prd_info['image' . $i . '_thumb'] = $images[$i];
+            }
+        }
+        $product = Product::addCustomized($prd_info);
+        $stone = Stone::add(array('weight' => $info['stone']));
 
         $order = Order::addCustomized(array(
+            'product' => $product->id,
             'material' => $info['material'],
             'stone' => $stone->id,
             'size' => $info['size'],
             'carve_text' => $info['carve_text'],
-            'remark' => $info['remark']));
+            'customer_remark' => $info['remark']));
 
-        CutomizeImage::add(array(
-            'order' => $order->id,
-            'images' => $info['images']));
+        if (isset($info['images'])) {
+            CustomizeImage::add(array(
+                'order' => $order->id,
+                'images' => $info['images']));
+        }
+
+        $order->submit();
     }
 
     public function listOrders($conds)

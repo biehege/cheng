@@ -12,23 +12,28 @@
     <div>
         <div>
             <label for="material">材质：</label>
-            <input name="material" id="material" value="<?= $material ?>">
+            <input name="material" id="material" value="<?= $material ?>" class="required">
             <label for="stone">主石：</label>
-            <input name="stone" id="stone" value="<?= $stone ?>">
+            <input name="stone" id="stone" value="<?= $stone ?>" class="required">
         </div>
         <div>
             <label for="size">手寸：</label>
-            <input name="size" id="size" value="<?= $size ?>">
+            <input name="size" id="size" value="<?= $size ?>" class="required">
             <label for="carve_text">刻字：</label>
             <input name="carve_text" id="carve_text" value="<?= $carve_text ?>">
         </div>
         <div>
             <label>图片：</label>
-            <input type="file" name="image">
+            <input type="file" name="image" class="required">
         </div>
         <div>
-            <?php foreach ($images as $i): ?>
-                <li><img src="<?= $i ?>"></li>
+            <?php $i = 0; ?>
+            <?php foreach ($images as $image_src): ?>
+                <li>
+                    <img src="<?= $image_src ?>">
+                    <input type="hidden" name="image_input[<?= $i ?>]" value="<?= $image_src ?>">
+                </li>
+                <?php $i++; ?>
             <?php endforeach ?>
         </div>
         <div>

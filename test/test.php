@@ -264,11 +264,22 @@ $stone = $order->stone();
 $stone->edit($info);
 test(1, 1, array('name' => 'Admin(?) edit Stone'));
 
+// case 16 Customer customize Order
+begin_test();
+$info = array(
+    'material' => 'PT950',
+    'stone' => '9',
+    'size' => '13',
+    'carve_text' => 'for test',
+    'remark' => 'for test');
+$customer->customizeOrder($info);
+test(1, 1, array('name' => 'Customer customize Order'));
+
 // case 16 Admin recharge customer's Account then use it to pay order
 begin_test();
 $account = $customer->account();
 $admin->rechargeAccount($account, 4000);
-sleep(1);
+//sleep(1);
 $admin->payOrder($order, 200, 'what?');
 test(1, 1, array('name' => 'Admin recharge customer\'s Account then use it to pay order'));
 
@@ -287,7 +298,7 @@ $admin->rechargeAccount($factory_st_account, 2.8, 'hellzz');
 // 注意，这里有问题，
 // 凡是和账户相关的time，都应该有个timestamp不然不能确定准确的执行时间
 // 但是，即使是time()依然是以秒为单位的
-sleep(1);
+//sleep(1);
 $remark = 'hellozze';
 $weight = 2.1;
 $num = 3;
