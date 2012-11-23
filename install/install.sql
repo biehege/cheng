@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `no` char(20) NOT NULL COMMENT '款号',
   `name` char(60) NOT NULL,
+  `is_customized` tinyint(1) NOT NULL DEFAULT '0',
   `image1` varchar(100) DEFAULT NULL,
   `image2` varchar(100) DEFAULT NULL,
   `image3` varchar(100) DEFAULT NULL,
@@ -86,7 +87,8 @@ CREATE TABLE IF NOT EXISTS `product` (
   `post_time` datetime DEFAULT NULL,
   `sold_count` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=573 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6221 ;
+
 
 -- product_type
 CREATE TABLE IF NOT EXISTS `product_type`
