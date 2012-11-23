@@ -38,6 +38,7 @@ class Product extends Model
                     'is_customized' => 1,
                     )),
             self::$table);
+        return new self(Pdb::lastInsertId());
     }
 
     public static function types()

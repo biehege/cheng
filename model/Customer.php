@@ -136,6 +136,7 @@ class Customer extends Model
         $stone = Stone::add(array('weight' => $info['stone']));
 
         $order = Order::addCustomized(array(
+            'customer' => $this->id,
             'product' => $product->id,
             'material' => $info['material'],
             'stone' => $stone->id,
