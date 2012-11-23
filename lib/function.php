@@ -1,12 +1,10 @@
 <?php
 /**
- * @file    lib
  * @author  ryan <cumt.xiaochi@gmail.com>
- * @created Jun 27, 2012 6:27:14 PM
- * @version 7.5 d() will determin good style when is_ajax
+ * @version 7.6 add _req() function group
  */
 
-/* short names */
+/* short names(may be we need no that) */
 
 function i(&$param, $or='') {
     return isset($param)? $param : $or;

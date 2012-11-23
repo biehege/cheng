@@ -16,6 +16,14 @@ class Stone extends Model
         return new self(Pdb::lastInsertId());
     }
 
+    public static function add($info)
+    {
+        Pdb::insert(
+            array('size' => $info['size']),
+            self::$table);
+        return new self(Pdb::lastInsertId());
+    }
+
     public function info()
     {
         $ret = Pdb::fetchRow('*', self::$table, $this->selfCond());

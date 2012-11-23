@@ -6,7 +6,7 @@
  */
 class Order extends Model 
 {
-    public static $table = 'small_order'; // when came across a key word
+    public static $table = 'small_order'; // when came across a key word, what we could do?
 
     public function info()
     {
@@ -85,6 +85,14 @@ class Order extends Model
             $arr = $key_or_array;
         }
         Pdb::update($arr, self::$table, $this->selfCond());
+    }
+
+    public function addCustomized($info)
+    {
+        Pdb::insert(
+            array_merge($info, array('is_customized' => 1)),
+            self::$table);
+        return new self(Pdb::lastInsertId());
     }
 
     public function submit()

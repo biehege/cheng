@@ -118,6 +118,23 @@ class Customer extends Model
             $order->selfCond());
     }
 
+    public function customizeOrder($info)
+    {
+        extract($info);
+        $stone = Stone::add(array('size' => $info['stone']));
+
+        $order = Order::addCustomized(array(
+            'material' => $info['material'],
+            'stone' => $stone->id,
+            'size' => $info['size'],
+            'carve_text' => $info['carve_text'],
+            'remark' => $info['remark']));
+
+        CutomizeImage::add(array(
+            'order' => $order->id,
+            'images' => $info['images']));
+    }
+
     public function listOrders($conds)
     {
         extract(slef::defaultConds($conds));

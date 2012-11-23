@@ -148,9 +148,10 @@ CREATE TABLE IF NOT EXISTS `small_order` (
   `paid_factory` decimal(10,2) NOT NULL DEFAULT '0.00',
   `customer_remark` text,
   `admin_remark` text,
+  `is_customized` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_no` (`order_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35786 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=35954 ;
 
 -- price_data
 CREATE TABLE IF NOT EXISTS `price_data` (
