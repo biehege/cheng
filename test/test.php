@@ -58,6 +58,19 @@ clear_11_db(Customer::$table, Account::$table);
 // clear account log
 clear_1m_db(Account::$table, AccountHistory::$table);
 
+// clear price_data
+$pds = Pdb::fetchAll('id', PriceData::$table);
+if ($pds) {
+    $tbl = Order::$table;
+    foreach ($pds as $id) {
+        $cond1 = array('factory_price = ?' => $id);
+        $cond2 = array('customer_price = ?' => $id);
+        if (!Pdb::exists($tbl, $cond1) && !Pdb::exists($tbl, $cond2)) {
+            Pdb::del(PriceData::$table, array('id = ?' => $id));
+        }
+    }
+}
+
 if (_get('exit')) {
     echo '<script src="static/hide.js"></script>';
     echo '<div class="conclusion pass">All Clear!</div>';
@@ -162,7 +175,6 @@ $info = array(
     'image2_thumb' => '/data/upload/201211/03/509cb8be38ee8.jpeg');
 $product = $admin->postProduct($info);
 // add more
-
 for ($i=0; $i < 50; $i++) {
     $info2 = $info;
     $info2['name'] = $info['name'] . $i;
@@ -176,7 +188,7 @@ test(
         'name' => 'Admin post Product, db',
         'compare' => 'in'));
 
-// case 8 Admin del Product
+// case 9 Admin del Product
 begin_test();
 $info = array_merge($info, array('name' => 'product test to del'));
 $product_to_del1 = $admin->postProduct($info);
@@ -187,7 +199,7 @@ $admin->delProduct($product_to_del2->id);
 $new_num = Product::count();
 test($old_num - 2, $new_num, array('name' => 'Admin del Product'));
 
-// case 9 Customer eidt Address
+// case 10 Customer eidt Address
 begin_test();
 $address = $customer->defaultAddress();
 $address->edit(array(
@@ -196,7 +208,7 @@ $address->edit(array(
     'detail' => '深圳罗湖区田贝'));
 test(1, 1, array('name' => 'Customer eidt Address'));
 
-// case 10 Customer add a Product to Cart
+// case 11 Customer add a Product to Cart
 begin_test();
 $old_entry_num = Pdb::count(Order::$table);
 $opts = array(

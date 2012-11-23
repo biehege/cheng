@@ -100,7 +100,7 @@ class Product extends Model
                 'type' => '',
                 'stone_size' => ''),
             $conds));
-        $ret = array('is_customized' = 0);
+        $ret = array('is_customized' => 0);
         if ($name) {
             $ret['name LIKE ?'] = '%' . $name . '%';
         }
