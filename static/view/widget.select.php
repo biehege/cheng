@@ -13,7 +13,7 @@ if (!isset($data)) {
     $data = ${$field_name . 's'};
 }
 ?>
-<select name="<?= $field_name ?>">
+<select name="<?= $field_name ?>" class="<?= i($class) ?>">
     <?php if (!isset($no_default) || !$no_default): ?>
         <option value="<?= $default_value ?>" <?= $$field_name == 'all' ? 'selected' : '' ?> >全部</option>
     <?php endif ?>

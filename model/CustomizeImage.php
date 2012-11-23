@@ -14,7 +14,7 @@ class CustomizeImage extends Model
             Pdb::insert(
                 array(
                     'image' => $i,
-                    'order' => $order_id),
+                    '`order`' => $order_id),
                 self::$table);
         }
     }

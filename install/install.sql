@@ -252,3 +252,10 @@ CREATE TABLE IF NOT EXISTS `stone` (
   `remark` varchar(200) NOT NULL COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='主石' AUTO_INCREMENT=1245 ;
+
+CREATE TABLE IF NOT EXISTS `customize_image` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `order` int(10) unsigned NOT NULL,
+  `image` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

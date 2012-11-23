@@ -96,6 +96,12 @@ $config['material_type_map'] = array(
     'PT950' => 'PT950',
     'AU750' => 'AU750');
 
+$config['product_material_map'] = array(
+    'PT950',
+    'AU750',
+    '黄18K金',
+    '白18K金',
+    '红18K金',);
 $config['material_type_name_map'] = array(
     'PT950' => 'PT950',
     'AU750' => 'AU750',

@@ -3,6 +3,9 @@
 /**
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
+
+$materials = $config['product_material_map'];
+
 $material = _post('material');
 $stone = _post('stone');
 $size = _post('size');

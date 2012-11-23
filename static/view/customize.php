@@ -12,7 +12,12 @@
     <div>
         <div>
             <label for="material">材质：</label>
-            <input name="material" id="material" value="<?= $material ?>" class="required">
+            <?php  
+            $field_name = 'material';
+            $no_default = 1;
+            $class = 'required';
+            include smart_view('widget.select');
+            ?>
             <label for="stone">主石：</label>
             <input name="stone" id="stone" value="<?= $stone ?>" class="required">
         </div>
@@ -24,7 +29,7 @@
         </div>
         <div>
             <label>图片：</label>
-            <input type="file" name="image" class="required">
+            <input type="file" name="image" class="">
         </div>
         <div>
             <?php $i = 0; ?>

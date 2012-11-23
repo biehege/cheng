@@ -127,15 +127,16 @@ class Customer extends Model
                 if ($i > 2)
                     break;
                 // maybe we should make image here
-                $prd_info['image' . $i] = $images[$i];
-                $prd_info['image' . $i . '_400'] = $images[$i];
-                $prd_info['image' . $i . '_thumb'] = $images[$i];
+                $prd_info['image' . ($i + 1)] = $images[$i];
+                $prd_info['image' . ($i + 1) . '_400'] = $images[$i];
+                $prd_info['image' . ($i + 1) . '_thumb'] = $images[$i];
             }
         }
         $product = Product::addCustomized($prd_info);
         $stone = Stone::add(array('weight' => $info['stone']));
 
         $order = Order::addCustomized(array(
+            'order_no' => uniqid(),
             'customer' => $this->id,
             'product' => $product->id,
             'material' => $info['material'],
