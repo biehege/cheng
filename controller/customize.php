@@ -20,6 +20,8 @@ if ($by_post) {
     if ($_FILES['image']['name']) {
         $image = make_image($_FILES['image']);
         $images[] = $image;
+    } elseif ($action === 'del_img') {
+        $images = array_values($images);
     } else {
         $info = compact(
             'material',
