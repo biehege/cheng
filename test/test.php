@@ -12,7 +12,6 @@ Pdb::setConfig($config['db']);
 
 // unset all session
 if (1) {
-    session_start();
     foreach ($_SESSION as $key => $value) {
         unset($_SESSION[$key]);
     }
