@@ -31,19 +31,20 @@
             <label>图片：</label>
             <input type="file" name="image" class="">
         </div>
-        <div>
+        <ul class="images">
             <?php $i = 0; ?>
             <?php foreach ($images as $image_src): ?>
                 <li>
                     <img src="<?= $image_src ?>">
+                    <span class="del-img-btn">x</span>
                     <input type="hidden" name="image_input[<?= $i ?>]" value="<?= $image_src ?>">
                 </li>
                 <?php $i++; ?>
             <?php endforeach ?>
-        </div>
-        <div>
+        </ul>
+        <div class="remark">
             <label for="remark">备注：</label>
-            <input name="remark" id="remark" value="<?= $remark ?>">
+            <textarea name="remark" id="remark" value="<?= $remark ?>"></textarea>
         </div>
         <input type="submit" value="确定">
     </div>

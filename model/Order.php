@@ -38,7 +38,7 @@ class Order extends Model
     public function priceData($name)
     {
         $name = strtolower($name . '_price');
-        return new Pricedata($this->__get($name));
+        return new PriceData($this->__get($name));
     }
 
     public function stone() 
