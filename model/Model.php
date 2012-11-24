@@ -35,16 +35,20 @@ class Model
         return Pdb::fetchAll('*', $self::$table);
     }
 
-    // I don't know why, but here is not passed
+    private function info()
+    {
+        $self = get_called_class();
+        $ret = Pdb::fetchRow('*', $self::$table, $this->selfCond());
+        if (empty($ret))
+            throw new Exception(get_called_class() . " no id: $this->id");
+        return $ret;
+    }
 
-    // public function info() {}
-
-    // public function info()
-    // {
-        // $self = get_called_class();
-        // $ret = Pdb::fetchRow('*', $self::$table, $this->selfCond());
-        // return $ret;
-    // }
+    public function exists()
+    {
+        $self = get_called_class();
+        return Pdb::exists($self::$table, $this->selfCond());
+    }
 
     public function selfCond() 
     {
@@ -74,8 +78,13 @@ class Model
     public function __get($name) 
     {
         if ($name === 'id') return $this->id;
-        if (empty($this->info))
+        if (empty($this->info)) {
             $this->info = $this->info();
+        }
+        $info = $this->info;
+        if (is_bool($info)) {
+            d($info);
+        }
         if (!array_key_exists($name, $this->info)) {
             d($this->info);
             throw new Exception("no $name when get in " . get_called_class());

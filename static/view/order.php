@@ -127,9 +127,13 @@
             <?php endif ?>
             
             <?php if ($user_type === 'Admin'): ?>
+                <?php $factory = $order->factory(); ?>
                 <div class="col factory-name">
-                    <span class="text"><?= $order->factory()->name ?></span>
-                    <span class="choose-factory-btn">选择</span>
+                    <?php if ($factory->exists()): ?>
+                        <span class="text"><?= $factory->name ?></span>
+                    <?php else: ?>
+                        <span class="choose-factory-btn">选择</span>
+                    <?php endif ?>
                 </div>
                 <div class="col price-factory">
                     <?= $order->factory_price ?>
