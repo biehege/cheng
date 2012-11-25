@@ -30,7 +30,7 @@
         <div class="header-wrap">
             <?php include smart_view('header'); ?>
         </div>
-        <div class="content-wrap">
+        <div class="content-wrap <?= $content ?>-wrap">
             <?php include smart_view($content); ?>
         </div>
         <div class="footer-wrap">

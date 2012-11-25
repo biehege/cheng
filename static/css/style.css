@@ -154,20 +154,38 @@ td, th {
 
 
 /* login or register */
+.login-wrap .intro, .register-wrap .intro {
+    padding: 90px 0 20px 56px;
+    font-size: 15px;
+    color: #0073b3;
+}
 form.logreg div {
     margin: 13px 0;
+    clear: both;
 }
 form.logreg div label {
-    display: block;
+    display: inline;
     float: left;
     width: 110px;
     text-align: right;
     line-height: 27px;
+    font-size: 14px;
+}
+.logreg label.error {
+    width: auto;
+    float: none;
 }
 form.logreg .ok-btn {
     margin-top: 20px;
     margin-left: 110px;
     margin-bottom: 100px;
+    width: 98px;
+    height: 36px;
+    font-size: 16px;
+}
+.logreg .ti {
+    width: 180px;
+    height: 25px;
 }
 
 /* 侧边栏 */
