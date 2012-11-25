@@ -25,6 +25,7 @@ if ($user === false) {
 
         case 'Admin':
         case 'SuperAdmin':
+            $page['styles'][] = 'admin';
             break;
         
         default:
