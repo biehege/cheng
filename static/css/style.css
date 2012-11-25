@@ -134,6 +134,10 @@ td, th {
 }
 
 /*中部*/
+.content-wrap {
+    width: 1000px;
+    margin: auto;
+}
 
 /* 脚部 */
 .footer-wrap {

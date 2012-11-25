@@ -4,6 +4,7 @@
 */
 
 .content-wrap {
+    width: auto;
     overflow: hidden;
 }
 
