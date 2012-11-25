@@ -87,7 +87,7 @@ class Model
         }
         if (!array_key_exists($name, $this->info)) {
             d($this->info);
-            throw new Exception("no $name when get in " . get_called_class());
+            throw new Exception("no $name when get in class " . get_called_class());
         }
         return $this->info[$name];
     }
