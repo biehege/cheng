@@ -102,7 +102,7 @@ $(function () {
         $.get(
             '/order/' + id,
             {
-                a: 'get_pay_div',
+                a: 'get_pay_div'
             },
             function (ret) {
                 var appendDiv = $(ret);
