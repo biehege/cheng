@@ -154,12 +154,16 @@ form.logreg div {
     margin: 13px 0;
 }
 form.logreg div label {
-    display: inline-block;
-    width: 100px;
+    display: block;
+    float: left;
+    width: 110px;
     text-align: right;
+    line-height: 27px;
 }
-form.logreg .ok.btn {
+form.logreg .ok-btn {
+    margin-top: 20px;
     margin-left: 110px;
+    margin-bottom: 100px;
 }
 
 /* 侧边栏 */

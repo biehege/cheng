@@ -1,0 +1,24 @@
+.content-wrap {
+    width: 1000px;
+    margin: auto;
+    background-image: url('../img/reg.jpg');
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.intro {
+    padding: 90px 0 20px 56px;
+    font-size: 15px;
+    color: #0073b3;
+}
+label {
+    font-size: 14px;
+}
+.ti {
+    width: 180px;
+    height: 25px;
+}
+.ok-btn {
+    width: 98px;
+    height: 36px;
+    font-size: 16px;
+}
