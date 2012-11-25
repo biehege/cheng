@@ -8,15 +8,17 @@
 ?>
 <form name="search">
     <div class="search">
-        <a class="customize-btn" href="<?= ROOT ?>customize">我要定制</a>
         <div class="type">
             <input name="type" type="hidden" value="<?= $type ?>" />
-            <ul class="types">
-                <?php foreach (Product::types() as $t): ?>
-                    <li class="<?= $type === $t ? 'on' : '' ?>"><?= $t ?></li>
-                <?php endforeach; ?>
-                <li class="brand"><span>名品</span></li>
-            </ul>
+            <div class="small-wrap"> 
+                <a class="customize-btn" href="<?= ROOT ?>customize">我要定制</a>
+                <ul class="types">
+                    <?php foreach (Product::types() as $t): ?>
+                        <li class="<?= $type === $t ? 'on' : '' ?>"><?= $t ?></li>
+                    <?php endforeach; ?>
+                    <li class="brand"><span>名品</span></li>
+                </ul>
+            </div>
         </div>
         <div class="bg"></div>
         <div class="pattern-bg"></div>

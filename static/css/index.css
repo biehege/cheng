@@ -14,17 +14,16 @@
 }
 .search div.type {
     background-color: #2b749d;
+    overflow: hidden;
 }
 .search .type ul {
-    width: 1000px;
-    margin: auto;
-    height: 36px;
+    height: 38px;
     overflow: hidden;
 }
 .search .type ul li {
     display: inline;
     line-height: 38px;
-    padding: 10px 20px;
+    padding: 11px 20px;
     width: 88px;
     text-align: center;
     cursor: pointer;
@@ -44,6 +43,24 @@
 .search .type .brand span {
     border-left: 1px dashed #5ba7d2;
     padding: 0 20px;
+}
+.search .type .customize-btn {
+    float: right;
+    display: block;
+    width: 80px;
+    height: 38px;
+    background-color: #2b9d76;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 38px;
+    background-image: url(../img/customize.gif);
+    background-repeat: no-repeat;
+    background-position: 11px 9px;
+    padding-left: 45px;
+}
+.search .type .customize-btn:hover {
+    background-color: #3FB18A;
 }
 
 /*背景*/
