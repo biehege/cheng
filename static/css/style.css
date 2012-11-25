@@ -107,7 +107,11 @@ td, th {
     width: 1000px;
     margin: auto;
     display: block;
-    padding: 20px 30px;
+    
+}
+.header-wrap h1 a img {
+    display: block;
+    margin: 20px 30px;
 }
 
 /* 附加层 */
@@ -186,6 +190,7 @@ form.logreg .ok-btn {
 .logreg .ti {
     width: 180px;
     height: 25px;
+    line-height: 25px;
 }
 
 /* 侧边栏 */
@@ -233,7 +238,8 @@ form.logreg .ok-btn {
 
 /* 搜索框 */
 div.search .e {
-    display: inline-block;
+    display: block;
+    float: left;
 }
 
 /* 模拟表格 */

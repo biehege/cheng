@@ -34,7 +34,7 @@
                 <input id="stone-size" class="text-in" type="text" name="stone_size" value="<?= $stone_size ?>" />
                 <span>ct</span>
             </div>
-            <input class="search-btn" type="submit" value="搜索" />
+            <input class="search-btn mbtn" type="submit" value="搜索" />
         </div>
     </div>
 </form>
