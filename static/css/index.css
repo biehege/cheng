@@ -11,6 +11,7 @@
 /* 搜索 */
 .search {
     position: relative;
+    z-index: -1;
 }
 .search div.type {
     background-color: #2b749d;
