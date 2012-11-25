@@ -4,7 +4,7 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  */
 ?>
-<form>
+<form action="<?= ROOT ?>order">
     <div class="search">
         <div>
             <div class="e">
@@ -46,7 +46,7 @@
                 <label for="time">下单时间：</label>
                 <input class="ti" type="text" name="time_start" id="time" />
                 -
-                <input class="ti" type="text" name="time_end" id="time" />
+                <input class="ti" type="text" name="time_end" id="time_end" />
             </div>
             <div class="e">
                 <label for="state">状态：</label>
@@ -92,8 +92,8 @@
         ?>
         <div class="entry" data-id="<?= $order->id ?>">
             <div class="brief-info">
-                <input type="checkbox" for="order-no-<?= $order->id ?>" />
-                <lable id="order-no-<?= $order->id ?>" class="e">订单号：<?= $order->order_no ?></lable>
+                <input type="checkbox" id="order-no-<?= $order->id ?>" />
+                <label for="order-no-<?= $order->id ?>" class="e">订单号：<?= $order->order_no ?></label>
                 <span class="e">下单时间：<?= $order->submit_time ?></span>
                 <span>收件人：<?= $user->realname ?></span>
                 <?php if ($user_type === 'Admin'): ?>
@@ -101,7 +101,7 @@
                 <?php endif ?>
             </div>
             <div class="col name">
-                <img src="<?= $prd->image1_thumb ?>" />
+                <img src="<?= $prd->image1_thumb ?>" alt="缩略图" />
                 <div class="text-wrap">
                     <span class="text"><?= $prd->name ?></span>
                     <span>款号：<?= $prd->no ?></span>
@@ -154,7 +154,7 @@
             <?php else: ?>
                 <div class="col price-real">
                     ￥<?= $order->real_price ?>
-                    <img class="price-detail-btn" title="价格详情" src="<?= ROOT ?>static/img/i.gif">
+                    <img class="price-detail-btn" title="价格详情" alt="价格详情" src="<?= ROOT ?>static/img/i.gif" />
                 </div>
             <?php endif ?>
             <div class="col state">

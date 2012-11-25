@@ -29,7 +29,7 @@
 </div>
 <h1>
     <a href="<?= ROOT ?>" title="<?= $config['site']['name'] ?>">
-        <img src="<?= ROOT ?>static/img/logo.png">
+        <img src="<?= ROOT ?>static/img/logo.png" alt="英格" title="回首页" />
     </a>
 </h1>
 
