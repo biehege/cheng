@@ -54,6 +54,12 @@ class Order extends Model
         return new Stone($this->stone);
     }
 
+    public function stoneExists()
+    {
+        $stone_id = $this->stone;
+        return !empty($stone_id);
+    }
+
     public function changePrice($type, $info) 
     {
         $pd = $this->priceData($type);

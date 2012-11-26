@@ -121,11 +121,10 @@
             </div>
             <?php if ($user_type === 'Admin'): ?>
                 <div class="col stone">
-                    <?php $stone_weight = $order->stone()->weight; ?>
-                    <?php if ($stone_weight == null): ?>
-                        <span class="stone-btn tbtn">填写</span>
+                    <?php if (!$order->stoneExists()): ?>
+                        <span class="stone-btn tbtn empty-holder">填写</span>
                     <?php else: ?>
-                        <span class="stone-btn tbtn"><?= $stone_weight ?>ct</span>
+                        <span class="stone-detail-btn"><?= $order->stone()->weight ?>ct</span>
                     <?php endif ?>
                 </div>
             <?php endif ?>
@@ -136,7 +135,7 @@
                     <?php if ($factory->exists()): ?>
                         <span class="text choose-factory-btn tbtn"><?= $factory->name ?></span>
                     <?php else: ?>
-                        <span class="choose-factory-btn tbtn">选择</span>
+                        <span class="choose-factory-btn tbtn empty-holder">选择</span>
                     <?php endif ?>
                 </div>
                 <div class="col price-factory">

@@ -44,6 +44,9 @@
 }
 
 /*订单号*/
+.order .empty-holder {
+    text-decoration: underline;
+}
 .order .brief-info {
     background-color: #e6f5ff;
     height: 27px;
@@ -135,6 +138,10 @@
 
 .order .entry .stone {
     padding-top: 27px;
+}
+.order .stone .stone-detail-btn {
+    color: #1B8ACE;
+    cursor: pointer;
 }
 
 .order .paid {
