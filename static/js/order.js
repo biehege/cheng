@@ -29,7 +29,7 @@ $(function () {
                 var appendDiv = $(ret);
                 $('.append-parent').append(appendDiv).show();
                 appendDiv.show();
-                window.refreshAppendDiv();
+                $$.appendDiv.refreshAll();
             });
     });
 
@@ -77,7 +77,7 @@ $(function () {
                 var appendDiv = $(ret);
                 $('.append-parent').append(appendDiv).show();
                 appendDiv.show();
-                window.refreshAppendDiv();
+                $$.appendDiv.refreshAll();
 
             }, 'html');
     });
@@ -95,7 +95,7 @@ $(function () {
                 var appendDiv = $(ret);
                 $('.append-parent').append(appendDiv).show();
                 appendDiv.show();
-                window.refreshAppendDiv();
+                $$.appendDiv.refreshAll();
             });
     });
 

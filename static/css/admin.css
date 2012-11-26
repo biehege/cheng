@@ -11,7 +11,15 @@
     width: 1342px;
 }
 
-
+.tbtn {
+    cursor: pointer;
+    color: #1b8ace;
+}
+.tbtn:hover {
+    background-color: #daf1ff;
+    border: 1px dotted #3f9dd6;
+    padding: 2px;
+}
 
 /*order*/
 .order .stone {

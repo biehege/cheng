@@ -108,9 +108,15 @@
 .order .factory-name {
     width: 8%;
 }
+.order .entry .factory-name {
+    padding-top: 27px;
+}
 
 .order .price-factory {
     width: 10%;
+}
+.order .entry .price-factory {
+    padding-top: 27px;
 }
 
 .order .price-real {
@@ -127,8 +133,15 @@
     cursor: pointer;
 }
 
+.order .entry .stone {
+    padding-top: 27px;
+}
+
 .order .paid {
     width: 10%;
+}
+.order .entry .paid {
+    padding-top: 27px;
 }
 
 .order .state {
@@ -139,9 +152,22 @@
     font-weight: bold;
     padding-top: 27px;
 }
+.order .state .detail-btn {
+    font-weight: normal;
+    cursor: pointer;
+    padding-top: 5px;
+}
 
 .order .control {
     width: 8%;
+}
+.order .entry .control {
+    padding-top: 27px;
+}
+.order .control .mbtn {
+    width: 49px;
+    height: 21px;
+    line-height: 21px;
 }
 
 

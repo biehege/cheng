@@ -123,9 +123,9 @@
                 <div class="col stone">
                     <?php $stone_weight = $order->stone()->weight; ?>
                     <?php if ($stone_weight == null): ?>
-                        <span class="stone-btn">填写</span>
+                        <span class="stone-btn tbtn">填写</span>
                     <?php else: ?>
-                        <span class="stone-btn"><?= $stone_weight ?>ct</span>
+                        <span class="stone-btn tbtn"><?= $stone_weight ?>ct</span>
                     <?php endif ?>
                 </div>
             <?php endif ?>
@@ -134,22 +134,23 @@
                 <?php $factory = $order->factory(); ?>
                 <div class="col factory-name">
                     <?php if ($factory->exists()): ?>
-                        <span class="text choose-factory-btn"><?= $factory->name ?></span>
+                        <span class="text choose-factory-btn tbtn"><?= $factory->name ?></span>
                     <?php else: ?>
-                        <span class="choose-factory-btn">选择</span>
+                        <span class="choose-factory-btn tbtn">选择</span>
                     <?php endif ?>
                 </div>
                 <div class="col price-factory">
-                    <?= $order->factory_price ?>
-                    <span class="price-change-btn" data-title="工厂价格计算" data-type="Factory">修改</span>
+                    <span class="price-change-btn tbtn" data-title="工厂价格计算" data-type="Factory">
+                        ￥<?= $order->factory_price ?>
+                    </span>
                 </div>
                 <div class="col price-real">
-                    <?= $order->real_price ?>
-                    <span class="price-change-btn" data-title="实际售价计算" data-type="Customer">填写</span>
+                    <span class="price-change-btn tbtn" data-title="实际售价计算" data-type="Customer">
+                        ￥<?= $order->real_price ?>
+                    </span>
                 </div>
                 <div class="col paid">
-                    <?= $order->paid ?>
-                    <span class="pay-btn">填写</span>
+                    <span class="pay-btn tbtn"><?= $order->paid ?></span>
                 </div>
             <?php else: ?>
                 <div class="col price-real">
@@ -158,13 +159,14 @@
                 </div>
             <?php endif ?>
             <div class="col state">
-                <?= $state_map[$order->state] ?>
+                <div><?= $state_map[$order->state] ?></div>
+                <div class="detail-btn">查看详情</div>
             </div>
             <?php if ($user_type == 'Admin'): ?>
                 <div class="col control">
                     <?php $caption = $next_button_map[$order->state]; ?>
                     <?php if ($caption): ?>
-                        <button class="next-btn"><?= $caption ?></button>
+                        <button class="next-btn mbtn"><?= $caption ?></button>
                     <?php endif ?>
                 </div>
             <?php endif ?>
