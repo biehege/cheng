@@ -75,10 +75,14 @@
                 var h = ap.height();
                 var dw = w - div.width();
                 var dh = h - div.height();
-                div.offset({
+                
+                var offset = {
                     top: dh > 0 ? dh / 2 : 0,
                     left: dw > 0 ? dw / 2 : 0
-                });
+                };
+                d(offset);
+                div.offset(offset);
+                d(div.offset());
             }
         },
         add: function (html) {

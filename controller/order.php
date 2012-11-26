@@ -80,25 +80,6 @@ switch ($user_type) {
             exit;
         }
 
-        // 改变工厂。我知道，应该变成那个样子。。不过，这个属于历史遗留问题啊
-        // we beleive in runing code 这个就先这样吧
-        if ($by_ajax) {
-            switch ($action) {
-                case 'change_factory':
-                    $factory_id = _get('factory_id');
-                    $order_id = _get('order_id');
-                    $order = new Order($order_id);
-                    $order->edit('factory', $factory_id);
-                    echo $factories[$factory_id];
-                    exit;
-
-                default:
-                    throw new Exception("ajax action not allowed: $action");
-                    break;
-            }
-            exit;
-        }
-
         // 对订单的操作，通过表单post过来的
         if ($action && $by_post && is_numeric($target)) {
             include FrameFile::controller('order.control');
@@ -118,7 +99,6 @@ switch ($user_type) {
                 'username',
                 'factory'));
 
-        $page['append_divs']['factory-select'] = 'factory.select';
         $page['styles'][] = 'admin';
         break;
     

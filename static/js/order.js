@@ -51,28 +51,16 @@ $(function () {
     // 选择工厂 弹出框
     $('.choose-factory-btn').click(function () {
         var id = $(this).parents('.entry').data('id');
-        $('.append-parent').show()
-            .find('.factory-select.append-div').data('id', id).show();
-    });
-
-    // 选择工厂 确认按钮
-    $('.factory-select.append-div form').submit(function (e) {
-        var that = $(this);
-        var facotoryId = that.find('select').val();
-        var div = that.parents('.append-div');
-        var orderId = div.data('id');
         $.get(
             '/order',
             {
-                a: 'change_factory',
-                factory_id: facotoryId,
-                order_id: orderId
+                action: 'get_factory_div',
+                target: id
             },
             function (ret) {
-                div.hide().parents('.append-parent').hide();
-                $('.entry[data-id=' + orderId + '] .factory-name .text').text(ret);
+                $$.appendDiv.show(ret);
+                d($('.append-div').offset());
             });
-        return false;
     });
 
     // 价格计算

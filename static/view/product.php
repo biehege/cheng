@@ -62,8 +62,8 @@
             <td><?= $types[$prd->type] ?></td>
             <td><?= $prd->rabbet_start . '-' . $prd->rabbet_end ?>ct</td>
             <td><?= $prd->small_stone ?></td>
-            <td><?= $prd->estimate_weight ?></td>
-            <td><?= $prd->estimate_price ?></td>
+            <td><?= $prd->weight ?></td>
+            <td><?= $prd->estimatePrice() ?></td>
             <td><?= $prd->remark ?></td>
             <td><?= $prd->sold_count ?></td>
             <td>编辑</td>

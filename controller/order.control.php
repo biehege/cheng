@@ -111,6 +111,12 @@ switch ($action) {
         $stone->edit($info);
         redirect('order/all');
         break;
+
+    case 'change_factory':
+        $factory_id = _post('factory_id');
+        $order->edit('factory', $factory_id);
+        redirect('order/all');
+        exit;
     
     case '':
         // do nothing here

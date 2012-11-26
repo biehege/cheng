@@ -68,6 +68,12 @@ switch ($action) {
         include smart_view('append.div');
         break;
 
+    case 'get_factory_div':
+        $factories = Factory::names();
+        $view_name = 'order.factory';
+        include smart_view('append.div');
+        break;
+
     default:
         throw new Exception("ajax action get_XX_div not allowed: $action");
         break;

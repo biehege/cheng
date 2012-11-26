@@ -134,7 +134,7 @@
                 <?php $factory = $order->factory(); ?>
                 <div class="col factory-name">
                     <?php if ($factory->exists()): ?>
-                        <span class="text"><?= $factory->name ?></span>
+                        <span class="text choose-factory-btn"><?= $factory->name ?></span>
                     <?php else: ?>
                         <span class="choose-factory-btn">选择</span>
                     <?php endif ?>
