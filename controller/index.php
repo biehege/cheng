@@ -24,9 +24,15 @@ list(
     'stone_size',
     'type');
 
+$mode = _get('mode') ?: 'list';
+
 $cur_page = _get('p') ?: 1;
 
-$per_page = 10;
+$page_num_map = array(
+    'list' => 10,
+    'image' => 24);
+
+$per_page = $page_num_map[$mode];
 $conds = compact(
     'name',
     'no',

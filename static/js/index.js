@@ -13,15 +13,26 @@ $(function () {
         $('form[name=search]').submit();
     });
 
+    // 浏览模式
+    $('.view-switch .btn').click(function () {
+        var mode = $(this).data('mode');
+        var input = $('<input>').attr({
+            name: 'mode',
+            value: mode
+        });
+        $('form[name=search]').append(input).submit();
+    });
+
     // 幻灯片
     $('.slide').each(function () {
         var slide = $(this);
         slide.find('.indicator li').hover(function () {
             var that = $(this);
             that.addClass('on').siblings().removeClass('on');
+            var w = slide.find('img').width();
             var i = that.index();
             slide.find('.img-wrap').animate({
-                left: (- i * 170) + 'px'
+                left: (- i * (w + 10)) + 'px'
             }, 'fast');
         }).eq(0).addClass('on');
     });

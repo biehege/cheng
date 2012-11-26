@@ -45,11 +45,11 @@
         <?php include smart_view('paging'); ?>
         <div class="total">共有<?= $total ?>款</div>
         <div class="view-switch">
-            <span class="list-mode btn" title="列表模式"></span>
-            <span class="image-mode btn" title="大图模式"></span>
+            <span class="list-mode btn <?= $mode === 'list' ? 'list-on on' : '' ?>" data-mode="list" title="列表模式">列表</span>
+            <span class="image-mode btn <?= $mode === 'image' ? 'image-on on' : '' ?>" data-mode="image" title="大图模式">大图</span>
         </div>
     </div>
-    <ul class="product-list ">
+    <ul class="product-list <?= $mode ?> <?= $mode ?>-pl">
         <?php foreach ($products as $prd): $materials = $prd->materials(); ?>
             <li class="entry" data-id="<?= $prd->id ?>">
                 <div class="left slide">
@@ -66,59 +66,61 @@
                         <li></li>
                     </ul>
                 </div>
-                <div class="mid">
-                    <div><?php $stop = 1; ?>
-                        <strong class="name"><?= $prd->name ?></strong>
-                        <span>款号：<?= $prd->no ?></span>
-                    </div>
-                    <div>镶口：<?= $prd->rabbet_start ?>-<?= $prd->rabbet_end ?> ct</div>
-                    <div class="material">
-                        <span>材质：</span>
-                        <ul class="material-selector">
-                            <?php foreach ($materials as $id => $value): ?>
-                                <li data-id="<?= $id ?>"><?= $value ?></li>
-                            <?php endforeach ?>
-                        </ul>
-                    </div>
-                    <div class="size">
-                        <label for="size">手寸：</label>
-                        <input class="ti" type="text" name="size" id="size" />
-                    </div>
-                    <div class="carve-text">
-                        <span>刻字：</span>
-                        <div class="carve">
-                            <span class="trigger">输入&gt;</span>
-                            <span class="text"></span>
-                            <div class="carve-box">
-                                <div>刻字内容：</div>
-                                <div>
-                                    <input type="text" name="carve_text" class="ti" />
-                                    <button class="ok-btn mbtn">确定</button>
-                                </div>
-                                <img src="<?= ROOT ?>static/img/heart-add.gif" class="add-heart-btn">
-                            </div>
+                <?php if ($mode === 'list'): ?>
+                    <div class="mid">
+                        <div><?php $stop = 1; ?>
+                            <strong class="name"><?= $prd->name ?></strong>
+                            <span>款号：<?= $prd->no ?></span>
                         </div>
-                        <span class="instruction">由字母、数字、图形组成；至多5个字符。</span>
+                        <div>镶口：<?= $prd->rabbet_start ?>-<?= $prd->rabbet_end ?> ct</div>
+                        <div class="material">
+                            <span>材质：</span>
+                            <ul class="material-selector">
+                                <?php foreach ($materials as $id => $value): ?>
+                                    <li data-id="<?= $id ?>"><?= $value ?></li>
+                                <?php endforeach ?>
+                            </ul>
+                        </div>
+                        <div class="size">
+                            <label for="size">手寸：</label>
+                            <input class="ti" type="text" name="size" id="size" />
+                        </div>
+                        <div class="carve-text">
+                            <span>刻字：</span>
+                            <div class="carve">
+                                <span class="trigger">输入&gt;</span>
+                                <span class="text"></span>
+                                <div class="carve-box">
+                                    <div>刻字内容：</div>
+                                    <div>
+                                        <input type="text" name="carve_text" class="ti" />
+                                        <button class="ok-btn mbtn">确定</button>
+                                    </div>
+                                    <img src="<?= ROOT ?>static/img/heart-add.gif" class="add-heart-btn">
+                                </div>
+                            </div>
+                            <span class="instruction">由字母、数字、图形组成；至多5个字符。</span>
+                        </div>
+                        <div>
+                            <span>辅石：</span>
+                            <span><?= $prd->small_stone ?>粒</span>
+                        </div>
+                        <div>
+                            <span>工费：</span>
+                            <span><?= Setting::get('labor_expense') ?>元/件</span>
+                            <span class="wt-label"> 损耗：</span>
+                            <span><?= Setting::get('wear_tear') ?>%</span>
+                        </div>
                     </div>
-                    <div>
-                        <span>辅石：</span>
-                        <span><?= $prd->small_stone ?>粒</span>
+                    <div class="right">
+                        <div class="already">已下单 <span class="num"></span></div>
+                        <div class="add btn">+&nbsp;下订单</div>
+                        <div class="estimate">
+                            <span>预估价：</span>
+                            <span class="price">￥<span class="num"><?= $prd->estimatePrice() ?></span></span>
+                        </div>
                     </div>
-                    <div>
-                        <span>工费：</span>
-                        <span><?= Setting::get('labor_expense') ?>元/件</span>
-                        <span class="wt-label"> 损耗：</span>
-                        <span><?= Setting::get('wear_tear') ?>%</span>
-                    </div>
-                </div>
-                <div class="right">
-                    <div class="already">已下单 <span class="num"></span></div>
-                    <div class="add btn">+&nbsp;下订单</div>
-                    <div class="estimate">
-                        <span>预估价：</span>
-                        <span class="price">￥<span class="num"><?= $prd->estimatePrice() ?></span></span>
-                    </div>
-                </div>
+                <?php endif ?>
                 <br class="clear-fix" />
             </li>
         <?php endforeach ?>

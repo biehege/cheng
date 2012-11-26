@@ -132,6 +132,42 @@
     line-height: 38px;
     padding-left: 20px;
     color: #838484;
+    float: left;
+}
+.page-info .view-switch {
+    float: left;
+    padding: 8px;
+    margin-left: 10px;
+}
+.page-info .view-switch span {
+    display: block;
+    float: left;
+    width: 30px;
+    height: 21px;
+    line-height: 21px;
+    border: 1px solid #2f86b7;
+    color: #a6a6a6;
+    background-repeat: no-repeat;
+    background-position: 5px 5px;
+    text-align: left;
+    padding-left: 21px;
+}
+.page-info .view-switch span.on {
+    color: #135f8a;
+    background-color: #82c3e8;
+}
+.page-info .view-switch .list-mode {
+    border-right-width: 0;
+    background-image: url('../img/list.gif');
+}
+.page-info .view-switch .image-mode {
+    background-image: url('../img/image.gif');
+}
+.page-info .view-switch .list-on {
+    background-image: url('../img/list-on.gif');
+}
+.page-info .view-switch .image-on {
+    background-image: url('../img/image-on.gif');
 }
 .paging {
     float: right;
@@ -324,3 +360,27 @@
     display: none;
 }
 
+/*大图模式*/
+.image-pl .entry {
+    display: block;
+    float: left;
+}
+.image-pl .entry .slide {
+    padding-left: 4px;
+    width: 244px;
+}
+.image-pl .entry .pic-frame {
+    width: 244px;
+    height: 244px;
+}
+.image-pl .entry .img-wrap {
+    height: 244px;
+    width: 800px;
+}
+.image-pl .entry img.prd {
+    width: 244px;
+    height: 244px;
+}
+.image-pl .entry .indicator {
+    padding-left: 97px;
+}

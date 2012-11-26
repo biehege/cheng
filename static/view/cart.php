@@ -83,22 +83,22 @@
             <strong>￥<?= $cart->totalPrice() ?></strong>
         </span>
     </div>
+    <form method="post">
+        <div class="addr-info">
+            <span>请确认您的收件地址：</span>
+            <span class="edit-addr-btn">编辑</span>
+        </div>
+        <?php foreach ($addresses as $addr): ?>
+            <div class="addr">
+                <input type="radio" name="address" value="<?= $addr->id ?>" id="addr<?= $addr->id ?>" data-id="<?= $addr->id ?>" checked />
+                <label for="addr<?= $addr->id ?>"><?= $addr->name ?></label>
+                <span><?= $addr->phone ?></span>
+                <span><?= $addr->detail ?></span>
+            </div>
+        <?php endforeach ?>
+        <input type="submit" value="提交订单" class="submit-btn" <?= ($orders_count == 0) ? 'disabled title="不可提交"' : '' ?> />
+    </form>
 <?php else: ?>
-    <div>你的购物车中还没有商品</div>
+    <div class="empty-cart">Sorry,你的购物车还是空的哦...</div>
 <?php endif ?>
 
-<form method="post">
-    <div class="addr-info">
-        <span>请确认您的收件地址：</span>
-        <span class="edit-addr-btn">编辑</span>
-    </div>
-    <?php foreach ($addresses as $addr): ?>
-        <div class="addr">
-            <input type="radio" name="address" value="<?= $addr->id ?>" id="addr<?= $addr->id ?>" data-id="<?= $addr->id ?>" checked />
-            <label for="addr<?= $addr->id ?>"><?= $addr->name ?></label>
-            <span><?= $addr->phone ?></span>
-            <span><?= $addr->detail ?></span>
-        </div>
-    <?php endforeach ?>
-    <input type="submit" value="提交订单" class="submit-btn" />
-</form>
