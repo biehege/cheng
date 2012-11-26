@@ -16,7 +16,7 @@ $href_prefix = $paging->hrefPrefix();
         <a class="num btn <?= $i == $cur_page? 'on' : '' ?>" href="?<?= $href_prefix . $i ?>"><?= $i ?></a>
     <?php endfor; ?>
     <?php if ($paging->reachEnd()): ?><span class="ommision">...</span><?php endif; ?>
-    <?php if ($paging->hasNext()): ?><span data-p="<?= $cur_page+1 ?>" class="next-page-btn btn">下一页</span><?php endif; ?>
+    <?php if ($paging->hasNext()): ?><a href="?<?= $href_prefix . ($cur_page + 1) ?>" data-p="<?= $cur_page+1 ?>" class="next-page-btn btn">下一页</a><?php endif; ?>
     <br class="clear-fix" />
 </div>
 <?php endif; ?>
