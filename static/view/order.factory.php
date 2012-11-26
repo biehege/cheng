@@ -11,6 +11,7 @@
     <div>
         <?php
         $field_name = 'factory_id';
+        $no_default = 1;
         $data = $factories;
         include smart_view('widget.select');
         ?>

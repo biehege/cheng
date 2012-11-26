@@ -80,9 +80,10 @@
                     top: dh > 0 ? dh / 2 : 0,
                     left: dw > 0 ? dw / 2 : 0
                 };
-                d(offset);
-                div.offset(offset);
-                d(div.offset());
+                div.css({
+                    top: offset.top + 'px',
+                    left: offset.left + 'px'
+                });
             }
         },
         add: function (html) {

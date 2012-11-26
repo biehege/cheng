@@ -59,7 +59,6 @@ $(function () {
             },
             function (ret) {
                 $$.appendDiv.show(ret);
-                d($('.append-div').offset());
             });
     });
 
