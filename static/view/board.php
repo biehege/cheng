@@ -7,7 +7,7 @@
 <?php include smart_view('nav'); ?>
 <div class="right-frame">
     <?php include smart_view('crumb'); ?>
-    <div class="matter">
+    <div class="matter <?= str_replace('.', '-', $matter) ?>">
         <?php include smart_view($matter); ?>
     </div>
 </div>
