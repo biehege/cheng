@@ -124,7 +124,9 @@
                     <?php if (!$order->stoneExists()): ?>
                         <span class="stone-btn tbtn empty-holder">填写</span>
                     <?php else: ?>
-                        <span class="stone-detail-btn"><?= $order->stone()->weight ?>ct</span>
+                        <?php $stone = $order->stone(); ?>
+                        <span class="stone-detail-btn" data-id="<?= $stone->id ?>" title="点击可以查看详情"><?= $stone->weight ?>ct</span>
+                        <div class="stone-detail popup"></div>
                     <?php endif ?>
                 </div>
             <?php endif ?>
@@ -159,7 +161,9 @@
             <?php endif ?>
             <div class="col state">
                 <div><?= $state_map[$order->state] ?></div>
-                <div class="detail-btn">查看详情</div>
+                <?php if ($user_type === 'Admin'): ?>
+                    <div class="detail-btn">查看详情</div>
+                <?php endif ?>
             </div>
             <?php if ($user_type == 'Admin'): ?>
                 <div class="col control">
@@ -179,7 +183,7 @@
                     <span><?= $order->admin_remark ?></span>
                 </div>
             <?php endif ?>
-            
+            <div class="order-detail"></div>
         </div>
     <?php endforeach ?>
 </div>

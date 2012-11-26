@@ -112,4 +112,45 @@ $(function () {
                 $$.appendDiv.show(ret);
             }, 'html');
     });
+
+    // 主石详情
+    $('.stone-detail-btn').click(function () {
+        $$.popup.globalHide = false;
+        var that = $(this);
+        var id = that.data('id');
+        var div = that.siblings('.stone-detail');
+        if (div.html()) {
+            div.toggle();
+        } else {
+            $.get(
+                '/stone',
+                {
+                    action: 'get_stone_detail_div',
+                    target: id
+                },
+                function (ret) {
+                    div.html(ret).show();
+                });
+        }
+    });
+
+    $('.detail-btn').click(function () {
+        var that = $(this);
+        var entry = that.parents('.entry');
+        var id = entry.data('id');
+        var div = entry.find('.order-detail');
+        if (div.html()) {
+            div.toggle();
+            return;
+        }
+        $.get(
+            '/order',
+            {
+                action: 'get_detail_div',
+                target: id
+            },
+            function (ret) {
+                div.html(ret).show();
+            })
+    })
 });

@@ -58,7 +58,7 @@
 }
 
 .order .name {
-    width: 220px;
+    width: 230px;
 }
 .order .name img {
     display: block;
@@ -138,11 +138,28 @@
 
 .order .entry .stone {
     padding-top: 27px;
+    position: relative;
 }
 .order .stone .stone-detail-btn {
     color: #1B8ACE;
     cursor: pointer;
 }
+.order .stone .stone-detail {
+    position: absolute;
+    display: none;
+    width: 254px;
+    border: 1px solid #333;
+    padding: 10px;
+}
+.order .stone-detail div {
+    text-align: left;
+}
+.order .stone-detail span {
+    display: inline-block;
+    width: 120px;
+    text-align: left;
+}
+
 
 .order .paid {
     width: 10%;

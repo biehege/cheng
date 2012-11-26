@@ -13,7 +13,7 @@
     <span>抛光：<?= $stone->polish ?></span>
 </div>
 <div>
-    <span>净度：<?= $stone->purity ?></span>
+    <span>净度：<?= $stone->clarity ?></span>
     <span>对称：<?= $stone->symmetry ?></span>
 </div>
 <div>

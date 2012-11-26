@@ -29,6 +29,11 @@ switch ($action) {
         include smart_view('append.div');
         break;
 
+    case 'get_detail_div':
+        $cus = $order->customer();
+        include smart_view('order.detail');
+        break;
+
     case 'get_price_div':
         if (is_numeric($target)) {
             $title = _get('title');
