@@ -16,5 +16,9 @@ cart view
 todo
 ====
 
-Lionel Dong
-助理炮仗引燃师
+成员列表
+--------
+
+- Lionel Dong
+
+- 助理炮仗引燃师
