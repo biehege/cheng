@@ -10,3 +10,29 @@
 .left .upload {
     border: 1px dotted;
 }
+
+.search {
+    padding-top: 10px;
+}
+.search .e {
+    display: inline !important;
+    float: none !important;
+    height: 34px;
+    line-height: 34px;
+    padding-left: 15px;
+}
+.search .e .ti {
+    width: 110px;
+}
+.search .mbtn {
+    width: 64px;
+    height: 26px;
+    margin-left: 20px;
+    /*margin-top: 34px;*/
+}
+
+/*商品表格*/
+.product {
+    color: #6f6f6f;
+    clear: both;
+}
