@@ -37,7 +37,6 @@ switch ($target) {
         $end = $date->format($format);
         $date->sub(DateInterval::createFromDateString("59 $divide"));
         $start = $date->format($format);
-        
         break;
     
     default:
