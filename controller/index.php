@@ -42,7 +42,7 @@ $total = Product::count($conds);
 $paging = new Paginate($per_page, $total);
 $paging->setCurPage($cur_page);
 
-$products = Product::listProduct(array_merge(
+$products = Product::read(array_merge(
     $conds,
     array(
         'limit' => $per_page,

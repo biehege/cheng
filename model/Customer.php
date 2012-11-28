@@ -136,7 +136,7 @@ class Customer extends Model
         $stone = Stone::add(array('weight' => $info['stone']));
 
         $order = Order::addCustomized(array(
-            'order_no' => uniqid(),
+            'order_no' => Order::makeOrderSn(),
             'customer' => $this->id,
             'product' => $product->id,
             'material' => $info['material'],

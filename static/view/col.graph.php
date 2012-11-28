@@ -5,6 +5,13 @@
  * @author  ryan <cumt.xiaochi@gmail.com>
  * @created Jul 5, 2012 9:14:52 PM
  */
+
+// 移除所有没有销量的日子（从开始）
+foreach ($data as $k => $v) {
+    if ($v['sum'] == 0) {
+        unset($data[$k]);
+    }
+}
 ?>
 <style type="text/css">
 .curve {
@@ -30,6 +37,9 @@
         return $arr['sum'];
     }, $data);
     $max = max($sum_arr);
+    if ($max === 0) {
+        $max = 1;
+    }
     $ratio = $max_view_height * 1.0 / $max;
     $sum = array_sum($sum_arr);
     ?>
@@ -49,4 +59,3 @@
 <?php else: ?>
     <div>还没有数据</div>
 <?php endif ?>
-

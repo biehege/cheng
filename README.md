@@ -1,19 +1,22 @@
 cheng
 ==============
 
-
-
-Customer add Product to Cart
- Customer submit Cart
-
-Admin 
-
-cart view
- scan all model to ensure array_map recieve array
- db should return empty array rather than false
-
+css 任务发放
 
 todo
-====
+======
 
-Lionel Dong
+- 订单号生成规则（不需要考虑性能）
+
+成员列表
+--------
+
+- Lionel Dong
+
+- 冥芽
+
+- 助理炮仗引燃师
+
+- zwhu
+
+- guolirong

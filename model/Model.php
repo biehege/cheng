@@ -35,7 +35,7 @@ class Model
         return Pdb::fetchAll('*', $self::$table);
     }
 
-    private function info()
+    protected function info() // will this bug?
     {
         $self = get_called_class();
         $ret = Pdb::fetchRow('*', $self::$table, $this->selfCond());
