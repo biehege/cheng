@@ -399,6 +399,7 @@ class PdoHelper {
             return $ret;
         } else {
             d($this->getLog());
+            d($cond_arr);
             d($sm->errorInfo());
             throw new Exception();
         }
