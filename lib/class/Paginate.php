@@ -112,7 +112,7 @@ class Paginate {
 
     public function viewMin() {
         $v = $this->vernier();
-        return $v['min'];
+        return (int) $v['min'];
     }
     
     public function reachStart() {
@@ -122,7 +122,7 @@ class Paginate {
     
     public function viewMax() {
         $v = $this->vernier();
-        return $v['max'];
+        return (int) $v['max'];
     }
     
     public function reachEnd() {
@@ -168,6 +168,14 @@ class Paginate {
         });
         return implode('&amp;', $arr) . '&amp;p=';
     }
-}
 
-?>
+    public function startCanShow()
+    {
+        return $this->viewMin() === 1;
+    }
+
+    public function endCanShow()
+    {
+        return $this->viewMax() === $this->maxPage();
+    }
+}
