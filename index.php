@@ -61,4 +61,5 @@ if (count($arr) == 2 && $arr[1] == 'master') {
 
 include smart_view($view); // 渲染 view
 
-//  this is master
+//  this is really the dev to master
+// change 1
