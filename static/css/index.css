@@ -322,8 +322,6 @@
     font-weight: bold;
     font-size: 14px;
 }
-.product-list .right .already {
-}
 
 .carve {
     display: inline-block;
@@ -356,8 +354,6 @@
 }
 
 .already {
-    display: block;
-    display: none;
 }
 
 /*大图模式*/

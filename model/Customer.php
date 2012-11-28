@@ -185,6 +185,8 @@ class Customer extends Model
 
         $this->emptyCart();
 
+        SesState::clearProduct();
+
         return $bigOrder;
     }
 

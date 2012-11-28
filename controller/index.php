@@ -48,6 +48,8 @@ $products = Product::read(array_merge(
         'limit' => $per_page,
         'offset' => $paging->offset())));
 
+$chosen_map = SesState::chosenProducts();
+
 $types = Product::types();
 
 $view .= '?master';

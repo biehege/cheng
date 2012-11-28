@@ -22,7 +22,7 @@ $address = $customer->defaultAddress()->detail;
         <label for="phone">电话：</label>
         <input name="phone" type="text" value="<?= $user->phone ?>" class=" ti">
     </div>
-    <div>
+    <div class="gender">
         <label for="gender">性别：</label>
         <?php foreach ($genders as $key => $value): ?>
             <input name="gender" id="gender-<?= $key ?>" type="radio" value="<?= $key ?>" <?= $customer->gender == $key ? 'checked' : '' ?>  class="">
