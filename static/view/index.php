@@ -50,8 +50,12 @@
         </div>
     </div>
     <ul class="product-list <?= $mode ?> <?= $mode ?>-pl">
-        <?php foreach ($products as $prd): $materials = $prd->materials(); ?>
-            <li class="entry" data-id="<?= $prd->id ?>">
+        <?php foreach ($products as $prd):  ?>
+            <?php 
+            $prd_id = $prd->id;
+            $materials = $prd->materials();
+            ?>
+            <li class="entry" data-id="<?= $prd_id ?>">
                 <div class="left slide">
                     <div class="pic-frame">
                         <div class="img-wrap">
@@ -113,7 +117,7 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div class="already">已下单 <span class="num"></span></div>
+                        <div class="already" style="<?= !isset($chosen_map[$prd_id]) ? 'display:none' : '' ?>">已下单 <span class="num"><?= i($chosen_map[$prd_id], 0) ?></span></div>
                         <div class="add btn">+&nbsp;下订单</div>
                         <div class="estimate">
                             <span>预估价：</span>
