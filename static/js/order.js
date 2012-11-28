@@ -65,7 +65,14 @@ $(function () {
     // 价格计算
     $('.price-change-btn').click(function () {
         var that = $(this);
-        var id = that.parents('.entry').data('id');
+        
+        var entry = that.parents('.entry');
+        if (entry.find('.text.choose-factory-btn').length === 0) {
+            alert('请先选择工厂');
+            return;
+        }
+        
+        var id = entry.data('id');
         $.get(
             '/order/' + id,
             {
@@ -74,16 +81,13 @@ $(function () {
                 type: that.data('type')
             },
             function (ret) {
-                var appendDiv = $(ret);
-                $('.append-parent').append(appendDiv).show();
-                appendDiv.show();
-                $$.appendDiv.refreshAll();
-
+                $$.appendDiv.show(ret);
             }, 'html');
     });
 
     // 客户已付
     $('.pay-btn').click(function () {
+
         var that = $(this);
         var id = that.parents('.entry').data('id');
         $.get(
@@ -92,10 +96,7 @@ $(function () {
                 a: 'get_pay_div'
             },
             function (ret) {
-                var appendDiv = $(ret);
-                $('.append-parent').append(appendDiv).show();
-                appendDiv.show();
-                $$.appendDiv.refreshAll();
+                $$.appendDiv.show(ret);
             });
     });
 
