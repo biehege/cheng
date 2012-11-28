@@ -94,6 +94,8 @@ class Customer extends Model
 
     public function addProductToCart(Product $prd, $opts)
     {
+        SesState::addProduct($prd);
+
         // make an new order
         $order = Order::create($this, $prd, $opts);
 

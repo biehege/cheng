@@ -1,0 +1,27 @@
+<?php
+
+/**
+ * @author  ryan <cumt.xiaochi@gmail.com>
+ */
+
+class SesState
+{
+    public addProduct(Product $prd)
+    {
+        if (!isset($_SESSION['se_product'])) {
+            $products = array();
+        } else {
+            $products = json_decode($_SESSION['se_product']);
+        }
+
+        $id = $prd->id;
+
+        if (!isset($products[$id])) {
+            $products[$id] = 1;
+        } else {
+            $products[$prd] ++;
+        }
+        
+        $_SESSION['se_product'] = json_decode($products);
+    }
+}
