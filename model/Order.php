@@ -66,14 +66,26 @@ class Order extends Model
         $pd->edit($info);
     }
 
+    public static function makeOrderSn()
+    {
+        $year_str = chr(ord('A') + date('Y') - 2012);
+        $date_part = $year_str . strtoupper(dechex(date('m'))) . date('d');
+        $time_part = substr(time(), -5);
+        $microtime_part = substr(microtime(), 2, 3);
+        $order_sn = $date_part . $time_part . $microtime_part;
+        return $order_sn;
+    }
+
     public static function create(Customer $cus, Product $prd, $opts)
     {
         $material = $opts['material'];
+
+        $order_sn = self::makeOrderSn();
         Pdb::insert(
             array_merge(
                 $opts,
                 array(
-                    'order_no' => uniqid(), // ....
+                    'order_no' => $order_sn,
                     'customer' => $cus->id,
                     'product' => $prd->id,
                     'state' => 'InCart',
