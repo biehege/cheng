@@ -7,22 +7,22 @@
 <form>
     <div class="search">
         <div class="e">
-            <label for="name">名称</label>
-            <input name="name" id="name" value="<?= $name ?>" />
+            <label for="name">名称：</label>
+            <input name="name" id="name" class="ti" type="text" value="<?= $name ?>" />
         </div>
         <div class="e">
-            <label for="no">款号</label>
-            <input name="no" id="no" value="<?= $no ?>" />
+            <label for="no">款号：</label>
+            <input name="no" id="no" class="ti" type="text" value="<?= $no ?>" />
         </div>
         <div class="e">
-            <label for="">分类</label>
+            <label for="">分类：</label>
             <?php
             $data = $types;
             include smart_view('widget.select');
             ?>
         </div>
         <div class="e">
-            <label for="">排序</label>
+            <label for="">排序：</label>
             <select name="sort1" class="">
                 <option selected="" value="">排序条件</option>
                 <option value="count_sold">已售数量</option>
@@ -32,7 +32,7 @@
                 <option value="asc">升序</option>
             </select>
         </div>
-        <input type="submit" value="搜索" />
+        <input type="submit" class="mbtn" value="搜索" />
     </div>
 </form>
 <div>
