@@ -120,7 +120,7 @@ function d($var, $var_dump=0) {
         var_dump($var);
     }
     if ($html_mode) 
-        echo '</p></pre>';
+        echo '</pre></p>';
     echo PHP_EOL;
 }
 
