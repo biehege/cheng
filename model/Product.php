@@ -15,10 +15,11 @@ class Product extends Model
 
     public static function count($conds = array())
     {
-        $conds = self::buildDbConds($conds);
-        return (int) Pdb::count(self::$table, $conds);
+        list($tables, $conds) = self::buildDbArg($conds);
+        return (int) Pdb::count($tables, $conds);
     }
 
+    // rename to read, so we will delete this function
     public static function listProduct($conds = array())
     {
         extract(self::defaultConds($conds));
@@ -30,13 +31,19 @@ class Product extends Model
         }, Pdb::fetchAll('id', self::$table, $conds, $order, $tail));
     }
 
+    public static function read($conds = array())
+    {
+        list($tables, $conds, $order, $tail) = self::buildDbArg($conds);
+        return safe_array_map(function ($info) {
+            return new Product($info);
+        }, Pdb::fetchAll('*', $tables, $conds, $order, $tail));
+    }
+
     public static function addCustomized($info) {
         Pdb::insert(
             array_merge(
                 $info, 
-                array(
-                    'is_customized' => 1,
-                    )),
+                array('is_customized' => 1)),
             self::$table);
         return new self(Pdb::lastInsertId());
     }
@@ -116,5 +123,41 @@ class Product extends Model
             $ret['rabbet_end >= ?'] = $stone_size;
         }
         return $ret;
+    }
+
+    private static function buildDbArg($conds = array())
+    {
+        $conds = self::defaultConds($conds);
+        extract(array_merge(
+            array(
+                'name' => '',
+                'no' => '',
+                'type' => '',
+                'stone_size' => ''),
+            $conds));
+        $conds = array('is_customized = ?' => 0);
+        if ($name) {
+            $conds['name LIKE ?'] = '%' . $name . '%';
+        }
+        if ($no) {
+            $conds['no LIKE ?'] = '%' . $no . '%';
+        }
+        if ($type) {
+            $conds['type=?'] = self::typeId($type);
+        }
+        if ($stone_size) {
+            $conds['rabbet_start <= ?'] = $stone_size;
+            $conds['rabbet_end >= ?'] = $stone_size;
+        }
+        return array(self::$table, $conds, array(), "LIMIT $limit OFFSET $offset");
+    }
+
+    private static function typeId($name = '')
+    {
+        $id = Pdb::fetchRow('id', 'product_type', array('name = ?' => $name));
+        if (empty($id)) {
+            throw new Exception("no type: $name");
+        }
+        return $id;
     }
 }

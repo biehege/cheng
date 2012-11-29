@@ -6,7 +6,11 @@
 
 // login out
 if (isset($_GET['logout']) && isset($user)) {
-    $user->logout();
+    // 因为可能时间久远，用户已经session失效，但依然点击了注销按钮
+    if (is_object($user)) {
+        $user->logout(); 
+    }
+    
     redirect();
 }
 

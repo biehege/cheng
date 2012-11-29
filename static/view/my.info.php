@@ -26,7 +26,7 @@ $address = $customer->defaultAddress()->detail;
         <label for="gender">性别：</label>
         <?php foreach ($genders as $key => $value): ?>
             <input name="gender" id="gender-<?= $key ?>" type="radio" value="<?= $key ?>" <?= $customer->gender == $key ? 'checked' : '' ?>  class="">
-            <label class="after" for="gender-<?= $key ?>"><?= $value ?></label> 
+            <label class="after" for="gender-<?= $key ?>"><?= $value ?></label>
         <?php endforeach ?>
     </div>
     <div>
