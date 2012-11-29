@@ -1,8 +1,17 @@
 cheng
 ==============
 
+<<<<<<< HEAD
+css 任务发放
+
+todo
+======
+
+- 订单号生成规则（不需要考虑性能）
+=======
 css 任务发放中
 
+>>>>>>> d567773eb075a847b29841a464dbfe04f5aa24a4
 
 成员列表
 --------
@@ -17,6 +26,9 @@ css 任务发放中
 
 - guolirong
 
+<<<<<<< HEAD
+change by xiaochi
+=======
 GitHub使用指南
 --------------
 
@@ -39,3 +51,6 @@ GitHub使用指南
 `git pull upstream master`
 
 如果提示冲突，请解决冲突，如果没有，那么就更好了。你的代码已经和最新的 master 代码保持一致了。
+>>>>>>> d567773eb075a847b29841a464dbfe04f5aa24a4
+
+test
