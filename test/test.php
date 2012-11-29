@@ -171,10 +171,12 @@ $info = array(
     'rabbet_end' => '0.60',
     'small_stone' => 3,
     'st_weight' => 2.1,
-    'image1_400' => '/data/upload/201211/18/50a8d4adabe4f.jpg',
-    'image2_400' => '/data/upload/201211/03/50952f2cdd152.jpeg',
-    'image1_thumb' => '/data/upload/201211/18/50a8d4adaeed8.jpg',
-    'image2_thumb' => '/data/upload/201211/03/509cb8be38ee8.jpeg');
+    'image1_400' => '/test/static/img/i400-1.jpg',
+    'image2_400' => '/test/static/img/i400-2.jpg',
+    'image3_400' => '/test/static/img/i400-3.jpg',
+    'image1_thumb' => '/test/static/img/i80-1.jpg',
+    'image2_thumb' => '/test/static/img/i80-2.jpg',
+    'image3_thumb' => '/test/static/img/i80-3.jpg');
 $product = $admin->postProduct($info);
 // add more
 for ($i=0; $i < 50; $i++) {
