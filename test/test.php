@@ -322,7 +322,7 @@ test(1, 1, array('name' => 'Admin recharge Factory Account, then use it(stone)')
 
 // case 19 Admin add Customer
 $info = array(
-    'username' => 'user_ca_test',
+    'username' => 'test_cuser',
     'password' => 'password',
     'realname' => '小三',
     'phone' => '1392910065',
