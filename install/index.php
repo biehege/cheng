@@ -17,7 +17,8 @@ require "$root/config/common.php";
 require "$root/lib/class/Pdb.php";
 
 $c = $config['db'];
-$c['dbname'] = '';
+if (!ON_SAE)
+    $c['dbname'] = '';
 Pdb::setConfig($c);
 
 $sqls = explode(';', file_get_contents('install.sql'));
@@ -29,11 +30,7 @@ $sqls = explode(';', file_get_contents('default_data.sql'));
 foreach ($sqls as $sql) {
     exec_sql($sql);
 }
-?>
-<p>install ok</p>
-<p><a href="/test/index.php">if you need test</a><p>
-<p>or just go to <a href="/">index</a></p>
-<?php
+
 function dd($str)
 {
     echo "<p>$str</p>\n";
@@ -42,8 +39,11 @@ function dd($str)
 function exec_sql($sql = '')
 {
     if (ON_SAE && preg_match('/USE|CREATE\sDATABASE/', $sql)) {
-        continue;
+        return;
     }
     Pdb::exec($sql);
 }
 ?>
+<p>install ok</p>
+<p><a href="/test/index.php">if you need test</a><p>
+<p>or just go to <a href="/">index</a></p>
