@@ -84,6 +84,7 @@ class Model
         $info = $this->info;
         if (is_bool($info)) {
             d($info);
+            throw new Exception("info empty, maybe because you have no id: $this->id in " . get_called_class());
         }
         if (!array_key_exists($name, $this->info)) {
             d($this->info);
