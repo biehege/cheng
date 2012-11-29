@@ -192,6 +192,7 @@ class Customer extends Model
 
     public static function create($info)
     {
+        // 这里竟然没有address
         $user_info = array(
             'username' => i($info['username']),
             'password' => i($info['password']),

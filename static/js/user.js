@@ -16,10 +16,7 @@ $(function () {
                 a: 'get_edit_div'
             },
             function (ret) {
-                var appendDiv = $(ret);
-                $('.append-parent').append(appendDiv).show();
-                appendDiv.show();
-                window.refreshAppendDiv();
+                $$.appendDiv.show(ret);
             });
     });
 

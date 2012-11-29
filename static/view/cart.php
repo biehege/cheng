@@ -52,7 +52,7 @@
                 </div>
                 <div class="col num">1</div>
                 <div class="col price">
-                    <div>￥<?= $order->estimate_price ?></div>
+                    <div>￥<?= fp($order->estimate_price) ?></div>
                 </div>
                 <div class="col del">
                     <div class="popup">
@@ -80,7 +80,7 @@
         </span>
         <span class="price">
             预估总价：
-            <strong>￥<?= $cart->totalPrice() ?></strong>
+            <strong>￥<?= fp($cart->totalPrice()) ?></strong>
         </span>
     </div>
     <form method="post">
