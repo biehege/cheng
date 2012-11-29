@@ -35,9 +35,9 @@
         <input type="submit" class="mbtn" value="搜索" />
     </div>
 </form>
-<div>
+<div class="page-info">
     <?php include smart_view('paging'); ?>
-    <span>共找到：<?= $total ?>条</span>
+    <div class="total">共找到：<?= $total ?>条</div>
 </div>
 <table>
     <tr class="title">
