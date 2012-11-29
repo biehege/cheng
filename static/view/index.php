@@ -121,7 +121,7 @@
                         <div class="add btn">+&nbsp;下订单</div>
                         <div class="estimate">
                             <span>预估价：</span>
-                            <span class="price">￥<span class="num"><?= $prd->estimatePrice() ?></span></span>
+                            <span class="price">￥<span class="num"><?= fp($prd->estimatePrice()) ?></span></span>
                         </div>
                     </div>
                 <?php endif ?>
