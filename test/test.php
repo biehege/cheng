@@ -179,11 +179,11 @@ $info = array(
     'image3_thumb' => '/test/static/img/i80-3.jpg');
 $product = $admin->postProduct($info);
 // add more
-for ($i=0; $i < 50; $i++) {
-    $info2 = $info;
-    $info2['name'] = $info['name'] . $i;
-    $admin->postProduct($info2);
-}
+// for ($i=0; $i < 50; $i++) {
+//     $info2 = $info;
+//     $info2['name'] = $info['name'] . $i;
+//     $admin->postProduct($info2);
+// }
 // but what if we count?
 test(
     Pdb::fetchRow('*', Product::$table, array('id=?' => $product->id)),
