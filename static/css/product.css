@@ -45,6 +45,9 @@
   empty-cells: show;
   text-align:center;
 }
+.product td.col {
+  color: #6f6f6f;
+}
 .product .col {
   display: table-cell;
   float: none;
@@ -74,5 +77,27 @@
 }
 .product .col.name {
   width: 290px;
+}
+.product td.col.name {
   text-align:left;
+}
+.product .name img {
+    display: block;
+    border: 1px solid #cccccc;
+    margin: 12px;
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+.product .name .text-wrap {
+    float: left;
+    margin: 12px 0;
+}
+.product .name .text-wrap .text {
+    font-weight: bold;
+    font-size: 14px;
+}
+.product td.price-estimate {
+    width: 80px;
+    font-weight: bold;
 }
