@@ -360,14 +360,11 @@ function is_mobile() {
 // 不检测，直接不适用这个函数，在master那里直接写
 function smart_view($view, $default = 'default') 
 {
-    $GLOBALS['view_looking_for'] = $view;
     if (is_mobile() && ($m = FrameFile::view('mobile/' . $view)) && file_exists($m))
         return $m;
     if (($file = FrameFile::view($view)) && file_exists($file))
         return FrameFile::view($view);
-    if (is_mobile() && ($m = FrameFile::view('mobile/' . $default)) && file_exists($m))
-        return $m;
-    return FrameFile::view($default);
+    throw new Exception("not exist $file");
 }
 
 function safe_array_map($call, $arr)

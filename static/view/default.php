@@ -15,14 +15,15 @@
         <?php
         echo css_node('reset'), "\n";
         echo css_node('style'), "\n";
-        foreach ($page['styles'] as $style) {
-            echo css_node($style), "\n";
-        }
         ?>
     </head>
     <body>
         <div class="header">
-            <?php include smart_view('header'); ?>
+            <h1>
+                <a href="<?= ROOT ?>" title="<?= $config['site']['name'] ?>">
+                    <img src="<?= ROOT ?>static/img/logo.png" alt="英格" title="回首页" />
+                </a>
+            </h1>
         </div>
         <div class="misssing" title="<?= i($GLOBALS['view_looking_for']) ?>">
             没有页面 404
