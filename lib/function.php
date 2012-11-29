@@ -356,8 +356,7 @@ function is_mobile() {
         return false;
 }
 
-// 或许是该改变了，这个检测不存在就，抛出错
-// 不检测，直接不适用这个函数，在master那里直接写
+// 检测到不存在文件就抛出错
 function smart_view($view, $default = 'default') 
 {
     if (is_mobile() && ($m = FrameFile::view('mobile/' . $view)) && file_exists($m))

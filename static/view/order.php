@@ -117,7 +117,7 @@
                 <span>损耗：<?= $customer_price->wear_tear ?></span>
             </div>
             <div class="col price-estimate">
-                ￥<?= $order->estimate_price ?>
+                ￥<?= fp($order->estimate_price) ?>
             </div>
             <?php if ($user_type === 'Admin'): ?>
                 <div class="col stone">
@@ -130,7 +130,6 @@
                     <?php endif ?>
                 </div>
             <?php endif ?>
-            
             <?php if ($user_type === 'Admin'): ?>
                 <?php $factory = $order->factory(); ?>
                 <div class="col factory-name">
@@ -142,20 +141,20 @@
                 </div>
                 <div class="col price-factory">
                     <span class="price-change-btn tbtn" data-title="工厂价格计算" data-type="Factory">
-                        ￥<?= $order->factory_price ?>
+                        ￥<?= fp($order->factory_price) ?>
                     </span>
                 </div>
                 <div class="col price-real">
                     <span class="price-change-btn tbtn" data-title="实际售价计算" data-type="Customer">
-                        ￥<?= $order->real_price ?>
+                        ￥<?= fp($order->real_price) ?>
                     </span>
                 </div>
                 <div class="col paid">
-                    <span class="pay-btn tbtn"><?= $order->paid ?></span>
+                    <span class="pay-btn tbtn"><?= fp($order->paid) ?></span>
                 </div>
             <?php else: ?>
                 <div class="col price-real">
-                    ￥<?= $order->real_price ?>
+                    ￥<?= fp($order->real_price) ?>
                     <img class="price-detail-btn" title="价格详情" alt="价格详情" src="<?= ROOT ?>static/img/i.gif" />
                 </div>
             <?php endif ?>

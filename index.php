@@ -34,6 +34,8 @@ ob_start();
 session_start();
 date_default_timezone_set('PRC');
 
+require 'lib/helper.php';
+
 require FrameFile::controller('init');
 
 if (isset($force_redirect)) { // 强制跳转 这个在整站关闭的时候很有用
