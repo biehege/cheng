@@ -4,8 +4,8 @@
 <div class="small-wrap">
     <div class="gold-price">
         <span class="lbl">今日金价</span>
-        <span class="info">PT950: <?= Price::current('PT950') ?>元/克</span>
-        <span class="info">AU750: <?= Price::current('AU750') ?>元/克</span>
+        <span class="info">PT950: <?= fp(Price::current('PT950')) ?>元/克</span>
+        <span class="info">AU750: <?= fp(Price::current('AU750')) ?>元/克</span>
     </div>
     <div class="account">
         <?php if ($has_login): ?>
