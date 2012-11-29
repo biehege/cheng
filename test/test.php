@@ -226,7 +226,7 @@ test(
     +$entry_num, 
     array('name' => 'Customer add a Product to Cart'));
 
-// case 11 Cart count()
+// case 12 Cart count()
 begin_test();
 $cart = $customer->cart();
 test(
@@ -234,7 +234,7 @@ test(
     1,
     array('name' => 'Cart count()'));
 
-// case 12 Customer del a Product from Cart
+// case 13 Customer del a Product from Cart
 begin_test();
 $opts = array(
     'material' => 'PT950',
@@ -242,7 +242,7 @@ $opts = array(
     'carve_text' => 'I love U');
 $opts2 = $opts;
 $opts2['carve_text'] = $opts['carve_text'] . '2';
-$order_to_del = $customer->addProductToCart($product, $opts2);
+$order_dajiangyou = $customer->addProductToCart($product, $opts2);
 $opts2['carve_text'] = $opts['carve_text'] . '3';
 $order_to_del = $customer->addProductToCart($product, $opts2); // add for twice
 $old_num = $customer->cart()->count();
