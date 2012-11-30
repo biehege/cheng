@@ -40,5 +40,3 @@ GitHub使用指南
 `git pull upstream master`
 
 如果提示冲突，请解决冲突，如果没有，那么就更好了。你的代码已经和最新的 master 代码保持一致了。
-
-change
