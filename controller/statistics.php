@@ -38,6 +38,33 @@ switch ($target) {
         $date->sub(DateInterval::createFromDateString("59 $divide"));
         $start = $date->format($format);
         break;
+
+    case '':
+        if ($by_ajax && $action === 'get_post_gold_price_div') {
+            $view_name = 'gold.price.post';
+            include smart_view('append.div');
+            exit;
+        }
+
+        if ($by_post && $action === 'post_gold_price') {
+
+            $name_map = array(
+                'PT950',
+                'AU750',
+                'PT990',
+                'AU990');
+
+            foreach ($name_map as $name) {
+                $price = _post($name);
+                $en = _post('en' . $name);
+                if ($en && $price) {
+                    $admin->updatePrice($name, $price);
+                }
+            }
+            redirect('statistics/gold_price');
+            exit;
+        }
+        break;
     
     default:
         throw new Exception("unkown target: $target");

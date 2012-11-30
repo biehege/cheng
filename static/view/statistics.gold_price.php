@@ -20,12 +20,11 @@
             ?>
         </div>
         <input value="搜索" type="submit" />
-    
     </div>
 </form>
 <div>
     <?php include smart_view('paging'); ?>
-    <span>发布金价</span>
+    <span class="post-gold-price-btn mbtn">发布金价</span>
 </div>
 <div>
     <span>时间</span>
