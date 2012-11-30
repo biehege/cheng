@@ -19,6 +19,8 @@ css 任务发放中
 GitHub使用指南
 --------------
 
+最基本的入门可以参考：
+
 你可以看到有两个 branch，一个 master，一个dev。在我（picasso250，即创建者）的账户里，master 是主分支，dev 是开发分支。也就是说，master 永远是最稳定的代码，dev是自己做实验，做开发的代码。
 
 你们（forker）提 pull request 的时候，推荐你们提给我的 dev 分支。
