@@ -33,8 +33,6 @@ foreach ($sqls as $sql) {
     exec_sql($sql);
 }
 
-d($histories);
-
 function dd($str)
 {
     echo "<p>$str</p>\n";
