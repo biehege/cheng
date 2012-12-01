@@ -21,6 +21,8 @@ if (!ON_SAE)
     $c['dbname'] = '';
 Pdb::setConfig($c);
 
+$histories = array();
+
 $sqls = explode(';', file_get_contents('install.sql'));
 foreach ($sqls as $sql) {
     exec_sql($sql);
@@ -30,6 +32,8 @@ $sqls = explode(';', file_get_contents('default_data.sql'));
 foreach ($sqls as $sql) {
     exec_sql($sql);
 }
+
+d($histories);
 
 function dd($str)
 {
@@ -42,6 +46,7 @@ function exec_sql($sql = '')
         return;
     }
     Pdb::exec($sql);
+    $GLOBALS['histories'][] = $sql;
 }
 ?>
 <p>install ok</p>
