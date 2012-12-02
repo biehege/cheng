@@ -120,7 +120,7 @@ function d($var, $var_dump=0) {
         var_dump($var);
     }
     if ($html_mode) 
-        echo '</p></pre>';
+        echo '</pre></p>';
     echo PHP_EOL;
 }
 
@@ -356,18 +356,14 @@ function is_mobile() {
         return false;
 }
 
-// 或许是该改变了，这个检测不存在就，抛出错
-// 不检测，直接不适用这个函数，在master那里直接写
+// 检测到不存在文件就抛出错
 function smart_view($view, $default = 'default') 
 {
-    $GLOBALS['view_looking_for'] = $view;
     if (is_mobile() && ($m = FrameFile::view('mobile/' . $view)) && file_exists($m))
         return $m;
     if (($file = FrameFile::view($view)) && file_exists($file))
         return FrameFile::view($view);
-    if (is_mobile() && ($m = FrameFile::view('mobile/' . $default)) && file_exists($m))
-        return $m;
-    return FrameFile::view($default);
+    throw new Exception("not exist $file");
 }
 
 function safe_array_map($call, $arr)

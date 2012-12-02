@@ -17,8 +17,8 @@
     $real_price = $order->real_price;
     ?>
     <span>合计价格：</span>
-    <span class="num"><?= $real_price ?>元</span>
-    <span class="more">(原价：<?= $final_price ?>元，已优惠<?= $final_price - $real_price ?>元)</span>
+    <span class="num"><?= fp($real_price) ?>元</span>
+    <span class="more">(原价：<?= fp($final_price) ?>元，已优惠<?= fp($final_price - $real_price) ?>元)</span>
 </div>
 <div class="box-wrap gold">
     <div class="total b">￥<?= $price->gold_weight * (1 + 1.0 * $price->wear_tear / 100) * $price->gold_price ?></div>

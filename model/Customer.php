@@ -94,6 +94,8 @@ class Customer extends Model
 
     public function addProductToCart(Product $prd, $opts)
     {
+        SesState::addProduct($prd);
+
         // make an new order
         $order = Order::create($this, $prd, $opts);
 
@@ -136,7 +138,7 @@ class Customer extends Model
         $stone = Stone::add(array('weight' => $info['stone']));
 
         $order = Order::addCustomized(array(
-            'order_no' => uniqid(),
+            'order_no' => Order::makeOrderSn(),
             'customer' => $this->id,
             'product' => $product->id,
             'material' => $info['material'],
@@ -183,11 +185,14 @@ class Customer extends Model
 
         $this->emptyCart();
 
+        SesState::clearProduct();
+
         return $bigOrder;
     }
 
     public static function create($info)
     {
+        // 这里竟然没有address
         $user_info = array(
             'username' => i($info['username']),
             'password' => i($info['password']),

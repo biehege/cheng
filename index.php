@@ -9,7 +9,7 @@
 
 // 打开错误提示, SAE 可以 ini_set 将不起作用
 ini_set('display_errors', 1);
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+error_reporting(E_ALL);
 
 define('IN_PTF', 1);
 
@@ -34,6 +34,8 @@ ob_start();
 session_start();
 date_default_timezone_set('PRC');
 
+require 'lib/helper.php';
+
 require FrameFile::controller('init');
 
 if (isset($force_redirect)) { // 强制跳转 这个在整站关闭的时候很有用
@@ -43,6 +45,9 @@ $view = $controller;
 
 if (!file_exists(FrameFile::controller($controller))) {
     $controller = 'default'; // page 404
+    include FrameFile::controller($controller);
+    include smart_view($controller);
+    exit;
 }
 
 // auto include if there exists css or js file same name with controller

@@ -18,9 +18,16 @@ class Admin extends Model
 
     public function addCustomer($info) 
     {
-        return Customer::create(array_merge(
+        $cus = Customer::create(array_merge(
             $info,
             array('adopted' => 1)));
+        $addr = $cus->defaultAddress();
+        extract($info);
+        if ($realname || $phone || $address)
+            $addr->edit(array(
+                'name' => $realname,
+                'phone' => $phone,
+                'detail' => $address));
     }
 
     public function adoptCustomer(Customer $cus)

@@ -171,17 +171,19 @@ $info = array(
     'rabbet_end' => '0.60',
     'small_stone' => 3,
     'st_weight' => 2.1,
-    'image1_400' => '/data/upload/201211/18/50a8d4adabe4f.jpg',
-    'image2_400' => '/data/upload/201211/03/50952f2cdd152.jpeg',
-    'image1_thumb' => '/data/upload/201211/18/50a8d4adaeed8.jpg',
-    'image2_thumb' => '/data/upload/201211/03/509cb8be38ee8.jpeg');
+    'image1_400' => '/test/static/img/i400-1.jpg',
+    'image2_400' => '/test/static/img/i400-2.jpg',
+    'image3_400' => '/test/static/img/i400-3.jpg',
+    'image1_thumb' => '/test/static/img/i80-1.jpg',
+    'image2_thumb' => '/test/static/img/i80-2.jpg',
+    'image3_thumb' => '/test/static/img/i80-3.jpg');
 $product = $admin->postProduct($info);
 // add more
-for ($i=0; $i < 50; $i++) {
-    $info2 = $info;
-    $info2['name'] = $info['name'] . $i;
-    $admin->postProduct($info2);
-}
+// for ($i=0; $i < 50; $i++) {
+//     $info2 = $info;
+//     $info2['name'] = $info['name'] . $i;
+//     $admin->postProduct($info2);
+// }
 // but what if we count?
 test(
     Pdb::fetchRow('*', Product::$table, array('id=?' => $product->id)),
@@ -224,7 +226,7 @@ test(
     +$entry_num, 
     array('name' => 'Customer add a Product to Cart'));
 
-// case 11 Cart count()
+// case 12 Cart count()
 begin_test();
 $cart = $customer->cart();
 test(
@@ -232,7 +234,7 @@ test(
     1,
     array('name' => 'Cart count()'));
 
-// case 12 Customer del a Product from Cart
+// case 13 Customer del a Product from Cart
 begin_test();
 $opts = array(
     'material' => 'PT950',
@@ -240,7 +242,7 @@ $opts = array(
     'carve_text' => 'I love U');
 $opts2 = $opts;
 $opts2['carve_text'] = $opts['carve_text'] . '2';
-$order_to_del = $customer->addProductToCart($product, $opts2);
+$order_dajiangyou = $customer->addProductToCart($product, $opts2);
 $opts2['carve_text'] = $opts['carve_text'] . '3';
 $order_to_del = $customer->addProductToCart($product, $opts2); // add for twice
 $old_num = $customer->cart()->count();
@@ -322,7 +324,7 @@ test(1, 1, array('name' => 'Admin recharge Factory Account, then use it(stone)')
 
 // case 19 Admin add Customer
 $info = array(
-    'username' => 'user_ca_test',
+    'username' => 'test_cuser',
     'password' => 'password',
     'realname' => '小三',
     'phone' => '1392910065',
